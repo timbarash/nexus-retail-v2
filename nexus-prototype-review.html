@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-03-08" />
+  <title>Dutchie Nexus Prototype Review</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Dutchie Nexus Prototype Review</h1>
+<p class="subtitle">Multi-Agent Analysis &amp; Improvement Plan</p>
+<p class="date">March 8, 2026</p>
+</header>
+<h1 id="dutchie-nexus-prototype-review-improvement-plan">Dutchie Nexus —
+Prototype Review &amp; Improvement Plan</h1>
+<p><strong>Prepared by:</strong> AI Review Panel (5 Agents) |
+<strong>Date:</strong> March 8, 2026 <strong>Scope:</strong> Full
+prototype at sa-demo.dutchie.dev | <strong>Codebase:</strong>
+sentiment-analysis/src/</p>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p>Five specialized agents reviewed the entire Dutchie Nexus prototype
+from their domain perspectives: a Frontend Architect, a Dispensary
+Operations Manager (“Jordan”), a Cannabis Marketing Director
+(“Aaliyah”), a Compliance &amp; Regulatory Expert (“David”), and a
+Multi-Location Executive (“Maria”, COO).</p>
+<p><strong>Overall verdict:</strong> The prototype is the most complete
+cannabis retail intelligence platform any reviewer has seen. The unified
+sentiment pipeline is genuinely differentiated. The AI agent
+architecture is sound. The multi-location data model is correct.
+However, there are critical compliance gaps in AI-generated content,
+data accuracy issues with brand catalogs, and several quick fixes that
+would significantly improve demo credibility.</p>
+<h3 id="review-score-by-domain">Review Score by Domain</h3>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 25%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Score</th>
+<th>Key Finding</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Architecture &amp; Code Quality</td>
+<td>B+</td>
+<td>Solid patterns, robust error handling, needs error boundary</td>
+</tr>
+<tr class="even">
+<td>Data Accuracy &amp; Realism</td>
+<td>B-</td>
+<td>Sentiment data excellent; agent brand catalogs wrong-market</td>
+</tr>
+<tr class="odd">
+<td>Marketing &amp; Campaign Quality</td>
+<td>B</td>
+<td>Preset campaigns strong; AI guardrails missing</td>
+</tr>
+<tr class="even">
+<td>Compliance &amp; Regulatory</td>
+<td>C</td>
+<td>No content filtering, no state-specific logic, PA/MA violations</td>
+</tr>
+<tr class="odd">
+<td>Strategic Value &amp; Demo Readiness</td>
+<td>A-</td>
+<td>Genuinely differentiated; numbers need scaling fix</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="critical-issues-blocks-demo-credibility">Critical Issues (Blocks
+Demo Credibility)</h2>
+<h3 id="crit-1-no-ai-content-compliance-filter-compliance-agent">CRIT-1:
+No AI Content Compliance Filter [Compliance Agent]</h3>
+<p><strong>Risk: RED</strong> | <strong>Files:</strong>
+<code>gemini.js</code> (systemic),
+<code>NexusLanding.jsx:63-99</code></p>
+<p>There is zero post-generation content filtering anywhere in the
+codebase. AI-generated content goes directly from the Gemini API
+response to the user interface with no check for prohibited terms
+(“cure”, “treat”, “heal”, “safe”, “harmless”, “no side effects”). The
+<code>MARKETING_CAMPAIGN_SYSTEM</code> prompt (gemini.js:126-215)
+contains no instructions prohibiting health claims. The landing page
+generates testimonials at temperature 0.9 with no compliance
+constraints.</p>
+<p><strong>Fix:</strong> Add a <code>complianceScan()</code> function
+that runs on all AI-generated customer-facing text before rendering. Add
+explicit prohibitions to all AI system prompts. Lower landing page
+temperature from 0.9 to 0.6.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> PROHIBITED_TERMS <span class="op">=</span> [</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="ss">/</span><span class="sc">\b</span><span class="ss">cure</span><span class="sc">[sd]?\b</span><span class="ss">/i</span><span class="op">,</span> <span class="ss">/</span><span class="sc">\b</span><span class="ss">treat</span><span class="sc">[s]?\b</span><span class="ss">/i</span><span class="op">,</span> <span class="ss">/</span><span class="sc">\b</span><span class="ss">heal</span><span class="sc">[s]?\b</span><span class="ss">/i</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="ss">/</span><span class="sc">\b</span><span class="ss">safe</span><span class="sc">\b</span><span class="ss">/i</span><span class="op">,</span> <span class="ss">/</span><span class="sc">\b</span><span class="ss">harmless</span><span class="sc">\b</span><span class="ss">/i</span><span class="op">,</span> <span class="ss">/</span><span class="sc">\b</span><span class="ss">no side effects</span><span class="sc">\b</span><span class="ss">/i</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="ss">/</span><span class="sc">\b</span><span class="ss">all.</span><span class="sc">?</span><span class="ss">natural</span><span class="sc">\b</span><span class="ss">/i</span><span class="op">,</span> <span class="ss">/</span><span class="sc">\b</span><span class="ss">organic</span><span class="sc">\b</span><span class="ss">/i</span><span class="op">,</span> <span class="ss">/</span><span class="sc">\b</span><span class="ss">therapeutic</span><span class="sc">\b</span><span class="ss">/i</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>]<span class="op">;</span></span></code></pre></div>
+<hr />
+<h3
+id="crit-2-pennsylvania-medical-only-violation-compliance-agent">CRIT-2:
+Pennsylvania Medical-Only Violation [Compliance Agent]</h3>
+<p><strong>Risk: RED</strong> | <strong>Files:</strong>
+<code>gemini.js:214</code>, <code>mockData.js:55-59</code>,
+<code>MarketingCampaigns.jsx</code></p>
+<p>PA operates a medical-only cannabis program. The prototype treats PA
+locations (Cranberry, Monaca, Scranton, Wayne, Whitehall) identically to
+adult-use states. Recreational brand marketing campaigns like “15% off
+all Jeeter products” are broadcast to PA locations. PA regulations
+prohibit advertising cannabis products to the general public.</p>
+<p><strong>Fix:</strong> Add state-type metadata to locations
+(<code>{ type: 'medical' | 'adult-use' }</code>). Filter PA locations
+from recreational campaigns. Create PA-specific patient-focused
+templates. Add to <code>MARKETING_CAMPAIGN_SYSTEM</code>: “For PA
+locations, all messaging must be patient-focused.”</p>
+<hr />
+<h3
+id="crit-3-massachusetts-ccc-compliance-failures-compliance-agent">CRIT-3:
+Massachusetts CCC Compliance Failures [Compliance Agent]</h3>
+<p><strong>Risk: RED</strong> | <strong>Files:</strong>
+<code>MarketingCampaigns.jsx</code>,
+<code>NexusLanding.jsx:45</code></p>
+<p>MA has the strictest rules of all 7 states. Issues:
+lifestyle-oriented brand marketing that MA prohibits, no required health
+warnings, no actual 21+ audience verification (hardcoded “pass”), and a
+testimonial attributed to “Priya Patel, Ascend Wellness, MA” on the
+landing page.</p>
+<p><strong>Fix:</strong> Add MA-specific content filters, require CCC
+health warning in campaigns targeting MA locations, implement actual age
+verification logic, gate MA-attributed testimonials behind age
+verification.</p>
+<hr />
+<h3 id="crit-4-brand-catalog-mismatch-ops-manager">CRIT-4: Brand Catalog
+Mismatch [Ops Manager]</h3>
+<p><strong>Risk: HIGH</strong> | <strong>Files:</strong>
+<code>PricingAgent.jsx:37-45</code>,
+<code>ConnectAgent.jsx:50-132</code>, <code>gemini.js:213</code></p>
+<p>The operational agents (Pricing, Connect) use California/multi-state
+brands (Jeeter, STIIIZY, Cookies, Alien Labs, Raw Garden, Kiva, Wyld,
+PLUS) that are NOT available in Ascend’s actual markets (IL, MD, MA, MI,
+NJ, OH, PA). Meanwhile, the sentiment data correctly uses Ascend’s real
+brands (Ozone, Ozone Reserve, Simply Herb, Common Goods, Tunnel Vision).
+Any Ascend operations person would immediately say “we don’t carry half
+of these.”</p>
+<p><strong>Fix:</strong> Replace the agent brand catalogs with brands
+available in Ascend’s operating states, or make brand catalogs
+configurable per operator. At minimum, reconcile with the brands already
+in <code>mockData.js</code>.</p>
+<hr />
+<h2 id="high-impact-improvements">High-Impact Improvements</h2>
+<h3 id="high-1-add-error-boundary-around-routes-architect">HIGH-1: Add
+Error Boundary Around Routes [Architect]</h3>
+<p><strong>File:</strong> <code>App.jsx:67-84</code> |
+<strong>Effort:</strong> 5 min</p>
+<p>If any page component throws during render (e.g., bad data from
+Gemini causes <code>.map()</code> on undefined), the entire app crashes
+to a white screen. Adding a simple React error boundary prevents
+embarrassing crashes during live demos.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;ErrorBoundary</span> <span class="ot">FallbackComponent</span><span class="op">=</span><span class="va">{</span>FallbackComponent<span class="va">}</span><span class="fu">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">&lt;Routes&gt;</span>...<span class="fu">&lt;/Routes&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;/ErrorBoundary&gt;</span></span></code></pre></div>
+<hr />
+<h3
+id="high-2-fix-campaignplan-stale-state-on-re-generation-architect">HIGH-2:
+Fix CampaignPlan Stale State on Re-generation [Architect]</h3>
+<p><strong>File:</strong> <code>MarketingCampaigns.jsx:592</code> |
+<strong>Effort:</strong> 1 min</p>
+<p>The <code>CampaignPlan</code> component initializes state from props
+on mount. If the parent passes new campaign data (generating a second AI
+campaign), the plan shows stale data from the first generation.</p>
+<p><strong>Fix:</strong> Add a <code>key</code> prop:
+<code>&lt;CampaignPlan key={campaignData.title} data={campaignData} /&gt;</code></p>
+<hr />
+<h3
+id="high-3-revenue-numbers-dont-scale-to-39-locations-executive">HIGH-3:
+Revenue Numbers Don’t Scale to 39 Locations [Executive]</h3>
+<p><strong>Files:</strong> <code>NexusHome.jsx:56-63</code> |
+<strong>Effort:</strong> 30 min</p>
+<p>Today’s sales: $47,820 across 39 locations = ~$1,226/store/day.
+Ascend’s actual average is ~$4.2M/store/year (~$11,500/day). The
+prototype is running at about 9% of actual revenue. A CTO would catch
+this in the first 5 minutes.</p>
+<p><strong>Fix:</strong> Scale all revenue figures by ~10x, or set the
+dashboard context to show a single region/state rather than the full
+portfolio.</p>
+<hr />
+<h3 id="high-4-add-state-specific-disclaimers-compliance">HIGH-4: Add
+State-Specific Disclaimers [Compliance]</h3>
+<p><strong>Files:</strong> <code>gemini.js:291</code>,
+<code>MarketingCampaigns.jsx:101,217,293</code> |
+<strong>Effort:</strong> 45 min</p>
+<p>Campaigns include “Must be 21+” but omit state-specific warnings. No
+“Keep out of reach of children” (required in IL, NJ, MA), no Michigan
+license number, no MA health warning, no PA patient-only language.</p>
+<p><strong>Fix:</strong> Build a disclaimer matrix keyed by state. The
+normalizer function should append state-specific disclaimers based on
+<code>locationTargeting</code> data.</p>
+<hr />
+<h3 id="high-5-role-based-dashboard-views-executive">HIGH-5: Role-Based
+Dashboard Views [Executive]</h3>
+<p><strong>File:</strong> <code>NexusHome.jsx</code> (2,064 lines) |
+<strong>Effort:</strong> 2-3 hours</p>
+<p>The NexusHome renders 11 tiles with enormous information density.
+Store managers won’t scroll past the third tile. Need role-based views:
+COO sees portfolio, Regional Manager sees their region, Store Manager
+sees their location’s 3 most critical metrics.</p>
+<p><strong>Fix:</strong> Add a role selector (COO / Regional / Store)
+that shows/hides tiles and adjusts data scope.</p>
+<hr />
+<h3
+id="high-6-sentiment-to-campaign-pipeline-marketing-director">HIGH-6:
+Sentiment-to-Campaign Pipeline [Marketing Director]</h3>
+<p><strong>Effort:</strong> 2-3 hours</p>
+<p>The sentiment analytics identify problems (e.g., Morenci wait time
+complaints) but there’s no workflow to automatically draft a response
+campaign. Connecting the sentiment pipeline to the marketing agent (“We
+heard you — shorter wait times at Morenci”) would be the single most
+compelling cross-agent demo flow.</p>
+<hr />
+<h3 id="high-7-thc-percentage-guardrails-for-ai-compliance">HIGH-7: THC
+Percentage Guardrails for AI [Compliance]</h3>
+<p><strong>Files:</strong> <code>gemini.js:185</code> |
+<strong>Effort:</strong> 15 min</p>
+<p>The AI system prompt includes <code>thc</code> as a field but
+provides no guidance on realistic ranges. The AI could generate
+<code>thc: '99%'</code> for flower.</p>
+<p><strong>Fix:</strong> Add to <code>MARKETING_CAMPAIGN_SYSTEM</code>:
+“THC percentages must be realistic: Flower 15-35%, Infused Pre-Rolls
+30-50%, Edibles 5-100mg per piece, Vape Carts 60-95%, Concentrates
+60-95%.”</p>
+<hr />
+<h2 id="quick-wins-30-minutes-each">Quick Wins (&lt; 30 minutes
+each)</h2>
+<h3 id="qw-1-add-sendingref-guard-to-agent-chat-architect">QW-1: Add
+<code>sendingRef</code> Guard to Agent Chat [Architect]</h3>
+<p><strong>Effort:</strong> ~5 min | <strong>Files:</strong> All agent
+pages</p>
+<p>Prevent double-click duplicate messages in chat by adding a ref guard
+to all <code>handleSend</code> functions.</p>
+<hr />
+<h3 id="qw-2-add-aria-label-to-cx-floating-button-architect">QW-2: Add
+<code>aria-label</code> to CX Floating Button [Architect]</h3>
+<p><strong>Effort:</strong> ~2 min | <strong>File:</strong>
+<code>App.jsx:120</code></p>
+<p>The CX button and close button lack screen reader labels. Quick
+accessibility win.</p>
+<hr />
+<h3 id="qw-3-fix-loyalty-member-count-ops-manager">QW-3: Fix Loyalty
+Member Count [Ops Manager]</h3>
+<p><strong>Effort:</strong> ~2 min | <strong>File:</strong>
+<code>NexusHome.jsx:75</code></p>
+<p>Active loyalty members: 18,420 across 39 stores = 472/store. A
+well-run program has 3,000-5,000 per location. Should be
+120,000-150,000.</p>
+<hr />
+<h3 id="qw-4-fix-bogo-edibles-redemption-count-ops-manager">QW-4: Fix
+BOGO Edibles Redemption Count [Ops Manager]</h3>
+<p><strong>Effort:</strong> ~2 min | <strong>File:</strong>
+<code>PricingAgent.jsx:61</code></p>
+<p>156 BOGO redemptions across 39 stores = 4 per store. Laughably low.
+Should be 10-15x that number.</p>
+<hr />
+<h3 id="qw-5-fix-sms-cost-per-message-marketing-director">QW-5: Fix SMS
+Cost Per Message [Marketing Director]</h3>
+<p><strong>Effort:</strong> ~2 min | <strong>Files:</strong>
+<code>MarketingCampaigns.jsx:85, gemini.js:267</code></p>
+<p>$0.015/msg is below cannabis industry rates ($0.02-0.03/msg due to
+carrier surcharges). Update to $0.025/msg for credibility.</p>
+<hr />
+<h3 id="qw-6-fix-nps-score-presentation-ops-manager">QW-6: Fix NPS Score
+Presentation [Ops Manager]</h3>
+<p><strong>Effort:</strong> ~5 min | <strong>File:</strong>
+<code>NexusHome.jsx:111</code></p>
+<p>NPS of 34 is presented with a green upward arrow as if it’s good. For
+cannabis retail, 34 is mediocre. Either raise the mock NPS to 42+ or
+change the indicator to yellow/neutral.</p>
+<hr />
+<h3
+id="qw-7-remove-deep-muscle-relief-therapeutic-claim-compliance">QW-7:
+Remove “Deep Muscle Relief” Therapeutic Claim [Compliance]</h3>
+<p><strong>Effort:</strong> ~1 min | <strong>File:</strong>
+<code>ConnectAgent.jsx:222</code></p>
+<p>“Award-winning topical for deep muscle relief” is a therapeutic
+claim. Change to “premium topical application.”</p>
+<hr />
+<h3
+id="qw-8-add-demo-data-disclaimer-to-landing-page-testimonials-compliance">QW-8:
+Add “Demo Data” Disclaimer to Landing Page Testimonials
+[Compliance]</h3>
+<p><strong>Effort:</strong> ~5 min | <strong>File:</strong>
+<code>NexusLanding.jsx:43-46</code></p>
+<p>Testimonials attribute specific claims to named fictional individuals
+at real Ascend locations. Add a visible “(Demo data — not real
+testimonials)” tag or use anonymized case study format.</p>
+<hr />
+<h3
+id="qw-9-move-sms-opt-out-into-primary-message-body-compliance">QW-9:
+Move SMS Opt-Out Into Primary Message Body [Compliance]</h3>
+<p><strong>Effort:</strong> ~5 min | <strong>File:</strong>
+<code>MarketingCampaigns.jsx:104-107</code></p>
+<p>“Reply STOP to opt out” is in a separate SMS bubble. Append it to the
+primary message body instead.</p>
+<hr />
+<h3
+id="qw-10-add-brand-voice-configuration-to-ai-prompts-marketing-director">QW-10:
+Add Brand Voice Configuration to AI Prompts [Marketing Director]</h3>
+<p><strong>Effort:</strong> ~15 min | <strong>File:</strong>
+<code>gemini.js:126</code></p>
+<p>The AI system prompts have no brand voice guide. Add: “Ascend’s brand
+voice is: approachable, knowledgeable, never condescending. Never use
+slang like ‘dank’ or ‘lit’. Professional but not corporate.”</p>
+<hr />
+<h2 id="future-considerations">Future Considerations</h2>
+<h3 id="fc-1-metrc-integration-ops-manager">FC-1: METRC Integration [Ops
+Manager]</h3>
+<p>Add compliance/track-and-trace status to the dashboard. Even just
+“Last METRC sync: 2 hours ago, 3 discrepancies” would show understanding
+of dispensary operations. This is the single biggest credibility gap
+with dispensary operators.</p>
+<h3 id="fc-2-inter-store-inventory-transfers-ops-manager">FC-2:
+Inter-Store Inventory Transfers [Ops Manager]</h3>
+<p>The Connect Agent should suggest transfers between locations before
+reordering. “Logan Square has 24 excess units of Ozone Cake Mints —
+transfer 12 to Fort Lee” is how multi-store ops actually handle
+stockouts.</p>
+<h3 id="fc-3-state-tax-calculations-ops-manager">FC-3: State Tax
+Calculations [Ops Manager]</h3>
+<p>Illinois has THC-potency-based tax structure. The pricing agent
+doesn’t account for this. “Your Price $35 vs Market Avg $33” is
+meaningless without knowing pre-tax vs post-tax.</p>
+<h3 id="fc-4-cash-reconciliation-visibility-ops-manager">FC-4: Cash
+Reconciliation Visibility [Ops Manager]</h3>
+<p>Cannabis is still largely cash. $47K/day across 39 stores means
+managing tens of thousands in physical cash daily. No mention
+anywhere.</p>
+<h3 id="fc-5-purchase-limit-tracking-ops-manager">FC-5: Purchase Limit
+Tracking [Ops Manager]</h3>
+<p>IL recreational: 30g flower, 5g concentrate, 500mg edibles. This is a
+compliance-critical workflow invisible in the prototype.</p>
+<h3 id="fc-6-seasonal-campaign-calendar-marketing-director">FC-6:
+Seasonal Campaign Calendar [Marketing Director]</h3>
+<p>The AI should proactively suggest campaigns based on the current date
+— 4/20, Green Wednesday, summer beverages, holiday gifting,
+back-to-school edibles.</p>
+<h3 id="fc-7-full-location-support-marketing-director">FC-7: Full
+Location Support [Marketing Director]</h3>
+<p>Location targeting (MarketingCampaigns.jsx:173-178) hardcodes 4
+locations. Pull from the actual 39-store list in mockData.js.</p>
+<h3 id="fc-8-lazy-loading-routes-architect">FC-8: Lazy Loading Routes
+[Architect]</h3>
+<p>All 15+ page components are eagerly imported. For demo performance on
+slower connections, use <code>React.lazy()</code> with Suspense.</p>
+<h3 id="fc-9-yoy-trend-lines-executive">FC-9: YoY Trend Lines
+[Executive]</h3>
+<p>The board wants trajectory, not snapshots. Add quarter-over-quarter
+trend lines to every KPI for investor presentation readiness.</p>
+<h3 id="fc-10-90-day-implementation-roadmap-executive">FC-10: 90-Day
+Implementation Roadmap [Executive]</h3>
+<p>For the demo to convert to a contract, stakeholders need a visible
+path from prototype to production with specific milestones.</p>
+<hr />
+<h2 id="implementation-priority-matrix">Implementation Priority
+Matrix</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Priority</th>
+<th>Item</th>
+<th>Effort</th>
+<th>Impact</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>P0</strong></td>
+<td>CRIT-1: AI Content Compliance Filter</td>
+<td>1-2 hrs</td>
+<td>Prevents regulatory action</td>
+<td>Compliance</td>
+</tr>
+<tr class="even">
+<td><strong>P0</strong></td>
+<td>CRIT-2: PA Medical-Only Fix</td>
+<td>1 hr</td>
+<td>Prevents licensing risk</td>
+<td>Compliance</td>
+</tr>
+<tr class="odd">
+<td><strong>P0</strong></td>
+<td>CRIT-3: MA CCC Compliance</td>
+<td>1 hr</td>
+<td>Prevents enforcement action</td>
+<td>Compliance</td>
+</tr>
+<tr class="even">
+<td><strong>P0</strong></td>
+<td>CRIT-4: Brand Catalog Reconciliation</td>
+<td>2 hrs</td>
+<td>Prevents instant loss of credibility</td>
+<td>Ops Manager</td>
+</tr>
+<tr class="odd">
+<td><strong>P1</strong></td>
+<td>HIGH-1: Error Boundary</td>
+<td>5 min</td>
+<td>Prevents white-screen crash</td>
+<td>Architect</td>
+</tr>
+<tr class="even">
+<td><strong>P1</strong></td>
+<td>HIGH-2: CampaignPlan Stale State</td>
+<td>1 min</td>
+<td>Prevents stale data on re-gen</td>
+<td>Architect</td>
+</tr>
+<tr class="odd">
+<td><strong>P1</strong></td>
+<td>HIGH-3: Revenue Number Scaling</td>
+<td>30 min</td>
+<td>Prevents CTO catching bad math</td>
+<td>Executive</td>
+</tr>
+<tr class="even">
+<td><strong>P1</strong></td>
+<td>HIGH-7: THC % Guardrails</td>
+<td>15 min</td>
+<td>Prevents absurd AI claims</td>
+<td>Compliance</td>
+</tr>
+<tr class="odd">
+<td><strong>P1</strong></td>
+<td>QW-3 through QW-10 (batch)</td>
+<td>45 min</td>
+<td>Polish &amp; credibility</td>
+<td>All</td>
+</tr>
+<tr class="even">
+<td><strong>P2</strong></td>
+<td>HIGH-4: State-Specific Disclaimers</td>
+<td>45 min</td>
+<td>Full compliance coverage</td>
+<td>Compliance</td>
+</tr>
+<tr class="odd">
+<td><strong>P2</strong></td>
+<td>HIGH-5: Role-Based Views</td>
+<td>2-3 hrs</td>
+<td>Improves demo for different audiences</td>
+<td>Executive</td>
+</tr>
+<tr class="even">
+<td><strong>P2</strong></td>
+<td>HIGH-6: Sentiment-to-Campaign Pipeline</td>
+<td>2-3 hrs</td>
+<td>Best cross-agent demo flow</td>
+<td>Marketing</td>
+</tr>
+<tr class="odd">
+<td><strong>P3</strong></td>
+<td>FC-1 through FC-10</td>
+<td>Days</td>
+<td>Long-term product roadmap</td>
+<td>All</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="appendix-agent-profiles">Appendix: Agent Profiles</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 32%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Agent</th>
+<th>Persona</th>
+<th>Focus Area</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Architect</td>
+<td>Senior Frontend Engineer</td>
+<td>Code quality, React patterns, performance, a11y, error
+resilience</td>
+</tr>
+<tr class="even">
+<td>Ops Manager</td>
+<td>“Jordan” — 6yr cannabis retail vet, manages 3 IL locations</td>
+<td>Data accuracy, workflow relevance, credibility</td>
+</tr>
+<tr class="odd">
+<td>Marketing Director</td>
+<td>“Aaliyah” — VP Marketing, $180K/mo spend, 42K SMS subs</td>
+<td>Campaign quality, brand voice, metrics realism</td>
+</tr>
+<tr class="even">
+<td>Compliance Expert</td>
+<td>“David” — Former state regulator, 15yr compliance, 7-state
+coverage</td>
+<td>State-specific advertising rules, disclaimers, health claims</td>
+</tr>
+<tr class="odd">
+<td>Executive</td>
+<td>“Maria” — COO, $180M P&amp;L, 39+ locations, board presenter</td>
+<td>Strategic value, ROI, demo credibility, competitive positioning</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Generated by Dutchie Nexus Dev Review Agent Cluster — March 8,
+2026</em></p>
+</body>
+</html>

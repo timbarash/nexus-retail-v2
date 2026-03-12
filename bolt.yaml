@@ -1,0 +1,29 @@
+---
+# Bolt Configuration File
+# Created by Dutchie (https://github.com/GetDutchie/bolt)
+# Documentation at https://bolt-docs.dutchie.dev/
+
+# Tool versions to install, see options with 'bolt tools ls'
+tools:
+  - nodejs: "24.13.0"
+# Load environment variables from .env files
+dotenv: []
+# Setup commands to run during 'bolt up'
+up:
+  - npm install
+  - cd awh && npm install
+# Custom commands, run like 'bolt dev'
+cmds:
+  # Start the development server
+  hello-world:
+    desc: "Print 'Hello, World!'"
+    steps:
+      - echo "Hello, World!"
+  dev:
+    desc: "Start the Curaleaf sentiment dashboard dev server"
+    steps:
+      - npm run dev -- --host --port 5173
+  dev:awh:
+    desc: "Start the AWH sentiment dashboard dev server"
+    steps:
+      - cd awh && npm run dev -- --host --port 5174

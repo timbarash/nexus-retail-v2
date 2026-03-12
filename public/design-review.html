@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTCH &amp; Customer Portal — Design Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-deep: #0D0C0A;
+  --bg-card: #1C1B1A;
+  --bg-card-alt: #242320;
+  --bg-surface: #2E2D2A;
+  --border: #38332B;
+  --border-subtle: #2E2D2A;
+  --text-bright: #F0EDE8;
+  --text-normal: #C8C3BA;
+  --text-muted: #ADA599;
+  --text-faint: #7A7468;
+  --green: #00C27C;
+  --green-dim: rgba(0,194,124,0.12);
+  --blue: #64A8E0;
+  --blue-dim: rgba(100,168,224,0.12);
+  --amber: #D4A03A;
+  --amber-dim: rgba(212,160,58,0.12);
+  --purple: #B598E8;
+  --purple-dim: rgba(181,152,232,0.12);
+  --red: #E87068;
+  --red-dim: rgba(232,112,104,0.12);
+  --pink: #E880A0;
+  --pink-dim: rgba(232,128,160,0.12);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-normal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ─── HERO ─── */
+.hero {
+  text-align: center;
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 60px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-dim);
+  border: 1px solid rgba(0,194,124,0.2);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+.hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--green), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+.hero .subtitle {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.hero-meta .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+.hero-meta .tag strong { color: var(--text-muted); font-weight: 600; }
+
+/* ─── EXECUTIVE SUMMARY ─── */
+.exec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 60px;
+}
+.exec-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+}
+.exec-card .num {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-bright);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.exec-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  margin-bottom: 64px;
+}
+.section-header {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.section-num {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-bright);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.section-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 700px;
+}
+
+/* ─── RECOMMENDATION CARDS ─── */
+.rec-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.rec-card .rec-num {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+.rec-num.green { background: var(--green); }
+.rec-num.blue { background: var(--blue); }
+.rec-num.amber { background: var(--amber); }
+.rec-num.purple { background: var(--purple); }
+.rec-num.red { background: var(--red); }
+.rec-num.pink { background: var(--pink); }
+
+.rec-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+}
+.rec-card .rec-subtitle {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-bottom: 16px;
+}
+.rec-card p, .rec-card li {
+  font-size: 14px;
+  color: var(--text-normal);
+  line-height: 1.7;
+}
+.rec-card ul {
+  list-style: none;
+  margin: 12px 0;
+}
+.rec-card ul li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 6px;
+}
+.rec-card ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* ─── IMPACT BADGES ─── */
+.impact {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+.impact.critical { background: var(--red-dim); color: var(--red); border: 1px solid rgba(232,112,104,0.2); }
+.impact.high { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(212,160,58,0.2); }
+.impact.medium { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(100,168,224,0.2); }
+.impact.low { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(181,152,232,0.2); }
+
+/* ─── SOURCE BADGES ─── */
+.source-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.source-badge {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid;
+}
+.source-badge.pmm { background: var(--green-dim); color: var(--green); border-color: rgba(0,194,124,0.2); }
+.source-badge.design { background: var(--blue-dim); color: var(--blue); border-color: rgba(100,168,224,0.2); }
+.source-badge.ops { background: var(--amber-dim); color: var(--amber); border-color: rgba(212,160,58,0.2); }
+.source-badge.finance { background: var(--purple-dim); color: var(--purple); border-color: rgba(181,152,232,0.2); }
+
+/* ─── BEFORE / AFTER MOCKUPS ─── */
+.mockup-container {
+  margin: 24px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 700px) {
+  .mockup-container { grid-template-columns: 1fr; }
+}
+.mockup-panel {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.mockup-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.mockup-label.before {
+  background: rgba(232,112,104,0.08);
+  color: var(--red);
+  border-bottom: 1px solid rgba(232,112,104,0.15);
+}
+.mockup-label.after {
+  background: rgba(0,194,124,0.08);
+  color: var(--green);
+  border-bottom: 1px solid rgba(0,194,124,0.15);
+}
+.mockup-body {
+  background: #161514;
+  padding: 16px;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  white-space: pre;
+  overflow-x: auto;
+  min-height: 200px;
+}
+.mockup-body .hl-green { color: var(--green); }
+.mockup-body .hl-blue { color: var(--blue); }
+.mockup-body .hl-amber { color: var(--amber); }
+.mockup-body .hl-red { color: var(--red); }
+.mockup-body .hl-purple { color: var(--purple); }
+.mockup-body .hl-bright { color: var(--text-bright); }
+.mockup-body .hl-dim { color: var(--text-faint); }
+.mockup-body .hl-pink { color: var(--pink); }
+
+/* ─── FULL-WIDTH MOCKUP ─── */
+.mockup-full {
+  margin: 24px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.mockup-full .mockup-body {
+  min-height: 260px;
+}
+
+/* ─── PRIORITY TABLE ─── */
+.priority-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 13px;
+}
+.priority-table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.priority-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-normal);
+  vertical-align: top;
+}
+.priority-table tr:nth-child(even) td {
+  background: rgba(255,255,255,0.015);
+}
+.priority-table .phase {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.phase.p1 { background: var(--green-dim); color: var(--green); }
+.phase.p2 { background: var(--blue-dim); color: var(--blue); }
+.phase.p3 { background: var(--amber-dim); color: var(--amber); }
+
+/* ─── TOC ─── */
+.toc {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 60px;
+}
+.toc h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 16px;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+}
+@media (max-width: 600px) {
+  .toc-grid { grid-template-columns: 1fr; }
+}
+.toc a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 6px 0;
+  transition: color 0.15s;
+}
+.toc a:hover { color: var(--text-bright); }
+.toc a .toc-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 64px 0;
+}
+
+/* ─── CALLOUT ─── */
+.callout {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.callout strong { color: var(--text-bright); }
+.callout.warn { border-left-color: var(--amber); }
+.callout.info { border-left-color: var(--blue); }
+
+/* ─── FOOTER ─── */
+.report-footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+}
+.report-footer p {
+  font-size: 13px;
+  color: var(--text-faint);
+}
+.report-footer .logo {
+  font-size: 18px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--green), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ════════════════════════════════════════ HERO ════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> Design Review</div>
+  <h1>DTCH Team Chat &amp;<br>Customer Portal</h1>
+  <p class="subtitle">Expert agent deep dive with before/after mockups, prioritized recommendations, and implementation roadmap for two core Nexus modules.</p>
+  <div class="hero-meta">
+    <span class="tag"><strong>4</strong> Expert Agents</span>
+    <span class="tag"><strong>18</strong> Recommendations</span>
+    <span class="tag"><strong>2</strong> Modules</span>
+    <span class="tag">March 2026</span>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ EXEC SUMMARY ═══════════════════════════════ -->
+<div class="exec-grid">
+  <div class="exec-card"><div class="num" style="color:var(--green)">4</div><div class="label">Expert Agents</div></div>
+  <div class="exec-card"><div class="num" style="color:var(--blue)">18</div><div class="label">Recommendations</div></div>
+  <div class="exec-card"><div class="num" style="color:var(--amber)">8</div><div class="label">New Spaces</div></div>
+  <div class="exec-card"><div class="num" style="color:var(--purple)">4</div><div class="label">Portal Tabs</div></div>
+  <div class="exec-card"><div class="num" style="color:var(--red)">6</div><div class="label">Mockups</div></div>
+  <div class="exec-card"><div class="num" style="color:var(--pink)">3</div><div class="label">Phases</div></div>
+</div>
+
+<!-- ════════════════════════════════════════ TOC ════════════════════════════════════════ -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <div class="toc-grid">
+    <a href="#dtch-spaces"><span class="toc-num" style="background:var(--green)">1</span> DTCH Space Restructure</a>
+    <a href="#dtch-layout"><span class="toc-num" style="background:var(--blue)">2</span> Tri-State Panel Layout</a>
+    <a href="#dtch-commands"><span class="toc-num" style="background:var(--amber)">3</span> Command Palette &amp; Actions</a>
+    <a href="#dtch-cards"><span class="toc-num" style="background:var(--purple)">4</span> Layered Card System</a>
+    <a href="#dtch-alerts"><span class="toc-num" style="background:var(--red)">5</span> Alert Tiers &amp; Shift Handoff</a>
+    <a href="#dtch-integrations"><span class="toc-num" style="background:var(--pink)">6</span> POS &amp; Compliance Integrations</a>
+    <a href="#portal-health"><span class="toc-num" style="background:var(--green)">7</span> Account Health Dashboard</a>
+    <a href="#portal-support"><span class="toc-num" style="background:var(--blue)">8</span> AI-First Support</a>
+    <a href="#portal-adoption"><span class="toc-num" style="background:var(--amber)">9</span> Product Adoption &amp; Benchmarking</a>
+    <a href="#portal-billing"><span class="toc-num" style="background:var(--purple)">10</span> Billing Intelligence</a>
+    <a href="#roadmap"><span class="toc-num" style="background:var(--red)">11</span> Implementation Roadmap</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════════════════ -->
+<!--                              PART 1: DTCH TEAM CHAT                                  -->
+<!-- ══════════════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section" id="dtch-spaces">
+  <div class="section-header">
+    <div class="section-num">Section 01 — DTCH Team Chat</div>
+    <h2 class="section-title">Space Restructure</h2>
+    <p class="section-desc">Reorganize chat spaces around actual dispensary workflows. Kill dead spaces, add mission-critical ones, rename jargon to operator language.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num green">1</div>
+    <h3>Restructure Spaces for Real Workflows <span class="impact critical">Critical</span></h3>
+    <p class="rec-subtitle">All 4 agents agreed: current spaces don't match how dispensary teams actually work</p>
+    <p>The current 8 spaces mix abstract concepts ("Growth Lab", "Pulse") with operational needs. Budtenders told the Ops agent they only use 3-4 spaces max. Restructure into clear operational zones:</p>
+    <ul>
+      <li><strong>Keep &amp; Rename:</strong> Stock Room → Inventory, Floor Ops → Sales Floor, Guest XP → Customer Issues</li>
+      <li><strong>Add:</strong> 💵 Cash Desk (cash mgmt, safe counts, armored car), 📋 Compliance (METRC, audits, regulatory), 🏪 Manager's Office (private ops, P&amp;L, staffing), 🤝 Vendor Alley (supplier comms, purchase orders)</li>
+      <li><strong>Kill:</strong> Watercooler (no one uses social chat at work), merge Bridge Feed + Pulse → single "AI Alerts" space</li>
+      <li><strong>Add MSO support:</strong> Location scoping — filter all spaces by store for multi-location operators</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge pmm">PMM</span>
+      <span class="source-badge design">Design</span>
+      <span class="source-badge ops">Ops</span>
+      <span class="source-badge finance">Finance</span>
+    </div>
+  </div>
+
+  <div class="mockup-container">
+    <div class="mockup-panel">
+      <div class="mockup-label before">✕ Before — Current Spaces</div>
+      <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-bright">DTCH</span> <span class="hl-green">●</span>                  <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────┤</span>
+<span class="hl-dim">│</span> <span class="hl-bright">SPACES</span>                    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">▌</span> 📦 Stock Room       <span class="hl-green">3</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    🏪 Floor Ops         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    😊 Guest XP       <span class="hl-green">1</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    📈 Growth Lab        <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    ☕ Watercooler        <span class="hl-dim">│</span>  <span class="hl-red">← dead</span>
+<span class="hl-dim">│</span>                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-green">AGENTS</span>                   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    🤖 Bridge Feed    <span class="hl-green">5</span>  <span class="hl-dim">│</span>  <span class="hl-red">← redundant</span>
+<span class="hl-dim">│</span>    🧠 Bridge Pulse      <span class="hl-dim">│</span>  <span class="hl-red">← redundant</span>
+<span class="hl-dim">│</span>    💡 Bridge Assist     <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-blue">TEAM</span>                     <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-green">●</span> Marcus (GM)        <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-green">●</span> Priya (Inv)        <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-amber">●</span> Jordan (Bud)       <span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────┘</span>
+ <span class="hl-red">✗ 8 spaces, 3 dead/redundant</span>
+ <span class="hl-red">✗ Jargon names (Growth Lab?)</span>
+ <span class="hl-red">✗ No cash/compliance/mgmt</span></div>
+    </div>
+    <div class="mockup-panel">
+      <div class="mockup-label after">✓ After — Operator-First Spaces</div>
+      <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-bright">DTCH</span> <span class="hl-green">●</span>  <span class="hl-dim">All Stores ▾</span>    <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────┤</span>
+<span class="hl-dim">│</span> <span class="hl-bright">OPS</span>                       <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">▌</span> 🛒 Sales Floor      <span class="hl-green">2</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    📦 Inventory       <span class="hl-green">3</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    💵 Cash Desk       <span class="hl-red">1</span>  <span class="hl-dim">│</span>  <span class="hl-green">← new</span>
+<span class="hl-dim">│</span>    😊 Customer Issues     <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-bright">MANAGEMENT</span>               <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    📋 Compliance      <span class="hl-amber">2</span>  <span class="hl-dim">│</span>  <span class="hl-green">← new</span>
+<span class="hl-dim">│</span>    🏢 Manager's Office    <span class="hl-dim">│</span>  <span class="hl-green">← new</span>
+<span class="hl-dim">│</span>    📈 Marketing          <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    🤝 Vendor Alley       <span class="hl-dim">│</span>  <span class="hl-green">← new</span>
+<span class="hl-dim">│</span>                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-green">AI</span>                       <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    🤖 AI Alerts      <span class="hl-green">5</span>  <span class="hl-dim">│</span>  <span class="hl-green">← merged</span>
+<span class="hl-dim">│</span>    💡 Bridge Assist      <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-blue">TEAM</span>                     <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-green">●</span> Marcus (GM)        <span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────┘</span>
+ <span class="hl-green">✓ 9 spaces, all operational</span>
+ <span class="hl-green">✓ Clear plain-English names</span>
+ <span class="hl-green">✓ Location scoping for MSOs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 2. TRI-STATE PANEL ─── -->
+<section class="section" id="dtch-layout">
+  <div class="section-header">
+    <div class="section-num">Section 02 — DTCH Team Chat</div>
+    <h2 class="section-title">Tri-State Panel Layout</h2>
+    <p class="section-desc">Replace the current full-screen modal with a three-state panel: collapsed icon rail, sidebar, and full-width view. Users stay in context while chatting.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num blue">2</div>
+    <h3>Three-State Progressive Disclosure <span class="impact critical">Critical</span></h3>
+    <p class="rec-subtitle">Design agent primary recommendation — backed by Ops "nobody wants a full-screen takeover" feedback</p>
+    <p>The current DTCH panel is a full-screen modal overlay that completely removes the user from their workflow. Budtenders on the floor need to glance at messages while working in POS. Replace with a right-anchored panel that has three states:</p>
+    <ul>
+      <li><strong>Rail (48px):</strong> Icon strip showing space icons with unread badges. Always visible, zero context-switch cost.</li>
+      <li><strong>Sidebar (320px):</strong> Click a rail icon to expand. Shows messages in current space. Click again or ESC to collapse back to rail.</li>
+      <li><strong>Full (640px+):</strong> Double-click or drag to expand fully. Shows message list + detail panel side-by-side. For deep investigation.</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge design">Design</span>
+      <span class="source-badge ops">Ops</span>
+    </div>
+  </div>
+
+  <div class="mockup-container">
+    <div class="mockup-panel">
+      <div class="mockup-label before">✕ Before — Full-Screen Modal</div>
+      <div class="mockup-body">
+<span class="hl-dim">┌──────────────────────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-red">████████████████████████████████████████████</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">██                                        ██</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">██</span>    <span class="hl-bright">DTCH TAKES OVER</span>                     <span class="hl-red">██</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">██</span>    <span class="hl-bright">ENTIRE SCREEN</span>                       <span class="hl-red">██</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">██</span>                                        <span class="hl-red">██</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">██</span>  <span class="hl-dim">Nexus dashboard hidden behind modal</span>   <span class="hl-red">██</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">██</span>  <span class="hl-dim">Must close chat to see KPIs</span>           <span class="hl-red">██</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">██</span>  <span class="hl-dim">Context lost on every open/close</span>      <span class="hl-red">██</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">██</span>                                        <span class="hl-red">██</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-red">████████████████████████████████████████████</span> <span class="hl-dim">│</span>
+<span class="hl-dim">└──────────────────────────────────────────────┘</span>
+ <span class="hl-red">✗ Full viewport takeover</span>
+ <span class="hl-red">✗ Lose dashboard context</span>
+ <span class="hl-red">✗ Binary open/closed only</span></div>
+    </div>
+    <div class="mockup-panel">
+      <div class="mockup-label after">✓ After — Tri-State Right Panel</div>
+      <div class="mockup-body">
+<span class="hl-dim">┌───────────────────────────────┬──┬─────────┐</span>
+<span class="hl-dim">│</span>                               <span class="hl-dim">│</span><span class="hl-green">  </span><span class="hl-dim">│</span>         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">Nexus Dashboard</span>              <span class="hl-dim">│</span><span class="hl-green">🛒</span><span class="hl-dim">│</span> <span class="hl-bright">Sales</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">stays fully visible</span>          <span class="hl-dim">│</span><span class="hl-green">📦</span><span class="hl-dim">│</span> <span class="hl-dim">Floor</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                               <span class="hl-dim">│</span><span class="hl-amber">💵</span><span class="hl-dim">│</span>         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">┌─────┐ ┌─────┐ ┌─────┐</span>    <span class="hl-dim">│</span><span class="hl-dim">😊</span><span class="hl-dim">│</span> <span class="hl-dim">Marcus:</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│Sales│ │Sent │ │ Inv │</span>    <span class="hl-dim">│</span><span class="hl-dim">📋</span><span class="hl-dim">│</span> <span class="hl-dim">Low stk</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│$13M │ │ 4.2 │ │ 94% │</span>    <span class="hl-dim">│</span><span class="hl-dim">🤖</span><span class="hl-dim">│</span> <span class="hl-dim">on Guru</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">└─────┘ └─────┘ └─────┘</span>    <span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-dim">Kush...</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                               <span class="hl-dim">│</span>  <span class="hl-dim">│</span>         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                               <span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-dim">[____]</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">└───────────────────────────────┴──┴─────────┘</span>
+ <span class="hl-dim">   Dashboard        Rail  Sidebar</span>
+ <span class="hl-green">✓ Dashboard stays visible</span>
+ <span class="hl-green">✓ Rail → Sidebar → Full</span>
+ <span class="hl-green">✓ Glanceable unread badges</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 3. COMMAND PALETTE ─── -->
+<section class="section" id="dtch-commands">
+  <div class="section-header">
+    <div class="section-num">Section 03 — DTCH Team Chat</div>
+    <h2 class="section-title">Command Palette &amp; Actions</h2>
+    <p class="section-desc">Replace slash commands with a searchable command palette (⌘K) that surfaces contextual actions based on the active space.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num amber">3</div>
+    <h3>Contextual Command Palette <span class="impact high">High</span></h3>
+    <p class="rec-subtitle">Design agent: "Slash commands are a power-user tax. 90% of operators don't know they exist."</p>
+    <p>Current slash commands (/inventory, /sentiment, /report, etc.) require memorization. Replace with a unified ⌘K command palette that:</p>
+    <ul>
+      <li>Shows context-aware actions based on active space (Inventory shows reorder/audit, Cash Desk shows safe count/reconcile)</li>
+      <li>Fuzzy search across all commands, spaces, team members, and recent conversations</li>
+      <li>Recent actions section for quick re-use</li>
+      <li>Keyboard-first but also accessible via the toolbar button</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge design">Design</span>
+      <span class="source-badge pmm">PMM</span>
+    </div>
+  </div>
+
+  <div class="mockup-container">
+    <div class="mockup-panel">
+      <div class="mockup-label before">✕ Before — Slash Commands</div>
+      <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-bright">Type / to see commands...</span>     <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────┤</span>
+<span class="hl-dim">│</span> <span class="hl-green">/inventory</span>  Check stock       <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-green">/sentiment</span>  View sentiment    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-green">/report</span>     Generate report   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-green">/handoff</span>    Shift handoff     <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-green">/approve</span>    Approve action    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-green">/escalate</span>   Escalate issue    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">... 12 more commands ...</span>      <span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────────┘</span>
+ <span class="hl-red">✗ Must memorize commands</span>
+ <span class="hl-red">✗ Flat list, no context</span>
+ <span class="hl-red">✗ Only in message input</span></div>
+    </div>
+    <div class="mockup-panel">
+      <div class="mockup-label after">✓ After — ⌘K Command Palette</div>
+      <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-dim">🔍</span> <span class="hl-bright">safe cou</span><span class="hl-dim">nt...</span>            <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────┤</span>
+<span class="hl-dim">│</span> <span class="hl-amber">SUGGESTED</span> <span class="hl-dim">· Cash Desk</span>        <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">▸</span> 💵 <span class="hl-bright">Log Safe Count</span>        <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-dim">Record current safe bal</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                             <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    💰 Cash Reconciliation   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-dim">Compare POS vs safe</span>       <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                             <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">RECENT</span>                      <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    📦 Reorder Alert: Guru    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    📊 Weekly Sales Report    <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────┤</span>
+<span class="hl-dim">│</span> <span class="hl-dim">⌘K anywhere · ↑↓ nav · ↵ run</span><span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────────┘</span>
+ <span class="hl-green">✓ Fuzzy search everything</span>
+ <span class="hl-green">✓ Context-aware suggestions</span>
+ <span class="hl-green">✓ Available from anywhere</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 4. LAYERED CARDS ─── -->
+<section class="section" id="dtch-cards">
+  <div class="section-header">
+    <div class="section-num">Section 04 — DTCH Team Chat</div>
+    <h2 class="section-title">Layered Card System</h2>
+    <p class="section-desc">Replace walls of text with progressive-disclosure cards: collapsed summary → expanded detail → full panel.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num purple">4</div>
+    <h3>Three-Layer Information Cards <span class="impact high">High</span></h3>
+    <p class="rec-subtitle">Design + Ops consensus: "AI Bridge dumps too much info. Budtenders need the headline, not the essay."</p>
+    <p>When Bridge AI surfaces a report, alert, or data card, show it in progressive layers:</p>
+    <ul>
+      <li><strong>Layer 1 — Collapsed (1 line):</strong> Icon + headline + key metric + timestamp. "📦 Low Stock Alert: Guru Concentrates — 4 units left"</li>
+      <li><strong>Layer 2 — Expanded (in-chat):</strong> Click to expand within the message. Shows data table, chart, or action buttons. No navigation away.</li>
+      <li><strong>Layer 3 — Detail Panel:</strong> Click "View full" to open a side panel with complete data, history, and action options.</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge design">Design</span>
+      <span class="source-badge ops">Ops</span>
+      <span class="source-badge pmm">PMM</span>
+    </div>
+  </div>
+
+  <div class="mockup-full">
+    <div class="mockup-label after">✓ After — Progressive Disclosure Cards</div>
+    <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────────────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-bright">LAYER 1 — Collapsed (default)</span>                           <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">⚠</span>  <span class="hl-bright">Low Stock Alert</span>  <span class="hl-dim">·</span> Guru Concentrates  <span class="hl-dim">·</span> <span class="hl-red">4 units</span>  <span class="hl-dim">▸</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────────────────────────────────┤</span>
+<span class="hl-dim">│</span> <span class="hl-bright">LAYER 2 — Expanded (click to reveal)</span>                    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">⚠</span>  <span class="hl-bright">Low Stock Alert</span>  <span class="hl-dim">·</span> Guru Concentrates            <span class="hl-dim">▾</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">┌─────────────────────────────────────────────────┐</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-dim">Product</span>          <span class="hl-dim">Stock</span>   <span class="hl-dim">Velocity</span>  <span class="hl-dim">Days Left</span> <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-bright">Live Resin 1g</span>    <span class="hl-red">  4</span>     <span class="hl-dim">2.1/day</span>     <span class="hl-red">1.9</span>   <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-bright">Badder 3.5g</span>      <span class="hl-amber"> 12</span>     <span class="hl-dim">1.4/day</span>     <span class="hl-amber">8.6</span>   <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-bright">Sauce Cart</span>       <span class="hl-green"> 38</span>     <span class="hl-dim">0.8/day</span>    <span class="hl-green">47.5</span>   <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">└─────────────────────────────────────────────────┘</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>   <span class="hl-green">[⟳ Reorder Now]</span>  <span class="hl-dim">[View Full →]</span>                       <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────────────────────────────────┤</span>
+<span class="hl-dim">│</span> <span class="hl-bright">LAYER 3 — Detail Panel (side sheet)</span>                     <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">Opens in right panel with:</span>                              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-green">→</span> Full product history &amp; velocity chart               <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-green">→</span> Vendor contact &amp; last order details                 <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-green">→</span> Suggested reorder quantity (AI calculated)           <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-green">→</span> One-click PO generation                             <span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────────────────────────────────────┘</span></div>
+  </div>
+</section>
+
+<!-- ─── 5. ALERTS & SHIFT HANDOFF ─── -->
+<section class="section" id="dtch-alerts">
+  <div class="section-header">
+    <div class="section-num">Section 05 — DTCH Team Chat</div>
+    <h2 class="section-title">Alert Tiers &amp; Shift Handoff</h2>
+    <p class="section-desc">Three-tier alert system replaces the single notification bell. Shift handoff protocol ensures nothing falls through the cracks at shift change.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num red">5</div>
+    <h3>Three-Tier Alert System <span class="impact high">High</span></h3>
+    <p class="rec-subtitle">Ops agent: "A reorder notice and a METRC audit alert should NOT look the same"</p>
+    <ul>
+      <li><span style="color:var(--red)">■ CRITICAL</span> — Red banner, sound alert, persists until acknowledged. POS down, compliance violation, cash discrepancy, METRC sync failure.</li>
+      <li><span style="color:var(--amber)">■ ACTION</span> — Amber badge, no sound, dismissible. Low stock reorder, shift handoff pending, customer complaint escalation.</li>
+      <li><span style="color:var(--blue)">■ INFO</span> — Subtle inline, auto-dismiss after read. Daily sales summary, sentiment trend update, team member joined.</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge ops">Ops</span>
+      <span class="source-badge design">Design</span>
+      <span class="source-badge finance">Finance</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num red">6</div>
+    <h3>Shift Handoff Protocol <span class="impact high">High</span></h3>
+    <p class="rec-subtitle">PMM + Ops: "Biggest operational gap — things get dropped between shifts"</p>
+    <p>Add a <code>/handoff</code> command or ⌘K action that generates an AI-powered shift summary:</p>
+    <ul>
+      <li>Open issues from current shift (unresolved customer complaints, pending reorders)</li>
+      <li>Cash status (current safe balance, variance from expected)</li>
+      <li>Inventory alerts triggered during shift</li>
+      <li>Key metrics vs goals (sales pacing, traffic, basket size)</li>
+      <li>Free-text notes from outgoing shift lead</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge pmm">PMM</span>
+      <span class="source-badge ops">Ops</span>
+    </div>
+  </div>
+
+  <div class="mockup-full">
+    <div class="mockup-label after">✓ Shift Handoff Card</div>
+    <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────────────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-green">🔄 SHIFT HANDOFF</span>  <span class="hl-dim">·</span> <span class="hl-bright">AM → PM</span>  <span class="hl-dim">·</span> <span class="hl-dim">Marcus Chen → Jordan Lee</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">Generated 2:58 PM · Ascend Collinsville</span>                  <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────────────────────────────────┤</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">📊 SHIFT PERFORMANCE</span>                                    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">┌──────────┬──────────┬──────────┬──────────┐</span>          <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-bright">Revenue</span>  <span class="hl-dim">│</span> <span class="hl-bright">Trans</span>    <span class="hl-dim">│</span> <span class="hl-bright">Basket</span>   <span class="hl-dim">│</span> <span class="hl-bright">vs Goal</span>  <span class="hl-dim">│</span>          <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-green">$18.4K</span>   <span class="hl-dim">│</span> <span class="hl-green">  204</span>    <span class="hl-dim">│</span>  <span class="hl-bright">$90</span>     <span class="hl-dim">│</span> <span class="hl-green">+8%</span>      <span class="hl-dim">│</span>          <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">└──────────┴──────────┴──────────┴──────────┘</span>          <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">⚠ OPEN ITEMS (3)</span>                                       <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-red">●</span> Customer complaint re: wrong strain — needs callback  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-amber">●</span> Guru Live Resin reorder placed — ETA tomorrow 10am   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-blue">●</span> Armored car pickup scheduled 4:30 PM                 <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">💵 CASH STATUS</span>                                          <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    Safe: <span class="hl-green">$24,350</span>  <span class="hl-dim">|</span>  Registers: <span class="hl-bright">$3,200</span>  <span class="hl-dim">|</span>  Variance: <span class="hl-green">$0</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">💬 NOTES FROM MARCUS:</span>                                   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">"New patient flow was heavy today — made sure all first-</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim"> time patients got the 15% discount. Flu season = lots</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim"> of edible requests for sore throat."</span>                    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">[✓ Acknowledge Handoff]</span>  <span class="hl-dim">[Add Notes]</span>                     <span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────────────────────────────────────┘</span></div>
+  </div>
+</section>
+
+<!-- ─── 6. INTEGRATIONS ─── -->
+<section class="section" id="dtch-integrations">
+  <div class="section-header">
+    <div class="section-num">Section 06 — DTCH Team Chat</div>
+    <h2 class="section-title">POS &amp; Compliance Integrations</h2>
+    <p class="section-desc">Real-time POS transaction triggers and METRC compliance integration surface operational events directly in DTCH spaces.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num pink">7</div>
+    <h3>POS Real-Time Transaction Triggers <span class="impact medium">Medium</span></h3>
+    <p class="rec-subtitle">Finance + Ops: "DTCH should know about big sales, voids, and discount abuse as they happen"</p>
+    <ul>
+      <li><strong>Large Order Alert:</strong> Transaction > $500 → Cash Desk + Manager's Office</li>
+      <li><strong>Void/Return Alert:</strong> Any void > $50 or return → Manager's Office for review</li>
+      <li><strong>Discount Threshold:</strong> Discount > 25% or cumulative shift discounts > $500 → Manager's Office</li>
+      <li><strong>Speed Alert:</strong> Transaction time > 8 min → Sales Floor (may need backup)</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge finance">Finance</span>
+      <span class="source-badge ops">Ops</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num pink">8</div>
+    <h3>METRC &amp; Compliance Integration <span class="impact high">High</span></h3>
+    <p class="rec-subtitle">Ops agent: "Compliance is the #1 existential risk. It should be front and center."</p>
+    <ul>
+      <li><strong>Harvest Ready:</strong> METRC harvest batch ready for processing → Compliance space</li>
+      <li><strong>Manifest Due:</strong> Transfer manifest needs filing within 24h → Critical alert</li>
+      <li><strong>Inventory Reconciliation:</strong> METRC vs POS variance detected → Compliance space + Manager</li>
+      <li><strong>License Renewal:</strong> 30/60/90 day reminders for license expiration</li>
+      <li><strong>Audit Mode:</strong> One-click "audit prep" that generates required METRC reports</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge ops">Ops</span>
+      <span class="source-badge pmm">PMM</span>
+      <span class="source-badge finance">Finance</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════════════════════════════════════════════ -->
+<!--                            PART 2: CUSTOMER PORTAL                                   -->
+<!-- ══════════════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section" id="portal-health">
+  <div class="section-header">
+    <div class="section-num">Section 07 — Customer Portal</div>
+    <h2 class="section-title">Account Health Dashboard</h2>
+    <p class="section-desc">Replace the current ticket-first landing page with an Account Health Dashboard that immediately shows operators what matters: their health score, ROI, and opportunity gaps.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num green">9</div>
+    <h3>Account Health Score (0-100) <span class="impact critical">Critical</span></h3>
+    <p class="rec-subtitle">All 4 agents: "First thing an operator wants to know — am I in good shape?"</p>
+    <p>A composite health score replacing the current "Open Tickets" KPI row. Components:</p>
+    <ul>
+      <li><strong>POS Uptime</strong> (25% weight) — system availability over 30 days</li>
+      <li><strong>Ecommerce Conversion</strong> (25%) — online menu → checkout completion rate</li>
+      <li><strong>Payment Volume</strong> (25%) — transactions processed vs capacity</li>
+      <li><strong>Support Velocity</strong> (25%) — open ticket age and resolution time</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge pmm">PMM</span>
+      <span class="source-badge finance">Finance</span>
+      <span class="source-badge ops">Ops</span>
+      <span class="source-badge design">Design</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num green">10</div>
+    <h3>ROI Summary Card <span class="impact critical">Critical</span></h3>
+    <p class="rec-subtitle">Finance agent: "Show them exactly how much Dutchie makes them vs what they pay"</p>
+    <p>A persistent card showing the operator's return on their Dutchie subscription:</p>
+    <ul>
+      <li><strong>Revenue Influenced:</strong> Total revenue attributed to Dutchie channels (ecommerce, kiosk, etc.)</li>
+      <li><strong>ROI Multiplier:</strong> Revenue ÷ Subscription Cost (e.g., "15.9x return")</li>
+      <li><strong>Time Saved:</strong> Hours saved on compliance, inventory, ordering automation</li>
+      <li><strong>Benchmark:</strong> "Top 25% of operators your size see 22x ROI — here's how to close the gap"</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge finance">Finance</span>
+      <span class="source-badge pmm">PMM</span>
+    </div>
+  </div>
+
+  <div class="mockup-container">
+    <div class="mockup-panel">
+      <div class="mockup-label before">✕ Before — Ticket-First Portal</div>
+      <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-bright">Customer Portal</span>              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">[Interactions] [Billing] [New]</span><span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────┤</span>
+<span class="hl-dim">│</span>                              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">3</span>        <span class="hl-bright">2</span>       <span class="hl-bright">5</span>     <span class="hl-bright">1</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">Open</span>     <span class="hl-dim">Bugs</span>    <span class="hl-dim">Feat</span>   <span class="hl-dim">Demo</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">Tickets</span>  <span class="hl-dim">Reports</span> <span class="hl-dim">Reqs</span>   <span class="hl-dim">Reqs</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">┌──────────────────────────┐</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">│ TKT-2024  POS freeze...</span>  <span class="hl-dim">│</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">│ BUG-442   Menu sync...</span>  <span class="hl-dim">│</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">│ FEAT-891  Loyalty...</span>    <span class="hl-dim">│</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">│ FEAT-892  Kiosk...</span>      <span class="hl-dim">│</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-dim">└──────────────────────────┘</span><span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────────┘</span>
+ <span class="hl-red">✗ Leads with problems (tickets)</span>
+ <span class="hl-red">✗ No health signal</span>
+ <span class="hl-red">✗ No ROI / value story</span></div>
+    </div>
+    <div class="mockup-panel">
+      <div class="mockup-label after">✓ After — Health-First Portal</div>
+      <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-bright">Customer Portal</span>              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span> <span class="hl-green">[Home]</span> <span class="hl-dim">[Support][Account][Product]</span><span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────┤</span>
+<span class="hl-dim">│</span>                              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">Account Health</span>       <span class="hl-green">━━━━</span><span class="hl-dim">━</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">██████████████████░░</span> <span class="hl-green">87</span>/100<span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">POS</span> <span class="hl-green">99%</span> <span class="hl-dim">Ecom</span> <span class="hl-amber">72%</span> <span class="hl-dim">Pay</span> <span class="hl-green">94%</span> <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">ROI Summary</span>                 <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">15.9x</span> <span class="hl-dim">return on $3.8K/mo</span>    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">$61.2K</span> <span class="hl-dim">revenue influenced</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">42 hrs/mo saved</span>              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">⚡ Opportunity Gap</span>           <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">$155K/yr</span> <span class="hl-dim">vs top quartile</span>    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">[See recommendations →]</span>      <span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────────┘</span>
+ <span class="hl-green">✓ Leads with health + value</span>
+ <span class="hl-green">✓ ROI justifies subscription</span>
+ <span class="hl-green">✓ Opportunity gap drives upsell</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 8. AI-FIRST SUPPORT ─── -->
+<section class="section" id="portal-support">
+  <div class="section-header">
+    <div class="section-num">Section 08 — Customer Portal</div>
+    <h2 class="section-title">AI-First Support Experience</h2>
+    <p class="section-desc">Replace the ticket-first support model with search-first + KB + smart escalation. Most operators want to self-serve.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num blue">11</div>
+    <h3>Search → KB → Escalation Flow <span class="impact critical">Critical</span></h3>
+    <p class="rec-subtitle">Ops agent: "Operators don't want to file a ticket. They want an answer NOW."</p>
+    <p>Redesign the support tab around instant resolution:</p>
+    <ul>
+      <li><strong>Search bar front and center:</strong> "How do I set up loyalty points?" → instant KB article results</li>
+      <li><strong>AI-powered answers:</strong> If no exact match, Bridge AI synthesizes an answer from KB + past tickets</li>
+      <li><strong>Smart escalation:</strong> Only after search + AI fails, offer ticket creation with pre-filled context from the search</li>
+      <li><strong>Integration status dashboard:</strong> POS online/offline, API status, sync lag — the #1 reason operators contact support</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge ops">Ops</span>
+      <span class="source-badge design">Design</span>
+      <span class="source-badge pmm">PMM</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num blue">12</div>
+    <h3>Integration Health Dashboard <span class="impact critical">Critical</span></h3>
+    <p class="rec-subtitle">Ops agent: "The #1 thing operators want in a portal is: IS MY STUFF WORKING?"</p>
+    <ul>
+      <li><strong>POS Status:</strong> Online/offline per register, uptime %, last heartbeat</li>
+      <li><strong>Ecommerce Sync:</strong> Menu sync status, last successful sync, items out of sync</li>
+      <li><strong>Payment Processing:</strong> Terminal status, transaction success rate, batch close status</li>
+      <li><strong>METRC Connection:</strong> Sync lag, last successful report, pending transfers</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge ops">Ops</span>
+      <span class="source-badge finance">Finance</span>
+    </div>
+  </div>
+
+  <div class="mockup-full">
+    <div class="mockup-label after">✓ After — Support Tab with Integration Health</div>
+    <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────────────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-dim">[Home]</span> <span class="hl-blue">[Support]</span> <span class="hl-dim">[Account] [Product]</span>                      <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────────────────────────────────┤</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">🔍</span> <span class="hl-bright">How can we help?</span>                                    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">┌───────────────────────────────────────────────────┐</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│ Search knowledge base, past tickets, or ask AI...</span><span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">└───────────────────────────────────────────────────┘</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">System Status</span>  <span class="hl-green">All Systems Operational</span>                  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">┌─────────────┬─────────────┬─────────────┬──────────┐</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-green">●</span> <span class="hl-bright">POS</span>       <span class="hl-dim">│</span> <span class="hl-green">●</span> <span class="hl-bright">Ecommerce</span> <span class="hl-dim">│</span> <span class="hl-green">●</span> <span class="hl-bright">Payments</span>  <span class="hl-dim">│</span> <span class="hl-green">●</span> <span class="hl-bright">METRC</span> <span class="hl-dim">│</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-green">99.9%</span> up   <span class="hl-dim">│</span> <span class="hl-green">Synced</span>     <span class="hl-dim">│</span> <span class="hl-green">100%</span> pass  <span class="hl-dim">│</span> <span class="hl-green">2m ago</span> <span class="hl-dim">│</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-dim">3 registers</span> <span class="hl-dim">│</span> <span class="hl-dim">1,247 items</span> <span class="hl-dim">│</span> <span class="hl-dim">$24.3K today</span><span class="hl-dim">│</span> <span class="hl-dim">0 pend</span> <span class="hl-dim">│</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">└─────────────┴─────────────┴─────────────┴──────────┘</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">Quick Links</span>                                             <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    📚 Setup Guides    🎓 Training Videos    💬 Live Chat  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">Recent Tickets</span> <span class="hl-dim">(3 open)</span>                                 <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-amber">●</span> TKT-2024  POS freeze on batch close  <span class="hl-amber">In Progress</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-green">●</span> BUG-442   Menu sync delay           <span class="hl-green">Resolved</span>      <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>    <span class="hl-dim">●</span> FEAT-891  Loyalty tier support       <span class="hl-dim">Planned</span>       <span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────────────────────────────────────┘</span></div>
+  </div>
+</section>
+
+<!-- ─── 9. PRODUCT ADOPTION ─── -->
+<section class="section" id="portal-adoption">
+  <div class="section-header">
+    <div class="section-num">Section 09 — Customer Portal</div>
+    <h2 class="section-title">Product Adoption &amp; Benchmarking</h2>
+    <p class="section-desc">Show operators which features they're using (and which they're leaving on the table), with peer benchmarking to drive adoption.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num amber">13</div>
+    <h3>Feature Utilization Dashboard <span class="impact high">High</span></h3>
+    <p class="rec-subtitle">Finance: "Most operators pay for features they don't use. Show them."</p>
+    <ul>
+      <li>Visual grid of all Dutchie features with utilization % (0-100%)</li>
+      <li>Color-coded: Green (active), Amber (underutilized), Gray (not activated)</li>
+      <li>Click any feature → setup guide, training video, or "Turn on" button</li>
+      <li>Monthly progress tracker showing adoption improvement</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge finance">Finance</span>
+      <span class="source-badge pmm">PMM</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num amber">14</div>
+    <h3>Peer Benchmarking with Opportunity Gap <span class="impact high">High</span></h3>
+    <p class="rec-subtitle">Finance agent's detailed model: "Stores like yours see +23% repeat rate with loyalty"</p>
+    <ul>
+      <li><strong>Cohort:</strong> Compare against "stores like yours" (same state, similar revenue, similar product mix)</li>
+      <li><strong>Metrics:</strong> Ecommerce conversion, avg basket, loyalty enrollment, repeat rate, online order %</li>
+      <li><strong>Opportunity Gap:</strong> "You're leaving $155K/year on the table vs top-quartile peers"</li>
+      <li><strong>Action items:</strong> Specific recommendations ranked by estimated revenue impact</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge finance">Finance</span>
+      <span class="source-badge ops">Ops</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num amber">15</div>
+    <h3>Dutchie University — Training Center <span class="impact medium">Medium</span></h3>
+    <p class="rec-subtitle">Ops: "New hires are my biggest pain point. I need a training path, not a manual."</p>
+    <ul>
+      <li>Role-based onboarding paths: Budtender (3 modules), Manager (5 modules), Admin (7 modules)</li>
+      <li>Interactive tutorials with screenshots from their actual store configuration</li>
+      <li>Certification badges that show in team profiles</li>
+      <li>New feature training auto-added when features launch</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge ops">Ops</span>
+      <span class="source-badge pmm">PMM</span>
+    </div>
+  </div>
+
+  <div class="mockup-full">
+    <div class="mockup-label after">✓ After — Product Tab with Adoption & Benchmarking</div>
+    <div class="mockup-body">
+<span class="hl-dim">┌─────────────────────────────────────────────────────────┐</span>
+<span class="hl-dim">│</span> <span class="hl-dim">[Home] [Support] [Account]</span> <span class="hl-amber">[Product]</span>                      <span class="hl-dim">│</span>
+<span class="hl-dim">├─────────────────────────────────────────────────────────┤</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">Feature Adoption</span>  <span class="hl-dim">·</span>  <span class="hl-green">6</span><span class="hl-dim">/</span><span class="hl-bright">9</span> <span class="hl-dim">features active</span>                <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">███████████████████████████████████████</span> POS     <span class="hl-green">100%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">████████████████████████████████</span>       Ecom     <span class="hl-green">82%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">██████████████████████████</span>             Payments <span class="hl-green">68%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">████████████████</span>                       Loyalty  <span class="hl-amber">42%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">██████████</span>                             Kiosk    <span class="hl-amber">26%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">█████</span>                                  Analytics<span class="hl-amber">12%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">░░░░░</span>                                  Delivery <span class="hl-dim"> 0%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">░░░░░</span>                                  Marketing<span class="hl-dim"> 0%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">░░░░░</span>                                  Nexus AI <span class="hl-dim"> 0%</span>   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-bright">Peer Benchmarking</span>  <span class="hl-dim">·</span>  <span class="hl-dim">vs 23 similar IL stores</span>         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">┌──────────────┬──────────┬──────────┬──────────────┐</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-dim">Metric</span>       <span class="hl-dim">│</span> <span class="hl-dim">You</span>      <span class="hl-dim">│</span> <span class="hl-dim">Peers</span>    <span class="hl-dim">│</span> <span class="hl-dim">Opportunity</span>  <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-bright">Online %</span>     <span class="hl-dim">│</span> <span class="hl-amber">18%</span>      <span class="hl-dim">│</span> <span class="hl-green">31%</span>      <span class="hl-dim">│</span> <span class="hl-amber">+$78K/yr</span>     <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-bright">Loyalty</span>      <span class="hl-dim">│</span> <span class="hl-amber">12%</span>      <span class="hl-dim">│</span> <span class="hl-green">34%</span>      <span class="hl-dim">│</span> <span class="hl-amber">+$52K/yr</span>     <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-bright">Avg Basket</span>   <span class="hl-dim">│</span> <span class="hl-green">$92</span>      <span class="hl-dim">│</span> <span class="hl-green">$88</span>      <span class="hl-dim">│</span> <span class="hl-green">Ahead ✓</span>      <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span> <span class="hl-bright">Repeat Rate</span>  <span class="hl-dim">│</span> <span class="hl-amber">41%</span>      <span class="hl-dim">│</span> <span class="hl-green">58%</span>      <span class="hl-dim">│</span> <span class="hl-amber">+$25K/yr</span>     <span class="hl-dim">│</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">└──────────────┴──────────┴──────────┴──────────────┘</span>  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                         <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-amber">⚡ Total Opportunity Gap: $155K/year</span>                    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">[View Recommendations →]</span>                                <span class="hl-dim">│</span>
+<span class="hl-dim">└─────────────────────────────────────────────────────────┘</span></div>
+  </div>
+</section>
+
+<!-- ─── 10. BILLING INTELLIGENCE ─── -->
+<section class="section" id="portal-billing">
+  <div class="section-header">
+    <div class="section-num">Section 10 — Customer Portal</div>
+    <h2 class="section-title">Billing Intelligence</h2>
+    <p class="section-desc">Transform the billing tab from a static invoice list into intelligent cost analysis with utilization insights and 280E optimization.</p>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num purple">16</div>
+    <h3>Usage-Based Billing Nudges <span class="impact medium">Medium</span></h3>
+    <p class="rec-subtitle">Finance: "Show operators what they're paying for vs what they're using"</p>
+    <ul>
+      <li>Each line item shows utilization % alongside cost</li>
+      <li>Underutilized features highlighted with "You're paying $X/mo for this but only using Y%"</li>
+      <li>Right-size recommendations: "Switch to Tier 1 and save $200/mo" or "Upgrade — you've outgrown this tier"</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge finance">Finance</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num purple">17</div>
+    <h3>280E Tax Optimization Report <span class="impact high">High</span></h3>
+    <p class="rec-subtitle">Finance: "Every cannabis operator struggles with 280E. Help them."</p>
+    <ul>
+      <li>Automated COGS allocation report for 280E compliance</li>
+      <li>Deductible vs non-deductible expense categorization</li>
+      <li>Quarterly tax liability estimate based on current margins</li>
+      <li>Export-ready reports for accountants (CSV/PDF)</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge finance">Finance</span>
+      <span class="source-badge ops">Ops</span>
+    </div>
+  </div>
+
+  <div class="rec-card">
+    <div class="rec-num purple">18</div>
+    <h3>New Tab Architecture: HOME / SUPPORT / ACCOUNT / PRODUCT <span class="impact critical">Critical</span></h3>
+    <p class="rec-subtitle">Design agent: "Three tabs aren't enough. Four tabs map to operator mental models."</p>
+    <ul>
+      <li><strong>HOME:</strong> Health dashboard, ROI card, opportunity gap, quick actions</li>
+      <li><strong>SUPPORT:</strong> Search + KB + AI + integration health + tickets</li>
+      <li><strong>ACCOUNT:</strong> Billing, invoices, usage analytics, 280E report, subscription management</li>
+      <li><strong>PRODUCT:</strong> Feature adoption, peer benchmarks, What's New, Coming Soon, Dutchie University</li>
+    </ul>
+    <div class="source-row">
+      <span class="source-badge design">Design</span>
+      <span class="source-badge pmm">PMM</span>
+      <span class="source-badge finance">Finance</span>
+      <span class="source-badge ops">Ops</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════════════════════════════════════════════════ -->
+<!--                           IMPLEMENTATION ROADMAP                                      -->
+<!-- ══════════════════════════════════════════════════════════════════════════════════════ -->
+
+<section class="section" id="roadmap">
+  <div class="section-header">
+    <div class="section-num">Section 11 — Roadmap</div>
+    <h2 class="section-title">Implementation Roadmap</h2>
+    <p class="section-desc">Phased rollout prioritized by operator impact and implementation complexity.</p>
+  </div>
+
+  <table class="priority-table">
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Change</th>
+        <th>Module</th>
+        <th>Impact</th>
+        <th>Effort</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="phase p1">Phase 1</span></td>
+        <td>Restructure spaces (kill Watercooler, add Cash Desk, Compliance, rename all)</td>
+        <td>DTCH</td>
+        <td><span class="impact critical" style="margin:0">Critical</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p1">Phase 1</span></td>
+        <td>Tri-state panel (rail → sidebar → full)</td>
+        <td>DTCH</td>
+        <td><span class="impact critical" style="margin:0">Critical</span></td>
+        <td>Large</td>
+      </tr>
+      <tr>
+        <td><span class="phase p1">Phase 1</span></td>
+        <td>Account Health Dashboard + ROI card as portal landing</td>
+        <td>Portal</td>
+        <td><span class="impact critical" style="margin:0">Critical</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p1">Phase 1</span></td>
+        <td>Four-tab architecture (Home / Support / Account / Product)</td>
+        <td>Portal</td>
+        <td><span class="impact critical" style="margin:0">Critical</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p2">Phase 2</span></td>
+        <td>Three-tier alert system (critical / action / info)</td>
+        <td>DTCH</td>
+        <td><span class="impact high" style="margin:0">High</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p2">Phase 2</span></td>
+        <td>Command palette (⌘K) replacing slash commands</td>
+        <td>DTCH</td>
+        <td><span class="impact high" style="margin:0">High</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p2">Phase 2</span></td>
+        <td>Layered card system (collapsed → expanded → detail)</td>
+        <td>DTCH</td>
+        <td><span class="impact high" style="margin:0">High</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p2">Phase 2</span></td>
+        <td>Shift handoff protocol</td>
+        <td>DTCH</td>
+        <td><span class="impact high" style="margin:0">High</span></td>
+        <td>Small</td>
+      </tr>
+      <tr>
+        <td><span class="phase p2">Phase 2</span></td>
+        <td>AI-first support (search → KB → escalation)</td>
+        <td>Portal</td>
+        <td><span class="impact critical" style="margin:0">Critical</span></td>
+        <td>Large</td>
+      </tr>
+      <tr>
+        <td><span class="phase p2">Phase 2</span></td>
+        <td>Integration health dashboard</td>
+        <td>Portal</td>
+        <td><span class="impact critical" style="margin:0">Critical</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p3">Phase 3</span></td>
+        <td>POS real-time transaction triggers</td>
+        <td>DTCH</td>
+        <td><span class="impact medium" style="margin:0">Medium</span></td>
+        <td>Large</td>
+      </tr>
+      <tr>
+        <td><span class="phase p3">Phase 3</span></td>
+        <td>METRC &amp; compliance integration</td>
+        <td>DTCH</td>
+        <td><span class="impact high" style="margin:0">High</span></td>
+        <td>Large</td>
+      </tr>
+      <tr>
+        <td><span class="phase p3">Phase 3</span></td>
+        <td>Feature adoption dashboard + peer benchmarking</td>
+        <td>Portal</td>
+        <td><span class="impact high" style="margin:0">High</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p3">Phase 3</span></td>
+        <td>280E tax optimization report</td>
+        <td>Portal</td>
+        <td><span class="impact high" style="margin:0">High</span></td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><span class="phase p3">Phase 3</span></td>
+        <td>Dutchie University training center</td>
+        <td>Portal</td>
+        <td><span class="impact medium" style="margin:0">Medium</span></td>
+        <td>Large</td>
+      </tr>
+      <tr>
+        <td><span class="phase p3">Phase 3</span></td>
+        <td>Usage-based billing nudges</td>
+        <td>Portal</td>
+        <td><span class="impact medium" style="margin:0">Medium</span></td>
+        <td>Small</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Agent Consensus:</strong> Phase 1 items were unanimously prioritized by all four expert agents. The tri-state panel and Account Health Dashboard represent the highest-impact, highest-visibility changes that immediately improve the operator experience.
+  </div>
+
+  <div class="callout info">
+    <strong>Reference Prototype:</strong> The design patterns used in this review are informed by the Dutchie Connect 2.0 prototype at dutchie-connect.pages.dev, which demonstrates the level of polish and detail achievable for prototype-stage work.
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ FOOTER ═════════════════════════════════════ -->
+<footer class="report-footer">
+  <div class="logo">Dutchie Nexus</div>
+  <p>Design Review — DTCH Team Chat &amp; Customer Portal</p>
+  <p>Generated by PMM, Design, Cannabis Ops, and Finance expert agents · March 2026</p>
+</footer>
+
+</div><!-- .container -->
+</body>
+</html>

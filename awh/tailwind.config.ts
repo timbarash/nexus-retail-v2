@@ -1,0 +1,62 @@
+import type { Config } from 'tailwindcss';
+
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+      },
+      colors: {
+        // business.dutchie.com brand palette
+        dutchie: {
+          50: '#f0faf4',
+          100: '#d4f0de',
+          200: '#a8e1bd',
+          300: '#6aba48',  // accent green
+          400: '#5aa63e',
+          500: '#4a9234',
+          600: '#3a7e2a',
+          700: '#2a6a20',
+          800: '#1a5616',
+          900: '#062F22',  // dark forest green
+          950: '#041f17',
+        },
+        navy: {
+          50: '#f0f4f8',
+          100: '#d8e2ed',
+          200: '#b0c5db',
+          300: '#7a9dbe',
+          400: '#4d7a9e',
+          500: '#2d5f82',
+          600: '#153F66',  // dutchie teal-blue
+          700: '#0f3354',
+          800: '#0b2033',  // primary dark bg
+          900: '#091a29',
+          950: '#060f1a',
+        },
+        gold: {
+          50: '#fff9e6',
+          100: '#FFF3CC',
+          200: '#FFE799',
+          300: '#FFDB66',
+          400: '#FFCE3D',
+          500: '#FFC02A',  // primary CTA
+          600: '#E6A500',
+          700: '#CC8F00',
+          800: '#A37200',
+          900: '#7A5500',
+        },
+        panel: {
+          50: '#F2F3F4',   // light gray
+          100: '#e3e7e9',
+          200: '#c4cdd1',
+          300: '#677882',  // secondary text
+          400: '#464F53',  // body text
+          500: '#171A1C',  // dark charcoal
+        },
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config;
