@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './App';
 import { PortalProvider } from './contexts/PortalContext';
 import { StoreProvider } from './contexts/StoreContext';
@@ -9,7 +9,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <StoreProvider>
         <DateRangeProvider>
           <PortalProvider>
@@ -17,6 +17,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </PortalProvider>
         </DateRangeProvider>
       </StoreProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
