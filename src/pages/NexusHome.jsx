@@ -2209,6 +2209,82 @@ function AgentBar() {
 }
 
 // ---------------------------------------------------------------------------
+// Nexus AI Launcher — medium card with action pills that open full agent
+// ---------------------------------------------------------------------------
+
+const LAUNCHER_ACTIONS = [
+  { key: 'inventory', label: 'Reorder Inventory', desc: 'Restock out-of-stock items', query: 'Show me a plan to reorder out-of-stock inventory', icon: ShoppingCart, tagColor: '#64A8E0' },
+  { key: 'campaign', label: 'Launch Campaign', desc: 'Target your best sellers', query: 'Run a marketing campaign for my top sellers', icon: Megaphone, tagColor: '#00C27C' },
+  { key: 'pricing', label: 'Benchmark Pricing', desc: 'Compare prices vs market', query: 'Compare my prices vs the market', icon: DollarSign, tagColor: '#D4A03A' },
+  { key: 'sentiment', label: 'Customer Sentiment', desc: 'Google, Leafly, SMS trends', query: "How's our customer sentiment this month?", icon: Star, tagColor: '#B598E8' },
+  { key: 'report', label: 'Sales Summary', desc: 'Weekly revenue & benchmarks', query: 'Give me a weekly sales performance summary', icon: BarChart3, tagColor: '#0EA5E9' },
+  { key: 'explore', label: 'Trending Products', desc: 'New brands gaining traction', query: 'What trending products should I add to my menu?', icon: Rocket, tagColor: '#EC4899' },
+];
+
+function NexusLauncher({ onAction }) {
+  const [inputValue, setInputValue] = useState('');
+  return (
+    <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] overflow-hidden" style={{ borderColor: 'rgba(0,194,124,0.15)' }}>
+      {/* Header */}
+      <div className="px-5 py-3.5 border-b border-[#38332B] flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #1C1B1A 0%, #0F1923 50%, #1C1B1A 100%)' }}>
+        <div className="h-8 w-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #00C27C, #64A8E0)' }}>
+          <Sparkles size={17} color="#fff" />
+        </div>
+        <div className="flex-1">
+          <h2 className="text-sm font-semibold text-[#F0EDE8]">Nexus AI</h2>
+          <p className="text-[10px] text-[#6B6359]">Pick an action or ask anything</p>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-[#00C27C] animate-pulse" />
+          <span className="text-[10px] text-[#00C27C] font-medium">Online</span>
+        </div>
+      </div>
+
+      {/* Action pills */}
+      <div className="px-5 py-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 stagger-grid">
+          {LAUNCHER_ACTIONS.map(a => (
+            <button
+              key={a.key}
+              onClick={() => onAction(a.query)}
+              className="group text-left rounded-xl border border-[#38332B] hover:border-white/10 bg-[#141210] p-3.5 transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <div className="flex items-center gap-2.5 mb-1.5">
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${a.tagColor}18` }}>
+                  <a.icon className="w-3.5 h-3.5" style={{ color: a.tagColor }} />
+                </div>
+                <span className="text-xs font-semibold text-[#F0EDE8]">{a.label}</span>
+              </div>
+              <p className="text-[11px] text-[#6B6359] leading-relaxed pl-[38px]">{a.desc}</p>
+              <div className="flex items-center gap-1 mt-2 pl-[38px] text-[10px] text-[#00C27C] opacity-0 group-hover:opacity-100 transition-opacity">
+                <Zap className="w-3 h-3" /> Open agent <ChevronRight className="w-3 h-3" />
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Input bar */}
+        <form onSubmit={(e) => { e.preventDefault(); if (inputValue.trim()) { onAction(inputValue.trim()); setInputValue(''); } }} className="mt-4">
+          <div className="flex items-center gap-3 bg-[#141210] border border-[#38332B] rounded-xl px-4 py-2.5 focus-within:border-[#00C27C]/50 transition-colors">
+            <Sparkles className="w-4 h-4 text-[#6B6359] flex-shrink-0" />
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Ask Nexus anything about your stores..."
+              className="flex-1 bg-transparent text-sm text-[#F0EDE8] placeholder-[#484F58] outline-none"
+            />
+            <button type="submit" disabled={!inputValue.trim()} className="w-7 h-7 rounded-lg bg-[#00C27C] flex items-center justify-center text-white disabled:opacity-30 hover:bg-[#00B07A] transition-colors">
+              <Send className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Main Nexus Page
 // ---------------------------------------------------------------------------
 
@@ -2283,25 +2359,8 @@ export default function NexusHome({ onOpenNexus }) {
         </div>
       </div>
 
-      {/* Nexus AI — Primary Interactive Experience */}
-      <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] overflow-hidden" style={{ borderColor: 'rgba(0,194,124,0.15)' }}>
-        <div className="px-6 py-4 border-b border-[#38332B] flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #1C1B1A 0%, #0F1923 50%, #1C1B1A 100%)' }}>
-          <div className="h-9 w-9 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #00C27C, #64A8E0)' }}>
-            <Sparkles size={20} color="#fff" />
-          </div>
-          <div>
-            <h2 className="text-sm font-semibold text-[#F0EDE8]">Nexus AI</h2>
-            <p className="text-[10px] text-[#6B6359]">Retail operations agent &mdash; 11 action lanes</p>
-          </div>
-          <div className="ml-auto flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-[#00C27C] animate-pulse" />
-            <span className="text-xs text-[#00C27C] font-medium">Online</span>
-          </div>
-        </div>
-        <div className="px-6 py-4">
-          <CustomerBridge homeEmbed />
-        </div>
-      </div>
+      {/* Nexus AI — Action Launcher */}
+      <NexusLauncher onAction={onOpenNexus} />
 
       {/* Section: Performance */}
       <p className="text-[11px] font-bold text-[#6B6359] uppercase tracking-[1.5px] mt-2">Performance</p>

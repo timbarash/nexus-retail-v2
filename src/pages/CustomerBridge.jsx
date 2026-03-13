@@ -2307,7 +2307,7 @@ const SUGGESTIONS = [
    MAIN PAGE COMPONENT
    ═══════════════════════════════════════════════════════════════════ */
 
-export default function CustomerBridge({ compact = false, nexusOverlay = false, homeEmbed = false }) {
+export default function CustomerBridge({ compact = false, nexusOverlay = false, homeEmbed = false, initialQuery = null }) {
   const navigate = useNavigate();
   const { addInteraction } = usePortal();
   const [products, setProducts] = useState(DEFAULT_PRODUCTS);
@@ -2317,6 +2317,7 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false, 
   const [catalogOpen, setCatalogOpen] = useState(false);
   const bottomRef = useRef(null);
   const chatAreaRef = useRef(null);
+  const initialQuerySent = useRef(false);
 
   const activateProduct = (key) => {
     setProducts(prev => ({
@@ -2768,6 +2769,15 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false, 
       }]);
     }
   };
+
+  // Auto-send initial query when opened from launcher
+  React.useEffect(() => {
+    if (initialQuery && !initialQuerySent.current) {
+      initialQuerySent.current = true;
+      const timer = setTimeout(() => processMessage(initialQuery), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [initialQuery]);
 
   const COMPACT_SUGGESTIONS = [
     { key: 'ecomm_customize', label: 'Help me customize my ecomm look and feel', icon: Eye, gradient: 'from-cyan-600/20 to-blue-600/20', border: 'hover:border-cyan-500/40', tag: 'Support', tagColor: '#0EA5E9' },
