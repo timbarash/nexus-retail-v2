@@ -8,7 +8,7 @@ import CustomerBridge from '../pages/CustomerBridge';
  * Opened by the FAB button and Nexus AI bar.
  * Completely separate from the DTCH team chat.
  */
-export default function NexusChat({ isOpen, onClose, initialQuery }) {
+export default function NexusChat({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
@@ -51,7 +51,7 @@ export default function NexusChat({ isOpen, onClose, initialQuery }) {
       {/* CustomerBridge fills the rest */}
       <div className="flex-1 overflow-hidden px-0">
         <div className="h-full max-w-5xl mx-auto px-6 py-4">
-          <CustomerBridge nexusOverlay initialQuery={initialQuery} />
+          <CustomerBridge nexusOverlay />
         </div>
       </div>
     </div>
