@@ -17,7 +17,7 @@ import {
   ThumbsDown, Clock, Bot, Mic, AlertCircle, ExternalLink, ArrowUpRight,
   ArrowDownRight, Minus, CheckCircle2, Eye, Smartphone, QrCode, Monitor,
   Layers, Hash, Radio, Wifi, Activity, Percent, Receipt, Store,
-  Megaphone, ShoppingCart, ChevronDown, Shield, Lock, Heart,
+  Megaphone, ShoppingCart, ChevronDown, Shield, Lock, Heart, Rocket,
 } from 'lucide-react';
 
 // ---------------------------------------------------------------------------
