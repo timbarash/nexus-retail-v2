@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Sparkles } from 'lucide-react';
+import NexusChat from './components/NexusChat';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
 import Footer from './components/layout/Footer';
@@ -35,6 +36,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [slackOpen, setSlackOpen] = useState(false);
   const [dtchMode, setDtchMode] = useState('closed'); // 'closed'|'rail'|'sidebar'|'full'
+  const [nexusChatOpen, setNexusChatOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
 
   // Cmd+K / Ctrl+K handler
@@ -99,7 +101,7 @@ export default function App() {
           backgroundAttachment: 'fixed',
         }}>
           <Routes>
-            <Route path="/" element={<NexusHome onOpenNexus={() => setDtchMode('full')} />} />
+            <Route path="/" element={<NexusHome onOpenNexus={() => setNexusChatOpen(true)} />} />
             <Route path="/proto/sms" element={<ProtoSMS />} />
             <Route path="/proto/emoji" element={<ProtoEmoji />} />
             <Route path="/proto/qr" element={<ProtoQR />} />
@@ -125,17 +127,22 @@ export default function App() {
         isOpen={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
         navigate={navigate}
-        onOpenSpace={(spaceId) => { setDtchMode('full'); }}
+        onOpenSpace={(spaceId) => { setNexusChatOpen(true); }}
       />
 
+      {/* Nexus AI Chat overlay */}
+      <NexusChat isOpen={nexusChatOpen} onClose={() => setNexusChatOpen(false)} />
+
       {/* Nexus AI floating action button */}
-      <button
-        onClick={() => setDtchMode('full')}
-        className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[#00C27C] text-white shadow-lg animate-fab-spring animate-pulse-glow hover:scale-110 active:scale-95 transition-transform"
-        aria-label="Open Nexus AI"
-      >
-        <Sparkles className="h-6 w-6" />
-      </button>
+      {!nexusChatOpen && (
+        <button
+          onClick={() => setNexusChatOpen(true)}
+          className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[#00C27C] text-white shadow-lg animate-fab-spring animate-pulse-glow hover:scale-110 active:scale-95 transition-transform"
+          aria-label="Open Nexus AI"
+        >
+          <Sparkles className="h-6 w-6" />
+        </button>
+      )}
     </div>
   );
 }
