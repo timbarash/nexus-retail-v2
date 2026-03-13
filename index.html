@@ -23,7 +23,11 @@
   </head>
   <body>
     <div id="root"></div>
-    <script>window.onerror=function(m,s,l,c,e){document.getElementById('root').innerHTML='<pre style="color:red;padding:20px">'+m+'\n'+s+':'+l+':'+c+'\n'+(e&&e.stack||'')+'</pre>';}</script>
+    <div id="err" style="display:none;color:#E87068;background:#141210;padding:20px;font-family:monospace;font-size:13px;white-space:pre-wrap"></div>
+    <script>
+      window.addEventListener('error',function(e){var d=document.getElementById('err');d.style.display='block';d.textContent+='ERROR: '+e.message+'\n'+(e.filename||'')+':'+(e.lineno||'')+'\n\n';});
+      window.addEventListener('unhandledrejection',function(e){var d=document.getElementById('err');d.style.display='block';d.textContent+='PROMISE: '+(e.reason&&e.reason.message||e.reason)+'\n'+(e.reason&&e.reason.stack||'')+'\n\n';});
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
