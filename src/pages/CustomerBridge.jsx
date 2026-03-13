@@ -2770,7 +2770,7 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
   };
 
   const handleSuggestionClick = (key) => {
-    const all = [...SUGGESTIONS, ...COMPACT_SUGGESTIONS];
+    const all = [...SUGGESTIONS, ...COMPACT_SUGGESTIONS, ...NEXUS_SUGGESTIONS];
     const suggestion = all.find(s => s.key === key);
     if (suggestion) processMessage(suggestion.label);
   };

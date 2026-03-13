@@ -37,6 +37,7 @@ export default function App() {
   const [slackOpen, setSlackOpen] = useState(false);
   const [dtchMode, setDtchMode] = useState('closed'); // 'closed'|'rail'|'sidebar'|'full'
   const [nexusChatOpen, setNexusChatOpen] = useState(false);
+  const [nexusChatQuery, setNexusChatQuery] = useState(null);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
 
   // Cmd+K / Ctrl+K handler
@@ -101,7 +102,7 @@ export default function App() {
           backgroundAttachment: 'fixed',
         }}>
           <Routes>
-            <Route path="/" element={<NexusHome onOpenNexus={() => setNexusChatOpen(true)} />} />
+            <Route path="/" element={<NexusHome onOpenNexus={(query) => { setNexusChatQuery(query || null); setNexusChatOpen(true); }} />} />
             <Route path="/proto/sms" element={<ProtoSMS />} />
             <Route path="/proto/emoji" element={<ProtoEmoji />} />
             <Route path="/proto/qr" element={<ProtoQR />} />
@@ -131,7 +132,7 @@ export default function App() {
       />
 
       {/* Nexus AI Chat overlay */}
-      <NexusChat isOpen={nexusChatOpen} onClose={() => setNexusChatOpen(false)} />
+      <NexusChat isOpen={nexusChatOpen} onClose={() => { setNexusChatOpen(false); setNexusChatQuery(null); }} initialQuery={nexusChatQuery} />
 
       {/* Nexus AI floating action button */}
       {!nexusChatOpen && (

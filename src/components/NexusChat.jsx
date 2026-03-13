@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Sparkles, RotateCcw } from 'lucide-react';
 import CustomerBridge from '../pages/CustomerBridge';
 
@@ -8,11 +8,42 @@ import CustomerBridge from '../pages/CustomerBridge';
  * Opened by the FAB button and Nexus AI bar.
  * Completely separate from the DTCH team chat.
  */
-export default function NexusChat({ isOpen, onClose }) {
+export default function NexusChat({ isOpen, onClose, initialQuery }) {
+  const containerRef = useRef(null);
+  const querySent = useRef(false);
+
+  // Auto-send initialQuery by programmatically filling the input and submitting
+  useEffect(() => {
+    if (!isOpen || !initialQuery || querySent.current) return;
+    querySent.current = true;
+    const timer = setTimeout(() => {
+      const container = containerRef.current;
+      if (!container) return;
+      const input = container.querySelector('input[type="text"]');
+      const form = container.querySelector('form');
+      if (input && form) {
+        // React-controlled input: use native setter to trigger onChange
+        const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+        nativeSetter.call(input, initialQuery);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        // Submit after React state updates
+        setTimeout(() => {
+          form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+        }, 100);
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [isOpen, initialQuery]);
+
+  // Reset when closed
+  useEffect(() => {
+    if (!isOpen) querySent.current = false;
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col" style={{ backgroundColor: '#141210' }}>
+    <div ref={containerRef} className="fixed inset-0 z-[9999] flex flex-col" style={{ backgroundColor: '#141210' }}>
       {/* Header with gradient */}
       <div
         className="flex items-center justify-between px-6 py-4 border-b border-[#38332B] flex-shrink-0"
