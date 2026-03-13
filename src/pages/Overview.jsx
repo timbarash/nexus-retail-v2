@@ -37,15 +37,15 @@ function CategoryCard({ name, data }) {
   const score = data.avg != null ? data.avg : 0;
   const normalizedScore = Math.round(((score + 1) / 2) * 100);
 
-  let scoreColor = 'text-[#00C27C]';
-  if (normalizedScore < 40) scoreColor = 'text-[#E87068]';
-  else if (normalizedScore < 60) scoreColor = 'text-[#D4A03A]';
+  let scoreColor = '#00C27C';
+  if (normalizedScore < 40) scoreColor = '#E87068';
+  else if (normalizedScore < 60) scoreColor = '#D4A03A';
 
   return (
-    <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] shadow-sm p-4 hover:border-[#38332B] transition-shadow duration-200">
+    <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] border-l-[3px] p-4 hover:brightness-110 transition-all duration-200" style={{ borderLeftColor: scoreColor, boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
       <div className="flex items-start justify-between mb-3">
         <h3 className="text-sm font-semibold text-[#F0EDE8]">{name}</h3>
-        <span className={`text-lg font-bold ${scoreColor}`}>{normalizedScore}</span>
+        <span className="text-lg font-bold" style={{ color: scoreColor }}>{normalizedScore}</span>
       </div>
       <div className="w-full h-2 bg-[#1C1B1A] rounded-full overflow-hidden flex">
         <div
@@ -154,7 +154,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
       </div>
 
       {/* Section 2: Key Metrics Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-grid">
         <MetricCard
           title="Total Reviews"
           value={totalReviews.toLocaleString()}
@@ -162,6 +162,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
           trend={trendPercent}
           trendLabel="vs prev period"
           color="dutchie"
+          borderAccent
         />
         <MetricCard
           title="Avg Sentiment Score"
@@ -169,6 +170,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
           subtitle="out of 100"
           icon={Activity}
           color="blue"
+          borderAccent
         />
         <MetricCard
           title="NPS Score"
@@ -176,6 +178,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
           subtitle="-100 to +100 scale"
           icon={TrendingUp}
           color="purple"
+          borderAccent
         />
         <MetricCard
           title="Most Active Source"
@@ -183,16 +186,17 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
           subtitle={`${mostActiveSourceCount.toLocaleString()} reviews`}
           icon={Hash}
           color="amber"
+          borderAccent
         />
       </div>
 
       {/* Section 3: Sentiment Distribution + Trend */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 stagger-grid">
+        <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-5 hover:brightness-110 transition-all" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
           <SectionHeader title="Sentiment Distribution" icon={BarChart3} />
           <DonutChart data={distribution} height={260} showLegend />
         </div>
-        <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
+        <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-5 hover:brightness-110 transition-all" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
           <SectionHeader
             title="Sentiment Trend"
             subtitle="Monthly average sentiment score"
@@ -218,7 +222,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
           title="Category Insights"
           subtitle="Sentiment analysis across key categories"
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-grid">
           {categoryInsights.map((data) => (
             <CategoryCard key={data.category} name={data.category} data={data} />
           ))}

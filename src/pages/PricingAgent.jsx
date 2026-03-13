@@ -1312,27 +1312,19 @@ function PricingAgentChat() {
       </div>
 
       {/* Pricing at a Glance */}
-      <div className="mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
-          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Avg Price Gap</p>
-          <p className="text-xl font-bold text-[#D4A03A]">+6%</p>
-          <p className="text-[10px] text-[#ADA599]">above market average</p>
-        </div>
-        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
-          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Opportunity</p>
-          <p className="text-xl font-bold text-[#00C27C]">$4,200</p>
-          <p className="text-[10px] text-[#ADA599]">/mo from 3 adjustments</p>
-        </div>
-        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
-          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Active Promos</p>
-          <p className="text-xl font-bold text-[#F0EDE8]">5</p>
-          <p className="text-[10px] text-[#D4A03A]">2 underperforming</p>
-        </div>
-        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
-          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Compliance</p>
-          <p className="text-xl font-bold text-[#00C27C]">All Clear</p>
-          <p className="text-[10px] text-[#00C27C]">Prices within state limits</p>
-        </div>
+      <div className="mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 stagger-grid">
+        {[
+          { label: 'Avg Price Gap', value: '+6%', sub: 'above market average', color: '#D4A03A', subColor: '#ADA599' },
+          { label: 'Opportunity', value: '$4,200', sub: '/mo from 3 adjustments', color: '#00C27C', subColor: '#ADA599' },
+          { label: 'Active Promos', value: '5', sub: '2 underperforming', color: '#F0EDE8', subColor: '#D4A03A' },
+          { label: 'Compliance', value: 'All Clear', sub: 'Prices within state limits', color: '#00C27C', subColor: '#00C27C' },
+        ].map(k => (
+          <div key={k.label} className="p-3 rounded-xl border border-[#38332B] border-l-[3px] bg-[#1C1B1A] hover:brightness-110 transition-all" style={{ borderLeftColor: k.color }}>
+            <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">{k.label}</p>
+            <p className="text-xl font-bold" style={{ color: k.color }}>{k.value}</p>
+            <p className="text-[10px]" style={{ color: k.subColor }}>{k.sub}</p>
+          </div>
+        ))}
       </div>
 
       {/* Messages area */}
@@ -1340,12 +1332,12 @@ function PricingAgentChat() {
         {showSuggestions && (
           <div>
             <p className="text-[#ADA599] text-sm mb-4">What would you like to do?</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 stagger-grid">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s.id}
                   onClick={() => handleSuggestion(s)}
-                  className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-4 text-left hover:border-[#38332B] hover:bg-[#282724] transition-all group"
+                  className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-4 text-left hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] transition-all group"
                 >
                   <div className="flex items-center gap-2 mb-3">
                     <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: `${s.color}15` }}>

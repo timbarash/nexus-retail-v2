@@ -448,10 +448,14 @@ function fmtDollar(v) {
 // Tile Components
 // ---------------------------------------------------------------------------
 
-function NexusTile({ children, className = '', span = 1 }) {
-  const spanClass = span === 2 ? 'lg:col-span-2' : '';
+function NexusTile({ children, className = '', span = 1, onClick }) {
+  const spanClass = span === 2 ? 'lg:col-span-2' : span === 3 ? 'lg:col-span-3' : '';
   return (
-    <div className={`rounded-2xl border border-[#38332B] bg-[#1C1B1A] shadow-sm transition-all duration-200 hover:border-[#38332B] ${spanClass} ${className}`}>
+    <div
+      className={`rounded-2xl border border-[#38332B] bg-[#1C1B1A] transition-all duration-200 hover:brightness-110 overflow-hidden ${spanClass} ${className}`}
+      style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.3)', cursor: onClick ? 'pointer' : undefined }}
+      onClick={onClick}
+    >
       {children}
     </div>
   );
@@ -1826,34 +1830,30 @@ function SalesReportingTile() {
         {activeTab === 'overview' && (
           <div className="space-y-5">
             {/* KPI Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 stagger-grid">
               {kpis.map(k => {
                 const Icon = k.icon;
                 return (
-                  <div key={k.label} className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[#ADA599] text-xs font-medium">{k.label}</span>
-                      <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${k.color}15` }}>
-                        <Icon size={14} style={{ color: k.color }} />
+                  <div key={k.label} className="bg-[#141210] rounded-xl border border-[#38332B] border-l-[3px] p-4 hover:brightness-110 transition-all" style={{ borderLeftColor: k.color, boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${k.color}18` }}>
+                        <Icon size={16} style={{ color: k.color }} />
                       </div>
                     </div>
                     <p className="text-xl font-bold text-[#F0EDE8]">{k.value}</p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className={`text-xs font-semibold flex items-center gap-0.5 ${k.delta >= 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
+                    <div className="flex items-center justify-between mt-1">
+                      <span className="text-xs text-[#ADA599]">{k.label}</span>
+                      <span className={`flex items-center gap-0.5 text-xs font-medium ${k.delta >= 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
                         {k.delta >= 0 ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
                         {k.delta >= 0 ? '+' : ''}{k.delta}%
                       </span>
-                      <span className="text-[#6B6359] text-[10px]">vs last {period === 'today' ? 'day' : period === 'week' ? 'week' : 'month'}</span>
                     </div>
                     {k.sub && <p className="text-[#6B6359] text-[10px] mt-1">{k.sub}</p>}
-                    <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-[#21262D]">
-                      <span className="text-[#6B6359] text-[10px]">{k.benchLabel}:</span>
-                      <span className="text-[#ADA599] text-[10px] font-medium">{k.bench}</span>
-                      {k.label === 'Revenue' && (
-                        <span className="text-[#00C27C] text-[10px] font-bold ml-auto">
-                          +{Math.round(((d.revenue - bench.revenue) / bench.revenue) * 100)}% vs market
-                        </span>
-                      )}
+                    <div className="flex items-center justify-between mt-2 pt-2" style={{ borderTop: '1px solid rgba(56,51,43,0.4)' }}>
+                      <span className="text-[10px] text-[#ADA599]">{k.benchLabel}: {k.bench}</span>
+                      <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded" style={{ color: k.delta >= 0 ? '#00C27C' : '#E87068', background: k.delta >= 0 ? 'rgba(0,194,124,0.07)' : 'rgba(232,112,104,0.07)' }}>
+                        {k.delta >= 0 ? 'Above' : 'Below'}
+                      </span>
                     </div>
                   </div>
                 );
@@ -2239,50 +2239,37 @@ export default function NexusHome() {
           </h3>
           <span className="text-xs text-[#6B6359]">Last 24 hours</span>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {/* Marketing Agent */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B]">
-            <div className="w-8 h-8 rounded-lg bg-[#B598E8]/10 flex items-center justify-center flex-shrink-0">
-              <Megaphone className="w-4 h-4 text-[#B598E8]" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs font-medium text-[#F0EDE8] truncate">Marketing</p>
-              <p className="text-[10px] text-[#ADA599] truncate">1 campaign ready for review</p>
-            </div>
-            <div className="w-2 h-2 rounded-full bg-[#D4A03A] flex-shrink-0" title="Pending review" />
-          </div>
-          {/* Connect Agent */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B]">
-            <div className="w-8 h-8 rounded-lg bg-[#64A8E0]/10 flex items-center justify-center flex-shrink-0">
-              <ShoppingCart className="w-4 h-4 text-[#64A8E0]" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs font-medium text-[#F0EDE8] truncate">Connect</p>
-              <p className="text-[10px] text-[#ADA599] truncate">3 stockout alerts flagged</p>
-            </div>
-            <div className="w-2 h-2 rounded-full bg-[#E87068] flex-shrink-0" title="Needs attention" />
-          </div>
-          {/* Pricing Agent */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B]">
-            <div className="w-8 h-8 rounded-lg bg-[#00C27C]/10 flex items-center justify-center flex-shrink-0">
-              <TrendingUp className="w-4 h-4 text-[#00C27C]" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs font-medium text-[#F0EDE8] truncate">Pricing</p>
-              <p className="text-[10px] text-[#ADA599] truncate">$4,200/mo opportunity found</p>
-            </div>
-            <div className="w-2 h-2 rounded-full bg-[#00C27C] flex-shrink-0" title="Ready" />
-          </div>
-          {/* Customer Bridge */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B]">
-            <div className="w-8 h-8 rounded-lg bg-[#D4A03A]/10 flex items-center justify-center flex-shrink-0">
-              <Users className="w-4 h-4 text-[#D4A03A]" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs font-medium text-[#F0EDE8] truncate">Bridge</p>
-              <p className="text-[10px] text-[#ADA599] truncate">12 tickets resolved today</p>
-            </div>
-            <div className="w-2 h-2 rounded-full bg-[#00C27C] flex-shrink-0" title="Healthy" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 stagger-grid">
+          {[
+            { to: '/agents/marketing', icon: Megaphone, color: '#B598E8', label: 'Marketing', desc: '1 campaign ready for review', dot: '#D4A03A' },
+            { to: '/agents/connect', icon: ShoppingCart, color: '#64A8E0', label: 'Connect', desc: '3 stockout alerts flagged', dot: '#E87068' },
+            { to: '/agents/pricing', icon: TrendingUp, color: '#00C27C', label: 'Pricing', desc: '$4,200/mo opportunity found', dot: '#00C27C' },
+            { to: '/agents/bridge', icon: Users, color: '#D4A03A', label: 'Bridge', desc: '12 tickets resolved today', dot: '#00C27C' },
+          ].map(a => (
+            <Link key={a.to} to={a.to} className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B] hover:brightness-110 hover:border-[#4a433a] transition-all">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${a.color}18` }}>
+                <a.icon className="w-4 h-4" style={{ color: a.color }} />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-medium text-[#F0EDE8] truncate">{a.label}</p>
+                <p className="text-[10px] text-[#ADA599] truncate">{a.desc}</p>
+              </div>
+              <div className={`w-2 h-2 rounded-full flex-shrink-0 ${a.dot !== '#00C27C' ? 'animate-pulse' : ''}`} style={{ backgroundColor: a.dot }} />
+              <ChevronRight className="w-3 h-3 text-[#6B6359] flex-shrink-0" />
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Nexus AI Bar — inline "ask anything" */}
+      <div className="relative rounded-full p-[1px]" style={{ background: 'linear-gradient(135deg, rgba(0,194,124,0.56), rgba(100,168,224,0.27), rgba(0,194,124,0.37))' }}>
+        <div className="flex items-center gap-3 rounded-full bg-[#252119] px-5 py-3.5">
+          <Sparkles className="w-5 h-5 text-[#00C27C] flex-shrink-0" />
+          <span className="text-sm text-[#6B6359] flex-1">Ask Nexus anything about your stores...</span>
+          <div className="flex items-center gap-2">
+            {['Revenue trends', 'Inventory alerts', 'Campaign ideas'].map(s => (
+              <span key={s} className="hidden md:inline-flex text-[11px] px-2.5 py-1 rounded-full border border-[#38332B] text-[#ADA599] hover:border-[#00C27C] hover:text-[#00C27C] cursor-pointer transition-colors">{s}</span>
+            ))}
           </div>
         </div>
       </div>
@@ -2294,7 +2281,7 @@ export default function NexusHome() {
       <SalesReportingTile />
 
       {/* Primary Tile Grid — always visible */}
-      <div className="grid gap-5 lg:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2 stagger-grid">
         {/* Full-width insights tile */}
         <SalesTodayTile />
 
@@ -2321,7 +2308,7 @@ export default function NexusHome() {
 
       {/* Secondary Tile Grid — hidden behind "Show all" */}
       {showAllTiles && (
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-5 lg:grid-cols-2 stagger-grid">
           {/* Full-width omnichannel collection */}
           <OmnichannelTile />
 
@@ -2344,7 +2331,7 @@ export default function NexusHome() {
       {/* Coming Soon — Phase 3 stubs */}
       <div className="mt-2">
         <p className="text-xs font-semibold text-[#6B6359] uppercase tracking-wider mb-3">Coming in Phase 3</p>
-        <div className="grid gap-3 lg:grid-cols-3">
+        <div className="grid gap-3 lg:grid-cols-3 stagger-grid">
           <LockedTile icon={Users} title="Predictive Staffing" desc="AI shift optimization" />
           <LockedTile icon={Package} title="Vendor Intelligence" desc="Price benchmarks & scores" />
           <LockedTile icon={DollarSign} title="P&L Rollup" desc="Multi-location financials" />

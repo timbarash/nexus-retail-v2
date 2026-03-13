@@ -1224,27 +1224,19 @@ export default function ConnectAgent() {
       </div>
 
       {/* Inventory at a Glance */}
-      <div className="mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
-          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Stock Health</p>
-          <p className="text-xl font-bold text-[#F0EDE8]">32/39</p>
-          <p className="text-[10px] text-[#00C27C]">stores fully stocked</p>
-        </div>
-        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
-          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Urgent</p>
-          <p className="text-xl font-bold text-[#E87068]">3</p>
-          <p className="text-[10px] text-[#E87068]">SKUs at stockout risk</p>
-        </div>
-        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
-          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Pending POs</p>
-          <p className="text-xl font-bold text-[#D4A03A]">1</p>
-          <p className="text-[10px] text-[#ADA599]">draft ready · $2,847</p>
-        </div>
-        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
-          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Last Reorder</p>
-          <p className="text-xl font-bold text-[#F0EDE8]">2d ago</p>
-          <p className="text-[10px] text-[#00C27C]">All items received</p>
-        </div>
+      <div className="mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 stagger-grid">
+        {[
+          { label: 'Stock Health', value: '32/39', sub: 'stores fully stocked', color: '#00C27C', subColor: '#00C27C' },
+          { label: 'Urgent', value: '3', sub: 'SKUs at stockout risk', color: '#E87068', subColor: '#E87068' },
+          { label: 'Pending POs', value: '1', sub: 'draft ready · $2,847', color: '#D4A03A', subColor: '#ADA599' },
+          { label: 'Last Reorder', value: '2d ago', sub: 'All items received', color: '#F0EDE8', subColor: '#00C27C' },
+        ].map(k => (
+          <div key={k.label} className="p-3 rounded-xl border border-[#38332B] border-l-[3px] bg-[#1C1B1A] hover:brightness-110 transition-all" style={{ borderLeftColor: k.color }}>
+            <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">{k.label}</p>
+            <p className="text-xl font-bold" style={{ color: k.color }}>{k.value}</p>
+            <p className="text-[10px]" style={{ color: k.subColor }}>{k.sub}</p>
+          </div>
+        ))}
       </div>
 
       {/* chat area */}
@@ -1293,12 +1285,12 @@ export default function ConnectAgent() {
         {view === 'idle' && (
           <div className="pt-2 animate-fade-in">
             <p className="text-xs text-[#ADA599] mb-3 ml-11">Quick actions</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 ml-11">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 ml-11 stagger-grid">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s.key}
                   onClick={() => handleSuggestionClick(s.key)}
-                  className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl p-4 transition-all hover:scale-[1.02] active:scale-[0.98]`}
+                  className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl p-4 transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]`}
                 >
                   <div className="flex items-center gap-2 mb-3">
                     <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>

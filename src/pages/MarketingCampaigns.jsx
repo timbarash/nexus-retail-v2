@@ -1453,12 +1453,12 @@ export default function MarketingCampaigns() {
         {view === 'idle' && (
           <div className="pt-2 animate-fade-in">
             <p className="text-xs text-[#ADA599] mb-3 ml-11">Suggested campaigns</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 ml-11">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 ml-11 stagger-grid">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s.key}
                   onClick={() => handleSuggestionClick(s.key)}
-                  className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl p-4 transition-all hover:scale-[1.02] active:scale-[0.98]`}
+                  className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl p-4 transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]`}
                 >
                   <div className="flex items-center gap-2 mb-3">
                     <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>

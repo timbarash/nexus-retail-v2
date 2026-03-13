@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import { Smartphone, Monitor, QrCode, X } from 'lucide-react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
 import Footer from './components/layout/Footer';
@@ -35,7 +35,6 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [slackOpen, setSlackOpen] = useState(false);
   const [dtchMode, setDtchMode] = useState('closed'); // 'closed'|'rail'|'sidebar'|'full'
-  const [cxOpen, setCxOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
 
   // Cmd+K / Ctrl+K handler
@@ -129,42 +128,14 @@ export default function App() {
         onOpenSpace={(spaceId) => { setDtchMode('full'); }}
       />
 
-      {/* CX Prototypes floating button */}
-      <div className="fixed bottom-5 right-5 z-50">
-        {cxOpen && (
-          <div className="absolute bottom-12 right-0 w-56 rounded-xl border border-[#38332B] bg-[#1C1B1A] shadow-2xl overflow-hidden mb-2 animate-fade-in">
-            <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#38332B]">
-              <span className="text-xs font-semibold text-[#ADA599] uppercase tracking-wider">CX Prototypes</span>
-              <button onClick={() => setCxOpen(false)} className="text-[#ADA599] hover:text-[#F0EDE8] transition-colors">
-                <X className="w-3.5 h-3.5" />
-              </button>
-            </div>
-            <div className="py-1">
-              {[
-                { to: '/proto/sms', label: 'SMS Micro-Surveys', icon: Smartphone },
-                { to: '/proto/emoji', label: 'Emoji Reactions', icon: Monitor },
-                { to: '/proto/qr', label: 'QR Captures', icon: QrCode },
-              ].map(({ to, label, icon: Icon }) => (
-                <Link
-                  key={to}
-                  to={to}
-                  onClick={() => setCxOpen(false)}
-                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#ADA599] hover:text-[#F0EDE8] hover:bg-[#282724] transition-colors"
-                >
-                  <Icon className="w-4 h-4" />
-                  <span>{label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-        <button
-          onClick={() => setCxOpen(!cxOpen)}
-          className="w-10 h-10 rounded-full bg-[#1C1B1A] border border-[#38332B] text-[#ADA599] hover:text-[#F0EDE8] hover:shadow-lg transition-all shadow-sm flex items-center justify-center text-xs font-bold"
-        >
-          CX
-        </button>
-      </div>
+      {/* Nexus AI floating action button */}
+      <button
+        onClick={() => setDtchMode('full')}
+        className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[#00C27C] text-white shadow-lg animate-fab-spring animate-pulse-glow hover:scale-110 active:scale-95 transition-transform"
+        aria-label="Open Nexus AI"
+      >
+        <Sparkles className="h-6 w-6" />
+      </button>
     </div>
   );
 }
