@@ -475,7 +475,7 @@ function TileHeader({ icon: Icon, title, subtitle, action, actionLabel, iconBg =
         </div>
         <div>
           <h3 className="text-base font-semibold text-[#F0EDE8]">{title}</h3>
-          {subtitle && <p className="text-xs text-panel-300">{subtitle}</p>}
+          {subtitle && <p className="text-xs text-[#6B6359]">{subtitle}</p>}
         </div>
       </div>
       {action && (
@@ -494,10 +494,10 @@ function TileHeader({ icon: Icon, title, subtitle, action, actionLabel, iconBg =
 function StatRow({ label, value, sub, trend, color }) {
   return (
     <div className="flex items-center justify-between py-2">
-      <span className="text-sm text-panel-300">{label}</span>
+      <span className="text-sm text-[#6B6359]">{label}</span>
       <div className="text-right">
         <span className={`text-lg font-bold ${color || 'text-[#F0EDE8]'}`}>{value}</span>
-        {sub && <p className="text-[11px] text-panel-300">{sub}</p>}
+        {sub && <p className="text-[11px] text-[#6B6359]">{sub}</p>}
         {trend !== undefined && (
           <span className={`ml-2 text-xs font-medium ${trend >= 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
             {trend >= 0 ? '+' : ''}{trend}%
@@ -704,20 +704,20 @@ function SalesTodayTile() {
       />
       <div className="grid gap-6 p-6 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wider text-panel-300">Sales</p>
+          <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359]">Sales</p>
           <p className="mt-1 text-3xl font-bold text-[#F0EDE8]">{fmtDollar(ctx.todaySales)}</p>
           <div className="mt-2 h-2 overflow-hidden rounded-full bg-[#1C1B1A]">
             <div className="h-full rounded-full bg-[#00C27C] transition-all" style={{ width: `${pct}%` }} />
           </div>
-          <p className="mt-1 text-xs text-panel-300">{pct}% of {fmtDollar(ctx.salesGoal)} goal</p>
+          <p className="mt-1 text-xs text-[#6B6359]">{pct}% of {fmtDollar(ctx.salesGoal)} goal</p>
         </div>
         <div>
-          <p className="text-xs font-medium uppercase tracking-wider text-panel-300">Top Store</p>
+          <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359]">Top Store</p>
           <p className="mt-1 text-lg font-bold text-[#F0EDE8]">{ctx.topStore}</p>
           <p className="text-sm text-[#00C27C]">{fmtDollar(ctx.topStoreRevenue)}</p>
         </div>
         <div>
-          <p className="text-xs font-medium uppercase tracking-wider text-panel-300">Traffic</p>
+          <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359]">Traffic</p>
           <p className="mt-1 text-3xl font-bold text-[#F0EDE8]">{ctx.trafficToday}</p>
           <p className="text-xs text-[#00C27C]">
             <TrendingUp size={12} className="inline mr-0.5" />
@@ -835,11 +835,11 @@ function SentimentTile() {
               <div className="mt-2 flex gap-3">
                 <div>
                   <p className="text-lg font-bold text-[#F0EDE8]">{NEXUS_DATA.npsScore}</p>
-                  <p className="text-[10px] text-panel-300 uppercase tracking-wide">NPS</p>
+                  <p className="text-[10px] text-[#6B6359] uppercase tracking-wide">NPS</p>
                 </div>
                 <div className="border-l border-[#38332B] pl-3">
                   <p className="text-lg font-bold text-[#00C27C]">+{NEXUS_DATA.npsDelta}</p>
-                  <p className="text-[10px] text-panel-300 uppercase tracking-wide">{periodLabel}</p>
+                  <p className="text-[10px] text-[#6B6359] uppercase tracking-wide">{periodLabel}</p>
                 </div>
               </div>
             </div>
@@ -847,10 +847,10 @@ function SentimentTile() {
 
           {/* Review volume breakdown */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Review Volume</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Review Volume</p>
             <div className="flex items-end gap-1 mb-2">
               <span className="text-2xl font-bold text-[#F0EDE8]">{Math.round(NEXUS_DATA.totalReviews * dateMultiplier)}</span>
-              <span className="text-xs text-panel-300 mb-1">{rangeLabel.toLowerCase()}</span>
+              <span className="text-xs text-[#6B6359] mb-1">{rangeLabel.toLowerCase()}</span>
             </div>
             <div className="flex h-3 overflow-hidden rounded-full">
               <div className="bg-[#00C27C]" style={{ width: `${(NEXUS_DATA.positiveReviews / NEXUS_DATA.totalReviews) * 100}%` }} />
@@ -862,20 +862,20 @@ function SentimentTile() {
               <span className="text-[#6B6359]">{Math.round(NEXUS_DATA.neutralReviews * dateMultiplier)} neutral</span>
               <span className="flex items-center gap-1 text-[#E87068]"><ThumbsDown size={10} /> {Math.round(NEXUS_DATA.negativeReviews * dateMultiplier)} negative</span>
             </div>
-            <p className="mt-2 text-xs text-panel-300">
+            <p className="mt-2 text-xs text-[#6B6359]">
               Response rate: <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.responseRate}%</span>
             </p>
           </div>
 
           {/* Source breakdown */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">By Platform</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">By Platform</p>
             <div className="space-y-2">
               {NEXUS_DATA.sentimentBySrc.map((s) => (
                 <div key={s.source} className="flex items-center justify-between">
                   <span className="text-sm text-[#F0EDE8]">{s.source}</span>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs text-panel-300">{Math.round(s.reviews * dateMultiplier)} reviews</span>
+                    <span className="text-xs text-[#6B6359]">{Math.round(s.reviews * dateMultiplier)} reviews</span>
                     <div className="flex items-center gap-0.5">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <Star key={star} size={10} className={star <= Math.round(s.avg) ? 'text-[#00C27C] fill-[#00C27C]' : 'text-[#6B6359]'} />
@@ -893,7 +893,7 @@ function SentimentTile() {
         <div className="grid gap-6 sm:grid-cols-2 mb-6">
           {/* Topic sentiment bars */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Topic Breakdown</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Topic Breakdown</p>
             <div className="space-y-2.5">
               {NEXUS_DATA.sentimentTopics.map((t) => (
                 <div key={t.topic}>
@@ -903,7 +903,7 @@ function SentimentTile() {
                       <span className="text-sm text-[#F0EDE8]">{t.topic}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] text-panel-300">{Math.round(t.reviews * dateMultiplier)} mentions</span>
+                      <span className="text-[11px] text-[#6B6359]">{Math.round(t.reviews * dateMultiplier)} mentions</span>
                       <span className={`text-xs font-bold ${t.score >= 60 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>{t.score}</span>
                       <span className={`text-[11px] font-medium ${t.delta > 0 ? 'text-[#00C27C]' : t.delta < 0 ? 'text-[#E87068]' : 'text-[#6B6359]'}`}>
                         {t.delta > 0 ? '+' : ''}{t.delta}
@@ -923,7 +923,7 @@ function SentimentTile() {
 
           {/* Location sentiment */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">By Location</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">By Location</p>
             <div className="space-y-2">
               {filteredLocationSentiment.map((loc) => (
                 <div key={loc.location} className={`flex items-center justify-between rounded-lg px-3 py-2.5 ${
@@ -962,7 +962,7 @@ function SentimentTile() {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Sparkles size={14} className="text-[#00C27C]" />
-            <p className="text-xs font-medium uppercase tracking-wider text-panel-300">AI-Powered Suggestions</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359]">AI-Powered Suggestions</p>
           </div>
           <div className="space-y-2">
             {NEXUS_DATA.sentimentActions.map((item, i) => (
@@ -970,7 +970,7 @@ function SentimentTile() {
                 <div className={`mt-0.5 h-2 w-2 flex-shrink-0 rounded-full ${priorityDot[item.priority]}`} />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-[#F0EDE8]">{item.action}</p>
-                  <p className="mt-0.5 text-xs text-panel-300 font-medium">{item.impact}</p>
+                  <p className="mt-0.5 text-xs text-[#6B6359] font-medium">{item.impact}</p>
                 </div>
                 <button className="flex-shrink-0 rounded-lg bg-[#1C1B1A] border border-[#38332B] px-3 py-1.5 text-xs font-semibold text-[#F0EDE8] hover:bg-[#282724] transition-colors">
                   Execute
@@ -1029,11 +1029,11 @@ function OmnichannelTile() {
                 }`}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <TabIcon size={14} className={isActive ? 'text-[#B598E8]' : 'text-panel-300'} />
-                  <span className={`text-xs font-semibold ${isActive ? 'text-[#B598E8]' : 'text-panel-300'}`}>{label}</span>
+                  <TabIcon size={14} className={isActive ? 'text-[#B598E8]' : 'text-[#6B6359]'} />
+                  <span className={`text-xs font-semibold ${isActive ? 'text-[#B598E8]' : 'text-[#6B6359]'}`}>{label}</span>
                 </div>
                 <p className="text-xl font-bold text-[#F0EDE8]">{stats.signals.toLocaleString()}</p>
-                <p className="text-[11px] text-panel-300">{stats.rate} {stats.rateLabel}</p>
+                <p className="text-[11px] text-[#6B6359]">{stats.rate} {stats.rateLabel}</p>
               </button>
             );
           })}
@@ -1043,7 +1043,7 @@ function OmnichannelTile() {
         {activeTab === 'sms' && (
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Live Conversation Feed</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Live Conversation Feed</p>
               <div className="space-y-3">
                 {NEXUS_DATA.smsChannel.recentConversations.map((convo, i) => (
                   <div key={i} className={`rounded-xl border p-4 ${
@@ -1051,10 +1051,10 @@ function OmnichannelTile() {
                   }`}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <MapPin size={12} className="text-panel-300" />
+                        <MapPin size={12} className="text-[#6B6359]" />
                         <span className="text-xs font-medium text-[#F0EDE8]">{convo.store}</span>
                       </div>
-                      <span className="text-[11px] text-panel-300">{convo.time}</span>
+                      <span className="text-[11px] text-[#6B6359]">{convo.time}</span>
                     </div>
                     {convo.messages.map((msg, j) => (
                       <div key={j} className={`flex ${msg.from === 'system' ? 'justify-start' : 'justify-end'} mb-1`}>
@@ -1070,16 +1070,16 @@ function OmnichannelTile() {
                     {convo.mappedTo && (
                       <div className="mt-2 flex flex-wrap gap-1.5">
                         {convo.mappedTo.budtender && (
-                          <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-panel-300">
+                          <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-[#6B6359]">
                             Staff: {convo.mappedTo.budtender}
                           </span>
                         )}
                         {convo.mappedTo.product && (
-                          <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-panel-300">
+                          <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-[#6B6359]">
                             Product: {convo.mappedTo.product}
                           </span>
                         )}
-                        <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-panel-300">
+                        <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-[#6B6359]">
                           {convo.mappedTo.txnId}
                         </span>
                       </div>
@@ -1089,7 +1089,7 @@ function OmnichannelTile() {
               </div>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Channel Stats</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Channel Stats</p>
               <div className="space-y-2 mb-4">
                 <StatRow label="Surveys Sent" value={NEXUS_DATA.smsChannel.sent.toLocaleString()} sub="this month" />
                 <StatRow label="Responses" value={NEXUS_DATA.smsChannel.responded.toLocaleString()} sub={`${NEXUS_DATA.smsChannel.responseRate}% rate`} />
@@ -1111,7 +1111,7 @@ function OmnichannelTile() {
         {activeTab === 'ecomm' && (
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Reaction Distribution</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Reaction Distribution</p>
               <div className="space-y-3 mb-4">
                 {NEXUS_DATA.ecommChannel.breakdown.map((r) => (
                   <div key={r.emoji}>
@@ -1136,12 +1136,12 @@ function OmnichannelTile() {
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-panel-300">
+              <p className="text-xs text-[#6B6359]">
                 <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.ecommChannel.withFreeText.toLocaleString()}</span> reactions included free-text feedback ({NEXUS_DATA.ecommChannel.freeTextRate}%)
               </p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Product-Level Sentiment</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Product-Level Sentiment</p>
               <div className="space-y-3 mb-4">
                 {NEXUS_DATA.ecommChannel.topProductSentiment.map((p) => (
                   <div key={p.product} className="rounded-lg border border-[#38332B] p-3">
@@ -1151,7 +1151,7 @@ function OmnichannelTile() {
                         {p.score}
                       </span>
                     </div>
-                    <div className="flex gap-3 text-[11px] text-panel-300">
+                    <div className="flex gap-3 text-[11px] text-[#6B6359]">
                       <span>😍 {p.loves}</span>
                       <span>😊 {p.goods}</span>
                       <span>😐 {p.mehs}</span>
@@ -1175,17 +1175,17 @@ function OmnichannelTile() {
         {activeTab === 'voice' && (
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">CSAT Distribution</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">CSAT Distribution</p>
               <div className="flex items-end gap-6 mb-4">
                 <div>
                   <p className="text-4xl font-bold text-[#F0EDE8]">{NEXUS_DATA.voiceSurveyChannel.avgCsat}</p>
-                  <p className="text-xs text-panel-300">Avg CSAT (1–5)</p>
+                  <p className="text-xs text-[#6B6359]">Avg CSAT (1–5)</p>
                   <p className="text-xs font-medium text-[#00C27C]">+{NEXUS_DATA.voiceSurveyChannel.csatDelta} this month</p>
                 </div>
                 <div className="flex-1">
                   {NEXUS_DATA.voiceSurveyChannel.distribution.map((d) => (
                     <div key={d.rating} className="flex items-center gap-2 mb-1">
-                      <span className="w-4 text-xs text-right text-panel-300">{d.rating}</span>
+                      <span className="w-4 text-xs text-right text-[#6B6359]">{d.rating}</span>
                       <div className="flex-1 h-3 overflow-hidden rounded-full bg-[#1C1B1A]">
                         <div
                           className={`h-full rounded-full ${
@@ -1194,19 +1194,19 @@ function OmnichannelTile() {
                           style={{ width: `${d.pct}%` }}
                         />
                       </div>
-                      <span className="w-10 text-xs text-panel-300 text-right">{d.pct}%</span>
+                      <span className="w-10 text-xs text-[#6B6359] text-right">{d.pct}%</span>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="flex gap-3 text-xs text-panel-300">
+              <div className="flex gap-3 text-xs text-[#6B6359]">
                 <span>Surveyed: <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.voiceSurveyChannel.surveyed}</span></span>
                 <span>Completed: <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.voiceSurveyChannel.completed}</span></span>
                 <span>Rate: <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.voiceSurveyChannel.completionRate}%</span></span>
               </div>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Recent Verbatim</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Recent Verbatim</p>
               <div className="space-y-3 mb-4">
                 {NEXUS_DATA.voiceSurveyChannel.recentVerbatim.map((v, i) => (
                   <div key={i} className={`rounded-lg border p-3 ${
@@ -1218,7 +1218,7 @@ function OmnichannelTile() {
                           <Star key={s} size={10} className={s <= v.rating ? 'text-[#00C27C] fill-[#00C27C]' : 'text-[#6B6359]'} />
                         ))}
                       </div>
-                      <span className="text-[11px] text-panel-300">{v.store}</span>
+                      <span className="text-[11px] text-[#6B6359]">{v.store}</span>
                     </div>
                     <p className="text-xs text-[#F0EDE8] italic">"{v.text}"</p>
                   </div>
@@ -1239,7 +1239,7 @@ function OmnichannelTile() {
         {activeTab === 'qr' && (
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Budtender Leaderboard</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Budtender Leaderboard</p>
               <div className="space-y-2 mb-4">
                 {NEXUS_DATA.qrChannel.budtenderLeaderboard.map((b, i) => (
                   <div key={b.name} className={`rounded-lg border p-3 ${
@@ -1254,23 +1254,23 @@ function OmnichannelTile() {
                         </div>
                         <div>
                           <span className="text-sm font-medium text-[#F0EDE8]">{b.name}</span>
-                          <span className="text-[11px] text-panel-300 ml-2">{b.store}</span>
+                          <span className="text-[11px] text-[#6B6359] ml-2">{b.store}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-panel-300">{b.surveys} surveys</span>
+                        <span className="text-xs text-[#6B6359]">{b.surveys} surveys</span>
                         <span className={`text-sm font-bold ${b.avgScore >= 4 ? 'text-[#00C27C]' : b.avgScore >= 3 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                           {b.avgScore}
                         </span>
                       </div>
                     </div>
-                    <p className="text-[11px] text-panel-300 italic ml-8">"{b.topComment}"</p>
+                    <p className="text-[11px] text-[#6B6359] italic ml-8">"{b.topComment}"</p>
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Channel Stats</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359] mb-3">Channel Stats</p>
               <div className="space-y-2 mb-4">
                 <StatRow label="QR Codes Printed" value={NEXUS_DATA.qrChannel.printed.toLocaleString()} />
                 <StatRow label="Scans" value={NEXUS_DATA.qrChannel.scanned} sub={`${NEXUS_DATA.qrChannel.scanRate}% scan rate`} />
@@ -1279,12 +1279,12 @@ function OmnichannelTile() {
               </div>
               <div className="flex gap-3 mb-4">
                 <div className="flex-1 rounded-lg border border-[#38332B] bg-[rgba(0,194,124,0.12)]/30 p-2.5 text-center">
-                  <p className="text-xs text-panel-300">Best scan rate</p>
+                  <p className="text-xs text-[#6B6359]">Best scan rate</p>
                   <p className="text-sm font-bold text-[#00C27C]">{NEXUS_DATA.qrChannel.topStore.name}</p>
                   <p className="text-xs text-[#00C27C]">{NEXUS_DATA.qrChannel.topStore.scanRate}%</p>
                 </div>
                 <div className="flex-1 rounded-lg border border-[#38332B] bg-[rgba(232,112,104,0.12)]/30 p-2.5 text-center">
-                  <p className="text-xs text-panel-300">Lowest scan rate</p>
+                  <p className="text-xs text-[#6B6359]">Lowest scan rate</p>
                   <p className="text-sm font-bold text-[#E87068]">{NEXUS_DATA.qrChannel.worstStore.name}</p>
                   <p className="text-xs text-[#E87068]">{NEXUS_DATA.qrChannel.worstStore.scanRate}%</p>
                 </div>
@@ -1358,11 +1358,11 @@ function UnifiedPipelineTile() {
             <div className="mt-3 flex gap-4 text-center">
               <div>
                 <p className="text-lg font-bold text-[#B598E8]">{d.firstPartyPct}%</p>
-                <p className="text-[10px] text-panel-300 uppercase">First-party</p>
+                <p className="text-[10px] text-[#6B6359] uppercase">First-party</p>
               </div>
               <div className="border-l border-[#38332B] pl-4">
                 <p className="text-lg font-bold text-[#64A8E0]">{(100 - d.firstPartyPct).toFixed(1)}%</p>
-                <p className="text-[10px] text-panel-300 uppercase">Third-party</p>
+                <p className="text-[10px] text-[#6B6359] uppercase">Third-party</p>
               </div>
             </div>
           </div>
@@ -1386,7 +1386,7 @@ function UnifiedPipelineTile() {
                           <span className="text-sm text-[#F0EDE8]">{c.channel}</span>
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="text-[11px] text-panel-300">{c.signals.toLocaleString()}</span>
+                          <span className="text-[11px] text-[#6B6359]">{c.signals.toLocaleString()}</span>
                           <span className={`text-sm font-bold ${c.score >= 70 ? 'text-[#00C27C]' : c.score >= 55 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                             {c.score}
                           </span>
@@ -1413,7 +1413,7 @@ function UnifiedPipelineTile() {
                           <span className="text-sm text-[#F0EDE8]">{c.channel}</span>
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="text-[11px] text-panel-300">{c.signals.toLocaleString()}</span>
+                          <span className="text-[11px] text-[#6B6359]">{c.signals.toLocaleString()}</span>
                           <span className={`text-sm font-bold ${c.score >= 70 ? 'text-[#00C27C]' : c.score >= 55 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                             {c.score}
                           </span>
@@ -1431,7 +1431,7 @@ function UnifiedPipelineTile() {
         <div className="mt-6">
           <div className="flex items-center gap-2 mb-3">
             <Activity size={14} className="text-[#D4A03A]" />
-            <p className="text-xs font-medium uppercase tracking-wider text-panel-300">Signal Divergences — Where First-Party ≠ Third-Party</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-[#6B6359]">Signal Divergences — Where First-Party ≠ Third-Party</p>
           </div>
           <div className="space-y-2">
             {d.divergences.map((div, i) => (
@@ -1475,7 +1475,7 @@ function InventoryTile() {
           </div>
           <div>
             <p className="text-2xl font-bold text-[#E87068]">{NEXUS_DATA.stockoutRisk}</p>
-            <p className="text-xs text-panel-300">Products at stockout risk</p>
+            <p className="text-xs text-[#6B6359]">Products at stockout risk</p>
           </div>
         </div>
         <div className="space-y-3">
@@ -1483,7 +1483,7 @@ function InventoryTile() {
             <div key={item.product} className="flex items-center justify-between rounded-lg border border-[#FFA657]/20 bg-[rgba(255,166,87,0.06)] px-3 py-2">
               <div>
                 <p className="text-sm font-medium text-[#F0EDE8]">{item.product}</p>
-                <p className="text-xs text-panel-300">{item.store}</p>
+                <p className="text-xs text-[#6B6359]">{item.store}</p>
               </div>
               <div className="text-right">
                 <p className={`text-sm font-bold ${item.daysLeft <= 1 ? 'text-[#E87068]' : 'text-[#FFA657]'}`}>
@@ -1804,7 +1804,7 @@ function SalesReportingTile() {
           </div>
           <div>
             <h3 className="text-base font-semibold text-[#F0EDE8]">Sales Reporting</h3>
-            <p className="text-xs text-panel-300">Performance vs market benchmarks — {rangeLabel} — {selectionLabel}</p>
+            <p className="text-xs text-[#6B6359]">Performance vs market benchmarks — {rangeLabel} — {selectionLabel}</p>
           </div>
         </div>
         <div className="flex items-center gap-1 rounded-lg bg-[#141210] px-3 py-1.5">
@@ -2212,21 +2212,41 @@ function AgentBar() {
 // Main Nexus Page
 // ---------------------------------------------------------------------------
 
-export default function NexusHome() {
+export default function NexusHome({ onOpenNexus }) {
   const [showAllTiles, setShowAllTiles] = useState(false);
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-[#F0EDE8]">Nexus Command Center</h1>
+      {/* Morning Briefing Hero */}
+      <div className="rounded-2xl border border-[#38332B] overflow-hidden animate-fade-up" style={{ background: 'linear-gradient(135deg, #1C1B1A 0%, #0D2818 40%, #1C1B1A 100%)', borderColor: 'rgba(0,194,124,0.18)' }}>
+        <div className="px-6 py-5 flex items-start justify-between">
+          <div>
+            <p className="text-sm text-[#ADA599] mb-1">{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+            <h1 className="text-2xl font-bold text-[#F0EDE8]">
+              Good {new Date().getHours() < 12 ? 'morning' : new Date().getHours() < 17 ? 'afternoon' : 'evening'}
+            </h1>
+            <p className="text-sm text-[#ADA599] mt-2">Here's what happened across your 39 stores.</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5 rounded-full bg-[#00C27C]/10 px-3 py-1.5 text-xs font-medium text-[#00C27C] border border-[#00C27C]/20">
+              <span className="h-2 w-2 rounded-full bg-[#00C27C] animate-pulse" />
+              All systems live
+            </span>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1.5 rounded-full bg-[#00C27C]/5 px-3 py-1.5 text-xs font-medium text-[#F0EDE8]">
-            <span className="h-2 w-2 rounded-full bg-[#00C27C] animate-pulse" />
-            Live
-          </span>
+        <div className="px-6 pb-5 grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            { label: 'Yesterday Revenue', value: fmtDollar(NEXUS_DATA.todaySales), delta: '+4.2%', positive: true },
+            { label: 'Traffic', value: NEXUS_DATA.traffic.today.toLocaleString(), delta: `${NEXUS_DATA.traffic.trend === 'up' ? '+' : ''}3.7%`, positive: NEXUS_DATA.traffic.trend === 'up' },
+            { label: 'Stockout Alerts', value: String(NEXUS_DATA.lowStockAlerts), delta: `${NEXUS_DATA.stockoutRisk} critical`, positive: false },
+            { label: 'Top Store', value: NEXUS_DATA.topStore.split(',')[0], delta: fmtDollar(NEXUS_DATA.topStoreRevenue), positive: true },
+          ].map(s => (
+            <div key={s.label} className="px-3 py-2 rounded-lg bg-[#141210]/60 border border-white/[0.06]">
+              <p className="text-[10px] uppercase tracking-wider text-[#6B6359]">{s.label}</p>
+              <p className="text-lg font-bold text-[#F0EDE8] mt-0.5">{s.value}</p>
+              <p className={`text-[11px] font-medium mt-0.5 ${s.positive ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>{s.delta}</p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -2241,46 +2261,48 @@ export default function NexusHome() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 stagger-grid">
           {[
-            { to: '/agents/marketing', icon: Megaphone, color: '#B598E8', label: 'Marketing', desc: '1 campaign ready for review', dot: '#D4A03A' },
-            { to: '/agents/connect', icon: ShoppingCart, color: '#64A8E0', label: 'Connect', desc: '3 stockout alerts flagged', dot: '#E87068' },
-            { to: '/agents/pricing', icon: TrendingUp, color: '#00C27C', label: 'Pricing', desc: '$4,200/mo opportunity found', dot: '#00C27C' },
+            { to: '/agents/marketing', icon: Megaphone, color: '#B598E8', label: 'Marketing', desc: '1 campaign ready for review', dot: '#D4A03A', badge: '1', badgeColor: '#D4A03A' },
+            { to: '/agents/connect', icon: ShoppingCart, color: '#64A8E0', label: 'Connect', desc: '3 stockout alerts flagged', dot: '#E87068', badge: '3', badgeColor: '#E87068' },
+            { to: '/agents/pricing', icon: TrendingUp, color: '#00C27C', label: 'Pricing', desc: '$4.2K/mo opportunity', dot: '#00C27C' },
             { to: '/agents/bridge', icon: Users, color: '#D4A03A', label: 'Bridge', desc: '12 tickets resolved today', dot: '#00C27C' },
           ].map(a => (
-            <Link key={a.to} to={a.to} className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B] hover:brightness-110 hover:border-[#4a433a] transition-all">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${a.color}18` }}>
+            <Link key={a.to} to={a.to} className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B] hover:brightness-110 hover:border-[#4a433a] transition-all group">
+              <div className="relative w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${a.color}18` }}>
                 <a.icon className="w-4 h-4" style={{ color: a.color }} />
+                {a.badge && (
+                  <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full px-1 text-[10px] font-bold text-white" style={{ backgroundColor: a.badgeColor }}>{a.badge}</span>
+                )}
               </div>
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <p className="text-xs font-medium text-[#F0EDE8] truncate">{a.label}</p>
                 <p className="text-[10px] text-[#ADA599] truncate">{a.desc}</p>
               </div>
-              <div className={`w-2 h-2 rounded-full flex-shrink-0 ${a.dot !== '#00C27C' ? 'animate-pulse' : ''}`} style={{ backgroundColor: a.dot }} />
-              <ChevronRight className="w-3 h-3 text-[#6B6359] flex-shrink-0" />
+              <ChevronRight className="w-3.5 h-3.5 text-[#6B6359] group-hover:text-[#ADA599] transition-colors flex-shrink-0" />
             </Link>
           ))}
         </div>
       </div>
 
       {/* Nexus AI Bar — inline "ask anything" */}
-      <div className="relative rounded-full p-[1px]" style={{ background: 'linear-gradient(135deg, rgba(0,194,124,0.56), rgba(100,168,224,0.27), rgba(0,194,124,0.37))' }}>
+      <button onClick={onOpenNexus} className="w-full text-left relative rounded-full p-[1px] hover:scale-[1.005] active:scale-[0.998] transition-transform" style={{ background: 'linear-gradient(135deg, rgba(0,194,124,0.56), rgba(100,168,224,0.27), rgba(0,194,124,0.37))' }}>
         <div className="flex items-center gap-3 rounded-full bg-[#252119] px-5 py-3.5">
           <Sparkles className="w-5 h-5 text-[#00C27C] flex-shrink-0" />
           <span className="text-sm text-[#6B6359] flex-1">Ask Nexus anything about your stores...</span>
           <div className="flex items-center gap-2">
             {['Revenue trends', 'Inventory alerts', 'Campaign ideas'].map(s => (
-              <span key={s} className="hidden md:inline-flex text-[11px] px-2.5 py-1 rounded-full border border-[#38332B] text-[#ADA599] hover:border-[#00C27C] hover:text-[#00C27C] cursor-pointer transition-colors">{s}</span>
+              <span key={s} className="hidden md:inline-flex text-[11px] px-2.5 py-1 rounded-full border border-[#38332B] text-[#ADA599]">{s}</span>
             ))}
+            <span className="flex items-center gap-1 text-xs text-[#00C27C] font-medium"><ArrowRight className="w-3 h-3" /></span>
           </div>
         </div>
-      </div>
+      </button>
 
-      {/* Agent Bar */}
-      <AgentBar />
-
-      {/* Sales Reporting — full width under agent bar */}
+      {/* Section: Performance */}
+      <p className="text-[11px] font-bold text-[#6B6359] uppercase tracking-[1.5px] mt-2">Performance</p>
       <SalesReportingTile />
 
-      {/* Primary Tile Grid — always visible */}
+      {/* Section: Operational Health */}
+      <p className="text-[11px] font-bold text-[#6B6359] uppercase tracking-[1.5px] mt-2">Operational Health</p>
       <div className="grid gap-5 lg:grid-cols-2 stagger-grid">
         {/* Full-width insights tile */}
         <SalesTodayTile />
@@ -2299,15 +2321,17 @@ export default function NexusHome() {
       {!showAllTiles && (
         <button
           onClick={() => setShowAllTiles(true)}
-          className="w-full py-3 rounded-xl border border-dashed border-[#38332B] text-sm text-[#ADA599] hover:text-[#F0EDE8] hover:border-[#38332B] transition-all flex items-center justify-center gap-2"
+          className="w-full py-3 rounded-xl border border-[#38332B] bg-[#1C1B1A] text-sm text-[#ADA599] hover:text-[#F0EDE8] hover:brightness-110 transition-all flex items-center justify-center gap-2"
         >
           <ChevronDown className="w-4 h-4" />
-          Show all tiles (5 more)
+          Show more tiles
         </button>
       )}
 
-      {/* Secondary Tile Grid — hidden behind "Show all" */}
+      {/* Secondary Tile Grid */}
       {showAllTiles && (
+        <>
+        <p className="text-[11px] font-bold text-[#6B6359] uppercase tracking-[1.5px] mt-2">Network & Channels</p>
         <div className="grid gap-5 lg:grid-cols-2 stagger-grid">
           {/* Full-width omnichannel collection */}
           <OmnichannelTile />
@@ -2326,6 +2350,7 @@ export default function NexusHome() {
           <FeatureAdoptionTile />
           <PeerBenchmarkTile />
         </div>
+        </>
       )}
 
       {/* Coming Soon — Phase 3 stubs */}

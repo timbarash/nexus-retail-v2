@@ -99,7 +99,7 @@ export default function App() {
           backgroundAttachment: 'fixed',
         }}>
           <Routes>
-            <Route path="/" element={<NexusHome />} />
+            <Route path="/" element={<NexusHome onOpenNexus={() => setDtchMode('full')} />} />
             <Route path="/proto/sms" element={<ProtoSMS />} />
             <Route path="/proto/emoji" element={<ProtoEmoji />} />
             <Route path="/proto/qr" element={<ProtoQR />} />

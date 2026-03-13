@@ -45,10 +45,12 @@ export default {
         },
       },
       boxShadow: {
+        'sm': '0 1px 3px rgba(0,0,0,0.3)',
         'card': '0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15)',
         'card-hover': '0 4px 12px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
         'sidebar': '2px 0 12px rgba(0,0,0,0.3)',
         'elevated': '0 8px 24px rgba(0,0,0,0.4)',
+        'lg': '0 4px 16px rgba(0,0,0,0.4)',
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-out forwards',

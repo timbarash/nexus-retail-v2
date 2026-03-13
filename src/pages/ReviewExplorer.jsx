@@ -271,7 +271,7 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
 
         {/* Sort */}
         <div className="flex items-center gap-3 pt-2 border-t border-[#38332B]">
-          <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Sort by</p>
+          <p className="text-xs text-[#ADA599] font-medium uppercase tracking-wider">Sort by</p>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
