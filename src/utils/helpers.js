@@ -249,7 +249,7 @@ export function sentimentColor(sentiment) {
   if (typeof sentiment === 'number') {
     sentiment = sentiment >= 0.2 ? 'positive' : sentiment <= -0.2 ? 'negative' : 'neutral';
   }
-  return { positive: '#10b981', neutral: '#f59e0b', negative: '#ef4444' }[sentiment] || '#6b7280';
+  return { positive: '#00E08E', neutral: '#f59e0b', negative: '#E87068' }[sentiment] || '#6b7280';
 }
 
 /**

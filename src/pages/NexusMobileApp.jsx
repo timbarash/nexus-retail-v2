@@ -9,7 +9,7 @@ const MOBILE_APP_CSS = `
     --border: #2E2D2A;
     --text: #F5F0E8;
     --text2: #A09A8C;
-    --green: #00a35e;
+    --green: #00C27C;
     --purple: #A855F7;
     --orange: #F59E0B;
     --red: #EF4444;
@@ -208,7 +208,7 @@ const MOBILE_APP_CSS = `
     margin-bottom: 8px;
   }
   .nma-screen-btn.green { background: var(--green); color: #000; }
-  .nma-screen-btn.red { background: rgba(239,68,68,0.15); color: var(--red); }
+  .nma-screen-btn.red { background: rgba(232,112,104,0.15); color: var(--red); }
   .nma-screen-btn.outline { background: transparent; border: 1px solid var(--border); color: var(--text2); }
 
   /* ── Feature Sections ─────────────────────────── */
@@ -231,10 +231,10 @@ const MOBILE_APP_CSS = `
     letter-spacing: 0.5px;
     margin-bottom: 16px;
   }
-  .nma-feature-label.green { background: rgba(0,163,94,0.12); color: var(--green); }
+  .nma-feature-label.green { background: rgba(0,194,124,0.12); color: var(--green); }
   .nma-feature-label.purple { background: rgba(168,85,247,0.12); color: var(--purple); }
   .nma-feature-label.orange { background: rgba(245,158,11,0.12); color: var(--orange); }
-  .nma-feature-label.blue { background: rgba(59,130,246,0.12); color: var(--blue); }
+  .nma-feature-label.blue { background: rgba(100,168,224,0.12); color: var(--blue); }
   .nma-feature h2 {
     font-size: 32px;
     font-weight: 700;
@@ -462,7 +462,7 @@ const SCREEN_ALERTS = `
   <div class="nma-screen-header">Notifications</div>
   <div class="nma-screen-title">Smart Alerts</div>
   <div class="nma-screen-alert">
-    <div class="nma-screen-alert-icon" style="background:rgba(239,68,68,0.15);color:var(--red)">!</div>
+    <div class="nma-screen-alert-icon" style="background:rgba(232,112,104,0.15);color:var(--red)">!</div>
     <div class="nma-screen-alert-text">
       <div class="nma-screen-alert-title">METRC Sync Failed</div>
       <div class="nma-screen-alert-desc">Package #PKG-4421 rejected — weight mismatch</div>
@@ -486,7 +486,7 @@ const SCREEN_ALERTS = `
     <div class="nma-screen-alert-time">1h</div>
   </div>
   <div class="nma-screen-alert">
-    <div class="nma-screen-alert-icon" style="background:rgba(0,163,94,0.15);color:var(--green)">✓</div>
+    <div class="nma-screen-alert-icon" style="background:rgba(0,194,124,0.15);color:var(--green)">✓</div>
     <div class="nma-screen-alert-text">
       <div class="nma-screen-alert-title">PO Delivered</div>
       <div class="nma-screen-alert-desc">Order #PO-882 from Kiva — 48 units received</div>

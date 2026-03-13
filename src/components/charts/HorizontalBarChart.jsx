@@ -11,9 +11,9 @@ import {
 } from 'recharts';
 
 const SENTIMENT_COLORS = {
-  positive: '#00a35e',
-  neutral: '#d97706',
-  negative: '#ef4444',
+  positive: '#00C27C',
+  neutral: '#D4A03A',
+  negative: '#E87068',
 };
 
 function CustomTooltip({ active, payload, label }) {
@@ -25,42 +25,42 @@ function CustomTooltip({ active, payload, label }) {
   const total = (data.positive || 0) + (data.neutral || 0) + (data.negative || 0);
 
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-surface-border p-3 text-sm">
-      <p className="font-semibold text-text-primary mb-1.5">{label}</p>
-      <p className="text-xs text-text-muted mb-2">{total} total reviews</p>
+    <div className="bg-[#1C1B1A] rounded-lg shadow-lg border border-[#38332B] p-3 text-sm">
+      <p className="font-semibold text-[#F0EDE8] mb-1.5">{label}</p>
+      <p className="text-xs text-[#6B6359] mb-2">{total} total reviews</p>
       <div className="space-y-1">
         <div className="flex items-center justify-between gap-4">
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#00a35e]" />
-            <span className="text-text-secondary">Positive</span>
+            <span className="w-2 h-2 rounded-full bg-[#00C27C]" />
+            <span className="text-[#ADA599]">Positive</span>
           </span>
-          <span className="font-medium text-[#00a35e]">
+          <span className="font-medium text-[#00C27C]">
             {data.positive || 0}
-            <span className="text-text-muted text-xs ml-1">
+            <span className="text-[#6B6359] text-xs ml-1">
               ({total ? ((data.positive / total) * 100).toFixed(0) : 0}%)
             </span>
           </span>
         </div>
         <div className="flex items-center justify-between gap-4">
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#d97706]" />
-            <span className="text-text-secondary">Neutral</span>
+            <span className="w-2 h-2 rounded-full bg-[#D4A03A]" />
+            <span className="text-[#ADA599]">Neutral</span>
           </span>
-          <span className="font-medium text-[#d97706]">
+          <span className="font-medium text-[#D4A03A]">
             {data.neutral || 0}
-            <span className="text-text-muted text-xs ml-1">
+            <span className="text-[#6B6359] text-xs ml-1">
               ({total ? ((data.neutral / total) * 100).toFixed(0) : 0}%)
             </span>
           </span>
         </div>
         <div className="flex items-center justify-between gap-4">
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#ef4444]" />
-            <span className="text-text-secondary">Negative</span>
+            <span className="w-2 h-2 rounded-full bg-[#E87068]" />
+            <span className="text-[#ADA599]">Negative</span>
           </span>
-          <span className="font-medium text-[#ef4444]">
+          <span className="font-medium text-[#E87068]">
             {data.negative || 0}
-            <span className="text-text-muted text-xs ml-1">
+            <span className="text-[#6B6359] text-xs ml-1">
               ({total ? ((data.negative / total) * 100).toFixed(0) : 0}%)
             </span>
           </span>
@@ -79,7 +79,7 @@ function CustomLegend({ payload }) {
             className="w-2.5 h-2.5 rounded-full"
             style={{ backgroundColor: entry.color }}
           />
-          <span className="text-text-secondary capitalize">{entry.value}</span>
+          <span className="text-[#ADA599] capitalize">{entry.value}</span>
         </div>
       ))}
     </div>
@@ -90,7 +90,7 @@ export default function HorizontalBarChart({ data, height = 300 }) {
   if (!data || data.length === 0) {
     return (
       <div
-        className="flex items-center justify-center text-text-muted text-sm"
+        className="flex items-center justify-center text-[#6B6359] text-sm"
         style={{ height }}
       >
         No source data available
@@ -108,7 +108,7 @@ export default function HorizontalBarChart({ data, height = 300 }) {
         barSize={20}
       >
         <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" horizontal={false} />
-        <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6b7280' }} />
+        <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B6359' }} />
         <YAxis
           type="category"
           dataKey="name"

@@ -18,12 +18,12 @@ function PhoneMockup({ children, title }) {
   return (
     <div className="relative mx-auto w-[340px]">
       {/* Glow backdrop */}
-      <div className="absolute -inset-6 rounded-[3.5rem] bg-[#00a35e]/[0.07] blur-2xl pointer-events-none" />
-      <div className="relative rounded-[2.5rem] border-[6px] border-gray-300 bg-gray-700 shadow-[0_0_50px_rgba(0,163,94,0.08),0_20px_40px_rgba(0,0,0,0.5)] overflow-hidden ring-1 ring-surface-border">
-        <div className="relative bg-gray-700 pt-2 pb-1 px-6">
-          <div className="mx-auto h-5 w-28 rounded-full bg-white" />
+      <div className="absolute -inset-6 rounded-[3.5rem] bg-[#00C27C]/[0.07] blur-2xl pointer-events-none" />
+      <div className="relative rounded-[2.5rem] border-[6px] border-[#38332B] bg-[#1C1B1A] shadow-[0_0_50px_rgba(0,194,124,0.08),0_20px_40px_rgba(0,0,0,0.5)] overflow-hidden ring-1 ring-surface-border">
+        <div className="relative bg-[#1C1B1A] pt-2 pb-1 px-6">
+          <div className="mx-auto h-5 w-28 rounded-full bg-[#1C1B1A]" />
         </div>
-        <div className="bg-white px-6 py-2 flex items-center justify-between text-[10px] text-gray-400">
+        <div className="bg-[#1C1B1A] px-6 py-2 flex items-center justify-between text-[10px] text-gray-400">
           <span>3:15 PM</span>
           <span className="font-medium text-gray-700">{title}</span>
           <div className="flex items-center gap-1">
@@ -38,8 +38,8 @@ function PhoneMockup({ children, title }) {
         <div className="bg-[#fafafa] min-h-[520px] max-h-[520px] overflow-hidden flex flex-col">
           {children}
         </div>
-        <div className="bg-gray-700 py-2 flex justify-center">
-          <div className="h-1 w-24 rounded-full bg-white/30" />
+        <div className="bg-[#1C1B1A] py-2 flex justify-center">
+          <div className="h-1 w-24 rounded-full bg-[#1C1B1A]/30" />
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@ function EcommFlow() {
       {/* Header bar */}
       <div className="bg-[#00C389] px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center">
+          <div className="w-7 h-7 rounded-full bg-[#1C1B1A] flex items-center justify-center">
             <span className="text-[#00C389] text-xs font-bold">D</span>
           </div>
           <span className="text-white text-sm font-semibold">Ascend</span>
@@ -90,7 +90,7 @@ function EcommFlow() {
             </div>
 
             {/* Order summary */}
-            <div className="rounded-xl border border-gray-200 bg-white p-4">
+            <div className="rounded-xl border border-gray-200 bg-[#1C1B1A] p-4">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-2xl">{product.img}</span>
                 <div>
@@ -128,19 +128,19 @@ function EcommFlow() {
               <p className="text-sm font-semibold text-gray-900 mt-2">{selectedEmoji.label}!</p>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <div className="rounded-2xl border border-gray-200 bg-[#1C1B1A] p-5">
               <p className="text-sm font-medium text-gray-900 mb-1">Want to tell us more?</p>
               <p className="text-xs text-gray-500 mb-3">Totally optional — but it helps us improve</p>
               <textarea
                 value={feedbackText}
                 onChange={(e) => setFeedbackText(e.target.value)}
                 placeholder="What did you like? Anything we could do better?"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C389] resize-none"
+                className="w-full rounded-xl border border-gray-200 bg-[#1E1D1B] px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C389] resize-none"
                 rows={3}
               />
               <div className="flex gap-2 mt-3">
                 <button onClick={() => setStep('done')}
-                  className="flex-1 rounded-xl bg-gray-100 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-200 transition-colors">
+                  className="flex-1 rounded-xl bg-[#282724] py-2.5 text-sm font-medium text-gray-600 hover:bg-[#38332B] transition-colors">
                   Skip
                 </button>
                 <button onClick={() => setStep('done')}
@@ -150,7 +150,7 @@ function EcommFlow() {
               </div>
             </div>
 
-            <div className="rounded-lg bg-gray-100 px-3 py-2">
+            <div className="rounded-lg bg-[#282724] px-3 py-2">
               <p className="text-[10px] text-gray-400 text-center">
                 Mapped to: {product.name} · Ascend Logan Square · Order #4821
               </p>
@@ -206,7 +206,7 @@ function KioskFlow() {
             </div>
 
             {/* Big emoji feedback — zero friction */}
-            <div className="rounded-2xl border border-surface-border bg-[#042017] p-6 text-center">
+            <div className="rounded-2xl border border-[#38332B] bg-[#042017] p-6 text-center">
               <p className="text-base font-semibold text-white mb-2">Quick — how was that?</p>
               <p className="text-xs text-gray-400 mb-5">Just tap one</p>
               <div className="flex justify-center gap-5">
@@ -229,7 +229,7 @@ function KioskFlow() {
               <h2 className="text-xl font-bold text-white">Thanks!</h2>
               <p className="text-sm text-gray-400 mt-2">Enjoy your purchase 🌿</p>
               <button onClick={() => { setStep('confirmed'); setSelectedEmoji(null); }}
-                className="mt-6 rounded-xl bg-gray-100 border border-surface-border px-6 py-2.5 text-sm font-semibold text-white hover:bg-gray-100 transition-colors">
+                className="mt-6 rounded-xl bg-[#282724] border border-[#38332B] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#282724] transition-colors">
                 Replay Demo
               </button>
             </div>
@@ -246,8 +246,8 @@ export default function ProtoEmoji() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-text-primary">In-Menu Embedded Sentiment</h1>
-        <p className="text-sm text-text-secondary mt-1">Single-tap emoji reaction + optional free-text after order completion on Dutchie Ecomm or Kiosk</p>
+        <h1 className="text-2xl font-bold text-[#F0EDE8]">In-Menu Embedded Sentiment</h1>
+        <p className="text-sm text-[#ADA599] mt-1">Single-tap emoji reaction + optional free-text after order completion on Dutchie Ecomm or Kiosk</p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
@@ -256,11 +256,11 @@ export default function ProtoEmoji() {
           {/* Mode toggle */}
           <div className="flex justify-center gap-2 mb-6">
             <button onClick={() => setMode('ecomm')}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${mode === 'ecomm' ? 'bg-[#00C389] text-white' : 'bg-white text-text-secondary hover:bg-surface-hover border border-surface-border'}`}>
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${mode === 'ecomm' ? 'bg-[#00C389] text-white' : 'bg-[#1C1B1A] text-[#ADA599] hover:bg-[#282724] border border-[#38332B]'}`}>
               Ecomm (Mobile Web)
             </button>
             <button onClick={() => setMode('kiosk')}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${mode === 'kiosk' ? 'bg-[#042017] text-white' : 'bg-white text-text-secondary hover:bg-surface-hover border border-surface-border'}`}>
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${mode === 'kiosk' ? 'bg-[#042017] text-white' : 'bg-[#1C1B1A] text-[#ADA599] hover:bg-[#282724] border border-[#38332B]'}`}>
               In-Store Kiosk
             </button>
           </div>
@@ -273,8 +273,8 @@ export default function ProtoEmoji() {
         {/* Info panel */}
         <div className="space-y-6">
           {/* Key design principles */}
-          <div className="rounded-2xl border border-surface-border bg-white p-6">
-            <h3 className="text-sm font-semibold text-text-primary mb-3">Design Principles</h3>
+          <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] p-6">
+            <h3 className="text-sm font-semibold text-[#F0EDE8] mb-3">Design Principles</h3>
             <div className="space-y-3">
               {[
                 { title: 'Zero Friction', desc: 'One tap gets structured data. No forms, no logins, no extra screens.' },
@@ -284,25 +284,25 @@ export default function ProtoEmoji() {
               ].map((p) => (
                 <div key={p.title} className="flex gap-3">
                   <div className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-[#00C389]" />
-                  <div><p className="text-sm font-medium text-text-primary">{p.title}</p><p className="text-xs text-text-secondary">{p.desc}</p></div>
+                  <div><p className="text-sm font-medium text-[#F0EDE8]">{p.title}</p><p className="text-xs text-[#ADA599]">{p.desc}</p></div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Data captured */}
-          <div className="rounded-2xl border border-surface-border bg-white p-6">
-            <h3 className="text-sm font-semibold text-text-primary mb-3">What Gets Captured</h3>
+          <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] p-6">
+            <h3 className="text-sm font-semibold text-[#F0EDE8] mb-3">What Gets Captured</h3>
             <div className="grid grid-cols-2 gap-3">
               {[
                 { label: 'Structured', items: ['Emoji reaction (1 of 4)', 'Product SKU', 'Store location', 'Transaction ID'] },
                 { label: 'Qualitative', items: ['Free-text feedback', 'Timestamp', 'Order channel (ecomm/kiosk)', 'Customer segment'] },
               ].map((col) => (
                 <div key={col.label}>
-                  <p className="text-xs font-medium uppercase tracking-wider text-text-secondary mb-2">{col.label}</p>
+                  <p className="text-xs font-medium uppercase tracking-wider text-[#ADA599] mb-2">{col.label}</p>
                   <div className="space-y-1.5">
                     {col.items.map((item) => (
-                      <p key={item} className="text-xs text-text-primary flex items-center gap-1.5">
+                      <p key={item} className="text-xs text-[#F0EDE8] flex items-center gap-1.5">
                         <ChevronRight size={10} className="text-[#00C389]" />{item}
                       </p>
                     ))}
@@ -313,12 +313,12 @@ export default function ProtoEmoji() {
           </div>
 
           {/* Key insight */}
-          <div className="rounded-xl bg-surface-bg p-5">
+          <div className="rounded-xl bg-[#141210] p-5">
             <div className="flex items-start gap-3">
-              <Sparkles size={18} className="text-[#00a35e] flex-shrink-0 mt-0.5" />
+              <Sparkles size={18} className="text-[#00C27C] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-[#00a35e] mb-1">Why This Matters</p>
-                <p className="text-sm text-text-primary/80 leading-relaxed">Kiosk users leave 3.2x more reactions than ecomm users. With 15.1% adding free-text, you build product-level sentiment at scale — mapped to specific SKUs, brands, and stores over time. No competitor has this first-party signal.</p>
+                <p className="text-sm font-semibold text-[#00C27C] mb-1">Why This Matters</p>
+                <p className="text-sm text-[#F0EDE8]/80 leading-relaxed">Kiosk users leave 3.2x more reactions than ecomm users. With 15.1% adding free-text, you build product-level sentiment at scale — mapped to specific SKUs, brands, and stores over time. No competitor has this first-party signal.</p>
               </div>
             </div>
           </div>

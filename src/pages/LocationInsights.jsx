@@ -68,15 +68,15 @@ function fmtRevenue(revK) {
    Helper: sentiment bar color utility
    ──────────────────────────────────────────── */
 function sentimentBarColor(score) {
-  if (score >= 0.2) return 'bg-[#00a35e]';
-  if (score >= -0.2) return 'bg-[#d97706]';
-  return 'bg-[#ef4444]';
+  if (score >= 0.2) return 'bg-[#00C27C]';
+  if (score >= -0.2) return 'bg-[#D4A03A]';
+  return 'bg-[#E87068]';
 }
 
 function sentimentTextColor(score) {
-  if (score >= 0.2) return 'text-[#00a35e]';
-  if (score >= -0.2) return 'text-[#d97706]';
-  return 'text-[#ef4444]';
+  if (score >= 0.2) return 'text-[#00C27C]';
+  if (score >= -0.2) return 'text-[#D4A03A]';
+  return 'text-[#E87068]';
 }
 
 /* ────────────────────────────────────────────
@@ -86,9 +86,9 @@ function ComparisonTooltip({ active, payload, label }) {
   if (!active || !payload || !payload.length) return null;
   const value = payload[0]?.value;
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-surface-border p-3 text-sm">
-      <p className="font-semibold text-text-primary mb-1">{label}</p>
-      <p className="text-text-secondary">
+    <div className="bg-[#1C1B1A] rounded-lg shadow-lg border border-[#38332B] p-3 text-sm">
+      <p className="font-semibold text-[#F0EDE8] mb-1">{label}</p>
+      <p className="text-[#ADA599]">
         Avg Sentiment: <span className="font-medium" style={{ color: sentimentColor(value) }}>{value >= 0 ? '+' : ''}{value?.toFixed(2)}</span>
       </p>
     </div>
@@ -236,18 +236,18 @@ export default function LocationInsights({ reviews }) {
   }
 
   function SortIcon({ column }) {
-    if (sortKey !== column) return <ArrowUpDown className="w-3.5 h-3.5 text-text-muted" />;
+    if (sortKey !== column) return <ArrowUpDown className="w-3.5 h-3.5 text-[#6B6359]" />;
     return sortDir === 'asc' ? (
-      <ChevronUp className="w-3.5 h-3.5 text-[#00a35e]" />
+      <ChevronUp className="w-3.5 h-3.5 text-[#00C27C]" />
     ) : (
-      <ChevronDown className="w-3.5 h-3.5 text-[#00a35e]" />
+      <ChevronDown className="w-3.5 h-3.5 text-[#00C27C]" />
     );
   }
 
   function SortableHeader({ label, column, className = '' }) {
     return (
       <th
-        className={`px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider cursor-pointer select-none hover:text-text-primary transition-colors ${className}`}
+        className={`px-4 py-3 text-left text-xs font-semibold text-[#ADA599] uppercase tracking-wider cursor-pointer select-none hover:text-[#F0EDE8] transition-colors ${className}`}
         onClick={() => handleSort(column)}
       >
         <span className="flex items-center gap-1">
@@ -264,11 +264,11 @@ export default function LocationInsights({ reviews }) {
     <div className="space-y-8">
       {/* ─── Section 1: Header ─── */}
       <div>
-        <h2 className="text-2xl font-bold text-text-primary flex items-center gap-2">
-          <MapPin className="w-6 h-6 text-[#00a35e]" />
+        <h2 className="text-2xl font-bold text-[#F0EDE8] flex items-center gap-2">
+          <MapPin className="w-6 h-6 text-[#00C27C]" />
           Store Performance
         </h2>
-        <p className="text-text-secondary mt-1">
+        <p className="text-[#ADA599] mt-1">
           Performance metrics across your dispensary locations — {rangeLabel}
         </p>
       </div>
@@ -277,70 +277,70 @@ export default function LocationInsights({ reviews }) {
       <section>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Total Revenue */}
-          <div className="bg-white rounded-xl border border-surface-border p-5">
+          <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-5">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-[#00a35e]/10 flex items-center justify-center">
-                <DollarSign className="w-4 h-4 text-[#00a35e]" />
+              <div className="w-8 h-8 rounded-lg bg-[#00C27C]/10 flex items-center justify-center">
+                <DollarSign className="w-4 h-4 text-[#00C27C]" />
               </div>
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Total Revenue</span>
+              <span className="text-xs font-medium text-[#ADA599] uppercase tracking-wider">Total Revenue</span>
             </div>
-            <p className="text-2xl font-bold text-text-primary">
+            <p className="text-2xl font-bold text-[#F0EDE8]">
               ${(kpis.totalRevenue / 1000).toFixed(1)}M
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <TrendingUp className="w-3 h-3 text-[#00a35e]" />
-              <span className="text-xs text-[#00a35e]">+{(4.2 * trendScale).toFixed(1)}% {periodLabel}</span>
+              <TrendingUp className="w-3 h-3 text-[#00C27C]" />
+              <span className="text-xs text-[#00C27C]">+{(4.2 * trendScale).toFixed(1)}% {periodLabel}</span>
             </div>
           </div>
 
           {/* Transactions */}
-          <div className="bg-white rounded-xl border border-surface-border p-5">
+          <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-5">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-[#3b82f6]/10 flex items-center justify-center">
-                <Receipt className="w-4 h-4 text-[#3b82f6]" />
+              <div className="w-8 h-8 rounded-lg bg-[#64A8E0]/10 flex items-center justify-center">
+                <Receipt className="w-4 h-4 text-[#64A8E0]" />
               </div>
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Transactions</span>
+              <span className="text-xs font-medium text-[#ADA599] uppercase tracking-wider">Transactions</span>
             </div>
-            <p className="text-2xl font-bold text-text-primary">
+            <p className="text-2xl font-bold text-[#F0EDE8]">
               {kpis.totalTransactions.toLocaleString()}
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <TrendingUp className="w-3 h-3 text-[#00a35e]" />
-              <span className="text-xs text-[#00a35e]">+{(2.8 * trendScale).toFixed(1)}% {periodLabel}</span>
+              <TrendingUp className="w-3 h-3 text-[#00C27C]" />
+              <span className="text-xs text-[#00C27C]">+{(2.8 * trendScale).toFixed(1)}% {periodLabel}</span>
             </div>
           </div>
 
           {/* Avg Basket */}
-          <div className="bg-white rounded-xl border border-surface-border p-5">
+          <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-5">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-[#d97706]/10 flex items-center justify-center">
-                <ShoppingCart className="w-4 h-4 text-[#d97706]" />
+              <div className="w-8 h-8 rounded-lg bg-[#D4A03A]/10 flex items-center justify-center">
+                <ShoppingCart className="w-4 h-4 text-[#D4A03A]" />
               </div>
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Avg Basket</span>
+              <span className="text-xs font-medium text-[#ADA599] uppercase tracking-wider">Avg Basket</span>
             </div>
-            <p className="text-2xl font-bold text-text-primary">
+            <p className="text-2xl font-bold text-[#F0EDE8]">
               ${kpis.avgBasket.toFixed(2)}
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <TrendingDown className="w-3 h-3 text-[#ef4444]" />
-              <span className="text-xs text-[#ef4444]">-{(1.1 * trendScale).toFixed(1)}% {periodLabel}</span>
+              <TrendingDown className="w-3 h-3 text-[#E87068]" />
+              <span className="text-xs text-[#E87068]">-{(1.1 * trendScale).toFixed(1)}% {periodLabel}</span>
             </div>
           </div>
 
           {/* Avg Margin */}
-          <div className="bg-white rounded-xl border border-surface-border p-5">
+          <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-5">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-8 h-8 rounded-lg bg-[#BC8CFF]/10 flex items-center justify-center">
                 <Percent className="w-4 h-4 text-[#BC8CFF]" />
               </div>
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Avg Margin</span>
+              <span className="text-xs font-medium text-[#ADA599] uppercase tracking-wider">Avg Margin</span>
             </div>
-            <p className={`text-2xl font-bold ${kpis.avgMargin >= 48 ? 'text-[#00a35e]' : 'text-[#d97706]'}`}>
+            <p className={`text-2xl font-bold ${kpis.avgMargin >= 48 ? 'text-[#00C27C]' : 'text-[#D4A03A]'}`}>
               {kpis.avgMargin}%
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <TrendingUp className="w-3 h-3 text-[#00a35e]" />
-              <span className="text-xs text-[#00a35e]">+{(0.5 * trendScale).toFixed(1)}pp {periodLabel}</span>
+              <TrendingUp className="w-3 h-3 text-[#00C27C]" />
+              <span className="text-xs text-[#00C27C]">+{(0.5 * trendScale).toFixed(1)}pp {periodLabel}</span>
             </div>
           </div>
         </div>
@@ -348,33 +348,33 @@ export default function LocationInsights({ reviews }) {
 
       {/* ─── Section 2: State-Level Overview ─── */}
       <section>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">State Overview</h3>
+        <h3 className="text-lg font-semibold text-[#F0EDE8] mb-4">State Overview</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {stateData.map((s) => {
             const barWidth = Math.round(((s.avg + 1) / 2) * 100);
             return (
               <div
                 key={s.state}
-                className="bg-white rounded-xl shadow-sm border border-surface-border p-5 hover:border-gray-300 transition-shadow"
+                className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5 hover:border-[#38332B] transition-shadow"
               >
                 <div className="flex items-start justify-between mb-3">
-                  <span className="text-3xl font-extrabold text-text-primary">{s.state}</span>
+                  <span className="text-3xl font-extrabold text-[#F0EDE8]">{s.state}</span>
                   <span
                     className={`text-sm font-semibold ${sentimentTextColor(s.avg)}`}
                   >
                     {s.avg >= 0 ? '+' : ''}{s.avg.toFixed(2)}
                   </span>
                 </div>
-                <div className="space-y-1 text-sm text-text-secondary">
+                <div className="space-y-1 text-sm text-[#ADA599]">
                   <p>
-                    <span className="font-medium text-text-primary">{s.locationCount}</span> location{s.locationCount !== 1 ? 's' : ''}
+                    <span className="font-medium text-[#F0EDE8]">{s.locationCount}</span> location{s.locationCount !== 1 ? 's' : ''}
                   </p>
                   <p>
-                    <span className="font-medium text-text-primary">{s.reviewCount}</span> review{s.reviewCount !== 1 ? 's' : ''}
+                    <span className="font-medium text-[#F0EDE8]">{s.reviewCount}</span> review{s.reviewCount !== 1 ? 's' : ''}
                   </p>
                 </div>
                 {/* Sentiment bar */}
-                <div className="mt-3 h-2 bg-white rounded-full overflow-hidden">
+                <div className="mt-3 h-2 bg-[#1C1B1A] rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all ${sentimentBarColor(s.avg)}`}
                     style={{ width: `${barWidth}%` }}
@@ -388,13 +388,13 @@ export default function LocationInsights({ reviews }) {
 
       {/* ─── Section 3: Location Ranking Table ─── */}
       <section>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">Store Rankings</h3>
-        <div className="bg-white rounded-xl shadow-sm border border-surface-border overflow-hidden">
+        <h3 className="text-lg font-semibold text-[#F0EDE8] mb-4">Store Rankings</h3>
+        <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-surface-bg border-b border-surface-border">
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider w-12">
+                <tr className="bg-[#141210] border-b border-[#38332B]">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#ADA599] uppercase tracking-wider w-12">
                     #
                   </th>
                   <SortableHeader label="Location" column="name" />
@@ -414,40 +414,40 @@ export default function LocationInsights({ reviews }) {
                     <tr
                       key={loc.name}
                       className={`cursor-pointer transition-colors ${
-                        isSelected ? 'bg-[rgba(0,163,94,0.06)]' : 'hover:bg-surface-hover'
+                        isSelected ? 'bg-[rgba(0,194,124,0.06)]' : 'hover:bg-[#282724]'
                       }`}
                       onClick={() =>
                         setSelectedLocation(isSelected ? null : loc.name)
                       }
                     >
-                      <td className="px-4 py-3 text-text-muted font-medium">
+                      <td className="px-4 py-3 text-[#6B6359] font-medium">
                         {idx + 1}
                       </td>
                       <td className="px-4 py-3">
                         <div>
-                          <p className="font-medium text-text-primary">{loc.name}</p>
-                          <p className="text-xs text-text-muted">
+                          <p className="font-medium text-[#F0EDE8]">{loc.name}</p>
+                          <p className="text-xs text-[#6B6359]">
                             {loc.city}, {loc.state}
                           </p>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-text-primary font-medium">
+                      <td className="px-4 py-3 text-[#F0EDE8] font-medium">
                         {fmtRevenue(loc.revenue)}
                       </td>
-                      <td className="px-4 py-3 text-text-primary font-medium hidden md:table-cell">
+                      <td className="px-4 py-3 text-[#F0EDE8] font-medium hidden md:table-cell">
                         {loc.transactions.toLocaleString()}
                       </td>
-                      <td className="px-4 py-3 text-text-primary font-medium hidden md:table-cell">
+                      <td className="px-4 py-3 text-[#F0EDE8] font-medium hidden md:table-cell">
                         ${loc.avgBasket.toFixed(2)}
                       </td>
                       <td className="px-4 py-3">
-                        <span className={`font-semibold ${loc.margin >= 48 ? 'text-[#00a35e]' : loc.margin >= 45 ? 'text-[#d97706]' : 'text-[#ef4444]'}`}>
+                        <span className={`font-semibold ${loc.margin >= 48 ? 'text-[#00C27C]' : loc.margin >= 45 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                           {loc.margin}%
                         </span>
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <div className="w-16 h-2 bg-white rounded-full overflow-hidden">
+                          <div className="w-16 h-2 bg-[#1C1B1A] rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full ${sentimentBarColor(loc.avg)}`}
                               style={{ width: `${((loc.avg + 1) / 2) * 100}%` }}
@@ -461,8 +461,8 @@ export default function LocationInsights({ reviews }) {
                       <td className="px-4 py-3 hidden lg:table-cell">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-semibold ${
                           loc.vsBenchmark >= 0
-                            ? 'bg-[#00a35e]/10 text-[#00a35e]'
-                            : 'bg-[#ef4444]/10 text-[#ef4444]'
+                            ? 'bg-[#00C27C]/10 text-[#00C27C]'
+                            : 'bg-[#E87068]/10 text-[#E87068]'
                         }`}>
                           {loc.vsBenchmark >= 0 ? '+' : ''}{loc.vsBenchmark}%
                         </span>
@@ -478,10 +478,10 @@ export default function LocationInsights({ reviews }) {
 
       {/* ─── Section 4: Location Comparison Chart ─── */}
       <section>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">
+        <h3 className="text-lg font-semibold text-[#F0EDE8] mb-4">
           Top 10 Locations by Sentiment
         </h3>
-        <div className="bg-white rounded-xl shadow-sm border border-surface-border p-6">
+        <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-6">
           <ResponsiveContainer width="100%" height={400}>
             <BarChart
               data={top10ChartData}
@@ -494,7 +494,7 @@ export default function LocationInsights({ reviews }) {
                 domain={[-0.5, 1]}
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tick={{ fontSize: 12, fill: '#6B6359' }}
                 tickFormatter={(v) => (v >= 0 ? '+' : '') + v.toFixed(1)}
               />
               <YAxis
@@ -519,11 +519,11 @@ export default function LocationInsights({ reviews }) {
       {/* ─── Section 5: Location Detail (expanded) ─── */}
       {selectedDetail && (
         <section className="animate-in">
-          <div className="bg-white rounded-xl shadow-sm border-2 border-[#00a35e]/30 p-6">
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border-2 border-[#00C27C]/30 p-6">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-xl font-bold text-text-primary">{selectedDetail.name}</h3>
-                <p className="text-sm text-text-secondary">
+                <h3 className="text-xl font-bold text-[#F0EDE8]">{selectedDetail.name}</h3>
+                <p className="text-sm text-[#ADA599]">
                   {selectedDetail.city}, {selectedDetail.state} &middot; {selectedDetail.reviewCount} reviews &middot; Avg sentiment:{' '}
                   <span className={`font-semibold ${sentimentTextColor(selectedDetail.avg)}`}>
                     {selectedDetail.avg >= 0 ? '+' : ''}{selectedDetail.avg.toFixed(2)}
@@ -532,7 +532,7 @@ export default function LocationInsights({ reviews }) {
               </div>
               <button
                 onClick={() => setSelectedLocation(null)}
-                className="text-sm text-text-muted hover:text-text-secondary transition-colors px-3 py-1 rounded-lg hover:bg-surface-hover"
+                className="text-sm text-[#6B6359] hover:text-[#ADA599] transition-colors px-3 py-1 rounded-lg hover:bg-[#282724]"
               >
                 Close
               </button>
@@ -541,29 +541,29 @@ export default function LocationInsights({ reviews }) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Category Breakdown */}
               <div>
-                <h4 className="text-sm font-semibold text-text-primary mb-3">Category Breakdown</h4>
+                <h4 className="text-sm font-semibold text-[#F0EDE8] mb-3">Category Breakdown</h4>
                 <div className="space-y-3">
                   {selectedDetail.catData.map((cat) => {
                     const total = cat.positive + cat.neutral + cat.negative;
                     return (
                       <div key={cat.category}>
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm text-text-primary">{cat.category}</span>
+                          <span className="text-sm text-[#F0EDE8]">{cat.category}</span>
                           <span className={`text-xs font-semibold ${sentimentTextColor(cat.avg)}`}>
                             {cat.avg >= 0 ? '+' : ''}{cat.avg.toFixed(2)}
                           </span>
                         </div>
                         <div className="flex items-center gap-0.5 h-2">
                           <div
-                            className="h-full bg-[#00a35e] rounded-l"
+                            className="h-full bg-[#00C27C] rounded-l"
                             style={{ width: `${total > 0 ? (cat.positive / total) * 100 : 0}%` }}
                           />
                           <div
-                            className="h-full bg-[#d97706]"
+                            className="h-full bg-[#D4A03A]"
                             style={{ width: `${total > 0 ? (cat.neutral / total) * 100 : 0}%` }}
                           />
                           <div
-                            className="h-full bg-[#ef4444] rounded-r"
+                            className="h-full bg-[#E87068] rounded-r"
                             style={{ width: `${total > 0 ? (cat.negative / total) * 100 : 0}%` }}
                           />
                         </div>
@@ -575,14 +575,14 @@ export default function LocationInsights({ reviews }) {
 
               {/* Monthly Trend */}
               <div>
-                <h4 className="text-sm font-semibold text-text-primary mb-3">Monthly Trend</h4>
+                <h4 className="text-sm font-semibold text-[#F0EDE8] mb-3">Monthly Trend</h4>
                 <TrendChart data={selectedDetail.trend} height={220} />
               </div>
             </div>
 
             {/* Recent Reviews */}
             <div className="mt-6">
-              <h4 className="text-sm font-semibold text-text-primary mb-3">Recent Reviews</h4>
+              <h4 className="text-sm font-semibold text-[#F0EDE8] mb-3">Recent Reviews</h4>
               <div className="space-y-3">
                 {selectedDetail.recentReviews.map((review) => (
                   <ReviewCard key={review.id} review={review} highlight={review.sentiment} />

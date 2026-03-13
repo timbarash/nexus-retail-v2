@@ -44,23 +44,23 @@ export default function StoreSelector() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-surface-border bg-white text-sm text-text-secondary hover:text-text-primary hover:border-gray-300 transition-colors"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#38332B] bg-[#1C1B1A] text-sm text-[#ADA599] hover:text-[#F0EDE8] hover:border-[#38332B] transition-colors"
       >
-        <MapPin className="w-3.5 h-3.5 text-accent-green" />
+        <MapPin className="w-3.5 h-3.5 text-[#00C27C]" />
         <span className="max-w-[160px] truncate">{selectionLabel}</span>
         <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-1 w-80 max-h-[70vh] rounded-xl border border-surface-border bg-white shadow-elevated z-50 flex flex-col animate-fade-in">
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-surface-border">
-            <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">Store Filter</span>
+        <div className="absolute right-0 top-full mt-1 w-80 max-h-[70vh] rounded-xl border border-[#38332B] bg-[#1C1B1A] shadow-xl z-50 flex flex-col animate-fade-in">
+          <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#38332B]">
+            <span className="text-xs font-semibold text-[#6B6359] uppercase tracking-wider">Store Filter</span>
             <div className="flex items-center gap-2">
-              <button onClick={selectAll} className="text-[10px] font-medium text-accent-blue hover:text-blue-700 transition-colors">
+              <button onClick={selectAll} className="text-[10px] font-medium text-[#64A8E0] hover:text-blue-700 transition-colors">
                 Select All
               </button>
               <span className="text-surface-border">|</span>
-              <button onClick={clearAll} className="text-[10px] font-medium text-text-muted hover:text-text-primary transition-colors">
+              <button onClick={clearAll} className="text-[10px] font-medium text-[#6B6359] hover:text-[#F0EDE8] transition-colors">
                 Clear All
               </button>
             </div>
@@ -74,20 +74,20 @@ export default function StoreSelector() {
                 <div key={st}>
                   <button
                     onClick={() => toggleState(st)}
-                    className="w-full flex items-center gap-2.5 px-4 py-2 hover:bg-surface-hover transition-colors"
+                    className="w-full flex items-center gap-2.5 px-4 py-2 hover:bg-[#282724] transition-colors"
                   >
                     <div className={`w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${
                       stateStatus.status === 'all'
-                        ? 'bg-accent-green border-accent-green'
+                        ? 'bg-[#00C27C] border-accent-green'
                         : stateStatus.status === 'some'
-                          ? 'bg-accent-green/40 border-accent-green'
-                          : 'border-gray-300'
+                          ? 'bg-[#00C27C]/40 border-accent-green'
+                          : 'border-[#38332B]'
                     }`}>
                       {stateStatus.status === 'all' && <Check className="w-3 h-3 text-white" />}
                       {stateStatus.status === 'some' && <Minus className="w-3 h-3 text-white" />}
                     </div>
-                    <span className="text-text-primary text-sm font-semibold">{STATE_LABELS[st] || st}</span>
-                    <span className="text-text-muted text-xs ml-auto">
+                    <span className="text-[#F0EDE8] text-sm font-semibold">{STATE_LABELS[st] || st}</span>
+                    <span className="text-[#6B6359] text-xs ml-auto">
                       {stateStatus.selected}/{stateStatus.total}
                     </span>
                   </button>
@@ -98,17 +98,17 @@ export default function StoreSelector() {
                       <button
                         key={store.name}
                         onClick={() => toggleStore(store.name)}
-                        className="w-full flex items-center gap-2.5 pl-8 pr-4 py-1.5 hover:bg-surface-hover transition-colors"
+                        className="w-full flex items-center gap-2.5 pl-8 pr-4 py-1.5 hover:bg-[#282724] transition-colors"
                       >
                         <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${
-                          checked ? 'bg-accent-green border-accent-green' : 'border-gray-300'
+                          checked ? 'bg-[#00C27C] border-accent-green' : 'border-[#38332B]'
                         }`}>
                           {checked && <Check className="w-2.5 h-2.5 text-white" />}
                         </div>
-                        <span className={`text-xs truncate ${checked ? 'text-text-primary' : 'text-text-secondary'}`}>
+                        <span className={`text-xs truncate ${checked ? 'text-[#F0EDE8]' : 'text-[#ADA599]'}`}>
                           {store.name.replace('Ascend ', '')}
                         </span>
-                        <span className="text-[10px] text-text-muted ml-auto flex-shrink-0">{store.city}</span>
+                        <span className="text-[10px] text-[#6B6359] ml-auto flex-shrink-0">{store.city}</span>
                       </button>
                     );
                   })}

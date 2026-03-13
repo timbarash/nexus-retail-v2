@@ -299,8 +299,8 @@ export const CAMPAIGNS = {
     ],
     tierRewards: [
       { tier: 'Standard', reward: 'Free Pre-Roll', discount: '15% off entire order', color: '#8B949E' },
-      { tier: 'Gold', reward: 'Free 1/8th', discount: '20% off entire order', color: '#d97706' },
-      { tier: 'VIP', reward: 'Free 1/4oz + Merch Pack', discount: '30% off entire order', color: '#8b5cf6' },
+      { tier: 'Gold', reward: 'Free 1/8th', discount: '20% off entire order', color: '#D4A03A' },
+      { tier: 'VIP', reward: 'Free 1/4oz + Merch Pack', discount: '30% off entire order', color: '#B598E8' },
     ],
     abTests: [
       { variant: 'A', subject: 'Happy Birthday, {first_name}! 🎂 Your Gift is Ready', split: 50 },
@@ -375,7 +375,7 @@ const CAMPAIGN_BASELINES = {
 function ProductCard({ product, accentColor }) {
   const accent = accentColor || product.badgeColor || '#9333EA';
   return (
-    <div className="bg-surface-bg rounded-xl border border-surface-border overflow-hidden hover:border-purple-500/40 transition-all group">
+    <div className="bg-[#141210] rounded-xl border border-[#38332B] overflow-hidden hover:border-purple-500/40 transition-all group">
       {/* Product visual */}
       <div className="relative h-44 overflow-hidden" style={{ background: product.image ? '#1a0a2e' : `linear-gradient(135deg, ${accent}22, ${accent}11)` }}>
         {product.image ? (
@@ -399,14 +399,14 @@ function ProductCard({ product, accentColor }) {
       {/* Info */}
       <div className="p-3.5">
         {product.category && <p className="text-xs text-purple-400 font-medium">{product.category}</p>}
-        <p className="text-sm font-semibold text-text-primary mt-0.5">{product.name}</p>
-        <p className="text-xs text-text-secondary">{product.type}</p>
+        <p className="text-sm font-semibold text-[#F0EDE8] mt-0.5">{product.name}</p>
+        <p className="text-xs text-[#ADA599]">{product.type}</p>
         <div className="flex items-center justify-between mt-2">
           <div className="flex items-center gap-2">
             {product.strain && <span className="text-xs px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono">{product.strain}</span>}
-            {product.thc && <span className="text-xs text-text-secondary">THC {product.thc}</span>}
+            {product.thc && <span className="text-xs text-[#ADA599]">THC {product.thc}</span>}
           </div>
-          {product.price && <span className="text-sm font-bold text-text-primary">{product.price}</span>}
+          {product.price && <span className="text-sm font-bold text-[#F0EDE8]">{product.price}</span>}
         </div>
       </div>
     </div>
@@ -421,15 +421,15 @@ function PhoneMockup({ messages, brandColor }) {
   return (
     <div className="relative mx-auto" style={{ width: '220px' }}>
       {/* Phone bezel */}
-      <div className="rounded-[24px] border-2 border-gray-300 bg-[#1a1a2e] p-2 shadow-2xl">
+      <div className="rounded-[24px] border-2 border-[#38332B] bg-[#1a1a2e] p-2 shadow-2xl">
         {/* Notch */}
         <div className="flex justify-center mb-1">
-          <div className="w-16 h-4 rounded-full bg-surface-bg" />
+          <div className="w-16 h-4 rounded-full bg-[#141210]" />
         </div>
         {/* Screen */}
-        <div className="bg-surface-bg rounded-[16px] p-3 min-h-[240px]">
+        <div className="bg-[#141210] rounded-[16px] p-3 min-h-[240px]">
           <div className="text-center mb-3">
-            <p className="text-[9px] text-text-secondary">Today 10:02 AM</p>
+            <p className="text-[9px] text-[#ADA599]">Today 10:02 AM</p>
           </div>
           {messages.map((msg, i) => (
             <div key={i} className="mb-2">
@@ -443,7 +443,7 @@ function PhoneMockup({ messages, brandColor }) {
             </div>
           ))}
           <div className="mt-3 flex items-center gap-2">
-            <div className="flex-1 h-7 rounded-full bg-white border border-surface-border" />
+            <div className="flex-1 h-7 rounded-full bg-[#1C1B1A] border border-[#38332B]" />
             <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: brandColor }}>
               <ChevronRight className="w-3 h-3 text-white" />
             </div>
@@ -462,22 +462,22 @@ function EmailPreview({ data }) {
   const c = data;
   const content = c.content || {};
   return (
-    <div className="bg-surface-bg rounded-xl border border-surface-border overflow-hidden">
+    <div className="bg-[#141210] rounded-xl border border-[#38332B] overflow-hidden">
       {/* Email client chrome */}
-      <div className="px-4 py-2.5 border-b border-surface-border flex items-center gap-3">
+      <div className="px-4 py-2.5 border-b border-[#38332B] flex items-center gap-3">
         <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#ef4444]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#d97706]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#00a35e]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#E87068]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#D4A03A]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#00C27C]" />
         </div>
         <div className="flex-1 text-center">
-          <span className="text-[10px] text-text-secondary">Ascend &lt;hello@ascendwellness.com&gt;</span>
+          <span className="text-[10px] text-[#ADA599]">Ascend &lt;hello@ascendwellness.com&gt;</span>
         </div>
       </div>
       {/* Subject */}
-      <div className="px-4 py-2 border-b border-surface-border">
-        <p className="text-xs font-semibold text-text-primary">{content.headline || ''}</p>
-        <p className="text-[10px] text-text-secondary">{content.preheader || ''}</p>
+      <div className="px-4 py-2 border-b border-[#38332B]">
+        <p className="text-xs font-semibold text-[#F0EDE8]">{content.headline || ''}</p>
+        <p className="text-[10px] text-[#ADA599]">{content.preheader || ''}</p>
       </div>
       {/* Body */}
       <div className="p-4">
@@ -489,11 +489,11 @@ function EmailPreview({ data }) {
             backgroundImage: `radial-gradient(circle at 20% 50%, ${c.accentFrom} 0%, transparent 50%)`,
           }} />
           <div className="relative text-center">
-            <p className="text-lg font-bold text-text-primary">{(content.headline || '').replace(/ 🔥| 🎂/g, '')}</p>
-            <p className="text-[10px] text-text-secondary mt-1">{content.offer || ''}</p>
+            <p className="text-lg font-bold text-[#F0EDE8]">{(content.headline || '').replace(/ 🔥| 🎂/g, '')}</p>
+            <p className="text-[10px] text-[#ADA599] mt-1">{content.offer || ''}</p>
           </div>
         </div>
-        <p className="text-[11px] text-text-secondary leading-relaxed mb-3">{(content.body || '').substring(0, 120)}...</p>
+        <p className="text-[11px] text-[#ADA599] leading-relaxed mb-3">{(content.body || '').substring(0, 120)}...</p>
         <div className="text-center">
           <span className="inline-block text-[11px] px-5 py-2 rounded-full font-semibold text-white" style={{
             background: `linear-gradient(135deg, ${c.accentFrom || '#4F46E5'}, ${c.accentTo || '#7B2D8E'})`,
@@ -511,19 +511,19 @@ function EmailPreview({ data }) {
 function Section({ title, icon: Icon, iconColor, children, defaultOpen = true, badge }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="bg-white rounded-xl border border-surface-border overflow-hidden">
+    <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-2 px-6 py-4 hover:bg-surface-hover transition-colors"
+        className="w-full flex items-center gap-2 px-6 py-4 hover:bg-[#282724] transition-colors"
       >
         <Icon className="w-5 h-5 flex-shrink-0" style={{ color: iconColor }} />
-        <h2 className="text-base font-semibold text-text-primary">{title}</h2>
-        {badge && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#00a35e]/10 text-[#00a35e] font-medium">{badge}</span>}
+        <h2 className="text-base font-semibold text-[#F0EDE8]">{title}</h2>
+        {badge && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#00C27C]/10 text-[#00C27C] font-medium">{badge}</span>}
         <div className="ml-auto">
-          {open ? <ChevronUp className="w-4 h-4 text-text-secondary" /> : <ChevronDown className="w-4 h-4 text-text-secondary" />}
+          {open ? <ChevronUp className="w-4 h-4 text-[#ADA599]" /> : <ChevronDown className="w-4 h-4 text-[#ADA599]" />}
         </div>
       </button>
-      {open && <div className="px-6 pb-5 border-t border-surface-border pt-4">{children}</div>}
+      {open && <div className="px-6 pb-5 border-t border-[#38332B] pt-4">{children}</div>}
     </div>
   );
 }
@@ -539,32 +539,32 @@ function LowStockAlert({ featuredProducts }) {
   if (!lowStockItems.length || dismissed) return null;
 
   return (
-    <div className="bg-[#d97706]/[0.08] border border-[#d97706]/30 rounded-xl p-4">
+    <div className="bg-[#D4A03A]/[0.08] border border-[#D4A03A]/30 rounded-xl p-4">
       <div className="flex items-start gap-3">
-        <div className="w-9 h-9 rounded-lg bg-[#d97706]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <AlertTriangle className="w-4 h-4 text-[#d97706]" />
+        <div className="w-9 h-9 rounded-lg bg-[#D4A03A]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <AlertTriangle className="w-4 h-4 text-[#D4A03A]" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2 mb-1">
-            <h3 className="text-sm font-semibold text-[#d97706]">Low Inventory Alert</h3>
-            <button onClick={() => setDismissed(true)} className="text-text-muted hover:text-text-secondary transition-colors">
+            <h3 className="text-sm font-semibold text-[#D4A03A]">Low Inventory Alert</h3>
+            <button onClick={() => setDismissed(true)} className="text-[#6B6359] hover:text-[#ADA599] transition-colors">
               <X className="w-3.5 h-3.5" />
             </button>
           </div>
-          <p className="text-xs text-text-primary mb-3">
+          <p className="text-xs text-[#F0EDE8] mb-3">
             {lowStockItems.length} featured product{lowStockItems.length !== 1 ? 's have' : ' has'} less than 30 days of inventory. If this campaign is successful, you could run out of stock.
           </p>
           <div className="space-y-2 mb-4">
             {lowStockItems.map((item, i) => (
-              <div key={i} className="flex items-center justify-between bg-surface-bg/60 rounded-lg px-3 py-2">
+              <div key={i} className="flex items-center justify-between bg-[#141210]/60 rounded-lg px-3 py-2">
                 <div className="flex items-center gap-2 min-w-0">
-                  <Package className="w-3.5 h-3.5 text-[#d97706] flex-shrink-0" />
-                  <span className="text-xs text-text-primary font-medium truncate">{item.name}{item.strain ? ` — ${item.strain}` : ''}</span>
+                  <Package className="w-3.5 h-3.5 text-[#D4A03A] flex-shrink-0" />
+                  <span className="text-xs text-[#F0EDE8] font-medium truncate">{item.name}{item.strain ? ` — ${item.strain}` : ''}</span>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  <span className="text-[10px] text-text-secondary">{item.currentStock} units left</span>
+                  <span className="text-[10px] text-[#ADA599]">{item.currentStock} units left</span>
                   <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${
-                    item.daysOfSupply <= 3 ? 'bg-[#ef4444]/15 text-[#ef4444]' : 'bg-[#d97706]/15 text-[#d97706]'
+                    item.daysOfSupply <= 3 ? 'bg-[#E87068]/15 text-[#E87068]' : 'bg-[#D4A03A]/15 text-[#D4A03A]'
                   }`}>
                     {item.daysOfSupply === 0 ? 'Out of stock' : `~${item.daysOfSupply}d supply`}
                   </span>
@@ -574,7 +574,7 @@ function LowStockAlert({ featuredProducts }) {
           </div>
           <Link
             to="/agents/connect"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-[#d97706] hover:bg-[#E5A823] text-white shadow-sm shadow-[#d97706]/20 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-[#D4A03A] hover:bg-[#E5A823] text-white shadow-sm shadow-[#D4A03A]/20 transition-colors"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             Reorder low stock so you don't run out
@@ -693,19 +693,19 @@ export function CampaignPlan({ data, onBack }) {
     <div className="space-y-4 animate-fade-in">
       {/* back */}
       {onBack && (
-        <button onClick={onBack} className="flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition-colors">
+        <button onClick={onBack} className="flex items-center gap-2 text-sm text-[#ADA599] hover:text-[#F0EDE8] transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to Agent
         </button>
       )}
 
       {/* AI attribution */}
       <div className="flex items-start gap-3">
-        <div className="w-8 h-8 rounded-full bg-[#00a35e]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <Bot className="w-4 h-4 text-[#00a35e]" />
+        <div className="w-8 h-8 rounded-full bg-[#00C27C]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <Bot className="w-4 h-4 text-[#00C27C]" />
         </div>
         <div>
-          <p className="text-sm text-text-secondary">
-            <span className="text-text-primary font-medium">Dutchie Agent</span> generated this campaign plan based on your customer data and purchase history
+          <p className="text-sm text-[#ADA599]">
+            <span className="text-[#F0EDE8] font-medium">Dutchie Agent</span> generated this campaign plan based on your customer data and purchase history
           </p>
         </div>
       </div>
@@ -724,15 +724,15 @@ export function CampaignPlan({ data, onBack }) {
         <div className="relative px-8 py-8">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-white/20 text-white/70 uppercase tracking-wider">{c.heroTag}</span>
-            {!hasHeroGradient && <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-[#8b5cf6]/15 text-[#8b5cf6]">AI Generated</span>}
+            {!hasHeroGradient && <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-[#B598E8]/15 text-[#B598E8]">AI Generated</span>}
           </div>
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-xl flex items-center justify-center shadow-lg" style={{ background: `linear-gradient(135deg, ${c.accentFrom}, ${c.accentTo})` }}>
               <Icon className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-text-primary">{c.title}</h1>
-              <p className="text-sm text-text-secondary">{c.subtitle}</p>
+              <h1 className="text-2xl font-bold text-[#F0EDE8]">{c.title}</h1>
+              <p className="text-sm text-[#ADA599]">{c.subtitle}</p>
             </div>
           </div>
         </div>
@@ -753,22 +753,22 @@ export function CampaignPlan({ data, onBack }) {
       {/* ───── Personalized Recommendations (re_engagement / winback) ───── */}
       {c.personalizedProducts && c.personalizedProducts.length > 0 && (
         <Section title="Personalized Product Recommendations" icon={Sparkles} iconColor="#EA580C" badge="ML-powered">
-          <p className="text-xs text-text-secondary mb-4">Each customer receives product recommendations based on their purchase history and browsing behavior.</p>
+          <p className="text-xs text-[#ADA599] mb-4">Each customer receives product recommendations based on their purchase history and browsing behavior.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {c.personalizedProducts.map((group, i) => (
-              <div key={i} className="bg-surface-bg rounded-lg p-4 border border-surface-border">
-                <p className="text-xs font-medium text-text-primary mb-3 flex items-center gap-2">
+              <div key={i} className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
+                <p className="text-xs font-medium text-[#F0EDE8] mb-3 flex items-center gap-2">
                   {i === 0 ? <Heart className="w-3.5 h-3.5 text-red-400" /> : <Sparkles className="w-3.5 h-3.5 text-amber-400" />}
                   {group.name}
                 </p>
                 {group.items.map((item, j) => (
-                  <div key={j} className="flex items-center gap-2 py-1.5 border-b border-surface-border last:border-0">
+                  <div key={j} className="flex items-center gap-2 py-1.5 border-b border-[#38332B] last:border-0">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{
                       background: `linear-gradient(135deg, ${['#DC2626', '#2563EB', '#16A34A'][j % 3]}22, ${['#DC2626', '#2563EB', '#16A34A'][j % 3]}11)`,
                     }}>
                       <Package className="w-3.5 h-3.5" style={{ color: ['#DC2626', '#2563EB', '#16A34A'][j % 3] }} />
                     </div>
-                    <span className="text-xs text-text-primary">{item}</span>
+                    <span className="text-xs text-[#F0EDE8]">{item}</span>
                   </div>
                 ))}
               </div>
@@ -782,12 +782,12 @@ export function CampaignPlan({ data, onBack }) {
         <Section title="Tier-Based Birthday Rewards" icon={Gift} iconColor="#EC4899" badge={`${c.tierRewards.length} tiers`}>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {c.tierRewards.map((t, i) => (
-              <div key={i} className="bg-surface-bg rounded-xl p-5 border border-surface-border text-center relative overflow-hidden">
+              <div key={i} className="bg-[#141210] rounded-xl p-5 border border-[#38332B] text-center relative overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-1" style={{ background: t.color }} />
                 <Award className="w-6 h-6 mx-auto mb-2" style={{ color: t.color }} />
-                <p className="text-sm font-bold text-text-primary">{t.tier}</p>
+                <p className="text-sm font-bold text-[#F0EDE8]">{t.tier}</p>
                 <p className="text-lg font-bold mt-2" style={{ color: t.color }}>{t.reward}</p>
-                <p className="text-xs text-text-secondary mt-1">+ {t.discount}</p>
+                <p className="text-xs text-[#ADA599] mt-1">+ {t.discount}</p>
               </div>
             ))}
           </div>
@@ -795,52 +795,52 @@ export function CampaignPlan({ data, onBack }) {
       )}
 
       {/* ───── audience ───── */}
-      <Section title="Target Audience" icon={Target} iconColor="#3b82f6">
+      <Section title="Target Audience" icon={Target} iconColor="#64A8E0">
         <div className="flex items-center justify-between mb-3 gap-3">
           <input
             type="text"
             value={editAudienceDesc}
             onChange={(e) => setEditAudienceDesc(e.target.value)}
-            className="text-sm text-text-primary leading-relaxed flex-1 bg-surface-bg border border-surface-border rounded-lg px-3 py-2 focus:border-[#3b82f6] focus:outline-none transition-colors"
+            className="text-sm text-[#F0EDE8] leading-relaxed flex-1 bg-[#141210] border border-[#38332B] rounded-lg px-3 py-2 focus:border-[#64A8E0] focus:outline-none transition-colors"
           />
           <input
             type="text"
             value={editAudienceSize}
             onChange={(e) => setEditAudienceSize(e.target.value)}
-            className="text-sm font-mono text-[#3b82f6] bg-[#3b82f6]/10 px-3 py-1.5 rounded-full whitespace-nowrap w-32 text-center border border-transparent focus:border-[#3b82f6] focus:outline-none"
+            className="text-sm font-mono text-[#64A8E0] bg-[#64A8E0]/10 px-3 py-1.5 rounded-full whitespace-nowrap w-32 text-center border border-transparent focus:border-[#64A8E0] focus:outline-none"
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
           {editSegments.map((s, idx) => (
-            <div key={idx} className="bg-surface-bg rounded-lg p-3.5 border border-surface-border">
+            <div key={idx} className="bg-[#141210] rounded-lg p-3.5 border border-[#38332B]">
               <div className="flex items-center justify-between mb-1 gap-2">
                 <input
                   type="text"
                   value={s.name}
                   onChange={(e) => { const next = [...editSegments]; next[idx] = { ...next[idx], name: e.target.value }; setEditSegments(next); }}
-                  className="text-xs font-medium text-text-primary bg-transparent border-b border-transparent focus:border-[#3b82f6] focus:outline-none flex-1 min-w-0"
+                  className="text-xs font-medium text-[#F0EDE8] bg-transparent border-b border-transparent focus:border-[#64A8E0] focus:outline-none flex-1 min-w-0"
                 />
                 <input
                   type="text"
                   value={s.count}
                   onChange={(e) => { const next = [...editSegments]; next[idx] = { ...next[idx], count: e.target.value }; setEditSegments(next); }}
-                  className="text-xs font-mono text-[#3b82f6] bg-transparent border-b border-transparent focus:border-[#3b82f6] focus:outline-none w-16 text-right"
+                  className="text-xs font-mono text-[#64A8E0] bg-transparent border-b border-transparent focus:border-[#64A8E0] focus:outline-none w-16 text-right"
                 />
               </div>
               <input
                 type="text"
                 value={s.desc}
                 onChange={(e) => { const next = [...editSegments]; next[idx] = { ...next[idx], desc: e.target.value }; setEditSegments(next); }}
-                className="text-[11px] text-text-secondary bg-transparent border-b border-transparent focus:border-[#3b82f6] focus:outline-none w-full"
+                className="text-[11px] text-[#ADA599] bg-transparent border-b border-transparent focus:border-[#64A8E0] focus:outline-none w-full"
               />
             </div>
           ))}
         </div>
         {/* Audience refinement controls */}
-        <div className="bg-surface-bg rounded-lg p-4 border border-surface-border">
+        <div className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
           <div className="flex items-center gap-2 mb-3">
-            <Filter className="w-3.5 h-3.5 text-text-secondary" />
-            <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Audience Refinement</span>
+            <Filter className="w-3.5 h-3.5 text-[#ADA599]" />
+            <span className="text-xs font-medium text-[#ADA599] uppercase tracking-wider">Audience Refinement</span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
@@ -849,15 +849,15 @@ export function CampaignPlan({ data, onBack }) {
               { label: 'Min Lifetime Spend', key: 'minSpend', icon: DollarSign },
               { label: 'Last Active Within', key: 'lastActive', icon: Calendar },
             ].map((f) => (
-              <div key={f.label} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-surface-border">
-                <f.icon className="w-3 h-3 text-text-muted" />
+              <div key={f.label} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#1C1B1A] border border-[#38332B]">
+                <f.icon className="w-3 h-3 text-[#6B6359]" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] text-text-muted">{f.label}</p>
+                  <p className="text-[10px] text-[#6B6359]">{f.label}</p>
                   <input
                     type="text"
                     value={editRefinement[f.key]}
                     onChange={(e) => setEditRefinement(prev => ({ ...prev, [f.key]: e.target.value }))}
-                    className="text-xs text-text-primary font-medium bg-transparent border-b border-transparent focus:border-[#3b82f6] focus:outline-none w-full"
+                    className="text-xs text-[#F0EDE8] font-medium bg-transparent border-b border-transparent focus:border-[#64A8E0] focus:outline-none w-full"
                   />
                 </div>
               </div>
@@ -867,17 +867,17 @@ export function CampaignPlan({ data, onBack }) {
       </Section>
 
       {/* ───── channels ───── */}
-      <Section title="Channel Strategy" icon={Megaphone} iconColor="#8b5cf6">
+      <Section title="Channel Strategy" icon={Megaphone} iconColor="#B598E8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
           {(c.channels || []).map((ch) => {
             const ChannelIcon = resolveIcon(ch.icon);
             const isEnabled = enabledChannels.has(ch.name);
             return (
-              <div key={ch.name} className={`bg-surface-bg rounded-lg p-4 border transition-opacity ${isEnabled ? 'border-surface-border' : 'border-surface-border opacity-50'}`}>
+              <div key={ch.name} className={`bg-[#141210] rounded-lg p-4 border transition-opacity ${isEnabled ? 'border-[#38332B]' : 'border-[#38332B] opacity-50'}`}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <ChannelIcon className="w-4 h-4 text-[#8b5cf6]" />
-                    <span className="text-sm font-medium text-text-primary">{ch.name}</span>
+                    <ChannelIcon className="w-4 h-4 text-[#B598E8]" />
+                    <span className="text-sm font-medium text-[#F0EDE8]">{ch.name}</span>
                   </div>
                   <button
                     onClick={() => setEnabledChannels(prev => {
@@ -885,15 +885,15 @@ export function CampaignPlan({ data, onBack }) {
                       if (next.has(ch.name)) next.delete(ch.name); else next.add(ch.name);
                       return next;
                     })}
-                    className={`w-8 h-4 rounded-full flex items-center px-0.5 transition-colors ${isEnabled ? 'bg-[#00a35e]/30 justify-end' : 'bg-gray-200 justify-start'}`}
+                    className={`w-8 h-4 rounded-full flex items-center px-0.5 transition-colors ${isEnabled ? 'bg-[#00C27C]/30 justify-end' : 'bg-[#38332B] justify-start'}`}
                   >
-                    <div className={`w-3 h-3 rounded-full transition-colors ${isEnabled ? 'bg-[#00a35e]' : 'bg-gray-700'}`} />
+                    <div className={`w-3 h-3 rounded-full transition-colors ${isEnabled ? 'bg-[#00C27C]' : 'bg-[#1C1B1A]'}`} />
                   </button>
                 </div>
-                <p className="text-xl font-bold text-text-primary">{ch.reach}</p>
+                <p className="text-xl font-bold text-[#F0EDE8]">{ch.reach}</p>
                 <div className="flex items-center justify-between mt-1">
-                  <p className="text-xs text-text-secondary">{ch.rate} {ch.metric}</p>
-                  <p className="text-[10px] text-text-muted">{ch.cost}</p>
+                  <p className="text-xs text-[#ADA599]">{ch.rate} {ch.metric}</p>
+                  <p className="text-[10px] text-[#6B6359]">{ch.cost}</p>
                 </div>
               </div>
             );
@@ -906,20 +906,20 @@ export function CampaignPlan({ data, onBack }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* SMS Preview */}
           <div>
-            <p className="text-xs font-medium text-text-secondary mb-2 flex items-center gap-2">
+            <p className="text-xs font-medium text-[#ADA599] mb-2 flex items-center gap-2">
               <Smartphone className="w-3.5 h-3.5" /> SMS Preview
             </p>
             <textarea
               value={editSmsPreview}
               onChange={(e) => setEditSmsPreview(e.target.value)}
               rows={2}
-              className="w-full text-xs text-text-primary bg-surface-bg border border-surface-border rounded-lg px-3 py-2 mb-2 focus:border-[#EC4899] focus:outline-none resize-none"
+              className="w-full text-xs text-[#F0EDE8] bg-[#141210] border border-[#38332B] rounded-lg px-3 py-2 mb-2 focus:border-[#EC4899] focus:outline-none resize-none"
             />
             <PhoneMockup messages={[editSmsPreview, 'Reply STOP to opt out']} brandColor={c.accentFrom} />
           </div>
           {/* Email Preview */}
           <div>
-            <p className="text-xs font-medium text-text-secondary mb-2 flex items-center gap-2">
+            <p className="text-xs font-medium text-[#ADA599] mb-2 flex items-center gap-2">
               <Mail className="w-3.5 h-3.5" /> Email Preview
             </p>
             <div className="mb-2 space-y-1.5">
@@ -928,7 +928,7 @@ export function CampaignPlan({ data, onBack }) {
                 value={editOffer}
                 onChange={(e) => setEditOffer(e.target.value)}
                 placeholder="Offer text..."
-                className="w-full text-xs text-text-primary bg-surface-bg border border-surface-border rounded-lg px-3 py-2 focus:border-[#EC4899] focus:outline-none"
+                className="w-full text-xs text-[#F0EDE8] bg-[#141210] border border-[#38332B] rounded-lg px-3 py-2 focus:border-[#EC4899] focus:outline-none"
               />
             </div>
             <EmailPreview data={{ ...c, content: { ...(c.content || {}), offer: editOffer || c.content?.offer || '' } }} />
@@ -938,62 +938,62 @@ export function CampaignPlan({ data, onBack }) {
 
       {/* ───── A/B testing ───── */}
       {c.abTests && c.abTests.length > 0 && (
-        <Section title="A/B Testing" icon={FlaskConical} iconColor="#d97706" defaultOpen={false}>
+        <Section title="A/B Testing" icon={FlaskConical} iconColor="#D4A03A" defaultOpen={false}>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-xs text-text-secondary">Test multiple subject lines to optimize open rates</p>
+            <p className="text-xs text-[#ADA599]">Test multiple subject lines to optimize open rates</p>
             <button
               onClick={() => setAbEnabled(!abEnabled)}
-              className={`w-10 h-5 rounded-full flex items-center px-0.5 transition-colors ${abEnabled ? 'bg-[#00a35e] justify-end' : 'bg-gray-200 justify-start'}`}
+              className={`w-10 h-5 rounded-full flex items-center px-0.5 transition-colors ${abEnabled ? 'bg-[#00C27C] justify-end' : 'bg-[#38332B] justify-start'}`}
             >
-              <div className="w-4 h-4 rounded-full bg-white shadow" />
+              <div className="w-4 h-4 rounded-full bg-[#1C1B1A] shadow" />
             </button>
           </div>
           {abEnabled && (
             <div className="space-y-3">
               {c.abTests.map((t) => (
-                <div key={t.variant} className="flex items-center gap-3 bg-surface-bg rounded-lg p-3 border border-surface-border">
-                  <span className="text-xs font-bold text-[#d97706] bg-[#d97706]/10 w-7 h-7 rounded-lg flex items-center justify-center">{t.variant}</span>
-                  <p className="text-xs text-text-primary flex-1">{t.subject}</p>
-                  <span className="text-xs text-text-secondary">{t.split}%</span>
+                <div key={t.variant} className="flex items-center gap-3 bg-[#141210] rounded-lg p-3 border border-[#38332B]">
+                  <span className="text-xs font-bold text-[#D4A03A] bg-[#D4A03A]/10 w-7 h-7 rounded-lg flex items-center justify-center">{t.variant}</span>
+                  <p className="text-xs text-[#F0EDE8] flex-1">{t.subject}</p>
+                  <span className="text-xs text-[#ADA599]">{t.split}%</span>
                 </div>
               ))}
-              <p className="text-[10px] text-text-muted">Winner determined after 2 hours based on open rate. Remaining sends use winning variant.</p>
+              <p className="text-[10px] text-[#6B6359]">Winner determined after 2 hours based on open rate. Remaining sends use winning variant.</p>
             </div>
           )}
         </Section>
       )}
 
       {/* ───── schedule & timing ───── */}
-      <Section title="Schedule & Timing" icon={Clock} iconColor="#d97706">
+      <Section title="Schedule & Timing" icon={Clock} iconColor="#D4A03A">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-3">
             {Object.entries(editSchedule).map(([key, val]) => (
               <div key={key} className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-[#d97706] mt-1.5 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-[#D4A03A] mt-1.5 flex-shrink-0" />
                 <div className="flex-1">
-                  <p className="text-[10px] text-text-muted uppercase tracking-wider">{key.replace(/([A-Z])/g, ' $1')}</p>
+                  <p className="text-[10px] text-[#6B6359] uppercase tracking-wider">{key.replace(/([A-Z])/g, ' $1')}</p>
                   <input
                     type="text"
                     value={val}
                     onChange={(e) => setEditSchedule(prev => ({ ...prev, [key]: e.target.value }))}
-                    className="text-xs text-text-primary bg-transparent border-b border-transparent focus:border-[#d97706] focus:outline-none w-full"
+                    className="text-xs text-[#F0EDE8] bg-transparent border-b border-transparent focus:border-[#D4A03A] focus:outline-none w-full"
                   />
                 </div>
               </div>
             ))}
           </div>
-          <div className="bg-surface-bg rounded-lg p-4 border border-surface-border">
-            <p className="text-xs font-medium text-text-secondary mb-3">Send Window</p>
+          <div className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
+            <p className="text-xs font-medium text-[#ADA599] mb-3">Send Window</p>
             <div className="space-y-2">
               {['9 AM — 12 PM', '12 PM — 3 PM', '3 PM — 6 PM', '6 PM — 9 PM'].map((w, i) => (
                 <div key={w} className="flex items-center gap-2">
-                  <div className={`flex-1 h-3 rounded-full ${i < 3 ? 'bg-[#00a35e]/30' : 'bg-gray-200'}`}>
-                    <div className="h-3 rounded-full bg-[#00a35e]" style={{ width: [85, 70, 45, 0][i] + '%' }} />
+                  <div className={`flex-1 h-3 rounded-full ${i < 3 ? 'bg-[#00C27C]/30' : 'bg-[#38332B]'}`}>
+                    <div className="h-3 rounded-full bg-[#00C27C]" style={{ width: [85, 70, 45, 0][i] + '%' }} />
                   </div>
-                  <span className="text-[10px] text-text-secondary w-24 text-right">{w}</span>
+                  <span className="text-[10px] text-[#ADA599] w-24 text-right">{w}</span>
                 </div>
               ))}
-              <p className="text-[10px] text-text-muted mt-2">Optimal send times based on historical engagement data</p>
+              <p className="text-[10px] text-[#6B6359] mt-2">Optimal send times based on historical engagement data</p>
             </div>
           </div>
         </div>
@@ -1001,19 +1001,19 @@ export function CampaignPlan({ data, onBack }) {
 
       {/* ───── multi-location targeting ───── */}
       {c.locationTargeting && c.locationTargeting.length > 0 && (
-        <Section title="Location Targeting" icon={Store} iconColor="#3b82f6" defaultOpen={false}>
+        <Section title="Location Targeting" icon={Store} iconColor="#64A8E0" defaultOpen={false}>
           <div className="space-y-2">
             <div
               onClick={() => setSelectedLocations(prev => prev.includes('all') ? [] : ['all'])}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-bg border border-surface-border cursor-pointer hover:border-gray-300 transition-colors"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#141210] border border-[#38332B] cursor-pointer hover:border-[#38332B] transition-colors"
             >
               <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
-                selectedLocations.includes('all') ? 'bg-[#00a35e] border-[#00a35e]' : 'border-gray-300'
+                selectedLocations.includes('all') ? 'bg-[#00C27C] border-[#00C27C]' : 'border-[#38332B]'
               }`}>
                 {selectedLocations.includes('all') && <Check className="w-3 h-3 text-white" />}
               </div>
-              <span className="text-xs text-text-primary flex-1">All Locations</span>
-              <span className="text-xs text-text-secondary font-mono">{c.audience?.size || '0'}</span>
+              <span className="text-xs text-[#F0EDE8] flex-1">All Locations</span>
+              <span className="text-xs text-[#ADA599] font-mono">{c.audience?.size || '0'}</span>
             </div>
             {c.locationTargeting.map((loc) => (
               <div
@@ -1024,15 +1024,15 @@ export function CampaignPlan({ data, onBack }) {
                     return without.includes(loc.id) ? without.filter(id => id !== loc.id) : [...without, loc.id];
                   });
                 }}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-bg border border-surface-border cursor-pointer hover:border-gray-300 transition-colors"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#141210] border border-[#38332B] cursor-pointer hover:border-[#38332B] transition-colors"
               >
                 <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
-                  selectedLocations.includes(loc.id) || selectedLocations.includes('all') ? 'bg-[#00a35e] border-[#00a35e]' : 'border-gray-300'
+                  selectedLocations.includes(loc.id) || selectedLocations.includes('all') ? 'bg-[#00C27C] border-[#00C27C]' : 'border-[#38332B]'
                 }`}>
                   {(selectedLocations.includes(loc.id) || selectedLocations.includes('all')) && <Check className="w-3 h-3 text-white" />}
                 </div>
-                <span className="text-xs text-text-primary flex-1">{loc.name}</span>
-                <span className="text-xs text-text-secondary font-mono">{loc.count}</span>
+                <span className="text-xs text-[#F0EDE8] flex-1">{loc.name}</span>
+                <span className="text-xs text-[#ADA599] font-mono">{loc.count}</span>
               </div>
             ))}
           </div>
@@ -1040,22 +1040,22 @@ export function CampaignPlan({ data, onBack }) {
       )}
 
       {/* ───── budget ───── */}
-      <Section title="Budget & Spend" icon={DollarSign} iconColor="#00a35e" defaultOpen={false}>
+      <Section title="Budget & Spend" icon={DollarSign} iconColor="#00C27C" defaultOpen={false}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-          <div className="bg-surface-bg rounded-lg p-4 border border-surface-border">
-            <p className="text-[10px] text-text-muted">Est. Total Cost</p>
-            <p className="text-lg font-bold text-text-primary">{dynamicProjections.totalCost}</p>
-            <p className="text-[10px] text-text-secondary">Across {enabledChannels.size} channel{enabledChannels.size !== 1 ? 's' : ''}</p>
+          <div className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
+            <p className="text-[10px] text-[#6B6359]">Est. Total Cost</p>
+            <p className="text-lg font-bold text-[#F0EDE8]">{dynamicProjections.totalCost}</p>
+            <p className="text-[10px] text-[#ADA599]">Across {enabledChannels.size} channel{enabledChannels.size !== 1 ? 's' : ''}</p>
           </div>
-          <div className="bg-surface-bg rounded-lg p-4 border border-surface-border">
-            <p className="text-[10px] text-text-muted">Cost per Conversion</p>
-            <p className="text-lg font-bold text-text-primary">{dynamicProjections.costPerConversion}</p>
-            <p className="text-[10px] text-text-secondary">Based on projected conversion</p>
+          <div className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
+            <p className="text-[10px] text-[#6B6359]">Cost per Conversion</p>
+            <p className="text-lg font-bold text-[#F0EDE8]">{dynamicProjections.costPerConversion}</p>
+            <p className="text-[10px] text-[#ADA599]">Based on projected conversion</p>
           </div>
-          <div className="bg-surface-bg rounded-lg p-4 border border-surface-border">
-            <p className="text-[10px] text-text-muted">Daily Budget Cap</p>
+          <div className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
+            <p className="text-[10px] text-[#6B6359]">Daily Budget Cap</p>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-lg font-bold text-text-primary">${budgetDaily}</span>
+              <span className="text-lg font-bold text-[#F0EDE8]">${budgetDaily}</span>
             </div>
             <input
               type="range"
@@ -1063,26 +1063,26 @@ export function CampaignPlan({ data, onBack }) {
               max="200"
               value={budgetDaily}
               onChange={(e) => setBudgetDaily(e.target.value)}
-              className="w-full h-1 mt-2 rounded-full appearance-none bg-gray-200 accent-[#00a35e]"
+              className="w-full h-1 mt-2 rounded-full appearance-none bg-[#38332B] accent-[#00C27C]"
             />
           </div>
         </div>
       </Section>
 
       {/* ───── compliance ───── */}
-      <Section title="Compliance Review" icon={Shield} iconColor="#00a35e" badge="All Passed">
+      <Section title="Compliance Review" icon={Shield} iconColor="#00C27C" badge="All Passed">
         <div className="space-y-2">
           {(c.compliance || []).map((item) => (
             <div key={item.label} className="flex items-center gap-3 py-1.5">
-              <CheckCircle2 className="w-4 h-4 text-[#00a35e] flex-shrink-0" />
-              <span className="text-xs text-text-primary">{item.label}</span>
+              <CheckCircle2 className="w-4 h-4 text-[#00C27C] flex-shrink-0" />
+              <span className="text-xs text-[#F0EDE8]">{item.label}</span>
             </div>
           ))}
         </div>
       </Section>
 
       {/* ───── projected performance ───── */}
-      <Section title="Projected Performance" icon={TrendingUp} iconColor="#00a35e">
+      <Section title="Projected Performance" icon={TrendingUp} iconColor="#00C27C">
         {(dynamicProjections.noChannels || dynamicProjections.noLocations) && (
           <div className="flex items-center gap-2 mb-4 px-3 py-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
             <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
@@ -1094,30 +1094,30 @@ export function CampaignPlan({ data, onBack }) {
         )}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {[
-            { label: 'Est. Revenue', value: dynamicProjections.revenue, icon: DollarSign, color: '#00a35e' },
-            { label: 'Est. Orders', value: dynamicProjections.orders, icon: ShoppingBag, color: '#3b82f6' },
-            { label: 'Projected ROI', value: dynamicProjections.roi, icon: TrendingUp, color: '#8b5cf6' },
-            { label: 'Avg Order Value', value: dynamicProjections.aov, icon: BarChart3, color: '#d97706' },
+            { label: 'Est. Revenue', value: dynamicProjections.revenue, icon: DollarSign, color: '#00C27C' },
+            { label: 'Est. Orders', value: dynamicProjections.orders, icon: ShoppingBag, color: '#64A8E0' },
+            { label: 'Projected ROI', value: dynamicProjections.roi, icon: TrendingUp, color: '#B598E8' },
+            { label: 'Avg Order Value', value: dynamicProjections.aov, icon: BarChart3, color: '#D4A03A' },
             { label: 'Redemption Rate', value: dynamicProjections.redemptionRate, icon: Percent, color: '#EC4899' },
             { label: 'Reactivated', value: dynamicProjections.reactivated, icon: RefreshCw, color: '#EA580C' },
           ].filter(m => m.value && m.value !== '—').map((m) => (
-            <div key={m.label} className="bg-surface-bg rounded-lg p-4 border border-surface-border">
+            <div key={m.label} className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
               <m.icon className="w-4 h-4 mb-2" style={{ color: m.color }} />
-              <p className="text-[10px] text-text-muted">{m.label}</p>
-              <p className="text-sm font-bold text-text-primary mt-0.5">{m.value}</p>
+              <p className="text-[10px] text-[#6B6359]">{m.label}</p>
+              <p className="text-sm font-bold text-[#F0EDE8] mt-0.5">{m.value}</p>
             </div>
           ))}
         </div>
       </Section>
 
       {/* ───── send controls ───── */}
-      <div className="bg-white rounded-xl border border-surface-border p-6">
+      <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-6">
         {sent ? (
           <div className="flex items-center gap-3 justify-center py-4 animate-fade-in">
-            <CheckCircle2 className="w-6 h-6 text-[#00a35e]" />
+            <CheckCircle2 className="w-6 h-6 text-[#00C27C]" />
             <div>
-              <p className="text-text-primary font-semibold">Campaign Queued Successfully</p>
-              <p className="text-sm text-text-secondary">{c.title} will begin sending on {c.schedule?.launch || 'schedule TBD'}</p>
+              <p className="text-[#F0EDE8] font-semibold">Campaign Queued Successfully</p>
+              <p className="text-sm text-[#ADA599]">{c.title} will begin sending on {c.schedule?.launch || 'schedule TBD'}</p>
             </div>
           </div>
         ) : (
@@ -1132,19 +1132,19 @@ export function CampaignPlan({ data, onBack }) {
             )}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
               <div>
-                <p className="text-text-primary font-medium">Ready to launch?</p>
-                <p className="text-sm text-text-secondary">
+                <p className="text-[#F0EDE8] font-medium">Ready to launch?</p>
+                <p className="text-sm text-[#ADA599]">
                   This will queue messages to {editAudienceSize} customers across {enabledChannels.size} channel{enabledChannels.size !== 1 ? 's' : ''}.
-                  <span className="text-text-primary font-medium ml-1">Est. cost: {dynamicProjections.totalCost}</span>
+                  <span className="text-[#F0EDE8] font-medium ml-1">Est. cost: {dynamicProjections.totalCost}</span>
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setTestSent(true)}
                   disabled={testSent}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border border-surface-border text-text-secondary hover:text-text-primary hover:border-gray-300 transition-colors disabled:opacity-50"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border border-[#38332B] text-[#ADA599] hover:text-[#F0EDE8] hover:border-[#38332B] transition-colors disabled:opacity-50"
                 >
-                  {testSent ? <><Check className="w-4 h-4 text-[#00a35e]" /> Test Sent</> : <><Eye className="w-4 h-4" /> Send Test</>}
+                  {testSent ? <><Check className="w-4 h-4 text-[#00C27C]" /> Test Sent</> : <><Eye className="w-4 h-4" /> Send Test</>}
                 </button>
                 <button
                   onClick={handleSend}
@@ -1160,7 +1160,7 @@ export function CampaignPlan({ data, onBack }) {
                 </button>
               </div>
             </div>
-            <p className="text-[10px] text-text-muted">
+            <p className="text-[10px] text-[#6B6359]">
               {c.content?.finePrint || ''}
             </p>
           </div>
@@ -1177,10 +1177,10 @@ export function CampaignPlan({ data, onBack }) {
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-3 animate-fade-in">
-      <div className="w-8 h-8 rounded-full bg-[#00a35e]/20 flex items-center justify-center flex-shrink-0">
-        <Bot className="w-4 h-4 text-[#00a35e]" />
+      <div className="w-8 h-8 rounded-full bg-[#00C27C]/20 flex items-center justify-center flex-shrink-0">
+        <Bot className="w-4 h-4 text-[#00C27C]" />
       </div>
-      <div className="bg-white border border-surface-border rounded-2xl rounded-tl-sm px-4 py-3">
+      <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-4 py-3">
         <div className="flex items-center gap-1.5">
           <div className="w-2 h-2 rounded-full bg-[#8B949E] animate-bounce" style={{ animationDelay: '0ms' }} />
           <div className="w-2 h-2 rounded-full bg-[#8B949E] animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -1241,7 +1241,7 @@ const SUGGESTIONS = [
     gradient: 'from-amber-600/20 to-orange-600/20',
     border: 'hover:border-amber-500/40',
     tag: 'Flash Sale',
-    tagColor: '#d97706',
+    tagColor: '#D4A03A',
   },
   {
     key: 'new-product-launch',
@@ -1370,40 +1370,40 @@ export default function MarketingCampaigns() {
     <div className="max-w-5xl mx-auto flex flex-col h-[calc(100vh-10rem)]">
       {/* header */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00a35e] to-[#00A86B] flex items-center justify-center shadow-lg shadow-[#00a35e]/20">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00C27C] to-[#00A86B] flex items-center justify-center shadow-lg shadow-[#00C27C]/20">
           <Bot className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-text-primary">Marketing Campaigns</h1>
-          <p className="text-xs text-text-secondary">Powered by Dutchie AI Agent</p>
+          <h1 className="text-xl font-bold text-[#F0EDE8]">Marketing Campaigns</h1>
+          <p className="text-xs text-[#ADA599]">Powered by Dutchie AI Agent</p>
         </div>
-        <div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00a35e]/10 border border-[#00a35e]/20">
-          <div className="w-2 h-2 rounded-full bg-[#00a35e] animate-pulse" />
-          <span className="text-xs text-[#00a35e] font-medium">Online</span>
+        <div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00C27C]/10 border border-[#00C27C]/20">
+          <div className="w-2 h-2 rounded-full bg-[#00C27C] animate-pulse" />
+          <span className="text-xs text-[#00C27C] font-medium">Online</span>
         </div>
       </div>
 
       {/* Marketing at a Glance */}
       <div className="mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="p-3 rounded-xl border border-surface-border bg-white">
-          <p className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Active Campaigns</p>
-          <p className="text-xl font-bold text-text-primary">2</p>
-          <p className="text-[10px] text-[#00a35e]">Jeeter Spotlight, Birthday Rewards</p>
+        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
+          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Active Campaigns</p>
+          <p className="text-xl font-bold text-[#F0EDE8]">2</p>
+          <p className="text-[10px] text-[#00C27C]">Jeeter Spotlight, Birthday Rewards</p>
         </div>
-        <div className="p-3 rounded-xl border border-surface-border bg-white">
-          <p className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">This Week</p>
-          <p className="text-xl font-bold text-text-primary">9,200</p>
-          <p className="text-[10px] text-text-secondary">SMS sent · 94% open rate</p>
+        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
+          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">This Week</p>
+          <p className="text-xl font-bold text-[#F0EDE8]">9,200</p>
+          <p className="text-[10px] text-[#ADA599]">SMS sent · 94% open rate</p>
         </div>
-        <div className="p-3 rounded-xl border border-surface-border bg-white">
-          <p className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Ready for Review</p>
-          <p className="text-xl font-bold text-[#d97706]">1</p>
-          <p className="text-[10px] text-text-secondary">Win-Back Re-Engagement</p>
+        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
+          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Ready for Review</p>
+          <p className="text-xl font-bold text-[#D4A03A]">1</p>
+          <p className="text-[10px] text-[#ADA599]">Win-Back Re-Engagement</p>
         </div>
-        <div className="p-3 rounded-xl border border-surface-border bg-white">
-          <p className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Compliance</p>
-          <p className="text-xl font-bold text-[#00a35e]">All Clear</p>
-          <p className="text-[10px] text-[#00a35e]">All campaigns passing</p>
+        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
+          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Compliance</p>
+          <p className="text-xl font-bold text-[#00C27C]">All Clear</p>
+          <p className="text-[10px] text-[#00C27C]">All campaigns passing</p>
         </div>
       </div>
 
@@ -1411,15 +1411,15 @@ export default function MarketingCampaigns() {
       <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-1">
         {/* welcome */}
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#00a35e]/20 flex items-center justify-center flex-shrink-0">
-            <Bot className="w-4 h-4 text-[#00a35e]" />
+          <div className="w-8 h-8 rounded-full bg-[#00C27C]/20 flex items-center justify-center flex-shrink-0">
+            <Bot className="w-4 h-4 text-[#00C27C]" />
           </div>
-          <div className="bg-white border border-surface-border rounded-2xl rounded-tl-sm px-5 py-4 max-w-2xl">
-            <p className="text-sm text-text-primary leading-relaxed">
+          <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-5 py-4 max-w-2xl">
+            <p className="text-sm text-[#F0EDE8] leading-relaxed">
               Hey! I'm your Marketing Campaign agent. I can build full campaign plans with audience targeting,
               A/B testing, creative assets, channel strategy, compliance review, and projected ROI — all from a single prompt.
             </p>
-            <p className="text-sm text-text-secondary mt-2 leading-relaxed">
+            <p className="text-sm text-[#ADA599] mt-2 leading-relaxed">
               Select a campaign below or describe one you'd like to create.
             </p>
           </div>
@@ -1429,14 +1429,14 @@ export default function MarketingCampaigns() {
         {messages.map((msg, i) => (
           <div key={i} className={`flex items-start gap-3 animate-fade-in ${msg.role === 'user' ? 'justify-end' : ''}`}>
             {msg.role === 'agent' && (
-              <div className="w-8 h-8 rounded-full bg-[#00a35e]/20 flex items-center justify-center flex-shrink-0">
-                <Bot className="w-4 h-4 text-[#00a35e]" />
+              <div className="w-8 h-8 rounded-full bg-[#00C27C]/20 flex items-center justify-center flex-shrink-0">
+                <Bot className="w-4 h-4 text-[#00C27C]" />
               </div>
             )}
             <div className={`rounded-2xl px-5 py-3 max-w-2xl text-sm leading-relaxed ${
               msg.role === 'user'
-                ? 'bg-[#00a35e] text-white rounded-tr-sm'
-                : 'bg-white border border-surface-border text-text-primary rounded-tl-sm'
+                ? 'bg-[#00C27C] text-white rounded-tr-sm'
+                : 'bg-[#1C1B1A] border border-[#38332B] text-[#F0EDE8] rounded-tl-sm'
             }`}>
               <span className="whitespace-pre-wrap">{msg.text.split(/(\*\*[^*]+\*\*)/g).map((part, i) => part.startsWith('**') && part.endsWith('**') ? <strong key={i}>{part.slice(2, -2)}</strong> : part)}</span>
             </div>
@@ -1452,25 +1452,25 @@ export default function MarketingCampaigns() {
         {/* suggestions */}
         {view === 'idle' && (
           <div className="pt-2 animate-fade-in">
-            <p className="text-xs text-text-secondary mb-3 ml-11">Suggested campaigns</p>
+            <p className="text-xs text-[#ADA599] mb-3 ml-11">Suggested campaigns</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 ml-11">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s.key}
                   onClick={() => handleSuggestionClick(s.key)}
-                  className={`group text-left bg-white border border-surface-border ${s.border} rounded-xl p-4 transition-all hover:scale-[1.02] active:scale-[0.98]`}
+                  className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl p-4 transition-all hover:scale-[1.02] active:scale-[0.98]`}
                 >
                   <div className="flex items-center gap-2 mb-3">
                     <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>
-                      <s.icon className="w-4 h-4 text-text-primary" />
+                      <s.icon className="w-4 h-4 text-[#F0EDE8]" />
                     </div>
                     <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full border border-white/10" style={{ color: s.tagColor }}>{s.tag}</span>
-                    {s.confidence === 'high' && <span className="text-[9px] font-semibold text-[#00a35e] bg-[#00a35e]/10 px-1.5 py-0.5 rounded border border-[#00a35e]/30">High Confidence</span>}
-                    {s.confidence === 'medium' && <span className="text-[9px] font-semibold text-[#d97706] bg-[#d97706]/10 px-1.5 py-0.5 rounded border border-dashed border-[#d97706]/30">Review Suggested</span>}
+                    {s.confidence === 'high' && <span className="text-[9px] font-semibold text-[#00C27C] bg-[#00C27C]/10 px-1.5 py-0.5 rounded border border-[#00C27C]/30">High Confidence</span>}
+                    {s.confidence === 'medium' && <span className="text-[9px] font-semibold text-[#D4A03A] bg-[#D4A03A]/10 px-1.5 py-0.5 rounded border border-dashed border-[#D4A03A]/30">Review Suggested</span>}
                   </div>
-                  <p className="text-sm font-medium text-text-primary mb-1">{s.label}</p>
-                  <p className="text-xs text-text-secondary leading-relaxed">{s.description}</p>
-                  <div className="flex items-center gap-1 mt-3 text-xs text-[#00a35e] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="text-sm font-medium text-[#F0EDE8] mb-1">{s.label}</p>
+                  <p className="text-xs text-[#ADA599] leading-relaxed">{s.description}</p>
+                  <div className="flex items-center gap-1 mt-3 text-xs text-[#00C27C] opacity-0 group-hover:opacity-100 transition-opacity">
                     <Zap className="w-3 h-3" /> Generate plan <ChevronRight className="w-3 h-3" />
                   </div>
                 </button>
@@ -1484,25 +1484,25 @@ export default function MarketingCampaigns() {
 
       {/* input bar */}
       <form onSubmit={handleSubmit} className="sticky bottom-0 pb-2">
-        <div className="flex items-center gap-3 bg-white border border-surface-border rounded-2xl px-4 py-3 focus-within:border-[#00a35e]/50 transition-colors">
-          <Sparkles className="w-5 h-5 text-text-secondary flex-shrink-0" />
+        <div className="flex items-center gap-3 bg-[#1C1B1A] border border-[#38332B] rounded-2xl px-4 py-3 focus-within:border-[#00C27C]/50 transition-colors">
+          <Sparkles className="w-5 h-5 text-[#ADA599] flex-shrink-0" />
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Describe a campaign you want to run..."
-            className="flex-1 bg-transparent text-sm text-text-primary placeholder-[#484F58] outline-none"
+            className="flex-1 bg-transparent text-sm text-[#F0EDE8] placeholder-[#484F58] outline-none"
             disabled={view === 'typing'}
           />
           <button
             type="submit"
             disabled={!inputValue.trim() || view === 'typing'}
-            className="w-8 h-8 rounded-lg bg-[#00a35e] flex items-center justify-center text-white disabled:opacity-30 hover:bg-[#00D68A] transition-colors disabled:hover:bg-[#00a35e]"
+            className="w-8 h-8 rounded-lg bg-[#00C27C] flex items-center justify-center text-white disabled:opacity-30 hover:bg-[#00D68A] transition-colors disabled:hover:bg-[#00C27C]"
           >
             <Send className="w-4 h-4" />
           </button>
         </div>
-        <p className="text-center text-[10px] text-text-muted mt-2">
+        <p className="text-center text-[10px] text-[#6B6359] mt-2">
           Dutchie AI Agent generates projections from historical data. Review all details before launching.
         </p>
       </form>

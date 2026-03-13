@@ -26,14 +26,14 @@ import { avgSentiment, sentimentDistribution, monthlyTrend, calculateNPS, catego
    ═══════════════════════════════════════════════════════════════════ */
 
 const DEFAULT_PRODUCTS = {
-  ecommerce: { name: 'Dutchie Ecommerce', active: true, icon: ShoppingCart, color: '#00a35e', description: 'Online ordering & menu', tier: 'Core' },
-  pos: { name: 'Dutchie POS', active: true, icon: Monitor, color: '#3b82f6', description: 'Point-of-sale system', tier: 'Core' },
-  payments: { name: 'Dutchie Pay', active: true, icon: CreditCard, color: '#8b5cf6', description: 'ACH payment processing', tier: 'Core' },
-  payByBank: { name: 'Pay-by-Bank', active: false, icon: DollarSign, color: '#d97706', description: 'Zero-fee bank transfers', tier: 'Fintech', upsell: true, monthlyFee: '$0/mo', savings: 'Save 2.5-3.5% per transaction' },
+  ecommerce: { name: 'Dutchie Ecommerce', active: true, icon: ShoppingCart, color: '#00C27C', description: 'Online ordering & menu', tier: 'Core' },
+  pos: { name: 'Dutchie POS', active: true, icon: Monitor, color: '#64A8E0', description: 'Point-of-sale system', tier: 'Core' },
+  payments: { name: 'Dutchie Pay', active: true, icon: CreditCard, color: '#B598E8', description: 'ACH payment processing', tier: 'Core' },
+  payByBank: { name: 'Pay-by-Bank', active: false, icon: DollarSign, color: '#D4A03A', description: 'Zero-fee bank transfers', tier: 'Fintech', upsell: true, monthlyFee: '$0/mo', savings: 'Save 2.5-3.5% per transaction' },
   whiteLabel: { name: 'White Label App', active: false, icon: Smartphone, color: '#EC4899', description: 'Branded iOS & Android app', tier: 'Premium', upsell: true, monthlyFee: '$499/mo', savings: 'Own your brand in the App Store' },
   menuBoards: { name: 'Digital Menu Boards', active: false, icon: Monitor, color: '#0EA5E9', description: 'In-store digital displays', tier: 'Premium', upsell: true, monthlyFee: '$149/mo', savings: 'Dynamic pricing & promotions' },
   b2cAI: { name: 'B2C AI Suite', active: false, icon: Sparkles, color: '#F97316', description: 'AI-powered recommendations', tier: 'AI', upsell: true, monthlyFee: '$299/mo', savings: '+18% avg basket size' },
-  analytics: { name: 'Advanced Analytics', active: true, icon: BarChart3, color: '#00a35e', description: 'Sales & customer insights', tier: 'Core' },
+  analytics: { name: 'Advanced Analytics', active: true, icon: BarChart3, color: '#00C27C', description: 'Sales & customer insights', tier: 'Core' },
 };
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -446,14 +446,14 @@ export function generateTicketId() {
 function Section({ title, icon: Icon, iconColor, children, defaultOpen = true, badge, badgeColor }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="bg-white rounded-xl border border-surface-border overflow-hidden">
-      <button onClick={() => setOpen(!open)} className="w-full flex items-center gap-2 px-5 py-3.5 hover:bg-surface-hover transition-colors">
+    <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] overflow-hidden">
+      <button onClick={() => setOpen(!open)} className="w-full flex items-center gap-2 px-5 py-3.5 hover:bg-[#282724] transition-colors">
         <Icon className="w-4.5 h-4.5 flex-shrink-0" style={{ color: iconColor }} />
-        <h2 className="text-sm font-semibold text-text-primary">{title}</h2>
+        <h2 className="text-sm font-semibold text-[#F0EDE8]">{title}</h2>
         {badge && <span className="text-[10px] px-2 py-0.5 rounded-full font-medium" style={{ background: (badgeColor || '#0EA5E9') + '18', color: badgeColor || '#0EA5E9' }}>{badge}</span>}
-        <div className="ml-auto">{open ? <ChevronUp className="w-4 h-4 text-text-secondary" /> : <ChevronDown className="w-4 h-4 text-text-secondary" />}</div>
+        <div className="ml-auto">{open ? <ChevronUp className="w-4 h-4 text-[#ADA599]" /> : <ChevronDown className="w-4 h-4 text-[#ADA599]" />}</div>
       </button>
-      {open && <div className="px-5 pb-4 border-t border-surface-border pt-3">{children}</div>}
+      {open && <div className="px-5 pb-4 border-t border-[#38332B] pt-3">{children}</div>}
     </div>
   );
 }
@@ -465,46 +465,46 @@ function Section({ title, icon: Icon, iconColor, children, defaultOpen = true, b
 export function KBArticleCard({ article }) {
   const [expanded, setExpanded] = useState(false);
   const categoryColors = {
-    Ecommerce: '#00a35e', POS: '#3b82f6', Payments: '#8b5cf6', Compliance: '#d97706',
+    Ecommerce: '#00C27C', POS: '#64A8E0', Payments: '#B598E8', Compliance: '#D4A03A',
     Integrations: '#0EA5E9', Marketing: '#EC4899', Operations: '#F97316',
-    Troubleshooting: '#ef4444', Customization: '#8B5CF6', Analytics: '#00a35e',
+    Troubleshooting: '#E87068', Customization: '#8B5CF6', Analytics: '#00C27C',
     'In-Store': '#0EA5E9', Advanced: '#8B949E', Premium: '#EC4899',
   };
   const catColor = categoryColors[article.category] || '#0EA5E9';
 
   return (
-    <div className="bg-surface-bg rounded-lg border border-surface-border overflow-hidden">
-      <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left hover:bg-surface-hover transition-colors">
+    <div className="bg-[#141210] rounded-lg border border-[#38332B] overflow-hidden">
+      <button onClick={() => setExpanded(!expanded)} className="w-full p-4 text-left hover:bg-[#282724] transition-colors">
         <div className="flex items-start gap-3">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: catColor + '18' }}>
             <BookOpen className="w-4 h-4" style={{ color: catColor }} />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-text-primary">{article.title}</p>
+            <p className="text-sm font-medium text-[#F0EDE8]">{article.title}</p>
             <div className="flex items-center gap-2 mt-1">
               <span className="text-[10px] px-2 py-0.5 rounded font-medium" style={{ background: catColor + '15', color: catColor }}>{article.category}</span>
-              <span className="text-[10px] text-text-muted">{article.id}</span>
+              <span className="text-[10px] text-[#6B6359]">{article.id}</span>
               {article.navPath && (
-                <span className="text-[10px] text-text-muted flex items-center gap-1">
+                <span className="text-[10px] text-[#6B6359] flex items-center gap-1">
                   <Settings className="w-2.5 h-2.5" /> {article.navPath}
                 </span>
               )}
             </div>
           </div>
-          {expanded ? <ChevronUp className="w-4 h-4 text-text-secondary" /> : <ChevronDown className="w-4 h-4 text-text-secondary" />}
+          {expanded ? <ChevronUp className="w-4 h-4 text-[#ADA599]" /> : <ChevronDown className="w-4 h-4 text-[#ADA599]" />}
         </div>
       </button>
       {expanded && (
-        <div className="px-4 pb-4 border-t border-surface-border pt-3 animate-fade-in space-y-3">
+        <div className="px-4 pb-4 border-t border-[#38332B] pt-3 animate-fade-in space-y-3">
           {/* Navigation path breadcrumb */}
           {article.navPath && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-surface-border">
-              <Settings className="w-3.5 h-3.5 text-text-muted flex-shrink-0" />
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#1C1B1A] border border-[#38332B]">
+              <Settings className="w-3.5 h-3.5 text-[#6B6359] flex-shrink-0" />
               <div className="flex items-center gap-1 flex-wrap">
                 {article.navPath.split(' > ').map((part, i, arr) => (
                   <span key={i} className="flex items-center gap-1">
-                    <span className="text-[11px] font-medium text-text-primary">{part}</span>
-                    {i < arr.length - 1 && <ChevronRight className="w-3 h-3 text-text-muted" />}
+                    <span className="text-[11px] font-medium text-[#F0EDE8]">{part}</span>
+                    {i < arr.length - 1 && <ChevronRight className="w-3 h-3 text-[#6B6359]" />}
                   </span>
                 ))}
               </div>
@@ -513,13 +513,13 @@ export function KBArticleCard({ article }) {
 
           {/* Step-by-step instructions */}
           {article.steps && article.steps.length > 0 && (
-            <div className="bg-white rounded-lg p-3 border border-surface-border">
-              <p className="text-[10px] text-text-muted uppercase tracking-wider font-medium mb-2">Step-by-Step</p>
+            <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
+              <p className="text-[10px] text-[#6B6359] uppercase tracking-wider font-medium mb-2">Step-by-Step</p>
               <div className="space-y-1.5">
                 {article.steps.map((step, i) => (
                   <div key={i} className="flex items-start gap-2.5">
                     <span className="text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: catColor + '20', color: catColor }}>{i + 1}</span>
-                    <p className="text-xs text-text-primary leading-relaxed">{step}</p>
+                    <p className="text-xs text-[#F0EDE8] leading-relaxed">{step}</p>
                   </div>
                 ))}
               </div>
@@ -527,12 +527,12 @@ export function KBArticleCard({ article }) {
           )}
 
           {/* Full content */}
-          <p className="text-xs text-text-secondary leading-relaxed">{article.content}</p>
+          <p className="text-xs text-[#ADA599] leading-relaxed">{article.content}</p>
 
           {/* Related articles */}
           {article.relatedArticles.length > 0 && (
-            <div className="pt-2 border-t border-surface-border/50">
-              <p className="text-[10px] text-text-muted mb-1.5">Related articles</p>
+            <div className="pt-2 border-t border-[#38332B]/50">
+              <p className="text-[10px] text-[#6B6359] mb-1.5">Related articles</p>
               <div className="flex gap-1.5 flex-wrap">
                 {article.relatedArticles.map(id => {
                   const related = KNOWLEDGE_BASE.find(a => a.id === id);
@@ -570,21 +570,21 @@ function UpsellCard({ productKey, product, onActivate, onDemoRequest }) {
   const Icon = product.icon;
 
   return (
-    <div className="bg-surface-bg rounded-xl border border-surface-border p-5 hover:border-gray-300 transition-all">
+    <div className="bg-[#141210] rounded-xl border border-[#38332B] p-5 hover:border-[#38332B] transition-all">
       <div className="flex items-start gap-4">
         <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: product.color + '20' }}>
           <Icon className="w-6 h-6" style={{ color: product.color }} />
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-base font-semibold text-text-primary">{product.name}</h3>
+            <h3 className="text-base font-semibold text-[#F0EDE8]">{product.name}</h3>
             <span className="text-[10px] px-2 py-0.5 rounded-full font-medium" style={{ background: product.color + '18', color: product.color }}>{product.tier}</span>
           </div>
-          <p className="text-sm text-text-secondary mb-3">{product.description}</p>
+          <p className="text-sm text-[#ADA599] mb-3">{product.description}</p>
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center gap-1.5">
-              <DollarSign className="w-3.5 h-3.5 text-[#00a35e]" />
-              <span className="text-xs text-text-primary font-medium">{product.monthlyFee}</span>
+              <DollarSign className="w-3.5 h-3.5 text-[#00C27C]" />
+              <span className="text-xs text-[#F0EDE8] font-medium">{product.monthlyFee}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-[#0EA5E9]" />
@@ -592,9 +592,9 @@ function UpsellCard({ productKey, product, onActivate, onDemoRequest }) {
             </div>
           </div>
           {requested ? (
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#00a35e]/10 border border-[#00a35e]/20">
-              <CheckCircle2 className="w-4 h-4 text-[#00a35e]" />
-              <span className="text-sm text-[#00a35e] font-medium">Demo Requested — Your account manager will reach out within 24 hours</span>
+            <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#00C27C]/10 border border-[#00C27C]/20">
+              <CheckCircle2 className="w-4 h-4 text-[#00C27C]" />
+              <span className="text-sm text-[#00C27C] font-medium">Demo Requested — Your account manager will reach out within 24 hours</span>
             </div>
           ) : (
             <div className="flex gap-2">
@@ -610,7 +610,7 @@ function UpsellCard({ productKey, product, onActivate, onDemoRequest }) {
                   <><Rocket className="w-4 h-4" /> Request Demo & Pricing</>
                 )}
               </button>
-              <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-white/5 transition-colors">
+              <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-[#ADA599] hover:text-[#F0EDE8] hover:bg-[#1C1B1A]/5 transition-colors">
                 <FileText className="w-3.5 h-3.5" /> Learn More
               </button>
             </div>
@@ -627,36 +627,36 @@ function UpsellCard({ productKey, product, onActivate, onDemoRequest }) {
 
 export function BugReportCard({ userMessage, ticketId }) {
   return (
-    <div className="bg-surface-bg rounded-xl border border-amber-500/20 p-5">
+    <div className="bg-[#141210] rounded-xl border border-amber-500/20 p-5">
       <div className="flex items-start gap-3 mb-4">
         <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
-          <Ticket className="w-5 h-5 text-[#d97706]" />
+          <Ticket className="w-5 h-5 text-[#D4A03A]" />
         </div>
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-sm font-semibold text-text-primary">Support Ticket Created</h3>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#d97706]/15 text-[#d97706] font-medium">{ticketId}</span>
+            <h3 className="text-sm font-semibold text-[#F0EDE8]">Support Ticket Created</h3>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#D4A03A]/15 text-[#D4A03A] font-medium">{ticketId}</span>
           </div>
-          <p className="text-xs text-text-secondary">Routed to the Product Engineering team</p>
+          <p className="text-xs text-[#ADA599]">Routed to the Product Engineering team</p>
         </div>
       </div>
       <div className="space-y-3">
-        <div className="bg-white rounded-lg p-3 border border-surface-border">
-          <p className="text-[10px] text-text-muted mb-1 uppercase tracking-wider font-medium">Issue Description</p>
-          <p className="text-xs text-text-primary">"{userMessage}"</p>
+        <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
+          <p className="text-[10px] text-[#6B6359] mb-1 uppercase tracking-wider font-medium">Issue Description</p>
+          <p className="text-xs text-[#F0EDE8]">"{userMessage}"</p>
         </div>
         <div className="grid grid-cols-3 gap-2">
-          <div className="bg-white rounded-lg p-3 border border-surface-border">
-            <p className="text-[10px] text-text-muted">Priority</p>
-            <p className="text-xs font-medium text-[#d97706] flex items-center gap-1"><AlertTriangle className="w-3 h-3" /> Medium</p>
+          <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
+            <p className="text-[10px] text-[#6B6359]">Priority</p>
+            <p className="text-xs font-medium text-[#D4A03A] flex items-center gap-1"><AlertTriangle className="w-3 h-3" /> Medium</p>
           </div>
-          <div className="bg-white rounded-lg p-3 border border-surface-border">
-            <p className="text-[10px] text-text-muted">Status</p>
+          <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
+            <p className="text-[10px] text-[#6B6359]">Status</p>
             <p className="text-xs font-medium text-[#0EA5E9] flex items-center gap-1"><Clock className="w-3 h-3" /> In Queue</p>
           </div>
-          <div className="bg-white rounded-lg p-3 border border-surface-border">
-            <p className="text-[10px] text-text-muted">Est. Response</p>
-            <p className="text-xs font-medium text-text-secondary">Within 4 hrs</p>
+          <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
+            <p className="text-[10px] text-[#6B6359]">Est. Response</p>
+            <p className="text-xs font-medium text-[#ADA599]">Within 4 hrs</p>
           </div>
         </div>
         <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[#0EA5E9]/5 border border-[#0EA5E9]/10">
@@ -718,142 +718,142 @@ export function BugDetailGatherer({ userMessage, onSubmit }) {
   };
 
   return (
-    <div className="bg-surface-bg rounded-xl border border-amber-500/20 p-5 space-y-4">
+    <div className="bg-[#141210] rounded-xl border border-amber-500/20 p-5 space-y-4">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
-          <Bug className="w-5 h-5 text-[#d97706]" />
+          <Bug className="w-5 h-5 text-[#D4A03A]" />
         </div>
         <div>
-          <h3 className="text-sm font-semibold text-text-primary">Help us fix this faster</h3>
-          <p className="text-xs text-text-secondary mt-0.5">A few extra details help our engineers reproduce and resolve the issue quickly. You can also skip and submit as-is.</p>
+          <h3 className="text-sm font-semibold text-[#F0EDE8]">Help us fix this faster</h3>
+          <p className="text-xs text-[#ADA599] mt-0.5">A few extra details help our engineers reproduce and resolve the issue quickly. You can also skip and submit as-is.</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg p-3 border border-surface-border">
-        <p className="text-[10px] text-text-muted mb-1 uppercase tracking-wider font-medium">Your Report</p>
-        <p className="text-xs text-text-primary">"{userMessage}"</p>
+      <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
+        <p className="text-[10px] text-[#6B6359] mb-1 uppercase tracking-wider font-medium">Your Report</p>
+        <p className="text-xs text-[#F0EDE8]">"{userMessage}"</p>
       </div>
 
       {/* Low-effort nudge */}
       {nudgeShown && isLowEffort && (
-        <div className="flex items-start gap-2 px-3 py-2.5 rounded-lg bg-[#3b82f6]/8 border border-[#3b82f6]/20">
-          <AlertTriangle className="w-3.5 h-3.5 text-[#3b82f6] flex-shrink-0 mt-0.5" />
+        <div className="flex items-start gap-2 px-3 py-2.5 rounded-lg bg-[#64A8E0]/8 border border-[#64A8E0]/20">
+          <AlertTriangle className="w-3.5 h-3.5 text-[#64A8E0] flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-xs text-[#3b82f6] font-medium">A little more detail goes a long way</p>
-            <p className="text-[11px] text-text-secondary mt-0.5">Your description is pretty short — could you add a few more words about what happened, or attach a screenshot? It really helps our team track down the issue. If you'd rather submit as-is, just hit submit again.</p>
+            <p className="text-xs text-[#64A8E0] font-medium">A little more detail goes a long way</p>
+            <p className="text-[11px] text-[#ADA599] mt-0.5">Your description is pretty short — could you add a few more words about what happened, or attach a screenshot? It really helps our team track down the issue. If you'd rather submit as-is, just hit submit again.</p>
           </div>
         </div>
       )}
 
       {/* Page URL */}
       <div>
-        <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-          <ExternalLink className="w-3.5 h-3.5 text-text-secondary" />
+        <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+          <ExternalLink className="w-3.5 h-3.5 text-[#ADA599]" />
           Page URL
-          <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+          <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
         </label>
         <input
           type="text"
           value={pageUrl}
           onChange={(e) => setPageUrl(e.target.value)}
           placeholder="Paste the link to the page where you're seeing this issue"
-          className="w-full bg-white border border-surface-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder-[#484F58] outline-none focus:border-[#d97706]/50 transition-colors"
+          className="w-full bg-[#1C1B1A] border border-[#38332B] rounded-lg px-3 py-2 text-xs text-[#F0EDE8] placeholder-[#484F58] outline-none focus:border-[#D4A03A]/50 transition-colors"
         />
       </div>
 
       {/* Affected user & time */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-            <User className="w-3.5 h-3.5 text-text-secondary" />
+          <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+            <User className="w-3.5 h-3.5 text-[#ADA599]" />
             Affected user
-            <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+            <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
           </label>
           <input
             type="text"
             value={affectedUser}
             onChange={(e) => setAffectedUser(e.target.value)}
             placeholder="e.g. jane@dispensary.com"
-            className="w-full bg-white border border-surface-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder-[#484F58] outline-none focus:border-[#d97706]/50 transition-colors"
+            className="w-full bg-[#1C1B1A] border border-[#38332B] rounded-lg px-3 py-2 text-xs text-[#F0EDE8] placeholder-[#484F58] outline-none focus:border-[#D4A03A]/50 transition-colors"
           />
         </div>
         <div>
-          <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-            <Clock className="w-3.5 h-3.5 text-text-secondary" />
+          <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+            <Clock className="w-3.5 h-3.5 text-[#ADA599]" />
             When did it happen?
-            <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+            <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
           </label>
           <input
             type="text"
             value={occurredAt}
             onChange={(e) => setOccurredAt(e.target.value)}
             placeholder="e.g. Today at 2:30 PM, yesterday morning"
-            className="w-full bg-white border border-surface-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder-[#484F58] outline-none focus:border-[#d97706]/50 transition-colors"
+            className="w-full bg-[#1C1B1A] border border-[#38332B] rounded-lg px-3 py-2 text-xs text-[#F0EDE8] placeholder-[#484F58] outline-none focus:border-[#D4A03A]/50 transition-colors"
           />
         </div>
       </div>
 
       {/* Order / Register number */}
       <div>
-        <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-          <Hash className="w-3.5 h-3.5 text-text-secondary" />
+        <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+          <Hash className="w-3.5 h-3.5 text-[#ADA599]" />
           Order # or Register #
-          <span className="text-[10px] text-text-muted font-normal ml-1">(if applicable)</span>
+          <span className="text-[10px] text-[#6B6359] font-normal ml-1">(if applicable)</span>
         </label>
         <input
           type="text"
           value={orderOrRegister}
           onChange={(e) => setOrderOrRegister(e.target.value)}
           placeholder="e.g. ORD-12345 or Register 3"
-          className="w-full bg-white border border-surface-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder-[#484F58] outline-none focus:border-[#d97706]/50 transition-colors"
+          className="w-full bg-[#1C1B1A] border border-[#38332B] rounded-lg px-3 py-2 text-xs text-[#F0EDE8] placeholder-[#484F58] outline-none focus:border-[#D4A03A]/50 transition-colors"
         />
       </div>
 
       {/* Steps to reproduce */}
       <div>
-        <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-          <FileText className="w-3.5 h-3.5 text-text-secondary" />
+        <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+          <FileText className="w-3.5 h-3.5 text-[#ADA599]" />
           Steps to reproduce
-          <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+          <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
         </label>
         <textarea
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
           placeholder="1. Go to the Orders page&#10;2. Click on a specific order&#10;3. The page shows a blank screen"
           rows={3}
-          className="w-full bg-white border border-surface-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder-[#484F58] outline-none focus:border-[#d97706]/50 transition-colors resize-none"
+          className="w-full bg-[#1C1B1A] border border-[#38332B] rounded-lg px-3 py-2 text-xs text-[#F0EDE8] placeholder-[#484F58] outline-none focus:border-[#D4A03A]/50 transition-colors resize-none"
         />
       </div>
 
       {/* Browser / Device */}
       <div>
-        <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-          <Monitor className="w-3.5 h-3.5 text-text-secondary" />
+        <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+          <Monitor className="w-3.5 h-3.5 text-[#ADA599]" />
           Browser / Device
-          <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+          <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
         </label>
         <input
           type="text"
           value={browser}
           onChange={(e) => setBrowser(e.target.value)}
           placeholder="e.g. Chrome on MacBook, Safari on iPad"
-          className="w-full bg-white border border-surface-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder-[#484F58] outline-none focus:border-[#d97706]/50 transition-colors"
+          className="w-full bg-[#1C1B1A] border border-[#38332B] rounded-lg px-3 py-2 text-xs text-[#F0EDE8] placeholder-[#484F58] outline-none focus:border-[#D4A03A]/50 transition-colors"
         />
       </div>
 
       {/* Screenshot upload */}
       <div>
-        <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-          <Image className="w-3.5 h-3.5 text-text-secondary" />
+        <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+          <Image className="w-3.5 h-3.5 text-[#ADA599]" />
           Screenshot
-          <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+          <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
         </label>
         {screenshotPreview ? (
           <div className="relative inline-block">
-            <img src={screenshotPreview} alt="Screenshot" className="max-h-32 rounded-lg border border-surface-border" />
+            <img src={screenshotPreview} alt="Screenshot" className="max-h-32 rounded-lg border border-[#38332B]" />
             <button
               onClick={removeScreenshot}
-              className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#ef4444] text-white flex items-center justify-center hover:bg-[#DA3633] transition-colors"
+              className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#E87068] text-white flex items-center justify-center hover:bg-[#DA3633] transition-colors"
             >
               <X className="w-3 h-3" />
             </button>
@@ -861,7 +861,7 @@ export function BugDetailGatherer({ userMessage, onSubmit }) {
         ) : (
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 px-3 py-2 bg-white border border-dashed border-surface-border rounded-lg text-xs text-text-secondary hover:border-[#d97706]/40 hover:text-[#d97706] transition-colors"
+            className="flex items-center gap-2 px-3 py-2 bg-[#1C1B1A] border border-dashed border-[#38332B] rounded-lg text-xs text-[#ADA599] hover:border-[#D4A03A]/40 hover:text-[#D4A03A] transition-colors"
           >
             <Upload className="w-3.5 h-3.5" />
             Upload a screenshot
@@ -878,9 +878,9 @@ export function BugDetailGatherer({ userMessage, onSubmit }) {
 
       {/* Info nudge */}
       {!hasDetails && !nudgeShown && (
-        <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[#d97706]/5 border border-[#d97706]/10">
-          <Info className="w-3.5 h-3.5 text-[#d97706] flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-[#d97706]/80">Adding steps to reproduce or a screenshot can cut resolution time by up to 50%.</p>
+        <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[#D4A03A]/5 border border-[#D4A03A]/10">
+          <Info className="w-3.5 h-3.5 text-[#D4A03A] flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-[#D4A03A]/80">Adding steps to reproduce or a screenshot can cut resolution time by up to 50%.</p>
         </div>
       )}
 
@@ -888,7 +888,7 @@ export function BugDetailGatherer({ userMessage, onSubmit }) {
       <div className="flex items-center gap-2 pt-1">
         <button
           onClick={() => handleSubmit({ steps: steps.trim(), browser: browser.trim(), screenshot: screenshot?.name || null, screenshotData: screenshotPreview || null })}
-          className="flex items-center gap-2 px-4 py-2 bg-[#d97706] text-[#0D1117] text-xs font-semibold rounded-lg hover:bg-[#E3A830] transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-[#D4A03A] text-[#0D1117] text-xs font-semibold rounded-lg hover:bg-[#E3A830] transition-colors"
         >
           <Send className="w-3.5 h-3.5" />
           {hasDetails ? 'Submit with Details' : nudgeShown ? 'Submit Anyway' : 'Submit Bug Report'}
@@ -896,7 +896,7 @@ export function BugDetailGatherer({ userMessage, onSubmit }) {
         {!hasDetails && !nudgeShown && (
           <button
             onClick={() => handleSubmit(null)}
-            className="px-4 py-2 text-xs text-text-secondary hover:text-text-primary transition-colors"
+            className="px-4 py-2 text-xs text-[#ADA599] hover:text-[#F0EDE8] transition-colors"
           >
             Skip — submit without details
           </button>
@@ -924,15 +924,15 @@ function FeatureHelpCard({ userMessage, kbResults, onRequestForm }) {
           ))}
         </>
       )}
-      <div className="bg-surface-bg rounded-xl border border-[#8b5cf6]/20 p-4">
+      <div className="bg-[#141210] rounded-xl border border-[#B598E8]/20 p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Factory className="w-4 h-4 text-[#8b5cf6]" />
-            <p className="text-xs text-text-primary">{kbResults.length > 0 ? "Didn't find what you need?" : "We'd love to hear your idea."}</p>
+            <Factory className="w-4 h-4 text-[#B598E8]" />
+            <p className="text-xs text-[#F0EDE8]">{kbResults.length > 0 ? "Didn't find what you need?" : "We'd love to hear your idea."}</p>
           </div>
           <button
             onClick={onRequestForm}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#8b5cf6]/15 text-[#8b5cf6] text-xs font-medium rounded-lg hover:bg-[#8b5cf6]/25 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#B598E8]/15 text-[#B598E8] text-xs font-medium rounded-lg hover:bg-[#B598E8]/25 transition-colors"
           >
             <Lightbulb className="w-3.5 h-3.5" />
             Submit a Feature Request
@@ -972,51 +972,51 @@ function FeatureDetailGatherer({ userMessage, onSubmit }) {
 
   const priorities = [
     { value: 'nice-to-have', label: 'Nice to Have', color: '#8B949E' },
-    { value: 'important', label: 'Important', color: '#d97706' },
-    { value: 'critical', label: 'Critical — Blocking Workflow', color: '#ef4444' },
+    { value: 'important', label: 'Important', color: '#D4A03A' },
+    { value: 'critical', label: 'Critical — Blocking Workflow', color: '#E87068' },
   ];
 
   const hasDetails = useCase.trim() || priority || screenshot;
 
   return (
-    <div className="bg-surface-bg rounded-xl border border-[#8b5cf6]/20 p-5 space-y-4">
+    <div className="bg-[#141210] rounded-xl border border-[#B598E8]/20 p-5 space-y-4">
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-xl bg-[#8b5cf6]/10 flex items-center justify-center flex-shrink-0">
-          <Lightbulb className="w-5 h-5 text-[#8b5cf6]" />
+        <div className="w-10 h-10 rounded-xl bg-[#B598E8]/10 flex items-center justify-center flex-shrink-0">
+          <Lightbulb className="w-5 h-5 text-[#B598E8]" />
         </div>
         <div>
-          <h3 className="text-sm font-semibold text-text-primary">Submit a Product Feature Request</h3>
-          <p className="text-xs text-text-secondary mt-0.5">Tell us more so our product team can prioritize this properly. You can also submit as-is.</p>
+          <h3 className="text-sm font-semibold text-[#F0EDE8]">Submit a Product Feature Request</h3>
+          <p className="text-xs text-[#ADA599] mt-0.5">Tell us more so our product team can prioritize this properly. You can also submit as-is.</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg p-3 border border-surface-border">
-        <p className="text-[10px] text-text-muted mb-1 uppercase tracking-wider font-medium">Your Idea</p>
-        <p className="text-xs text-text-primary">"{userMessage}"</p>
+      <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
+        <p className="text-[10px] text-[#6B6359] mb-1 uppercase tracking-wider font-medium">Your Idea</p>
+        <p className="text-xs text-[#F0EDE8]">"{userMessage}"</p>
       </div>
 
       {/* Use case / business impact */}
       <div>
-        <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-          <FileText className="w-3.5 h-3.5 text-text-secondary" />
+        <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+          <FileText className="w-3.5 h-3.5 text-[#ADA599]" />
           Use case / business impact
-          <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+          <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
         </label>
         <textarea
           value={useCase}
           onChange={(e) => setUseCase(e.target.value)}
           placeholder="e.g. Our budtenders spend 10 min per shift manually updating menu boards. An auto-sync feature would save us ~2 hours/week across 4 locations."
           rows={3}
-          className="w-full bg-white border border-surface-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder-[#484F58] outline-none focus:border-[#8b5cf6]/50 transition-colors resize-none"
+          className="w-full bg-[#1C1B1A] border border-[#38332B] rounded-lg px-3 py-2 text-xs text-[#F0EDE8] placeholder-[#484F58] outline-none focus:border-[#B598E8]/50 transition-colors resize-none"
         />
       </div>
 
       {/* Priority */}
       <div>
-        <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-          <Tag className="w-3.5 h-3.5 text-text-secondary" />
+        <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+          <Tag className="w-3.5 h-3.5 text-[#ADA599]" />
           Priority
-          <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+          <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
         </label>
         <div className="flex gap-2">
           {priorities.map(p => (
@@ -1026,7 +1026,7 @@ function FeatureDetailGatherer({ userMessage, onSubmit }) {
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
                 priority === p.value
                   ? 'border-current bg-current/10'
-                  : 'border-surface-border bg-white text-text-secondary hover:border-gray-300'
+                  : 'border-[#38332B] bg-[#1C1B1A] text-[#ADA599] hover:border-[#38332B]'
               }`}
               style={priority === p.value ? { color: p.color, borderColor: p.color, backgroundColor: `${p.color}15` } : {}}
             >
@@ -1039,17 +1039,17 @@ function FeatureDetailGatherer({ userMessage, onSubmit }) {
 
       {/* Screenshot / mockup upload */}
       <div>
-        <label className="flex items-center gap-1.5 text-xs font-medium text-text-primary mb-1.5">
-          <Image className="w-3.5 h-3.5 text-text-secondary" />
+        <label className="flex items-center gap-1.5 text-xs font-medium text-[#F0EDE8] mb-1.5">
+          <Image className="w-3.5 h-3.5 text-[#ADA599]" />
           Screenshot or mockup
-          <span className="text-[10px] text-text-muted font-normal ml-1">(optional)</span>
+          <span className="text-[10px] text-[#6B6359] font-normal ml-1">(optional)</span>
         </label>
         {screenshotPreview ? (
           <div className="relative inline-block">
-            <img src={screenshotPreview} alt="Attachment" className="max-h-32 rounded-lg border border-surface-border" />
+            <img src={screenshotPreview} alt="Attachment" className="max-h-32 rounded-lg border border-[#38332B]" />
             <button
               onClick={removeScreenshot}
-              className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#ef4444] text-white flex items-center justify-center hover:bg-[#DA3633] transition-colors"
+              className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#E87068] text-white flex items-center justify-center hover:bg-[#DA3633] transition-colors"
             >
               <X className="w-3 h-3" />
             </button>
@@ -1057,7 +1057,7 @@ function FeatureDetailGatherer({ userMessage, onSubmit }) {
         ) : (
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 px-3 py-2 bg-white border border-dashed border-surface-border rounded-lg text-xs text-text-secondary hover:border-[#8b5cf6]/40 hover:text-[#8b5cf6] transition-colors"
+            className="flex items-center gap-2 px-3 py-2 bg-[#1C1B1A] border border-dashed border-[#38332B] rounded-lg text-xs text-[#ADA599] hover:border-[#B598E8]/40 hover:text-[#B598E8] transition-colors"
           >
             <Upload className="w-3.5 h-3.5" />
             Upload a screenshot or mockup
@@ -1076,7 +1076,7 @@ function FeatureDetailGatherer({ userMessage, onSubmit }) {
       <div className="flex items-center gap-2 pt-1">
         <button
           onClick={() => onSubmit({ useCase: useCase.trim(), priority, screenshot: screenshot?.name || null, screenshotData: screenshotPreview || null })}
-          className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] text-white text-xs font-semibold rounded-lg hover:bg-[#B386FA] transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-[#B598E8] text-white text-xs font-semibold rounded-lg hover:bg-[#B386FA] transition-colors"
         >
           <Send className="w-3.5 h-3.5" />
           {hasDetails ? 'Submit with Details' : 'Submit Feature Request'}
@@ -1084,7 +1084,7 @@ function FeatureDetailGatherer({ userMessage, onSubmit }) {
         {!hasDetails && (
           <button
             onClick={() => onSubmit(null)}
-            className="px-4 py-2 text-xs text-text-secondary hover:text-text-primary transition-colors"
+            className="px-4 py-2 text-xs text-[#ADA599] hover:text-[#F0EDE8] transition-colors"
           >
             Skip — submit without details
           </button>
@@ -1108,27 +1108,27 @@ function FeatureRequestCard({ userMessage, ticketId }) {
   }, []);
 
   return (
-    <div className="bg-surface-bg rounded-xl border border-purple-500/20 p-5">
+    <div className="bg-[#141210] rounded-xl border border-purple-500/20 p-5">
       <div className="flex items-start gap-3 mb-4">
-        <div className="w-10 h-10 rounded-xl bg-[#8b5cf6]/10 flex items-center justify-center flex-shrink-0">
-          <Factory className="w-5 h-5 text-[#8b5cf6]" />
+        <div className="w-10 h-10 rounded-xl bg-[#B598E8]/10 flex items-center justify-center flex-shrink-0">
+          <Factory className="w-5 h-5 text-[#B598E8]" />
         </div>
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-sm font-semibold text-text-primary">Feature Request Submitted</h3>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#8b5cf6]/15 text-[#8b5cf6] font-medium">{ticketId}</span>
+            <h3 className="text-sm font-semibold text-[#F0EDE8]">Feature Request Submitted</h3>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#B598E8]/15 text-[#B598E8] font-medium">{ticketId}</span>
           </div>
-          <p className="text-xs text-text-secondary">Sent to the Software Factory for triage</p>
+          <p className="text-xs text-[#ADA599]">Sent to the Software Factory for triage</p>
         </div>
       </div>
       <div className="space-y-3">
-        <div className="bg-white rounded-lg p-3 border border-surface-border">
-          <p className="text-[10px] text-text-muted mb-1 uppercase tracking-wider font-medium">Feature Request</p>
-          <p className="text-xs text-text-primary">"{userMessage}"</p>
+        <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
+          <p className="text-[10px] text-[#6B6359] mb-1 uppercase tracking-wider font-medium">Feature Request</p>
+          <p className="text-xs text-[#F0EDE8]">"{userMessage}"</p>
         </div>
         {/* Sprint pipeline */}
-        <div className="bg-white rounded-lg p-4 border border-surface-border">
-          <p className="text-[10px] text-text-muted mb-3 uppercase tracking-wider font-medium">Development Pipeline</p>
+        <div className="bg-[#1C1B1A] rounded-lg p-4 border border-[#38332B]">
+          <p className="text-[10px] text-[#6B6359] mb-3 uppercase tracking-wider font-medium">Development Pipeline</p>
           <div className="flex items-center gap-2">
             {[
               { key: 'queued', label: 'Queued', icon: Clock },
@@ -1140,10 +1140,10 @@ function FeatureRequestCard({ userMessage, ticketId }) {
               const StepIcon = step.icon;
               return (
                 <React.Fragment key={step.key}>
-                  {i > 0 && <div className={`flex-1 h-0.5 rounded ${isDone || isActive ? 'bg-[#8b5cf6]' : 'bg-gray-200'}`} />}
+                  {i > 0 && <div className={`flex-1 h-0.5 rounded ${isDone || isActive ? 'bg-[#B598E8]' : 'bg-[#38332B]'}`} />}
                   <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all ${
-                    isActive ? 'bg-[#8b5cf6]/15 text-[#8b5cf6] ring-1 ring-[#8b5cf6]/30' :
-                    isDone ? 'bg-[#00a35e]/10 text-[#00a35e]' : 'bg-white/5 text-text-muted'
+                    isActive ? 'bg-[#B598E8]/15 text-[#B598E8] ring-1 ring-[#B598E8]/30' :
+                    isDone ? 'bg-[#00C27C]/10 text-[#00C27C]' : 'bg-[#1C1B1A]/5 text-[#6B6359]'
                   }`}>
                     <StepIcon className="w-3 h-3" />
                     {step.label}
@@ -1154,9 +1154,9 @@ function FeatureRequestCard({ userMessage, ticketId }) {
           </div>
         </div>
         {sprintState === 'accepted' && (
-          <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[#00a35e]/5 border border-[#00a35e]/10 animate-fade-in">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#00a35e] flex-shrink-0 mt-0.5" />
-            <p className="text-xs text-[#00a35e]">Your feature request has been accepted into the next sprint planning cycle. A product manager will follow up with scoping details.</p>
+          <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[#00C27C]/5 border border-[#00C27C]/10 animate-fade-in">
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#00C27C] flex-shrink-0 mt-0.5" />
+            <p className="text-xs text-[#00C27C]">Your feature request has been accepted into the next sprint planning cycle. A product manager will follow up with scoping details.</p>
           </div>
         )}
       </div>
@@ -1173,32 +1173,32 @@ function ProductCatalogPanel({ products, onToggle, isOpen, onClose }) {
   const availableProducts = Object.entries(products).filter(([, p]) => !p.active && p.upsell);
 
   return (
-    <div className={`fixed top-0 right-0 h-full w-80 bg-surface-bg border-l border-surface-border z-40 transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col shadow-2xl`}>
-      <div className="flex items-center justify-between px-5 py-4 border-b border-surface-border">
+    <div className={`fixed top-0 right-0 h-full w-80 bg-[#141210] border-l border-[#38332B] z-40 transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col shadow-2xl`}>
+      <div className="flex items-center justify-between px-5 py-4 border-b border-[#38332B]">
         <div className="flex items-center gap-2">
           <Layers className="w-4 h-4 text-[#0EA5E9]" />
-          <h2 className="text-sm font-semibold text-text-primary">Product Suite</h2>
+          <h2 className="text-sm font-semibold text-[#F0EDE8]">Product Suite</h2>
         </div>
-        <button onClick={onClose} className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-white/5 transition-colors">
+        <button onClick={onClose} className="p-1.5 rounded-lg text-[#ADA599] hover:text-[#F0EDE8] hover:bg-[#1C1B1A]/5 transition-colors">
           <X className="w-4 h-4" />
         </button>
       </div>
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* active */}
         <div>
-          <p className="text-[10px] font-semibold text-text-secondary uppercase tracking-wider mb-2 px-1">Active Products ({activeProducts.length})</p>
+          <p className="text-[10px] font-semibold text-[#ADA599] uppercase tracking-wider mb-2 px-1">Active Products ({activeProducts.length})</p>
           <div className="space-y-1.5">
             {activeProducts.map(([key, prod]) => {
               const Icon = prod.icon;
               return (
-                <div key={key} className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white border border-surface-border">
+                <div key={key} className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#1C1B1A] border border-[#38332B]">
                   <Icon className="w-4 h-4 flex-shrink-0" style={{ color: prod.color }} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-text-primary truncate">{prod.name}</p>
-                    <p className="text-[10px] text-text-muted">{prod.description}</p>
+                    <p className="text-xs font-medium text-[#F0EDE8] truncate">{prod.name}</p>
+                    <p className="text-[10px] text-[#6B6359]">{prod.description}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-[10px] text-[#00a35e] font-medium">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#00a35e]" />
+                  <div className="flex items-center gap-1 text-[10px] text-[#00C27C] font-medium">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00C27C]" />
                     Active
                   </div>
                 </div>
@@ -1208,16 +1208,16 @@ function ProductCatalogPanel({ products, onToggle, isOpen, onClose }) {
         </div>
         {/* available upgrades */}
         <div>
-          <p className="text-[10px] font-semibold text-text-secondary uppercase tracking-wider mb-2 px-1">Available Upgrades ({availableProducts.length})</p>
+          <p className="text-[10px] font-semibold text-[#ADA599] uppercase tracking-wider mb-2 px-1">Available Upgrades ({availableProducts.length})</p>
           <div className="space-y-1.5">
             {availableProducts.map(([key, prod]) => {
               const Icon = prod.icon;
               return (
-                <div key={key} className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white border border-surface-border hover:border-gray-300 transition-colors">
+                <div key={key} className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#1C1B1A] border border-[#38332B] hover:border-[#38332B] transition-colors">
                   <Icon className="w-4 h-4 flex-shrink-0" style={{ color: prod.color + '80' }} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-text-secondary truncate">{prod.name}</p>
-                    <p className="text-[10px] text-text-muted">{prod.monthlyFee}</p>
+                    <p className="text-xs font-medium text-[#ADA599] truncate">{prod.name}</p>
+                    <p className="text-[10px] text-[#6B6359]">{prod.monthlyFee}</p>
                   </div>
                   <button
                     onClick={() => onToggle(key)}
@@ -1233,14 +1233,14 @@ function ProductCatalogPanel({ products, onToggle, isOpen, onClose }) {
         </div>
       </div>
       {/* footer */}
-      <div className="p-4 border-t border-surface-border">
-        <div className="bg-white rounded-lg p-3 border border-surface-border">
+      <div className="p-4 border-t border-[#38332B]">
+        <div className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
           <div className="flex items-center gap-2 mb-1">
-            <Shield className="w-3.5 h-3.5 text-[#00a35e]" />
-            <span className="text-[10px] text-[#00a35e] font-medium">Ascend — Enterprise Tier</span>
+            <Shield className="w-3.5 h-3.5 text-[#00C27C]" />
+            <span className="text-[10px] text-[#00C27C] font-medium">Ascend — Enterprise Tier</span>
           </div>
-          <p className="text-[10px] text-text-muted">Account Manager: Jessica Chen</p>
-          <p className="text-[10px] text-text-muted">Next renewal: Sep 14, 2026</p>
+          <p className="text-[10px] text-[#6B6359]">Account Manager: Jessica Chen</p>
+          <p className="text-[10px] text-[#6B6359]">Next renewal: Sep 14, 2026</p>
         </div>
       </div>
     </div>
@@ -1380,20 +1380,20 @@ function ReviewFeed({ data }) {
   const [showAll, setShowAll] = useState(false);
   const visible = showAll ? data.reviews : data.reviews.slice(0, 5);
 
-  const scoreColor = (s) => s >= 0.2 ? '#00a35e' : s >= -0.2 ? '#d97706' : '#ef4444';
-  const sentBg = (s) => s === 'positive' ? 'bg-[#00a35e]/10 text-[#00a35e]' : s === 'neutral' ? 'bg-[#d97706]/10 text-[#d97706]' : 'bg-[#ef4444]/10 text-[#ef4444]';
+  const scoreColor = (s) => s >= 0.2 ? '#00C27C' : s >= -0.2 ? '#D4A03A' : '#E87068';
+  const sentBg = (s) => s === 'positive' ? 'bg-[#00C27C]/10 text-[#00C27C]' : s === 'neutral' ? 'bg-[#D4A03A]/10 text-[#D4A03A]' : 'bg-[#E87068]/10 text-[#E87068]';
 
   return (
-    <div className="bg-surface-bg rounded-xl border border-surface-border overflow-hidden">
+    <div className="bg-[#141210] rounded-xl border border-[#38332B] overflow-hidden">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-surface-border flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-[#38332B] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#8b5cf6]/20 to-[#0EA5E9]/20 flex items-center justify-center">
-            <MessageSquare className="w-4.5 h-4.5 text-[#8b5cf6]" />
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#B598E8]/20 to-[#0EA5E9]/20 flex items-center justify-center">
+            <MessageSquare className="w-4.5 h-4.5 text-[#B598E8]" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-text-primary">Customer Reviews</h3>
-            <p className="text-[10px] text-text-muted">{data.totalMatching} matching · {data.filterDesc} · sorted by {data.sort}</p>
+            <h3 className="text-sm font-semibold text-[#F0EDE8]">Customer Reviews</h3>
+            <p className="text-[10px] text-[#6B6359]">{data.totalMatching} matching · {data.filterDesc} · sorted by {data.sort}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -1404,18 +1404,18 @@ function ReviewFeed({ data }) {
       </div>
 
       {/* Quick stats bar */}
-      <div className="flex items-center gap-4 px-5 py-2.5 border-b border-surface-border bg-white/50">
-        <span className="text-[10px] text-[#00a35e]">{data.dist.positive} positive</span>
-        <span className="text-[10px] text-[#d97706]">{data.dist.neutral} neutral</span>
-        <span className="text-[10px] text-[#ef4444]">{data.dist.negative} negative</span>
-        <span className="text-[10px] text-text-muted ml-auto">{data.totalMatching} total</span>
+      <div className="flex items-center gap-4 px-5 py-2.5 border-b border-[#38332B] bg-[#1C1B1A]/50">
+        <span className="text-[10px] text-[#00C27C]">{data.dist.positive} positive</span>
+        <span className="text-[10px] text-[#D4A03A]">{data.dist.neutral} neutral</span>
+        <span className="text-[10px] text-[#E87068]">{data.dist.negative} negative</span>
+        <span className="text-[10px] text-[#6B6359] ml-auto">{data.totalMatching} total</span>
       </div>
 
       {/* Reviews */}
       <div className="divide-y divide-[#30363D]">
         {visible.length === 0 && (
           <div className="px-5 py-8 text-center">
-            <p className="text-sm text-text-secondary">No reviews match those filters.</p>
+            <p className="text-sm text-[#ADA599]">No reviews match those filters.</p>
           </div>
         )}
         {visible.map(r => (
@@ -1424,7 +1424,7 @@ function ReviewFeed({ data }) {
       </div>
 
       {/* Show more / footer */}
-      <div className="px-5 py-3 border-t border-surface-border flex items-center justify-between">
+      <div className="px-5 py-3 border-t border-[#38332B] flex items-center justify-between">
         {data.reviews.length > 5 && (
           <button
             onClick={() => setShowAll(!showAll)}
@@ -1433,7 +1433,7 @@ function ReviewFeed({ data }) {
             {showAll ? <><ChevronUp className="w-3 h-3" /> Show fewer</> : <><ChevronDown className="w-3 h-3" /> Show all {data.reviews.length} reviews</>}
           </button>
         )}
-        <p className="text-[10px] text-text-muted ml-auto">Data from Dutchie AI</p>
+        <p className="text-[10px] text-[#6B6359] ml-auto">Data from Dutchie AI</p>
       </div>
     </div>
   );
@@ -1445,24 +1445,24 @@ function ReviewCard({ review: r, scoreColor, sentBg }) {
   const displayText = isLong && !expanded ? r.text.slice(0, 180) + '...' : r.text;
 
   return (
-    <div className="px-5 py-3 hover:bg-white/40 transition-colors">
+    <div className="px-5 py-3 hover:bg-[#1C1B1A]/40 transition-colors">
       {/* Top row — source, date, score */}
       <div className="flex items-center gap-2 mb-1.5">
         <span className="text-xs">{SOURCE_ICONS[r.source] || '📝'}</span>
-        <span className="text-[10px] font-medium text-text-primary">{r.source}</span>
+        <span className="text-[10px] font-medium text-[#F0EDE8]">{r.source}</span>
         {r.rating && (
-          <span className="text-[10px] text-[#d97706]">
+          <span className="text-[10px] text-[#D4A03A]">
             {'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}
           </span>
         )}
-        <span className="text-[10px] text-text-muted">·</span>
-        <span className="text-[10px] text-text-muted">{r.location}</span>
-        <span className="text-[10px] text-text-muted ml-auto">{new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+        <span className="text-[10px] text-[#6B6359]">·</span>
+        <span className="text-[10px] text-[#6B6359]">{r.location}</span>
+        <span className="text-[10px] text-[#6B6359] ml-auto">{new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
       </div>
 
       {/* Review text */}
-      <p className="text-xs text-text-primary leading-relaxed mb-2">
-        {r.title && <span className="font-semibold text-text-primary">{r.title} — </span>}
+      <p className="text-xs text-[#F0EDE8] leading-relaxed mb-2">
+        {r.title && <span className="font-semibold text-[#F0EDE8]">{r.title} — </span>}
         &ldquo;{displayText}&rdquo;
         {isLong && (
           <button onClick={() => setExpanded(!expanded)} className="text-[#0EA5E9] ml-1 hover:underline">
@@ -1477,13 +1477,13 @@ function ReviewCard({ review: r, scoreColor, sentBg }) {
           {r.sentiment === 'positive' ? '↑' : r.sentiment === 'negative' ? '↓' : '→'} {r.sentimentScore.toFixed(2)}
         </span>
         {r.brand && (
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#8b5cf6]/10 text-[#8b5cf6]">{r.brand}</span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#B598E8]/10 text-[#B598E8]">{r.brand}</span>
         )}
         {r.categories.slice(0, 2).map(cat => (
-          <span key={cat} className="text-[10px] px-1.5 py-0.5 rounded bg-gray-200 text-text-secondary">{cat}</span>
+          <span key={cat} className="text-[10px] px-1.5 py-0.5 rounded bg-[#38332B] text-[#ADA599]">{cat}</span>
         ))}
-        <span className="text-[10px] text-text-muted ml-auto">by {r.author}</span>
-        {r.helpful > 0 && <span className="text-[10px] text-text-muted">· {r.helpful} helpful</span>}
+        <span className="text-[10px] text-[#6B6359] ml-auto">by {r.author}</span>
+        {r.helpful > 0 && <span className="text-[10px] text-[#6B6359]">· {r.helpful} helpful</span>}
       </div>
     </div>
   );
@@ -1598,7 +1598,7 @@ function buildSentimentData(query) {
   };
 }
 
-const SENTIMENT_COLORS = { positive: '#00a35e', neutral: '#d97706', negative: '#ef4444' };
+const SENTIMENT_COLORS = { positive: '#00C27C', neutral: '#D4A03A', negative: '#E87068' };
 
 function SentimentSnippet({ data }) {
   const [expanded, setExpanded] = useState(false);
@@ -1606,8 +1606,8 @@ function SentimentSnippet({ data }) {
   const CustomTooltip = ({ active, payload, label }) => {
     if (!active || !payload?.length) return null;
     return (
-      <div className="bg-surface-hover border border-surface-border rounded-lg px-3 py-2 text-xs shadow-xl">
-        <p className="text-text-secondary mb-1 font-medium">{label}</p>
+      <div className="bg-[#282724] border border-[#38332B] rounded-lg px-3 py-2 text-xs shadow-xl">
+        <p className="text-[#ADA599] mb-1 font-medium">{label}</p>
         {payload.map((p, i) => (
           <p key={i} style={{ color: p.color || p.fill }} className="font-mono">{p.name}: {typeof p.value === 'number' && p.value < 10 ? p.value.toFixed(2) : p.value}</p>
         ))}
@@ -1616,8 +1616,8 @@ function SentimentSnippet({ data }) {
   };
 
   // Gauge color based on score
-  const gaugeColor = data.normalizedScore >= 65 ? '#00a35e' : data.normalizedScore >= 40 ? '#d97706' : '#ef4444';
-  const npsColor = data.nps >= 30 ? '#00a35e' : data.nps >= 0 ? '#d97706' : '#ef4444';
+  const gaugeColor = data.normalizedScore >= 65 ? '#00C27C' : data.normalizedScore >= 40 ? '#D4A03A' : '#E87068';
+  const npsColor = data.nps >= 30 ? '#00C27C' : data.nps >= 0 ? '#D4A03A' : '#E87068';
 
   // Donut data
   const donutData = [
@@ -1627,16 +1627,16 @@ function SentimentSnippet({ data }) {
   ];
 
   return (
-    <div className="bg-surface-bg rounded-xl border border-surface-border overflow-hidden">
+    <div className="bg-[#141210] rounded-xl border border-[#38332B] overflow-hidden">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-surface-border flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-[#38332B] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#00a35e]/20 to-[#0EA5E9]/20 flex items-center justify-center">
-            <Star className="w-4.5 h-4.5 text-[#00a35e]" />
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#00C27C]/20 to-[#0EA5E9]/20 flex items-center justify-center">
+            <Star className="w-4.5 h-4.5 text-[#00C27C]" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-text-primary">Sentiment</h3>
-            <p className="text-[10px] text-text-muted">{data.total} reviews · {data.filterLabel} · Ascend</p>
+            <h3 className="text-sm font-semibold text-[#F0EDE8]">Sentiment</h3>
+            <p className="text-[10px] text-[#6B6359]">{data.total} reviews · {data.filterLabel} · Ascend</p>
           </div>
         </div>
         <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ backgroundColor: `${gaugeColor}15`, color: gaugeColor }}>
@@ -1645,26 +1645,26 @@ function SentimentSnippet({ data }) {
       </div>
 
       {/* KPI row */}
-      <div className="grid grid-cols-4 divide-x divide-[#30363D] border-b border-surface-border">
+      <div className="grid grid-cols-4 divide-x divide-[#30363D] border-b border-[#38332B]">
         {[
           { label: 'Avg Score', value: data.avg.toFixed(2), sub: `${data.normalizedScore}/100`, color: gaugeColor },
           { label: 'NPS', value: data.nps > 0 ? `+${data.nps}` : `${data.nps}`, sub: data.nps >= 30 ? 'Great' : data.nps >= 0 ? 'OK' : 'Needs Work', color: npsColor },
-          { label: 'Positive', value: `${Math.round((data.dist.positive / data.total) * 100)}%`, sub: `${data.dist.positive} reviews`, color: '#00a35e' },
-          { label: 'Negative', value: `${Math.round((data.dist.negative / data.total) * 100)}%`, sub: `${data.dist.negative} reviews`, color: '#ef4444' },
+          { label: 'Positive', value: `${Math.round((data.dist.positive / data.total) * 100)}%`, sub: `${data.dist.positive} reviews`, color: '#00C27C' },
+          { label: 'Negative', value: `${Math.round((data.dist.negative / data.total) * 100)}%`, sub: `${data.dist.negative} reviews`, color: '#E87068' },
         ].map(kpi => (
           <div key={kpi.label} className="px-4 py-3 text-center">
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-1">{kpi.label}</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-1">{kpi.label}</p>
             <p className="text-base font-bold font-mono" style={{ color: kpi.color }}>{kpi.value}</p>
-            <p className="text-[10px] text-text-muted">{kpi.sub}</p>
+            <p className="text-[10px] text-[#6B6359]">{kpi.sub}</p>
           </div>
         ))}
       </div>
 
       {/* Donut + Category breakdown side by side */}
-      <div className="grid grid-cols-2 divide-x divide-[#30363D] border-b border-surface-border">
+      <div className="grid grid-cols-2 divide-x divide-[#30363D] border-b border-[#38332B]">
         {/* Donut */}
         <div className="px-4 py-3">
-          <p className="text-[10px] text-text-muted uppercase tracking-wider mb-1 font-medium">Distribution</p>
+          <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-1 font-medium">Distribution</p>
           <div style={{ width: '100%', height: 140 }}>
             <ResponsiveContainer>
               <PieChart>
@@ -1679,7 +1679,7 @@ function SentimentSnippet({ data }) {
             {donutData.map(d => (
               <div key={d.name} className="flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: d.color }} />
-                <span className="text-[10px] text-text-secondary">{d.name} ({d.value})</span>
+                <span className="text-[10px] text-[#ADA599]">{d.name} ({d.value})</span>
               </div>
             ))}
           </div>
@@ -1687,7 +1687,7 @@ function SentimentSnippet({ data }) {
 
         {/* Top categories */}
         <div className="px-4 py-3">
-          <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium">By Category</p>
+          <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium">By Category</p>
           <div className="space-y-1.5">
             {data.catSentiment.map(cat => {
               const catTotal = cat.positive + cat.neutral + cat.negative;
@@ -1697,13 +1697,13 @@ function SentimentSnippet({ data }) {
               return (
                 <div key={cat.category}>
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className="text-[10px] text-text-primary truncate">{cat.category}</span>
-                    <span className="text-[10px] font-mono text-text-secondary ml-2">{cat.avg.toFixed(2)}</span>
+                    <span className="text-[10px] text-[#F0EDE8] truncate">{cat.category}</span>
+                    <span className="text-[10px] font-mono text-[#ADA599] ml-2">{cat.avg.toFixed(2)}</span>
                   </div>
-                  <div className="flex h-2 rounded-full overflow-hidden bg-white">
-                    <div style={{ width: `${posPct}%`, backgroundColor: '#00a35e' }} />
-                    <div style={{ width: `${neuPct}%`, backgroundColor: '#d97706' }} />
-                    <div style={{ width: `${negPct}%`, backgroundColor: '#ef4444' }} />
+                  <div className="flex h-2 rounded-full overflow-hidden bg-[#1C1B1A]">
+                    <div style={{ width: `${posPct}%`, backgroundColor: '#00C27C' }} />
+                    <div style={{ width: `${neuPct}%`, backgroundColor: '#D4A03A' }} />
+                    <div style={{ width: `${negPct}%`, backgroundColor: '#E87068' }} />
                   </div>
                 </div>
               );
@@ -1713,22 +1713,22 @@ function SentimentSnippet({ data }) {
       </div>
 
       {/* Trend chart */}
-      <div className="px-5 pt-3 pb-2 border-b border-surface-border">
-        <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium">Sentiment Trend — 12 Months</p>
+      <div className="px-5 pt-3 pb-2 border-b border-[#38332B]">
+        <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium">Sentiment Trend — 12 Months</p>
         <div style={{ width: '100%', height: 130 }}>
           <ResponsiveContainer>
             <AreaChart data={data.trend} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
               <defs>
                 <linearGradient id="sentGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#00a35e" stopOpacity={0.3} />
-                  <stop offset="100%" stopColor="#00a35e" stopOpacity={0} />
+                  <stop offset="0%" stopColor="#00C27C" stopOpacity={0.3} />
+                  <stop offset="100%" stopColor="#00C27C" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
               <XAxis dataKey="month" tick={{ fill: '#484F58', fontSize: 9 }} axisLine={false} tickLine={false} tickFormatter={v => v.split(' ')[0]} />
               <YAxis domain={[-1, 1]} tick={{ fill: '#484F58', fontSize: 9 }} axisLine={false} tickLine={false} />
               <Tooltip content={<CustomTooltip />} />
-              <Area type="monotone" dataKey="avg" name="Avg Score" stroke="#00a35e" strokeWidth={2} fill="url(#sentGrad)" />
+              <Area type="monotone" dataKey="avg" name="Avg Score" stroke="#00C27C" strokeWidth={2} fill="url(#sentGrad)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -1739,21 +1739,21 @@ function SentimentSnippet({ data }) {
         {/* Sources */}
         {(data.focus === 'overview' || data.focus === 'sources') && (
           <div className={data.focus === 'overview' && !expanded ? '' : ''}>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium">By Source</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium">By Source</p>
             <div className="grid grid-cols-2 gap-2">
               {data.sourceStats.map(src => {
-                const srcColor = src.avg >= 0.15 ? '#00a35e' : src.avg >= -0.15 ? '#d97706' : '#ef4444';
+                const srcColor = src.avg >= 0.15 ? '#00C27C' : src.avg >= -0.15 ? '#D4A03A' : '#E87068';
                 return (
-                  <div key={src.name} className="bg-white rounded-lg p-2.5 border border-surface-border">
+                  <div key={src.name} className="bg-[#1C1B1A] rounded-lg p-2.5 border border-[#38332B]">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-medium text-text-primary">{src.name}</span>
+                      <span className="text-xs font-medium text-[#F0EDE8]">{src.name}</span>
                       <span className="text-[10px] font-mono font-semibold" style={{ color: srcColor }}>{src.avg.toFixed(2)}</span>
                     </div>
-                    <p className="text-[10px] text-text-muted">{src.count} reviews</p>
+                    <p className="text-[10px] text-[#6B6359]">{src.count} reviews</p>
                     <div className="flex gap-2 mt-1 text-[10px]">
-                      <span className="text-[#00a35e]">{src.positive}↑</span>
-                      <span className="text-[#d97706]">{src.neutral}→</span>
-                      <span className="text-[#ef4444]">{src.negative}↓</span>
+                      <span className="text-[#00C27C]">{src.positive}↑</span>
+                      <span className="text-[#D4A03A]">{src.neutral}→</span>
+                      <span className="text-[#E87068]">{src.negative}↓</span>
                     </div>
                   </div>
                 );
@@ -1765,28 +1765,28 @@ function SentimentSnippet({ data }) {
         {/* Brands */}
         {(data.focus === 'brands') && (
           <div>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium">Brand Sentiment</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium">Brand Sentiment</p>
             <div className="space-y-1.5">
               {data.brandStats.map(brand => {
-                const brandColor = brand.normalized >= 65 ? '#00a35e' : brand.normalized >= 40 ? '#d97706' : '#ef4444';
+                const brandColor = brand.normalized >= 65 ? '#00C27C' : brand.normalized >= 40 ? '#D4A03A' : '#E87068';
                 return (
-                  <div key={brand.name} className="flex items-center gap-3 bg-white rounded-lg px-3 py-2 border border-surface-border">
+                  <div key={brand.name} className="flex items-center gap-3 bg-[#1C1B1A] rounded-lg px-3 py-2 border border-[#38332B]">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <p className="text-xs font-medium text-text-primary">{brand.name}</p>
+                        <p className="text-xs font-medium text-[#F0EDE8]">{brand.name}</p>
                         <span className="text-[10px] px-1.5 py-0.5 rounded font-semibold" style={{ backgroundColor: `${brandColor}15`, color: brandColor }}>{brand.normalized}/100</span>
                       </div>
-                      <p className="text-[10px] text-text-muted">{brand.count} reviews</p>
+                      <p className="text-[10px] text-[#6B6359]">{brand.count} reviews</p>
                     </div>
                     <div className="flex gap-2 text-[10px]">
-                      <span className="text-[#00a35e]">{brand.positive}↑</span>
-                      <span className="text-[#d97706]">{brand.neutral}→</span>
-                      <span className="text-[#ef4444]">{brand.negative}↓</span>
+                      <span className="text-[#00C27C]">{brand.positive}↑</span>
+                      <span className="text-[#D4A03A]">{brand.neutral}→</span>
+                      <span className="text-[#E87068]">{brand.negative}↓</span>
                     </div>
-                    <div className="w-16 h-2 rounded-full overflow-hidden bg-gray-100 flex">
-                      <div style={{ width: `${Math.round((brand.positive / brand.count) * 100)}%`, backgroundColor: '#00a35e' }} />
-                      <div style={{ width: `${Math.round((brand.neutral / brand.count) * 100)}%`, backgroundColor: '#d97706' }} />
-                      <div style={{ width: `${Math.round((brand.negative / brand.count) * 100)}%`, backgroundColor: '#ef4444' }} />
+                    <div className="w-16 h-2 rounded-full overflow-hidden bg-[#282724] flex">
+                      <div style={{ width: `${Math.round((brand.positive / brand.count) * 100)}%`, backgroundColor: '#00C27C' }} />
+                      <div style={{ width: `${Math.round((brand.neutral / brand.count) * 100)}%`, backgroundColor: '#D4A03A' }} />
+                      <div style={{ width: `${Math.round((brand.negative / brand.count) * 100)}%`, backgroundColor: '#E87068' }} />
                     </div>
                   </div>
                 );
@@ -1798,26 +1798,26 @@ function SentimentSnippet({ data }) {
         {/* Negative deep dive */}
         {data.focus === 'negative' && (
           <div>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium">Worst-Rated Areas</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium">Worst-Rated Areas</p>
             <div className="space-y-1.5 mb-3">
               {data.categoryRanked.slice(0, 3).map(cat => (
-                <div key={cat.category} className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 border border-[#ef4444]/15">
-                  <AlertTriangle className="w-3.5 h-3.5 text-[#ef4444] flex-shrink-0" />
+                <div key={cat.category} className="flex items-center gap-2 bg-[#1C1B1A] rounded-lg px-3 py-2 border border-[#E87068]/15">
+                  <AlertTriangle className="w-3.5 h-3.5 text-[#E87068] flex-shrink-0" />
                   <div className="flex-1">
-                    <p className="text-xs font-medium text-text-primary">{cat.category}</p>
-                    <p className="text-[10px] text-text-muted">Avg: {cat.avg.toFixed(2)} · {cat.negative} negative of {cat.positive + cat.neutral + cat.negative}</p>
+                    <p className="text-xs font-medium text-[#F0EDE8]">{cat.category}</p>
+                    <p className="text-[10px] text-[#6B6359]">Avg: {cat.avg.toFixed(2)} · {cat.negative} negative of {cat.positive + cat.neutral + cat.negative}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium">Most Critical Reviews</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium">Most Critical Reviews</p>
             {data.negativeReviews.map(r => (
-              <div key={r.id} className="bg-white rounded-lg p-3 border border-surface-border mb-1.5">
+              <div key={r.id} className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B] mb-1.5">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#ef4444]/10 text-[#ef4444] font-semibold">{r.sentimentScore.toFixed(2)}</span>
-                  <span className="text-[10px] text-text-muted">{r.source} · {r.location}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#E87068]/10 text-[#E87068] font-semibold">{r.sentimentScore.toFixed(2)}</span>
+                  <span className="text-[10px] text-[#6B6359]">{r.source} · {r.location}</span>
                 </div>
-                <p className="text-xs text-text-primary leading-relaxed">&ldquo;{r.text.slice(0, 150)}{r.text.length > 150 ? '...' : ''}&rdquo;</p>
+                <p className="text-xs text-[#F0EDE8] leading-relaxed">&ldquo;{r.text.slice(0, 150)}{r.text.length > 150 ? '...' : ''}&rdquo;</p>
               </div>
             ))}
           </div>
@@ -1826,19 +1826,19 @@ function SentimentSnippet({ data }) {
         {/* Word cloud */}
         {data.focus === 'words' && (
           <div>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-3 font-medium">Top Mentions</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-3 font-medium">Top Mentions</p>
             <div className="flex flex-wrap gap-1.5">
               {data.topWords.map((w, i) => {
                 const size = Math.max(11, Math.min(18, 11 + (w.value / data.topWords[0].value) * 7));
-                const colors = ['#0EA5E9', '#00a35e', '#8b5cf6', '#d97706', '#EC4899', '#ef4444'];
+                const colors = ['#0EA5E9', '#00C27C', '#B598E8', '#D4A03A', '#EC4899', '#E87068'];
                 return (
                   <span
                     key={w.text}
-                    className="px-2 py-1 rounded-lg bg-white border border-surface-border font-medium transition-transform hover:scale-105 cursor-default"
+                    className="px-2 py-1 rounded-lg bg-[#1C1B1A] border border-[#38332B] font-medium transition-transform hover:scale-105 cursor-default"
                     style={{ fontSize: `${size}px`, color: colors[i % colors.length] }}
                     title={`${w.value} mentions`}
                   >
-                    {w.text} <span className="text-[9px] text-text-muted">{w.value}</span>
+                    {w.text} <span className="text-[9px] text-[#6B6359]">{w.value}</span>
                   </span>
                 );
               })}
@@ -1859,18 +1859,18 @@ function SentimentSnippet({ data }) {
         {data.focus === 'overview' && expanded && (
           <div className="mt-3 space-y-3">
             <div>
-              <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium">Brand Sentiment</p>
+              <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium">Brand Sentiment</p>
               <div className="space-y-1.5">
                 {data.brandStats.map(brand => {
-                  const brandColor = brand.normalized >= 65 ? '#00a35e' : brand.normalized >= 40 ? '#d97706' : '#ef4444';
+                  const brandColor = brand.normalized >= 65 ? '#00C27C' : brand.normalized >= 40 ? '#D4A03A' : '#E87068';
                   return (
-                    <div key={brand.name} className="flex items-center gap-3 bg-white rounded-lg px-3 py-2 border border-surface-border">
-                      <p className="text-xs font-medium text-text-primary flex-1">{brand.name}</p>
+                    <div key={brand.name} className="flex items-center gap-3 bg-[#1C1B1A] rounded-lg px-3 py-2 border border-[#38332B]">
+                      <p className="text-xs font-medium text-[#F0EDE8] flex-1">{brand.name}</p>
                       <span className="text-[10px] font-mono" style={{ color: brandColor }}>{brand.normalized}/100</span>
-                      <div className="w-16 h-2 rounded-full overflow-hidden bg-gray-100 flex">
-                        <div style={{ width: `${Math.round((brand.positive / brand.count) * 100)}%`, backgroundColor: '#00a35e' }} />
-                        <div style={{ width: `${Math.round((brand.neutral / brand.count) * 100)}%`, backgroundColor: '#d97706' }} />
-                        <div style={{ width: `${Math.round((brand.negative / brand.count) * 100)}%`, backgroundColor: '#ef4444' }} />
+                      <div className="w-16 h-2 rounded-full overflow-hidden bg-[#282724] flex">
+                        <div style={{ width: `${Math.round((brand.positive / brand.count) * 100)}%`, backgroundColor: '#00C27C' }} />
+                        <div style={{ width: `${Math.round((brand.neutral / brand.count) * 100)}%`, backgroundColor: '#D4A03A' }} />
+                        <div style={{ width: `${Math.round((brand.negative / brand.count) * 100)}%`, backgroundColor: '#E87068' }} />
                       </div>
                     </div>
                   );
@@ -1882,9 +1882,9 @@ function SentimentSnippet({ data }) {
       </div>
 
       {/* Footer */}
-      <div className="px-5 py-2.5 border-t border-surface-border flex items-center justify-between">
-        <p className="text-[10px] text-text-muted">Data from Dutchie AI · {data.total} reviews analyzed</p>
-        <div className="flex items-center gap-1 text-[10px] text-text-muted">
+      <div className="px-5 py-2.5 border-t border-[#38332B] flex items-center justify-between">
+        <p className="text-[10px] text-[#6B6359]">Data from Dutchie AI · {data.total} reviews analyzed</p>
+        <div className="flex items-center gap-1 text-[10px] text-[#6B6359]">
           <Eye className="w-3 h-3" /> Live
         </div>
       </div>
@@ -1958,8 +1958,8 @@ function generateReportData(query) {
     { name: 'Pre-Rolls', revenue: Math.round(baseRevenue * 0.28), pct: 28, color: '#9333EA' },
     { name: 'Flower', revenue: Math.round(baseRevenue * 0.24), pct: 24, color: '#16A34A' },
     { name: 'Vapes', revenue: Math.round(baseRevenue * 0.20), pct: 20, color: '#0EA5E9' },
-    { name: 'Edibles', revenue: Math.round(baseRevenue * 0.15), pct: 15, color: '#d97706' },
-    { name: 'Concentrates', revenue: Math.round(baseRevenue * 0.08), pct: 8, color: '#ef4444' },
+    { name: 'Edibles', revenue: Math.round(baseRevenue * 0.15), pct: 15, color: '#D4A03A' },
+    { name: 'Concentrates', revenue: Math.round(baseRevenue * 0.08), pct: 8, color: '#E87068' },
     { name: 'Other', revenue: Math.round(baseRevenue * 0.05), pct: 5, color: '#8B949E' },
   ];
 
@@ -2010,8 +2010,8 @@ function ReportSnippet({ data }) {
   const CustomTooltip = ({ active, payload, label }) => {
     if (!active || !payload?.length) return null;
     return (
-      <div className="bg-surface-hover border border-surface-border rounded-lg px-3 py-2 text-xs shadow-xl">
-        <p className="text-text-secondary mb-1 font-medium">{label}</p>
+      <div className="bg-[#282724] border border-[#38332B] rounded-lg px-3 py-2 text-xs shadow-xl">
+        <p className="text-[#ADA599] mb-1 font-medium">{label}</p>
         {payload.map((p, i) => (
           <p key={i} style={{ color: p.color }} className="font-mono">{p.name}: {formatCurrency(p.value)}</p>
         ))}
@@ -2020,46 +2020,46 @@ function ReportSnippet({ data }) {
   };
 
   return (
-    <div className="bg-surface-bg rounded-xl border border-surface-border overflow-hidden">
+    <div className="bg-[#141210] rounded-xl border border-[#38332B] overflow-hidden">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-surface-border flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-[#38332B] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#0EA5E9]/20 to-[#00a35e]/20 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#0EA5E9]/20 to-[#00C27C]/20 flex items-center justify-center">
             <BarChart3 className="w-4.5 h-4.5 text-[#0EA5E9]" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-text-primary">Performance Report</h3>
-            <p className="text-[10px] text-text-muted">{data.timeframeLabel} · Ascend — All Locations</p>
+            <h3 className="text-sm font-semibold text-[#F0EDE8]">Performance Report</h3>
+            <p className="text-[10px] text-[#6B6359]">{data.timeframeLabel} · Ascend — All Locations</p>
           </div>
         </div>
         <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-          isPositive ? 'bg-[#00a35e]/10 text-[#00a35e]' : 'bg-[#ef4444]/10 text-[#ef4444]'
+          isPositive ? 'bg-[#00C27C]/10 text-[#00C27C]' : 'bg-[#E87068]/10 text-[#E87068]'
         }`}>
           {isPositive ? '↑' : '↓'} {Math.abs(data.growthPct)}% vs prior
         </span>
       </div>
 
       {/* KPI row */}
-      <div className="grid grid-cols-4 divide-x divide-[#30363D] border-b border-surface-border">
+      <div className="grid grid-cols-4 divide-x divide-[#30363D] border-b border-[#38332B]">
         {[
-          { label: 'Revenue', value: formatCurrency(data.revenue), icon: DollarSign, color: '#00a35e' },
+          { label: 'Revenue', value: formatCurrency(data.revenue), icon: DollarSign, color: '#00C27C' },
           { label: 'Orders', value: data.orders.toLocaleString(), icon: ShoppingCart, color: '#0EA5E9' },
-          { label: 'Avg Order', value: `$${data.aov.toFixed(2)}`, icon: Tag, color: '#d97706' },
-          { label: 'Growth', value: `${isPositive ? '+' : ''}${data.growthPct}%`, icon: TrendingUp, color: isPositive ? '#00a35e' : '#ef4444' },
+          { label: 'Avg Order', value: `$${data.aov.toFixed(2)}`, icon: Tag, color: '#D4A03A' },
+          { label: 'Growth', value: `${isPositive ? '+' : ''}${data.growthPct}%`, icon: TrendingUp, color: isPositive ? '#00C27C' : '#E87068' },
         ].map(kpi => (
           <div key={kpi.label} className="px-4 py-3 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <kpi.icon className="w-3 h-3" style={{ color: kpi.color }} />
-              <p className="text-[10px] text-text-muted uppercase tracking-wider">{kpi.label}</p>
+              <p className="text-[10px] text-[#6B6359] uppercase tracking-wider">{kpi.label}</p>
             </div>
-            <p className="text-base font-bold text-text-primary font-mono">{kpi.value}</p>
+            <p className="text-base font-bold text-[#F0EDE8] font-mono">{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Revenue trend chart */}
       <div className="px-5 pt-4 pb-2">
-        <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium">Revenue Trend — Current vs Prior Period</p>
+        <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium">Revenue Trend — Current vs Prior Period</p>
         <div style={{ width: '100%', height: 160 }}>
           <ResponsiveContainer>
             <AreaChart data={data.trendData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
@@ -2088,16 +2088,16 @@ function ReportSnippet({ data }) {
       <div className="px-5 pb-4">
         {(data.focus === 'overview' || data.focus === 'top_products') && (
           <div>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium mt-2">Top Sellers</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium mt-2">Top Sellers</p>
             <div className="space-y-1.5">
               {data.topProducts.map((p, i) => (
-                <div key={p.name} className="flex items-center gap-3 bg-white rounded-lg px-3 py-2 border border-surface-border">
-                  <span className="text-[10px] font-bold text-text-muted w-4 text-right">{i + 1}</span>
+                <div key={p.name} className="flex items-center gap-3 bg-[#1C1B1A] rounded-lg px-3 py-2 border border-[#38332B]">
+                  <span className="text-[10px] font-bold text-[#6B6359] w-4 text-right">{i + 1}</span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-text-primary truncate">{p.name}</p>
-                    <p className="text-[10px] text-text-muted">{p.category} · {p.units} units</p>
+                    <p className="text-xs font-medium text-[#F0EDE8] truncate">{p.name}</p>
+                    <p className="text-[10px] text-[#6B6359]">{p.category} · {p.units} units</p>
                   </div>
-                  <p className="text-xs font-mono font-semibold text-[#00a35e]">{formatCurrency(p.revenue)}</p>
+                  <p className="text-xs font-mono font-semibold text-[#00C27C]">{formatCurrency(p.revenue)}</p>
                 </div>
               ))}
             </div>
@@ -2106,16 +2106,16 @@ function ReportSnippet({ data }) {
 
         {(data.focus === 'overview' || data.focus === 'categories') && (
           <div className={data.focus === 'overview' && !expanded ? 'hidden' : ''}>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium mt-3">Revenue by Category</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium mt-3">Revenue by Category</p>
             <div className="space-y-1.5">
               {data.categoryData.map(cat => (
                 <div key={cat.name} className="flex items-center gap-3">
-                  <p className="text-xs text-text-primary w-24 truncate">{cat.name}</p>
-                  <div className="flex-1 h-5 bg-white rounded-full overflow-hidden border border-surface-border">
+                  <p className="text-xs text-[#F0EDE8] w-24 truncate">{cat.name}</p>
+                  <div className="flex-1 h-5 bg-[#1C1B1A] rounded-full overflow-hidden border border-[#38332B]">
                     <div className="h-full rounded-full transition-all duration-700" style={{ width: `${cat.pct}%`, backgroundColor: cat.color, opacity: 0.7 }} />
                   </div>
-                  <p className="text-[10px] font-mono text-text-secondary w-14 text-right">{formatCurrency(cat.revenue)}</p>
-                  <p className="text-[10px] text-text-muted w-8 text-right">{cat.pct}%</p>
+                  <p className="text-[10px] font-mono text-[#ADA599] w-14 text-right">{formatCurrency(cat.revenue)}</p>
+                  <p className="text-[10px] text-[#6B6359] w-8 text-right">{cat.pct}%</p>
                 </div>
               ))}
             </div>
@@ -2124,16 +2124,16 @@ function ReportSnippet({ data }) {
 
         {data.focus === 'locations' && (
           <div>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium mt-2">By Location</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium mt-2">By Location</p>
             <div className="grid grid-cols-2 gap-2">
               {data.locationData.map(loc => (
-                <div key={loc.name} className="bg-white rounded-lg p-3 border border-surface-border">
+                <div key={loc.name} className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
                   <div className="flex items-center gap-1.5 mb-2">
                     <MapPin className="w-3 h-3 text-[#0EA5E9]" />
-                    <p className="text-xs font-medium text-text-primary">{loc.name}</p>
+                    <p className="text-xs font-medium text-[#F0EDE8]">{loc.name}</p>
                   </div>
-                  <p className="text-sm font-bold font-mono text-text-primary">{formatCurrency(loc.revenue)}</p>
-                  <p className="text-[10px] text-text-muted">{loc.orders.toLocaleString()} orders · AOV ${loc.aov.toFixed(2)}</p>
+                  <p className="text-sm font-bold font-mono text-[#F0EDE8]">{formatCurrency(loc.revenue)}</p>
+                  <p className="text-[10px] text-[#6B6359]">{loc.orders.toLocaleString()} orders · AOV ${loc.aov.toFixed(2)}</p>
                 </div>
               ))}
             </div>
@@ -2142,7 +2142,7 @@ function ReportSnippet({ data }) {
 
         {data.focus === 'market' && (
           <div>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2 font-medium mt-2">You vs Market Average</p>
+            <p className="text-[10px] text-[#6B6359] uppercase tracking-wider mb-2 font-medium mt-2">You vs Market Average</p>
             <div className="space-y-2">
               {Object.values(data.marketData).map(m => {
                 const pctDiff = (((m.yours - m.market) / m.market) * 100).toFixed(0);
@@ -2150,27 +2150,27 @@ function ReportSnippet({ data }) {
                 const yoursWidth = Math.min(100, (m.yours / Math.max(m.yours, m.market)) * 100);
                 const marketWidth = Math.min(100, (m.market / Math.max(m.yours, m.market)) * 100);
                 return (
-                  <div key={m.label} className="bg-white rounded-lg p-3 border border-surface-border">
+                  <div key={m.label} className="bg-[#1C1B1A] rounded-lg p-3 border border-[#38332B]">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-xs font-medium text-text-primary">{m.label}</p>
-                      <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${ahead ? 'bg-[#00a35e]/10 text-[#00a35e]' : 'bg-[#ef4444]/10 text-[#ef4444]'}`}>
+                      <p className="text-xs font-medium text-[#F0EDE8]">{m.label}</p>
+                      <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${ahead ? 'bg-[#00C27C]/10 text-[#00C27C]' : 'bg-[#E87068]/10 text-[#E87068]'}`}>
                         {ahead ? '+' : ''}{pctDiff}% vs market
                       </span>
                     </div>
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <span className="text-[10px] text-[#0EA5E9] w-12">You</span>
-                        <div className="flex-1 h-3 bg-surface-bg rounded-full overflow-hidden">
+                        <div className="flex-1 h-3 bg-[#141210] rounded-full overflow-hidden">
                           <div className="h-full rounded-full bg-[#0EA5E9]" style={{ width: `${yoursWidth}%` }} />
                         </div>
-                        <span className="text-[10px] font-mono text-text-primary w-12 text-right">{m.format(m.yours)}</span>
+                        <span className="text-[10px] font-mono text-[#F0EDE8] w-12 text-right">{m.format(m.yours)}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] text-text-secondary w-12">Market</span>
-                        <div className="flex-1 h-3 bg-surface-bg rounded-full overflow-hidden">
+                        <span className="text-[10px] text-[#ADA599] w-12">Market</span>
+                        <div className="flex-1 h-3 bg-[#141210] rounded-full overflow-hidden">
                           <div className="h-full rounded-full bg-[#8B949E]/50" style={{ width: `${marketWidth}%` }} />
                         </div>
-                        <span className="text-[10px] font-mono text-text-secondary w-12 text-right">{m.format(m.market)}</span>
+                        <span className="text-[10px] font-mono text-[#ADA599] w-12 text-right">{m.format(m.market)}</span>
                       </div>
                     </div>
                   </div>
@@ -2193,9 +2193,9 @@ function ReportSnippet({ data }) {
       </div>
 
       {/* Footer */}
-      <div className="px-5 py-2.5 border-t border-surface-border flex items-center justify-between">
-        <p className="text-[10px] text-text-muted">Data as of today, 10:00 AM EST · Powered by Dutchie AI</p>
-        <div className="flex items-center gap-1 text-[10px] text-text-muted">
+      <div className="px-5 py-2.5 border-t border-[#38332B] flex items-center justify-between">
+        <p className="text-[10px] text-[#6B6359]">Data as of today, 10:00 AM EST · Powered by Dutchie AI</p>
+        <div className="flex items-center gap-1 text-[10px] text-[#6B6359]">
           <Eye className="w-3 h-3" /> Live
         </div>
       </div>
@@ -2220,15 +2220,15 @@ function ThinkingIndicator({ status }) {
       <div className="w-8 h-8 rounded-full bg-[#0EA5E9]/20 flex items-center justify-center flex-shrink-0">
         <Bot className="w-4.5 h-4.5 text-[#0EA5E9]" />
       </div>
-      <div className="bg-white border border-surface-border rounded-2xl rounded-tl-sm px-4 py-3 min-w-[220px]">
+      <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-4 py-3 min-w-[220px]">
         {status ? (
           <div className="flex items-center gap-2.5">
             <div className="relative w-4 h-4 flex-shrink-0">
-              <div className="absolute inset-0 rounded-full border-2 border-surface-border" />
+              <div className="absolute inset-0 rounded-full border-2 border-[#38332B]" />
               <div className="absolute inset-0 rounded-full border-2 border-t-[#0EA5E9] animate-spin" />
             </div>
-            <span className="text-text-secondary text-sm thinking-shimmer">{status}</span>
-            {elapsed > 2 && <span className="text-text-muted text-xs ml-auto">{elapsed}s</span>}
+            <span className="text-[#ADA599] text-sm thinking-shimmer">{status}</span>
+            {elapsed > 2 && <span className="text-[#6B6359] text-xs ml-auto">{elapsed}s</span>}
           </div>
         ) : (
           <div className="flex items-center gap-1.5">
@@ -2272,7 +2272,7 @@ const SUGGESTIONS = [
     gradient: 'from-amber-600/20 to-orange-600/20',
     border: 'hover:border-amber-500/40',
     tag: 'Fintech',
-    tagColor: '#d97706',
+    tagColor: '#D4A03A',
   },
   {
     key: 'bug',
@@ -2281,7 +2281,7 @@ const SUGGESTIONS = [
     gradient: 'from-red-600/20 to-orange-600/20',
     border: 'hover:border-red-500/40',
     tag: 'Report',
-    tagColor: '#ef4444',
+    tagColor: '#E87068',
   },
   {
     key: 'campaign',
@@ -2290,7 +2290,7 @@ const SUGGESTIONS = [
     gradient: 'from-green-600/20 to-emerald-600/20',
     border: 'hover:border-green-500/40',
     tag: 'Marketing',
-    tagColor: '#00a35e',
+    tagColor: '#00C27C',
   },
   {
     key: 'inventory',
@@ -2299,7 +2299,7 @@ const SUGGESTIONS = [
     gradient: 'from-blue-600/20 to-indigo-600/20',
     border: 'hover:border-blue-500/40',
     tag: 'Connect',
-    tagColor: '#3b82f6',
+    tagColor: '#64A8E0',
   },
 ];
 
@@ -2518,7 +2518,7 @@ export default function CustomerBridge({ compact = false }) {
               { name: 'STIIIZY OG Kush Pod', type: 'Original · 1g', strain: 'OG Kush', thc: '89%', price: '$45.00', category: 'Vape Pod', badgeColor: '#1a1a1a', badgeText: 'BEST SELLER', image: '/brands/stiiizy-pods.png' },
               { name: 'STIIIZY Blue Dream Pod', type: 'Original · 1g', strain: 'Blue Dream', thc: '86%', price: '$45.00', category: 'Vape Pod', badgeColor: '#2563EB', badgeText: 'POPULAR' },
               { name: 'STIIIZY Strawnana Pod', type: 'Live Resin · 1g', strain: 'Strawnana', thc: '82%', price: '$55.00', category: 'Live Resin Pod', badgeColor: '#16A34A', badgeText: 'PREMIUM' },
-              { name: 'STIIIZY Starter Kit', type: 'Device + Pod', strain: 'Biscotti', thc: '87%', price: '$60.00', category: 'Starter Kit', badgeColor: '#d97706', badgeText: 'BUNDLE' },
+              { name: 'STIIIZY Starter Kit', type: 'Device + Pod', strain: 'Biscotti', thc: '87%', price: '$60.00', category: 'Starter Kit', badgeColor: '#D4A03A', badgeText: 'BUNDLE' },
             ],
             kiva: [
               { name: 'Kiva Camino Pineapple Habanero', type: 'Uplifting · 20pk', strain: 'Sativa Blend', thc: '100mg', price: '$22.00', category: 'Edible', badgeColor: '#EA580C', badgeText: 'BEST SELLER', image: '/brands/kiva-camino.jpg' },
@@ -2529,13 +2529,13 @@ export default function CustomerBridge({ compact = false }) {
             cookies: [
               { name: 'Cookies Gary Payton', type: 'Flower · 3.5g', strain: 'Gary Payton', thc: '28%', price: '$55.00', category: 'Flower', badgeColor: '#2196F3', badgeText: 'TOP SHELF', image: '/brands/cookies-gary-payton.png' },
               { name: 'Cookies Cereal Milk', type: 'Flower · 3.5g', strain: 'Cereal Milk', thc: '26%', price: '$55.00', category: 'Flower', badgeColor: '#2196F3', badgeText: 'POPULAR' },
-              { name: 'Cookies Pancakes', type: 'Flower · 3.5g', strain: 'Pancakes', thc: '30%', price: '$58.00', category: 'Flower', badgeColor: '#d97706', badgeText: 'NEW' },
+              { name: 'Cookies Pancakes', type: 'Flower · 3.5g', strain: 'Pancakes', thc: '30%', price: '$58.00', category: 'Flower', badgeColor: '#D4A03A', badgeText: 'NEW' },
               { name: 'Cookies Collins Ave', type: 'Pre-Roll · 1g', strain: 'Collins Ave', thc: '25%', price: '$18.00', category: 'Pre-Roll', badgeColor: '#16A34A', badgeText: 'STAFF PICK' },
             ],
             'raw garden': [
               { name: 'Raw Garden Slippery Susan', type: 'Live Resin Cart · 1g', strain: 'Slippery Susan', thc: '84%', price: '$40.00', category: 'Vape Cartridge', badgeColor: '#4CAF50', badgeText: 'BEST SELLER', image: '/brands/raw-garden-cart.webp' },
               { name: 'Raw Garden Dojo Kush', type: 'Live Resin Cart · 1g', strain: 'Dojo Kush', thc: '82%', price: '$40.00', category: 'Vape Cartridge', badgeColor: '#4CAF50', badgeText: 'POPULAR' },
-              { name: 'Raw Garden Lemon Haze', type: 'Refined Live Resin · 1g', strain: 'Lemon Haze', thc: '86%', price: '$45.00', category: 'Concentrate', badgeColor: '#d97706', badgeText: 'PREMIUM' },
+              { name: 'Raw Garden Lemon Haze', type: 'Refined Live Resin · 1g', strain: 'Lemon Haze', thc: '86%', price: '$45.00', category: 'Concentrate', badgeColor: '#D4A03A', badgeText: 'PREMIUM' },
               { name: 'Raw Garden Beach Party', type: 'Ready-to-Use · 0.5g', strain: 'Beach Party', thc: '80%', price: '$30.00', category: 'Disposable Vape', badgeColor: '#0EA5E9', badgeText: 'NEW' },
             ],
             'alien labs': [
@@ -2547,7 +2547,7 @@ export default function CustomerBridge({ compact = false }) {
             plus: [
               { name: 'PLUS Sour Watermelon', type: 'Gummies · 20pk', strain: 'Sativa Blend', thc: '100mg', price: '$20.00', category: 'Edible', badgeColor: '#FF6B35', badgeText: 'BEST SELLER', image: '/brands/plus-gummies.jpg' },
               { name: 'PLUS Blackberry Lemon', type: 'Gummies · 20pk', strain: 'Indica Blend', thc: '100mg', price: '$20.00', category: 'Edible', badgeColor: '#7C3AED', badgeText: 'POPULAR' },
-              { name: 'PLUS Uplift Citrus', type: 'Dual Chamber · 10pk', strain: 'THC + CBD', thc: '50mg THC + 50mg CBD', price: '$24.00', category: 'Edible', badgeColor: '#d97706', badgeText: 'NEW FORMAT' },
+              { name: 'PLUS Uplift Citrus', type: 'Dual Chamber · 10pk', strain: 'THC + CBD', thc: '50mg THC + 50mg CBD', price: '$24.00', category: 'Edible', badgeColor: '#D4A03A', badgeText: 'NEW FORMAT' },
               { name: 'PLUS Sleep Cloudberry', type: 'Gummies · 20pk', strain: 'CBN Blend', thc: '80mg THC + 40mg CBN', price: '$22.00', category: 'Edible', badgeColor: '#6366F1', badgeText: 'SLEEP' },
             ],
           };
@@ -2556,7 +2556,7 @@ export default function CustomerBridge({ compact = false }) {
           const CATEGORY_PRODUCTS = {
             flower: [
               { name: 'Top Shelf Indica', type: 'Flower · 3.5g', thc: '28%', price: '$48.00', category: 'Flower', badgeColor: '#4CAF50', badgeText: 'POPULAR' },
-              { name: 'Premium Sativa', type: 'Flower · 3.5g', thc: '26%', price: '$45.00', category: 'Flower', badgeColor: '#d97706', badgeText: 'STAFF PICK' },
+              { name: 'Premium Sativa', type: 'Flower · 3.5g', thc: '26%', price: '$45.00', category: 'Flower', badgeColor: '#D4A03A', badgeText: 'STAFF PICK' },
               { name: 'House Hybrid', type: 'Flower · 3.5g', thc: '24%', price: '$38.00', category: 'Flower', badgeColor: '#0EA5E9', badgeText: 'VALUE' },
             ],
             edible: [
@@ -2572,10 +2572,10 @@ export default function CustomerBridge({ compact = false }) {
             'pre-roll': [
               { name: 'Infused Pre-Roll', type: '1g · Hybrid', thc: '35%', price: '$15.00', category: 'Pre-Roll', badgeColor: '#EA580C', badgeText: 'POPULAR' },
               { name: 'Classic Joint 3-Pack', type: '3x 0.5g · Sativa', thc: '22%', price: '$18.00', category: 'Pre-Roll', badgeColor: '#16A34A', badgeText: 'VALUE' },
-              { name: 'Diamond Infused', type: '1g · Indica', thc: '42%', price: '$22.00', category: 'Pre-Roll', badgeColor: '#d97706', badgeText: 'PREMIUM' },
+              { name: 'Diamond Infused', type: '1g · Indica', thc: '42%', price: '$22.00', category: 'Pre-Roll', badgeColor: '#D4A03A', badgeText: 'PREMIUM' },
             ],
             concentrate: [
-              { name: 'Live Resin Badder', type: '1g · Hybrid', thc: '78%', price: '$38.00', category: 'Concentrate', badgeColor: '#d97706', badgeText: 'POPULAR' },
+              { name: 'Live Resin Badder', type: '1g · Hybrid', thc: '78%', price: '$38.00', category: 'Concentrate', badgeColor: '#D4A03A', badgeText: 'POPULAR' },
               { name: 'Rosin Press', type: '1g · Indica', thc: '72%', price: '$55.00', category: 'Concentrate', badgeColor: '#9333EA', badgeText: 'PREMIUM' },
               { name: 'Shatter', type: '1g · Sativa', thc: '82%', price: '$32.00', category: 'Concentrate', badgeColor: '#0EA5E9', badgeText: 'VALUE' },
             ],
@@ -2884,7 +2884,7 @@ export default function CustomerBridge({ compact = false }) {
   const COMPACT_SUGGESTIONS = [
     { key: 'ecomm_customize', label: 'Help me customize my ecomm look and feel', icon: Eye, gradient: 'from-cyan-600/20 to-blue-600/20', border: 'hover:border-cyan-500/40', tag: 'Support', tagColor: '#0EA5E9' },
     { key: 'menu_boards', label: 'Add Menu Boards to my Account', icon: Monitor, gradient: 'from-pink-600/20 to-rose-600/20', border: 'hover:border-pink-500/40', tag: 'Upgrade', tagColor: '#EC4899' },
-    { key: 'winback', label: 'Set up a marketing win back campaign', icon: Megaphone, gradient: 'from-green-600/20 to-emerald-600/20', border: 'hover:border-green-500/40', tag: 'Marketing', tagColor: '#00a35e' },
+    { key: 'winback', label: 'Set up a marketing win back campaign', icon: Megaphone, gradient: 'from-green-600/20 to-emerald-600/20', border: 'hover:border-green-500/40', tag: 'Marketing', tagColor: '#00C27C' },
   ];
   const compactSuggestions = compact ? COMPACT_SUGGESTIONS : SUGGESTIONS;
 
@@ -2896,8 +2896,8 @@ export default function CustomerBridge({ compact = false }) {
           <MessageSquare className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-white`} />
         </div>
         <div>
-          <h1 className={`${compact ? 'text-base' : 'text-xl'} font-bold text-text-primary`}>{compact ? 'Dutchie Agent' : 'Customer Bridge'}</h1>
-          <p className="text-xs text-text-secondary">{compact ? 'Ask anything, execute any action' : 'AI-Driven B2B Support & Product Command Center'}</p>
+          <h1 className={`${compact ? 'text-base' : 'text-xl'} font-bold text-[#F0EDE8]`}>{compact ? 'Dutchie Agent' : 'Customer Bridge'}</h1>
+          <p className="text-xs text-[#ADA599]">{compact ? 'Ask anything, execute any action' : 'AI-Driven B2B Support & Product Command Center'}</p>
         </div>
         <div className="ml-auto flex items-center gap-2">
           {compact ? (
@@ -2913,7 +2913,7 @@ export default function CustomerBridge({ compact = false }) {
               {/* product suite toggle */}
               <button
                 onClick={() => setCatalogOpen(!catalogOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-surface-border hover:border-gray-300 transition-colors text-xs text-text-secondary hover:text-text-primary"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1C1B1A] border border-[#38332B] hover:border-[#38332B] transition-colors text-xs text-[#ADA599] hover:text-[#F0EDE8]"
               >
                 <Layers className="w-3.5 h-3.5 text-[#0EA5E9]" />
                 <span className="font-medium">{activeCount}/{totalCount} Products</span>
@@ -2936,26 +2936,26 @@ export default function CustomerBridge({ compact = false }) {
           <div className="w-8 h-8 rounded-full bg-[#0EA5E9]/20 flex items-center justify-center flex-shrink-0">
             <Bot className="w-4.5 h-4.5 text-[#0EA5E9]" />
           </div>
-          <div className="bg-white border border-surface-border rounded-2xl rounded-tl-sm px-5 py-4 max-w-2xl">
-            <p className="text-sm text-text-primary leading-relaxed">
+          <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-5 py-4 max-w-2xl">
+            <p className="text-sm text-[#F0EDE8] leading-relaxed">
               Welcome to Customer Bridge, your AI-powered business command center. I can help you with:
             </p>
             <div className="grid grid-cols-2 gap-2 mt-3">
               {[
                 { icon: BookOpen, label: 'Product Support & FAQ', color: '#0EA5E9' },
-                { icon: Bug, label: 'Report Issues & Bugs', color: '#ef4444' },
+                { icon: Bug, label: 'Report Issues & Bugs', color: '#E87068' },
                 { icon: Rocket, label: 'Discover Product Upgrades', color: '#EC4899' },
-                { icon: Factory, label: 'Request New Features', color: '#8b5cf6' },
-                { icon: Megaphone, label: 'Run Marketing Campaigns', color: '#00a35e' },
-                { icon: ShoppingCart, label: 'Purchasing & Inventory', color: '#3b82f6' },
+                { icon: Factory, label: 'Request New Features', color: '#B598E8' },
+                { icon: Megaphone, label: 'Run Marketing Campaigns', color: '#00C27C' },
+                { icon: ShoppingCart, label: 'Purchasing & Inventory', color: '#64A8E0' },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-muted border border-surface-border/50">
+                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#1E1D1B] border border-[#38332B]/50">
                   <item.icon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: item.color }} />
-                  <span className="text-xs text-text-secondary">{item.label}</span>
+                  <span className="text-xs text-[#ADA599]">{item.label}</span>
                 </div>
               ))}
             </div>
-            <p className="text-sm text-text-secondary mt-3 leading-relaxed">
+            <p className="text-sm text-[#ADA599] mt-3 leading-relaxed">
               Ask me anything, or pick a scenario below to get started.
             </p>
           </div>
@@ -2974,7 +2974,7 @@ export default function CustomerBridge({ compact = false }) {
               <div className={`rounded-2xl px-5 py-3 text-sm leading-relaxed whitespace-pre-line ${
                 msg.role === 'user'
                   ? 'bg-[#0EA5E9] text-white rounded-tr-sm'
-                  : 'bg-white border border-surface-border text-text-primary rounded-tl-sm'
+                  : 'bg-[#1C1B1A] border border-[#38332B] text-[#F0EDE8] rounded-tl-sm'
               }`}>
                 {msg.text}
               </div>
@@ -3126,21 +3126,21 @@ export default function CustomerBridge({ compact = false }) {
         {/* suggestion bubbles — show when no messages or after result */}
         {messages.length === 0 && thinkingStatus === null && (
           <div className="pt-2 animate-fade-in">
-            <p className={`text-xs text-text-secondary mb-3 ${compact ? '' : 'ml-11'}`}>{compact ? 'Try asking:' : 'Try one of these scenarios'}</p>
+            <p className={`text-xs text-[#ADA599] mb-3 ${compact ? '' : 'ml-11'}`}>{compact ? 'Try asking:' : 'Try one of these scenarios'}</p>
             <div className={`grid gap-3 ${compact ? 'grid-cols-1 gap-2' : 'grid-cols-1 sm:grid-cols-2 ml-11'}`}>
               {compactSuggestions.map((s) => (
                 <button
                   key={s.key}
                   onClick={() => handleSuggestionClick(s.key)}
-                  className={`group text-left bg-white border border-surface-border ${s.border} rounded-xl ${compact ? 'p-3' : 'p-4'} transition-all hover:scale-[1.02] active:scale-[0.98]`}
+                  className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl ${compact ? 'p-3' : 'p-4'} transition-all hover:scale-[1.02] active:scale-[0.98]`}
                 >
                   <div className="flex items-center gap-2 mb-1.5">
                     <div className={`${compact ? 'w-6 h-6' : 'w-8 h-8'} rounded-lg bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>
-                      <s.icon className={`${compact ? 'w-3 h-3' : 'w-4 h-4'} text-text-primary`} />
+                      <s.icon className={`${compact ? 'w-3 h-3' : 'w-4 h-4'} text-[#F0EDE8]`} />
                     </div>
                     <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full border border-white/10" style={{ color: s.tagColor }}>{s.tag}</span>
                   </div>
-                  <p className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-text-primary`}>"{s.label}"</p>
+                  <p className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-[#F0EDE8]`}>"{s.label}"</p>
                   {!compact && (
                     <div className="flex items-center gap-1 mt-2 text-xs text-[#0EA5E9] opacity-0 group-hover:opacity-100 transition-opacity">
                       <Zap className="w-3 h-3" /> Ask <ChevronRight className="w-3 h-3" />
@@ -3157,14 +3157,14 @@ export default function CustomerBridge({ compact = false }) {
 
       {/* input bar */}
       <form onSubmit={handleSubmit} className="sticky bottom-0 pb-2">
-        <div className={`flex items-center gap-3 bg-white border border-surface-border rounded-2xl ${compact ? 'px-3 py-2' : 'px-4 py-3'} focus-within:border-[#0EA5E9]/50 transition-colors`}>
-          <Search className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-text-secondary flex-shrink-0`} />
+        <div className={`flex items-center gap-3 bg-[#1C1B1A] border border-[#38332B] rounded-2xl ${compact ? 'px-3 py-2' : 'px-4 py-3'} focus-within:border-[#0EA5E9]/50 transition-colors`}>
+          <Search className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-[#ADA599] flex-shrink-0`} />
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={compact ? 'Ask anything...' : 'Ask about your products, report an issue, or explore upgrades...'}
-            className={`flex-1 bg-transparent ${compact ? 'text-xs' : 'text-sm'} text-text-primary placeholder-[#484F58] outline-none`}
+            className={`flex-1 bg-transparent ${compact ? 'text-xs' : 'text-sm'} text-[#F0EDE8] placeholder-[#484F58] outline-none`}
             disabled={thinkingStatus !== null}
           />
           <button
@@ -3177,19 +3177,19 @@ export default function CustomerBridge({ compact = false }) {
         </div>
         {!compact && (
           <div className="flex items-center justify-between mt-2 px-1">
-            <p className="text-[10px] text-text-muted">
+            <p className="text-[10px] text-[#6B6359]">
               Customer Bridge uses intelligent intent recognition and 55+ knowledge articles to answer your questions.
             </p>
-            <div className="flex items-center gap-1 text-[10px] text-text-muted flex-wrap">
+            <div className="flex items-center gap-1 text-[10px] text-[#6B6359] flex-wrap">
               <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#0EA5E9]" /> Support</span>
-              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#ef4444]" /> Bug</span>
+              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#E87068]" /> Bug</span>
               <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#EC4899]" /> Upsell</span>
-              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]" /> Factory</span>
-              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#00a35e]" /> Marketing</span>
-              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" /> Connect</span>
+              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#B598E8]" /> Factory</span>
+              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#00C27C]" /> Marketing</span>
+              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#64A8E0]" /> Connect</span>
               <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#0EA5E9]" /> Reporting</span>
-              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#00a35e]" /> Sentiment</span>
-              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]" /> Reviews</span>
+              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#00C27C]" /> Sentiment</span>
+              <span className="flex items-center gap-1 ml-2"><span className="w-1.5 h-1.5 rounded-full bg-[#B598E8]" /> Reviews</span>
             </div>
           </div>
         )}

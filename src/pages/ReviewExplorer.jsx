@@ -25,7 +25,7 @@ const SENTIMENT_OPTIONS = ['positive', 'neutral', 'negative'];
 const SOURCE_COLORS = {
   Reddit: '#FF4500',
   'Google Reviews': '#4285F4',
-  Leafly: '#00a35e',
+  Leafly: '#00C27C',
   Weedmaps: '#F59E0B',
 };
 
@@ -38,8 +38,8 @@ function ToggleChip({ label, active, onClick, color }) {
       onClick={onClick}
       className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
         active
-          ? 'bg-[#00a35e] text-white border-[#00a35e] shadow-sm'
-          : 'bg-white text-text-secondary border-surface-border hover:border-gray-300 hover:bg-surface-hover'
+          ? 'bg-[#00C27C] text-white border-[#00C27C] shadow-sm'
+          : 'bg-[#1C1B1A] text-[#ADA599] border-[#38332B] hover:border-[#38332B] hover:bg-[#282724]'
       }`}
       style={active && color ? { backgroundColor: color, borderColor: color } : {}}
     >
@@ -50,9 +50,9 @@ function ToggleChip({ label, active, onClick, color }) {
 
 function ActiveFilterTag({ label, onRemove }) {
   return (
-    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-white text-text-secondary border border-surface-border">
+    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-[#1C1B1A] text-[#ADA599] border border-[#38332B]">
       {label}
-      <button onClick={onRemove} className="hover:text-[#ef4444] transition-colors ml-0.5">
+      <button onClick={onRemove} className="hover:text-[#E87068] transition-colors ml-0.5">
         <X className="w-3 h-3" />
       </button>
     </span>
@@ -66,9 +66,9 @@ function SourcePieTooltip({ active, payload }) {
   if (!active || !payload || !payload.length) return null;
   const { name, value } = payload[0];
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-surface-border p-2.5 text-sm">
-      <p className="font-medium text-text-primary">{name}</p>
-      <p className="text-text-secondary">{value} reviews</p>
+    <div className="bg-[#1C1B1A] rounded-lg shadow-lg border border-[#38332B] p-2.5 text-sm">
+      <p className="font-medium text-[#F0EDE8]">{name}</p>
+      <p className="text-[#ADA599]">{value} reviews</p>
     </div>
   );
 }
@@ -206,26 +206,26 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
       {/* ─── Header ─── */}
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div>
-          <h2 className="text-2xl font-bold text-text-primary flex items-center gap-2">
-            <MessageCircle className="w-6 h-6 text-[#00a35e]" />
+          <h2 className="text-2xl font-bold text-[#F0EDE8] flex items-center gap-2">
+            <MessageCircle className="w-6 h-6 text-[#00C27C]" />
             Review Explorer
           </h2>
-          <p className="text-text-secondary mt-1">
+          <p className="text-[#ADA599] mt-1">
             {reviews.length.toLocaleString()} total reviews available
           </p>
         </div>
       </div>
 
       {/* ─── Filter Bar ─── */}
-      <div className="bg-white rounded-xl shadow-sm border border-surface-border p-4 md:p-5 space-y-4">
-        <div className="flex items-center gap-2 text-sm font-semibold text-text-primary">
-          <Filter className="w-4 h-4 text-text-muted" />
+      <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-4 md:p-5 space-y-4">
+        <div className="flex items-center gap-2 text-sm font-semibold text-[#F0EDE8]">
+          <Filter className="w-4 h-4 text-[#6B6359]" />
           Filters
         </div>
 
         {/* Source filters */}
         <div>
-          <p className="text-xs text-text-secondary mb-2 font-medium uppercase tracking-wider">Source</p>
+          <p className="text-xs text-[#ADA599] mb-2 font-medium uppercase tracking-wider">Source</p>
           <div className="flex flex-wrap gap-2">
             {allSources.map((source) => (
               <ToggleChip
@@ -241,7 +241,7 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
 
         {/* Sentiment filters */}
         <div>
-          <p className="text-xs text-text-secondary mb-2 font-medium uppercase tracking-wider">Sentiment</p>
+          <p className="text-xs text-[#ADA599] mb-2 font-medium uppercase tracking-wider">Sentiment</p>
           <div className="flex flex-wrap gap-2">
             {SENTIMENT_OPTIONS.map((s) => (
               <ToggleChip
@@ -256,7 +256,7 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
 
         {/* Brand filters */}
         <div>
-          <p className="text-xs text-text-secondary mb-2 font-medium uppercase tracking-wider">Brand</p>
+          <p className="text-xs text-[#ADA599] mb-2 font-medium uppercase tracking-wider">Brand</p>
           <div className="flex flex-wrap gap-2">
             {allBrands.map((brand) => (
               <ToggleChip
@@ -270,12 +270,12 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
         </div>
 
         {/* Sort */}
-        <div className="flex items-center gap-3 pt-2 border-t border-surface-border">
+        <div className="flex items-center gap-3 pt-2 border-t border-[#38332B]">
           <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Sort by</p>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="text-sm border border-surface-border rounded-lg px-3 py-1.5 text-text-primary focus:outline-none focus:ring-2 focus:ring-[#00a35e] focus:border-transparent bg-white"
+            className="text-sm border border-[#38332B] rounded-lg px-3 py-1.5 text-[#F0EDE8] focus:outline-none focus:ring-2 focus:ring-[#00C27C] focus:border-transparent bg-[#1C1B1A]"
           >
             {SORT_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -286,7 +286,7 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
           {hasActiveFilters && (
             <button
               onClick={clearAllFilters}
-              className="ml-auto text-xs text-[#ef4444] hover:text-[#ef4444] font-medium transition-colors"
+              className="ml-auto text-xs text-[#E87068] hover:text-[#E87068] font-medium transition-colors"
             >
               Clear all filters
             </button>
@@ -296,9 +296,9 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
 
       {/* ─── Results Summary ─── */}
       <div className="flex items-center flex-wrap gap-2">
-        <p className="text-sm text-text-secondary">
-          Showing <span className="font-semibold text-text-primary">{sortedReviews.length}</span> of{' '}
-          <span className="font-semibold text-text-primary">{reviews.length}</span> reviews
+        <p className="text-sm text-[#ADA599]">
+          Showing <span className="font-semibold text-[#F0EDE8]">{sortedReviews.length}</span> of{' '}
+          <span className="font-semibold text-[#F0EDE8]">{reviews.length}</span> reviews
         </p>
         {localSourceFilters.map((s) => (
           <ActiveFilterTag key={`source-${s}`} label={s} onRemove={() => toggleSource(s)} />
@@ -324,10 +324,10 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
               <ReviewCard key={review.id} review={review} highlight={review.sentiment} />
             ))
           ) : (
-            <div className="bg-white rounded-xl shadow-sm border border-surface-border p-12 text-center">
-              <Search className="w-10 h-10 text-text-muted mx-auto mb-3" />
-              <p className="text-text-secondary font-medium">No reviews match your filters</p>
-              <p className="text-sm text-text-muted mt-1">Try adjusting your filter criteria</p>
+            <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-12 text-center">
+              <Search className="w-10 h-10 text-[#6B6359] mx-auto mb-3" />
+              <p className="text-[#ADA599] font-medium">No reviews match your filters</p>
+              <p className="text-sm text-[#6B6359] mt-1">Try adjusting your filter criteria</p>
             </div>
           )}
 
@@ -337,7 +337,7 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
               <button
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="flex items-center gap-1 px-3 py-2 text-sm rounded-lg border border-surface-border text-text-secondary hover:bg-surface-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="flex items-center gap-1 px-3 py-2 text-sm rounded-lg border border-[#38332B] text-[#ADA599] hover:bg-[#282724] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span className="hidden sm:inline">Previous</span>
@@ -349,8 +349,8 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
                   onClick={() => setCurrentPage(page)}
                   className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
                     currentPage === page
-                      ? 'bg-[#00a35e] text-white shadow-sm'
-                      : 'text-text-secondary hover:bg-surface-hover'
+                      ? 'bg-[#00C27C] text-white shadow-sm'
+                      : 'text-[#ADA599] hover:bg-[#282724]'
                   }`}
                 >
                   {page}
@@ -360,7 +360,7 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
               <button
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
-                className="flex items-center gap-1 px-3 py-2 text-sm rounded-lg border border-surface-border text-text-secondary hover:bg-surface-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="flex items-center gap-1 px-3 py-2 text-sm rounded-lg border border-[#38332B] text-[#ADA599] hover:bg-[#282724] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 <span className="hidden sm:inline">Next</span>
                 <ChevronRight className="w-4 h-4" />
@@ -372,37 +372,37 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
         {/* Sidebar */}
         <div className="w-full lg:w-80 flex-shrink-0 space-y-4">
           {/* Sentiment Donut */}
-          <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
-            <h4 className="text-sm font-semibold text-text-primary mb-3">Sentiment Breakdown</h4>
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
+            <h4 className="text-sm font-semibold text-[#F0EDE8] mb-3">Sentiment Breakdown</h4>
             <DonutChart data={dist} height={200} showLegend={true} />
           </div>
 
           {/* Average Rating */}
-          <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
-            <h4 className="text-sm font-semibold text-text-primary mb-3">Average Rating</h4>
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
+            <h4 className="text-sm font-semibold text-[#F0EDE8] mb-3">Average Rating</h4>
             <div className="flex items-center gap-3">
-              <span className="text-3xl font-bold text-text-primary">{avgRating.toFixed(1)}</span>
+              <span className="text-3xl font-bold text-[#F0EDE8]">{avgRating.toFixed(1)}</span>
               <div className="flex items-center gap-0.5">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star
                     key={star}
                     className={`w-5 h-5 ${
                       star <= Math.round(avgRating)
-                        ? 'fill-[#d97706] text-[#d97706]'
-                        : 'fill-gray-200 text-gray-300'
+                        ? 'fill-[#D4A03A] text-[#D4A03A]'
+                        : 'fill-gray-200 text-[#6B6359]'
                     }`}
                   />
                 ))}
               </div>
             </div>
-            <p className="text-xs text-text-muted mt-1">
+            <p className="text-xs text-[#6B6359] mt-1">
               Based on {reviews.filter((r) => r.rating != null).length} rated reviews
             </p>
           </div>
 
           {/* Source Distribution Pie */}
-          <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
-            <h4 className="text-sm font-semibold text-text-primary mb-3">Top Sources</h4>
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
+            <h4 className="text-sm font-semibold text-[#F0EDE8] mb-3">Top Sources</h4>
             <ResponsiveContainer width="100%" height={180}>
               <PieChart>
                 <Pie
@@ -424,7 +424,7 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
             </ResponsiveContainer>
             <div className="flex flex-wrap justify-center gap-3 mt-2">
               {sourcePieData.map((item) => (
-                <div key={item.name} className="flex items-center gap-1.5 text-xs text-text-secondary">
+                <div key={item.name} className="flex items-center gap-1.5 text-xs text-[#ADA599]">
                   <span className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
                   {item.name} ({item.value})
                 </div>
@@ -433,14 +433,14 @@ export default function ReviewExplorer({ reviews, filters, onFilterChange }) {
           </div>
 
           {/* Top Brands */}
-          <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
-            <h4 className="text-sm font-semibold text-text-primary mb-3">Top Brands Mentioned</h4>
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
+            <h4 className="text-sm font-semibold text-[#F0EDE8] mb-3">Top Brands Mentioned</h4>
             <div className="space-y-2.5">
               {brandData.map((brand) => (
                 <div key={brand.name} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-text-primary">{brand.name}</span>
-                    <span className="text-xs text-text-muted">{brand.count} reviews</span>
+                    <span className="text-sm font-medium text-[#F0EDE8]">{brand.name}</span>
+                    <span className="text-xs text-[#6B6359]">{brand.count} reviews</span>
                   </div>
                   <SentimentBadge
                     sentiment={brand.avg >= 0.15 ? 'positive' : brand.avg >= -0.15 ? 'neutral' : 'negative'}

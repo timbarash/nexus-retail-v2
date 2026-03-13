@@ -19,10 +19,10 @@ import {
 function SectionHeader({ title, subtitle, icon: Icon }) {
   return (
     <div className="flex items-center gap-2 mb-4">
-      {Icon && <Icon className="w-5 h-5 text-[#00a35e]" />}
+      {Icon && <Icon className="w-5 h-5 text-[#00C27C]" />}
       <div>
-        <h2 className="text-lg font-semibold text-text-primary">{title}</h2>
-        {subtitle && <p className="text-sm text-text-secondary">{subtitle}</p>}
+        <h2 className="text-lg font-semibold text-[#F0EDE8]">{title}</h2>
+        {subtitle && <p className="text-sm text-[#ADA599]">{subtitle}</p>}
       </div>
     </div>
   );
@@ -37,35 +37,35 @@ function CategoryCard({ name, data }) {
   const score = data.avg != null ? data.avg : 0;
   const normalizedScore = Math.round(((score + 1) / 2) * 100);
 
-  let scoreColor = 'text-[#00a35e]';
-  if (normalizedScore < 40) scoreColor = 'text-[#ef4444]';
-  else if (normalizedScore < 60) scoreColor = 'text-[#d97706]';
+  let scoreColor = 'text-[#00C27C]';
+  if (normalizedScore < 40) scoreColor = 'text-[#E87068]';
+  else if (normalizedScore < 60) scoreColor = 'text-[#D4A03A]';
 
   return (
-    <div className="bg-white rounded-xl border border-surface-border shadow-sm p-4 hover:border-gray-300 transition-shadow duration-200">
+    <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] shadow-sm p-4 hover:border-[#38332B] transition-shadow duration-200">
       <div className="flex items-start justify-between mb-3">
-        <h3 className="text-sm font-semibold text-text-primary">{name}</h3>
+        <h3 className="text-sm font-semibold text-[#F0EDE8]">{name}</h3>
         <span className={`text-lg font-bold ${scoreColor}`}>{normalizedScore}</span>
       </div>
-      <div className="w-full h-2 bg-white rounded-full overflow-hidden flex">
+      <div className="w-full h-2 bg-[#1C1B1A] rounded-full overflow-hidden flex">
         <div
-          className="h-full bg-[#00a35e] transition-all duration-500"
+          className="h-full bg-[#00C27C] transition-all duration-500"
           style={{ width: `${posPercent}%` }}
         />
         <div
-          className="h-full bg-[#d97706] transition-all duration-500"
+          className="h-full bg-[#D4A03A] transition-all duration-500"
           style={{ width: `${100 - posPercent - negPercent}%` }}
         />
         <div
-          className="h-full bg-[#ef4444] transition-all duration-500"
+          className="h-full bg-[#E87068] transition-all duration-500"
           style={{ width: `${negPercent}%` }}
         />
       </div>
-      <div className="flex justify-between mt-2 text-xs text-text-secondary">
-        <span className="text-[#00a35e]">{posPercent}% positive</span>
-        <span className="text-[#ef4444]">{negPercent}% negative</span>
+      <div className="flex justify-between mt-2 text-xs text-[#ADA599]">
+        <span className="text-[#00C27C]">{posPercent}% positive</span>
+        <span className="text-[#E87068]">{negPercent}% negative</span>
       </div>
-      <p className="text-xs text-text-muted mt-1">{total} reviews</p>
+      <p className="text-xs text-[#6B6359] mt-1">{total} reviews</p>
     </div>
   );
 }
@@ -137,16 +137,16 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
     return `${fmt(min)} - ${fmt(max)}`;
   }, [reviews]);
 
-  let avgColor = 'text-[#00a35e]';
-  if (normalizedAvg < 40) avgColor = 'text-[#ef4444]';
-  else if (normalizedAvg < 60) avgColor = 'text-[#d97706]';
+  let avgColor = 'text-[#00C27C]';
+  if (normalizedAvg < 40) avgColor = 'text-[#E87068]';
+  else if (normalizedAvg < 60) avgColor = 'text-[#D4A03A]';
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Section 1: Header */}
       <div>
-        <h1 className="text-2xl font-bold text-text-primary">Dashboard Overview</h1>
-        <p className="text-sm text-text-secondary mt-1">
+        <h1 className="text-2xl font-bold text-[#F0EDE8]">Dashboard Overview</h1>
+        <p className="text-sm text-[#ADA599] mt-1">
           {totalReviews.toLocaleString()} reviews analyzed
           {dateRange && <span className="mx-1.5">|</span>}
           {dateRange}
@@ -188,11 +188,11 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
 
       {/* Section 3: Sentiment Distribution + Trend */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
+        <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
           <SectionHeader title="Sentiment Distribution" icon={BarChart3} />
           <DonutChart data={distribution} height={260} showLegend />
         </div>
-        <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
+        <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
           <SectionHeader
             title="Sentiment Trend"
             subtitle="Monthly average sentiment score"
@@ -203,7 +203,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
       </div>
 
       {/* Section 4: Source Breakdown */}
-      <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
+      <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
         <SectionHeader
           title="Source Breakdown"
           subtitle="Sentiment distribution by review source"
@@ -226,7 +226,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
       </div>
 
       {/* Section 6: Word Cloud */}
-      <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
+      <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
         <SectionHeader
           title="Common Themes"
           subtitle="Frequently mentioned words and phrases"
@@ -240,7 +240,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {highlights.mostPositive && (
             <div>
-              <p className="text-xs font-semibold text-[#00a35e] uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-[#00C27C] uppercase tracking-wider mb-2">
                 Most Positive Review
               </p>
               <ReviewCard review={highlights.mostPositive} highlight="positive" />
@@ -248,7 +248,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
           )}
           {highlights.mostNegative && (
             <div>
-              <p className="text-xs font-semibold text-[#ef4444] uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-[#E87068] uppercase tracking-wider mb-2">
                 Most Negative Review
               </p>
               <ReviewCard review={highlights.mostNegative} highlight="negative" />
@@ -256,7 +256,7 @@ export default function Overview({ reviews, allReviews, filters, onFilterChange 
           )}
           {highlights.mostRecent && (
             <div>
-              <p className="text-xs font-semibold text-[#3b82f6] uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-[#64A8E0] uppercase tracking-wider mb-2">
                 Most Recent Review
               </p>
               <ReviewCard review={highlights.mostRecent} highlight="recent" />

@@ -260,15 +260,15 @@ function OutOfStockCard({ product, selected, onToggle, quantity, onQuantityChang
 
   return (
     <div
-      className={`bg-surface-bg rounded-xl border p-4 transition-all ${
-        selected ? 'border-[#00a35e] bg-[#00a35e]/5' : 'border-surface-border hover:border-gray-300'
+      className={`bg-[#141210] rounded-xl border p-4 transition-all ${
+        selected ? 'border-[#00C27C] bg-[#00C27C]/5' : 'border-[#38332B] hover:border-[#38332B]'
       }`}
     >
       <div className="flex items-start gap-3">
         {/* checkbox */}
         <div
           className={`w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors cursor-pointer ${
-            selected ? 'bg-[#00a35e] border-[#00a35e]' : 'border-gray-300'
+            selected ? 'bg-[#00C27C] border-[#00C27C]' : 'border-[#38332B]'
           }`}
           onClick={onToggle}
         >
@@ -276,7 +276,7 @@ function OutOfStockCard({ product, selected, onToggle, quantity, onQuantityChang
         </div>
         {/* product thumbnail */}
         {product.image && (
-          <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 border border-surface-border" style={{ background: `${product.brandColor}15` }}>
+          <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 border border-[#38332B]" style={{ background: `${product.brandColor}15` }}>
             <img src={product.image} alt="" className="w-full h-full object-cover" />
           </div>
         )}
@@ -292,7 +292,7 @@ function OutOfStockCard({ product, selected, onToggle, quantity, onQuantityChang
                 className={`text-[10px] px-2 py-0.5 rounded-full font-medium flex items-center gap-1 transition-colors cursor-pointer ${
                   discountApplied
                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-gray-200 text-text-secondary border border-gray-300'
+                    : 'bg-[#38332B] text-[#ADA599] border border-[#38332B]'
                 }`}
               >
                 <Percent className="w-2.5 h-2.5" />
@@ -300,57 +300,57 @@ function OutOfStockCard({ product, selected, onToggle, quantity, onQuantityChang
               </button>
             )}
           </div>
-          <p className="text-sm font-medium text-text-primary">{product.name}</p>
-          <p className="text-xs text-text-secondary">{product.type} · THC {product.thc}</p>
+          <p className="text-sm font-medium text-[#F0EDE8]">{product.name}</p>
+          <p className="text-xs text-[#ADA599]">{product.type} · THC {product.thc}</p>
           <div className="flex items-center gap-4 mt-2">
             <div className="flex items-center gap-1">
-              <ShoppingBag className="w-3 h-3 text-text-secondary" />
-              <span className="text-[11px] text-text-secondary">{product.avgWeeklySales}/wk avg</span>
+              <ShoppingBag className="w-3 h-3 text-[#ADA599]" />
+              <span className="text-[11px] text-[#ADA599]">{product.avgWeeklySales}/wk avg</span>
             </div>
             <div className="flex items-center gap-1">
-              <Clock className="w-3 h-3 text-text-secondary" />
-              <span className="text-[11px] text-text-secondary">{product.daysOutOfStock > 0 ? `${product.daysOutOfStock}d out` : 'Low stock'}</span>
+              <Clock className="w-3 h-3 text-[#ADA599]" />
+              <span className="text-[11px] text-[#ADA599]">{product.daysOutOfStock > 0 ? `${product.daysOutOfStock}d out` : 'Low stock'}</span>
             </div>
             <div className="flex items-center gap-1">
-              <Truck className="w-3 h-3 text-text-secondary" />
-              <span className="text-[11px] text-text-secondary">{product.leadTime}</span>
+              <Truck className="w-3 h-3 text-[#ADA599]" />
+              <span className="text-[11px] text-[#ADA599]">{product.leadTime}</span>
             </div>
           </div>
           {formulaQty != null && weeksOfCoverage != null && (
-            <p className="text-[10px] text-text-muted mt-1.5">
+            <p className="text-[10px] text-[#6B6359] mt-1.5">
               suggested: {formulaQty} ({product.avgWeeklySales}/wk × {weeksOfCoverage}wk)
             </p>
           )}
         </div>
         <div className="text-right flex-shrink-0 space-y-2">
           <div>
-            <p className="text-sm font-bold text-text-primary">{product.lastPrice}</p>
-            <p className="text-[10px] text-text-secondary">unit cost</p>
+            <p className="text-sm font-bold text-[#F0EDE8]">{product.lastPrice}</p>
+            <p className="text-[10px] text-[#ADA599]">unit cost</p>
           </div>
           {/* Quantity controls */}
           <div className="flex items-center gap-1">
             <button
               onClick={() => onQuantityChange(Math.max(0, quantity - 1))}
-              className="w-6 h-6 rounded border border-surface-border text-text-secondary hover:text-text-primary hover:border-gray-300 flex items-center justify-center text-sm transition-colors"
+              className="w-6 h-6 rounded border border-[#38332B] text-[#ADA599] hover:text-[#F0EDE8] hover:border-[#38332B] flex items-center justify-center text-sm transition-colors"
             >−</button>
             <input
               type="number"
               value={quantity}
               onChange={(e) => onQuantityChange(Math.max(0, parseInt(e.target.value) || 0))}
-              className="w-12 h-6 text-center text-xs font-bold text-text-primary bg-white border border-surface-border rounded focus:border-[#3b82f6] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="w-12 h-6 text-center text-xs font-bold text-[#F0EDE8] bg-[#1C1B1A] border border-[#38332B] rounded focus:border-[#64A8E0] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
             <button
               onClick={() => onQuantityChange(quantity + 1)}
-              className="w-6 h-6 rounded border border-surface-border text-text-secondary hover:text-text-primary hover:border-gray-300 flex items-center justify-center text-sm transition-colors"
+              className="w-6 h-6 rounded border border-[#38332B] text-[#ADA599] hover:text-[#F0EDE8] hover:border-[#38332B] flex items-center justify-center text-sm transition-colors"
             >+</button>
           </div>
           {selected && (
-            <p className="text-[10px] font-medium text-text-primary">
+            <p className="text-[10px] font-medium text-[#F0EDE8]">
               ${lineSubtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               {discount && discountApplied && <span className="text-emerald-400 ml-1">(-{discount.pct}%)</span>}
             </p>
           )}
-          {!selected && <p className="text-[10px] text-text-secondary">qty to order</p>}
+          {!selected && <p className="text-[10px] text-[#ADA599]">qty to order</p>}
         </div>
       </div>
     </div>
@@ -359,11 +359,11 @@ function OutOfStockCard({ product, selected, onToggle, quantity, onQuantityChang
 
 function NewProductCard({ product }) {
   return (
-    <div className="bg-surface-bg rounded-xl border border-surface-border hover:border-gray-300 p-4 transition-all">
+    <div className="bg-[#141210] rounded-xl border border-[#38332B] hover:border-[#38332B] p-4 transition-all">
       {/* Header */}
       <div className="flex items-center gap-2 mb-2">
         <span className="text-[10px] font-bold px-2 py-0.5 rounded text-white" style={{ background: product.brandColor }}>{product.brand}</span>
-        {product.trending && <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#00a35e]/20 text-[#00a35e] font-medium flex items-center gap-1"><TrendingUp className="w-2.5 h-2.5" /> Trending</span>}
+        {product.trending && <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#00C27C]/20 text-[#00C27C] font-medium flex items-center gap-1"><TrendingUp className="w-2.5 h-2.5" /> Trending</span>}
         <div className="ml-auto flex items-center gap-0.5">
           <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
           <span className="text-[11px] text-amber-400 font-medium">{product.rating}</span>
@@ -386,7 +386,7 @@ function NewProductCard({ product }) {
               ) : product.type.includes('Vape') || product.type.includes('Disposable') ? (
                 <div className="relative mx-auto w-5">
                   <div className="w-5 h-16 rounded-full mx-auto" style={{ background: `linear-gradient(to bottom, ${product.brandColor}88, ${product.brandColor}44)` }} />
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-4 rounded-b-lg bg-gray-700" />
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-4 rounded-b-lg bg-[#1C1B1A]" />
                 </div>
               ) : (
                 <div className="w-14 h-10 rounded-lg mx-auto" style={{ background: `linear-gradient(135deg, ${product.brandColor}66, ${product.brandColor}33)`, border: `1px solid ${product.brandColor}44` }} />
@@ -396,22 +396,22 @@ function NewProductCard({ product }) {
         )}
       </div>
       {/* info */}
-      <p className="text-sm font-medium text-text-primary">{product.name}</p>
-      <p className="text-xs text-text-secondary mb-2">{product.type}</p>
-      <p className="text-[11px] text-text-secondary leading-relaxed mb-3">{product.description}</p>
+      <p className="text-sm font-medium text-[#F0EDE8]">{product.name}</p>
+      <p className="text-xs text-[#ADA599] mb-2">{product.type}</p>
+      <p className="text-[11px] text-[#ADA599] leading-relaxed mb-3">{product.description}</p>
       {/* pricing */}
-      <div className="flex items-center justify-between pt-3 border-t border-surface-border">
+      <div className="flex items-center justify-between pt-3 border-t border-[#38332B]">
         <div>
-          <p className="text-[10px] text-text-muted">Wholesale</p>
-          <p className="text-sm font-bold text-text-primary">{product.wholesalePrice}</p>
+          <p className="text-[10px] text-[#6B6359]">Wholesale</p>
+          <p className="text-sm font-bold text-[#F0EDE8]">{product.wholesalePrice}</p>
         </div>
         <div>
-          <p className="text-[10px] text-text-muted">Retail</p>
-          <p className="text-sm font-bold text-text-primary">{product.suggestedRetail}</p>
+          <p className="text-[10px] text-[#6B6359]">Retail</p>
+          <p className="text-sm font-bold text-[#F0EDE8]">{product.suggestedRetail}</p>
         </div>
         <div>
-          <p className="text-[10px] text-text-muted">Margin</p>
-          <p className="text-sm font-bold text-[#00a35e]">{product.margin}</p>
+          <p className="text-[10px] text-[#6B6359]">Margin</p>
+          <p className="text-sm font-bold text-[#00C27C]">{product.margin}</p>
         </div>
       </div>
     </div>
@@ -425,14 +425,14 @@ function NewProductCard({ product }) {
 function Section({ title, icon: Icon, iconColor, children, defaultOpen = true, badge }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="bg-white rounded-xl border border-surface-border overflow-hidden">
-      <button onClick={() => setOpen(!open)} className="w-full flex items-center gap-2 px-6 py-4 hover:bg-surface-hover transition-colors">
+    <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] overflow-hidden">
+      <button onClick={() => setOpen(!open)} className="w-full flex items-center gap-2 px-6 py-4 hover:bg-[#282724] transition-colors">
         <Icon className="w-5 h-5 flex-shrink-0" style={{ color: iconColor }} />
-        <h2 className="text-base font-semibold text-text-primary">{title}</h2>
-        {badge && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#00a35e]/10 text-[#00a35e] font-medium">{badge}</span>}
-        <div className="ml-auto">{open ? <ChevronUp className="w-4 h-4 text-text-secondary" /> : <ChevronDown className="w-4 h-4 text-text-secondary" />}</div>
+        <h2 className="text-base font-semibold text-[#F0EDE8]">{title}</h2>
+        {badge && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#00C27C]/10 text-[#00C27C] font-medium">{badge}</span>}
+        <div className="ml-auto">{open ? <ChevronUp className="w-4 h-4 text-[#ADA599]" /> : <ChevronDown className="w-4 h-4 text-[#ADA599]" />}</div>
       </button>
-      {open && <div className="px-6 pb-5 border-t border-surface-border pt-4">{children}</div>}
+      {open && <div className="px-6 pb-5 border-t border-[#38332B] pt-4">{children}</div>}
     </div>
   );
 }
@@ -559,18 +559,18 @@ export function ReorderView({ data, onBack }) {
   return (
     <div className="space-y-4 animate-fade-in">
       {onBack && (
-        <button onClick={onBack} className="flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition-colors">
+        <button onClick={onBack} className="flex items-center gap-2 text-sm text-[#ADA599] hover:text-[#F0EDE8] transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to Agent
         </button>
       )}
 
       <div className="flex items-start gap-3">
-        <div className="w-8 h-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <Bot className="w-4 h-4 text-[#3b82f6]" />
+        <div className="w-8 h-8 rounded-full bg-[#64A8E0]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <Bot className="w-4 h-4 text-[#64A8E0]" />
         </div>
         <div>
-          <p className="text-sm text-text-secondary">
-            <span className="text-text-primary font-medium">Connect Agent</span> identified {products.length} items that need attention based on inventory levels and sales velocity
+          <p className="text-sm text-[#ADA599]">
+            <span className="text-[#F0EDE8] font-medium">Connect Agent</span> identified {products.length} items that need attention based on inventory levels and sales velocity
           </p>
         </div>
       </div>
@@ -582,8 +582,8 @@ export function ReorderView({ data, onBack }) {
           <div className="flex items-center gap-2 mb-2">
             <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-white/20 text-white/70 uppercase tracking-wider">Inventory Alert</span>
           </div>
-          <h1 className="text-xl font-bold text-text-primary">{heroTitle}</h1>
-          <p className="text-sm text-text-secondary mt-1">
+          <h1 className="text-xl font-bold text-[#F0EDE8]">{heroTitle}</h1>
+          <p className="text-sm text-[#ADA599] mt-1">
             {products.filter((p) => p.daysOutOfStock > 0).length} products are currently out of stock.
             Estimated lost revenue: <span className="text-red-400 font-medium">{lostRevenue}</span>
           </p>
@@ -591,33 +591,33 @@ export function ReorderView({ data, onBack }) {
       </div>
 
       {/* weeks-of-stock slider */}
-      <div className="bg-white rounded-xl border border-surface-border p-5">
+      <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-5">
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 className="w-4 h-4 text-[#3b82f6]" />
-          <span className="text-sm font-medium text-text-primary">Coverage Target</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#3b82f6]/10 text-[#3b82f6] font-medium">
+          <BarChart3 className="w-4 h-4 text-[#64A8E0]" />
+          <span className="text-sm font-medium text-[#F0EDE8]">Coverage Target</span>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#64A8E0]/10 text-[#64A8E0] font-medium">
             {weeksOfCoverage} {weeksOfCoverage === 1 ? 'week' : 'weeks'} · {weeksOfCoverage * 7} days
           </span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-xs text-text-secondary w-6 text-center">1</span>
+          <span className="text-xs text-[#ADA599] w-6 text-center">1</span>
           <input
             type="range"
             min="1"
             max="6"
             value={weeksOfCoverage}
             onChange={(e) => setWeeksOfCoverage(parseInt(e.target.value))}
-            className="flex-1 h-1.5 rounded-full appearance-none bg-gray-200 accent-[#3b82f6] cursor-pointer"
+            className="flex-1 h-1.5 rounded-full appearance-none bg-[#38332B] accent-[#64A8E0] cursor-pointer"
           />
-          <span className="text-xs text-text-secondary w-6 text-center">6</span>
+          <span className="text-xs text-[#ADA599] w-6 text-center">6</span>
         </div>
-        <p className="text-[11px] text-text-muted mt-2">
+        <p className="text-[11px] text-[#6B6359] mt-2">
           Formula: avg weekly sales × {weeksOfCoverage} week{weeksOfCoverage !== 1 ? 's' : ''} — quantities auto-adjust when you move the slider
         </p>
       </div>
 
       {/* out of stock items */}
-      <Section title="Items Needing Reorder" icon={PackageX} iconColor="#ef4444" badge={`${products.length} items`}>
+      <Section title="Items Needing Reorder" icon={PackageX} iconColor="#E87068" badge={`${products.length} items`}>
         <div className="space-y-3">
           {products.map((p) => (
             <OutOfStockCard
@@ -639,8 +639,8 @@ export function ReorderView({ data, onBack }) {
       </Section>
 
       {/* smart reorder quantities */}
-      <Section title="Recommended Order Quantities" icon={BarChart3} iconColor="#8b5cf6" badge="Editable">
-        <p className="text-xs text-text-secondary mb-4">Quantities are calculated based on rolling 30-day sales velocity, seasonal trends, and lead time buffer. Adjust as needed.</p>
+      <Section title="Recommended Order Quantities" icon={BarChart3} iconColor="#B598E8" badge="Editable">
+        <p className="text-xs text-[#ADA599] mb-4">Quantities are calculated based on rolling 30-day sales velocity, seasonal trends, and lead time buffer. Adjust as needed.</p>
         <div className="space-y-2">
           {recommendations.map((r, i) => {
             const lineCost = (r.unitPrice || 0) * (recQuantities[i] || 0);
@@ -649,21 +649,21 @@ export function ReorderView({ data, onBack }) {
             const finalCost = disc && discApplied ? lineCost * (1 - disc.pct / 100) : lineCost;
 
             return (
-              <div key={i} className="bg-surface-bg rounded-lg p-3 border border-surface-border">
+              <div key={i} className="bg-[#141210] rounded-lg p-3 border border-[#38332B]">
                 <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#8b5cf6]/10">
-                    <Package className="w-4 h-4 text-[#8b5cf6]" />
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#B598E8]/10">
+                    <Package className="w-4 h-4 text-[#B598E8]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <p className="text-xs font-medium text-text-primary">{r.brand} — {r.product}</p>
+                      <p className="text-xs font-medium text-[#F0EDE8]">{r.brand} — {r.product}</p>
                       {disc && (
                         <button
                           onClick={() => setRecDiscountsApplied(prev => ({ ...prev, [i]: !prev[i] }))}
                           className={`text-[10px] px-2 py-0.5 rounded-full font-medium flex items-center gap-1 transition-colors cursor-pointer ${
                             discApplied
                               ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                              : 'bg-gray-200 text-text-secondary border border-gray-300'
+                              : 'bg-[#38332B] text-[#ADA599] border border-[#38332B]'
                           }`}
                         >
                           <Percent className="w-2.5 h-2.5" />
@@ -671,9 +671,9 @@ export function ReorderView({ data, onBack }) {
                         </button>
                       )}
                     </div>
-                    <p className="text-[11px] text-text-secondary">{r.reason}</p>
+                    <p className="text-[11px] text-[#ADA599]">{r.reason}</p>
                     {r.avgWeeklySales != null && r.unitPrice != null && (
-                      <p className="text-[10px] text-text-muted mt-0.5">
+                      <p className="text-[10px] text-[#6B6359] mt-0.5">
                         suggested: {formulaRecQuantities[i]} ({r.avgWeeklySales}/wk × {weeksOfCoverage}wk) · ${(r.unitPrice || 0).toFixed(2)}/unit
                       </p>
                     )}
@@ -682,21 +682,21 @@ export function ReorderView({ data, onBack }) {
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => setRecQuantities(prev => { const next = [...prev]; next[i] = Math.max(0, next[i] - 1); return next; })}
-                        className="w-6 h-6 rounded border border-surface-border text-text-secondary hover:text-text-primary hover:border-gray-300 flex items-center justify-center text-sm transition-colors"
+                        className="w-6 h-6 rounded border border-[#38332B] text-[#ADA599] hover:text-[#F0EDE8] hover:border-[#38332B] flex items-center justify-center text-sm transition-colors"
                       >−</button>
                       <input
                         type="number"
                         value={recQuantities[i]}
                         onChange={(e) => setRecQuantities(prev => { const next = [...prev]; next[i] = Math.max(0, parseInt(e.target.value) || 0); return next; })}
-                        className="w-14 h-6 text-center text-xs font-bold text-text-primary bg-white border border-surface-border rounded focus:border-[#8b5cf6] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        className="w-14 h-6 text-center text-xs font-bold text-[#F0EDE8] bg-[#1C1B1A] border border-[#38332B] rounded focus:border-[#B598E8] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       />
                       <button
                         onClick={() => setRecQuantities(prev => { const next = [...prev]; next[i] = next[i] + 1; return next; })}
-                        className="w-6 h-6 rounded border border-surface-border text-text-secondary hover:text-text-primary hover:border-gray-300 flex items-center justify-center text-sm transition-colors"
+                        className="w-6 h-6 rounded border border-[#38332B] text-[#ADA599] hover:text-[#F0EDE8] hover:border-[#38332B] flex items-center justify-center text-sm transition-colors"
                       >+</button>
                     </div>
                     <div className="text-right w-20">
-                      <p className="text-xs font-medium text-text-primary">
+                      <p className="text-xs font-medium text-[#F0EDE8]">
                         ${finalCost.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                       </p>
                       {disc && discApplied && (
@@ -711,14 +711,14 @@ export function ReorderView({ data, onBack }) {
         </div>
 
         {/* Itemized cost breakdown */}
-        <div className="mt-4 pt-4 border-t border-surface-border space-y-2">
+        <div className="mt-4 pt-4 border-t border-[#38332B] space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-text-secondary">Selected products ({selected.size} items)</span>
-            <span className="text-xs text-text-primary">${costBreakdown.productsSubtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            <span className="text-xs text-[#ADA599]">Selected products ({selected.size} items)</span>
+            <span className="text-xs text-[#F0EDE8]">${costBreakdown.productsSubtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-xs text-text-secondary">Recommendations ({recommendations.length} items)</span>
-            <span className="text-xs text-text-primary">${costBreakdown.recsSubtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            <span className="text-xs text-[#ADA599]">Recommendations ({recommendations.length} items)</span>
+            <span className="text-xs text-[#F0EDE8]">${costBreakdown.recsSubtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
           </div>
           {costBreakdown.totalSavings > 0 && (
             <div className="flex items-center justify-between">
@@ -728,28 +728,28 @@ export function ReorderView({ data, onBack }) {
               <span className="text-xs text-emerald-400">-${costBreakdown.totalSavings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
           )}
-          <div className="flex items-center justify-between pt-2 border-t border-surface-border">
-            <span className="text-sm font-medium text-text-primary">Grand Total</span>
-            <span className="text-lg font-bold text-text-primary">${costBreakdown.grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+          <div className="flex items-center justify-between pt-2 border-t border-[#38332B]">
+            <span className="text-sm font-medium text-[#F0EDE8]">Grand Total</span>
+            <span className="text-lg font-bold text-[#F0EDE8]">${costBreakdown.grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
           </div>
         </div>
       </Section>
 
       {/* supplier info */}
-      <Section title="Supplier Details" icon={Building2} iconColor="#3b82f6" defaultOpen={false}>
+      <Section title="Supplier Details" icon={Building2} iconColor="#64A8E0" defaultOpen={false}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[...new Map(products.map((p) => [p.supplier, p])).values()].map((p) => (
-            <div key={p.supplier} className="bg-surface-bg rounded-lg p-4 border border-surface-border">
-              <p className="text-sm font-medium text-text-primary mb-1">{p.supplier}</p>
+            <div key={p.supplier} className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
+              <p className="text-sm font-medium text-[#F0EDE8] mb-1">{p.supplier}</p>
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-[11px] text-text-secondary">
+                <div className="flex items-center gap-2 text-[11px] text-[#ADA599]">
                   <Truck className="w-3 h-3" /> Lead time: {p.leadTime}
                 </div>
-                <div className="flex items-center gap-2 text-[11px] text-text-secondary">
+                <div className="flex items-center gap-2 text-[11px] text-[#ADA599]">
                   <Phone className="w-3 h-3" /> Account rep on file
                 </div>
-                <div className="flex items-center gap-2 text-[11px] text-text-secondary">
-                  <CheckCircle2 className="w-3 h-3 text-[#00a35e]" /> Verified supplier
+                <div className="flex items-center gap-2 text-[11px] text-[#ADA599]">
+                  <CheckCircle2 className="w-3 h-3 text-[#00C27C]" /> Verified supplier
                 </div>
               </div>
             </div>
@@ -758,53 +758,53 @@ export function ReorderView({ data, onBack }) {
       </Section>
 
       {/* Compliance Check */}
-      <div className="mt-4 p-3 rounded-xl border border-surface-border bg-surface-bg">
+      <div className="mt-4 p-3 rounded-xl border border-[#38332B] bg-[#141210]">
         <div className="flex items-center gap-2 mb-2">
-          <Shield className="w-4 h-4 text-[#3b82f6]" />
-          <span className="text-xs font-semibold text-[#3b82f6]">Compliance Check</span>
+          <Shield className="w-4 h-4 text-[#64A8E0]" />
+          <span className="text-xs font-semibold text-[#64A8E0]">Compliance Check</span>
         </div>
         <div className="space-y-1.5">
           <div className="flex items-center gap-2 text-xs">
-            <div className="w-3.5 h-3.5 rounded-full bg-[#00a35e]/20 flex items-center justify-center"><span className="text-[8px] text-[#00a35e]">✓</span></div>
-            <span className="text-text-primary">All vendors licensed in state</span>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#00C27C]/20 flex items-center justify-center"><span className="text-[8px] text-[#00C27C]">✓</span></div>
+            <span className="text-[#F0EDE8]">All vendors licensed in state</span>
           </div>
           <div className="flex items-center gap-2 text-xs">
-            <div className="w-3.5 h-3.5 rounded-full bg-[#00a35e]/20 flex items-center justify-center"><span className="text-[8px] text-[#00a35e]">✓</span></div>
-            <span className="text-text-primary">Order quantity within daily receiving limit</span>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#00C27C]/20 flex items-center justify-center"><span className="text-[8px] text-[#00C27C]">✓</span></div>
+            <span className="text-[#F0EDE8]">Order quantity within daily receiving limit</span>
           </div>
           <div className="flex items-center gap-2 text-xs">
-            <div className="w-3.5 h-3.5 rounded-full bg-[#00a35e]/20 flex items-center justify-center"><span className="text-[8px] text-[#00a35e]">✓</span></div>
-            <span className="text-text-primary">Products match approved manifest categories</span>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#00C27C]/20 flex items-center justify-center"><span className="text-[8px] text-[#00C27C]">✓</span></div>
+            <span className="text-[#F0EDE8]">Products match approved manifest categories</span>
           </div>
           <div className="flex items-center gap-2 text-xs">
-            <div className="w-3.5 h-3.5 rounded-full bg-[#3b82f6]/20 flex items-center justify-center"><span className="text-[8px] text-[#3b82f6]">i</span></div>
-            <span className="text-text-secondary">METRC transfer manifest auto-generated on receipt</span>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#64A8E0]/20 flex items-center justify-center"><span className="text-[8px] text-[#64A8E0]">i</span></div>
+            <span className="text-[#ADA599]">METRC transfer manifest auto-generated on receipt</span>
           </div>
         </div>
       </div>
 
       {/* order CTA */}
-      <div className="bg-white rounded-xl border border-surface-border p-6">
+      <div className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-6">
         {ordered ? (
           <div className="flex items-center gap-3 justify-center py-4 animate-fade-in">
-            <CheckCircle2 className="w-6 h-6 text-[#00a35e]" />
+            <CheckCircle2 className="w-6 h-6 text-[#00C27C]" />
             <div>
-              <p className="text-text-primary font-semibold">Purchase Orders Submitted</p>
-              <p className="text-sm text-text-secondary">{selected.size} orders sent to suppliers. Estimated delivery in 2-5 business days.</p>
+              <p className="text-[#F0EDE8] font-semibold">Purchase Orders Submitted</p>
+              <p className="text-sm text-[#ADA599]">{selected.size} orders sent to suppliers. Estimated delivery in 2-5 business days.</p>
             </div>
           </div>
         ) : (
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
             <div>
-              <p className="text-text-primary font-medium">Place reorder for {selected.size} items + {recommendations.length} recommended?</p>
-              <p className="text-sm text-text-secondary">Purchase orders will be sent to respective suppliers.
+              <p className="text-[#F0EDE8] font-medium">Place reorder for {selected.size} items + {recommendations.length} recommended?</p>
+              <p className="text-sm text-[#ADA599]">Purchase orders will be sent to respective suppliers.
                 {costBreakdown.totalSavings > 0 && <span className="text-emerald-400"> Saving ${costBreakdown.totalSavings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} with brand funded discounts.</span>}
               </p>
             </div>
             <button
               onClick={handleOrder}
               disabled={ordering || selected.size === 0}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-[#3b82f6] to-[#2563EB] transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 shadow-lg"
+              className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-[#64A8E0] to-[#2563EB] transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 shadow-lg"
             >
               {ordering ? (
                 <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Submitting...</>
@@ -829,9 +829,9 @@ export function ExploreView({ data, onBack }) {
     { name: 'Cookies', revenue: '$6,100/mo', growth: '+22%', color: '#2196F3', pct: 42 },
   ];
   const categoryGaps = data?.categoryGaps || [
-    { category: 'Disposable Vapes', gap: '32% under-indexed', opportunity: '+$4,200/mo', color: '#3b82f6' },
-    { category: 'Topicals & Tinctures', gap: '28% under-indexed', opportunity: '+$1,800/mo', color: '#8b5cf6' },
-    { category: 'Beverages', gap: '45% under-indexed', opportunity: '+$2,100/mo', color: '#00a35e' },
+    { category: 'Disposable Vapes', gap: '32% under-indexed', opportunity: '+$4,200/mo', color: '#64A8E0' },
+    { category: 'Topicals & Tinctures', gap: '28% under-indexed', opportunity: '+$1,800/mo', color: '#B598E8' },
+    { category: 'Beverages', gap: '45% under-indexed', opportunity: '+$2,100/mo', color: '#00C27C' },
   ];
   const [cart, setCart] = useState(new Set());
 
@@ -841,18 +841,18 @@ export function ExploreView({ data, onBack }) {
   return (
     <div className="space-y-4 animate-fade-in">
       {onBack && (
-        <button onClick={onBack} className="flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition-colors">
+        <button onClick={onBack} className="flex items-center gap-2 text-sm text-[#ADA599] hover:text-[#F0EDE8] transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to Agent
         </button>
       )}
 
       <div className="flex items-start gap-3">
-        <div className="w-8 h-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <Bot className="w-4 h-4 text-[#3b82f6]" />
+        <div className="w-8 h-8 rounded-full bg-[#64A8E0]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <Bot className="w-4 h-4 text-[#64A8E0]" />
         </div>
         <div>
-          <p className="text-sm text-text-secondary">
-            <span className="text-text-primary font-medium">Connect Agent</span> curated these products based on your sales data, trending products in the NYC market, and gap analysis of your current catalog
+          <p className="text-sm text-[#ADA599]">
+            <span className="text-[#F0EDE8] font-medium">Connect Agent</span> curated these products based on your sales data, trending products in the NYC market, and gap analysis of your current catalog
           </p>
         </div>
       </div>
@@ -862,13 +862,13 @@ export function ExploreView({ data, onBack }) {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-indigo-900/20 to-purple-900/40" />
         <div className="relative px-8 py-6">
           <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-white/20 text-white/70 uppercase tracking-wider">Product Discovery</span>
-          <h1 className="text-xl font-bold text-text-primary mt-2">{heroTitle}</h1>
-          <p className="text-sm text-text-secondary mt-1">{heroSubtitle}</p>
+          <h1 className="text-xl font-bold text-[#F0EDE8] mt-2">{heroTitle}</h1>
+          <p className="text-sm text-[#ADA599] mt-1">{heroSubtitle}</p>
         </div>
       </div>
 
       {/* trending products */}
-      <Section title="Recommended for Your Store" icon={TrendingUp} iconColor="#00a35e" badge={`${products.length} products`}>
+      <Section title="Recommended for Your Store" icon={TrendingUp} iconColor="#00C27C" badge={`${products.length} products`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {products.map((p) => (
             <NewProductCard key={p.id} product={p} />
@@ -877,7 +877,7 @@ export function ExploreView({ data, onBack }) {
       </Section>
 
       {/* brand performance */}
-      <Section title="Your Top Brands by Revenue" icon={Award} iconColor="#d97706" defaultOpen={false}>
+      <Section title="Your Top Brands by Revenue" icon={Award} iconColor="#D4A03A" defaultOpen={false}>
         <div className="space-y-2">
           {brandPerformance.map((b) => (
             <div key={b.name} className="flex items-center gap-3 py-2">
@@ -886,13 +886,13 @@ export function ExploreView({ data, onBack }) {
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-medium text-text-primary">{b.name}</span>
+                  <span className="text-xs font-medium text-[#F0EDE8]">{b.name}</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-text-secondary">{b.revenue}</span>
-                    <span className="text-[10px] text-[#00a35e]">{b.growth}</span>
+                    <span className="text-xs text-[#ADA599]">{b.revenue}</span>
+                    <span className="text-[10px] text-[#00C27C]">{b.growth}</span>
                   </div>
                 </div>
-                <div className="h-1.5 rounded-full bg-gray-200">
+                <div className="h-1.5 rounded-full bg-[#38332B]">
                   <div className="h-1.5 rounded-full" style={{ width: `${b.pct}%`, background: b.color }} />
                 </div>
               </div>
@@ -903,14 +903,14 @@ export function ExploreView({ data, onBack }) {
 
       {/* category analysis */}
       <Section title="Category Gap Analysis" icon={Layers} iconColor="#EC4899" defaultOpen={false}>
-        <p className="text-xs text-text-secondary mb-4">Categories where your store is under-indexed compared to NYC market average.</p>
+        <p className="text-xs text-[#ADA599] mb-4">Categories where your store is under-indexed compared to NYC market average.</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {categoryGaps.map((c) => (
-            <div key={c.category} className="bg-surface-bg rounded-lg p-4 border border-surface-border">
-              <p className="text-xs font-medium text-text-primary mb-1">{c.category}</p>
-              <p className="text-[11px] text-text-secondary mb-2">{c.gap}</p>
+            <div key={c.category} className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
+              <p className="text-xs font-medium text-[#F0EDE8] mb-1">{c.category}</p>
+              <p className="text-[11px] text-[#ADA599] mb-2">{c.gap}</p>
               <p className="text-sm font-bold" style={{ color: c.color }}>{c.opportunity}</p>
-              <p className="text-[10px] text-text-muted">est. revenue opportunity</p>
+              <p className="text-[10px] text-[#6B6359]">est. revenue opportunity</p>
             </div>
           ))}
         </div>
@@ -921,10 +921,10 @@ export function ExploreView({ data, onBack }) {
 
 export function RecommendationsView({ data, onBack }) {
   const metrics = data?.metrics || [
-    { label: 'Stockout Rate', value: '6.2%', change: '-1.8%', iconName: 'PackageX', color: '#ef4444', changeColor: '#00a35e' },
-    { label: 'Avg Margin', value: '43.1%', change: '+2.4%', iconName: 'CircleDollarSign', color: '#00a35e', changeColor: '#00a35e' },
-    { label: 'Inventory Turns', value: '4.8x', change: '+0.3', iconName: 'RefreshCw', color: '#3b82f6', changeColor: '#00a35e' },
-    { label: 'Dead Stock', value: '$1,240', change: '-$680', iconName: 'TrendingDown', color: '#d97706', changeColor: '#00a35e' },
+    { label: 'Stockout Rate', value: '6.2%', change: '-1.8%', iconName: 'PackageX', color: '#E87068', changeColor: '#00C27C' },
+    { label: 'Avg Margin', value: '43.1%', change: '+2.4%', iconName: 'CircleDollarSign', color: '#00C27C', changeColor: '#00C27C' },
+    { label: 'Inventory Turns', value: '4.8x', change: '+0.3', iconName: 'RefreshCw', color: '#64A8E0', changeColor: '#00C27C' },
+    { label: 'Dead Stock', value: '$1,240', change: '-$680', iconName: 'TrendingDown', color: '#D4A03A', changeColor: '#00C27C' },
   ];
   const actionItems = data?.actionItems || [
     { action: 'Increase Jeeter Baby Jeeter Churros order qty from 36 to 48 units', reason: 'Consistently sells out 2 days before restock. Lost ~$840/mo in revenue.', priority: 'High' },
@@ -937,22 +937,22 @@ export function RecommendationsView({ data, onBack }) {
   const heroTitle = data?.title || 'Purchasing Recommendations';
   const heroSubtitle = data?.subtitle || 'Maximize margins and reduce stockouts with data-driven ordering';
 
-  const priorityColors = { High: '#ef4444', Medium: '#d97706', Low: '#3b82f6' };
+  const priorityColors = { High: '#E87068', Medium: '#D4A03A', Low: '#64A8E0' };
 
   return (
     <div className="space-y-4 animate-fade-in">
       {onBack && (
-        <button onClick={onBack} className="flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition-colors">
+        <button onClick={onBack} className="flex items-center gap-2 text-sm text-[#ADA599] hover:text-[#F0EDE8] transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to Agent
         </button>
       )}
 
       <div className="flex items-start gap-3">
-        <div className="w-8 h-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <Bot className="w-4 h-4 text-[#3b82f6]" />
+        <div className="w-8 h-8 rounded-full bg-[#64A8E0]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <Bot className="w-4 h-4 text-[#64A8E0]" />
         </div>
-        <p className="text-sm text-text-secondary">
-          <span className="text-text-primary font-medium">Connect Agent</span> analyzed your inventory performance over the last 90 days. Here are actionable purchasing recommendations:
+        <p className="text-sm text-[#ADA599]">
+          <span className="text-[#F0EDE8] font-medium">Connect Agent</span> analyzed your inventory performance over the last 90 days. Here are actionable purchasing recommendations:
         </p>
       </div>
 
@@ -961,8 +961,8 @@ export function RecommendationsView({ data, onBack }) {
         <div className="absolute inset-0 bg-gradient-to-br from-green-900/40 via-emerald-900/20 to-teal-900/40" />
         <div className="relative px-8 py-6">
           <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-white/20 text-white/70 uppercase tracking-wider">Smart Purchasing</span>
-          <h1 className="text-xl font-bold text-text-primary mt-2">{heroTitle}</h1>
-          <p className="text-sm text-text-secondary mt-1">{heroSubtitle}</p>
+          <h1 className="text-xl font-bold text-[#F0EDE8] mt-2">{heroTitle}</h1>
+          <p className="text-sm text-[#ADA599] mt-1">{heroSubtitle}</p>
         </div>
       </div>
 
@@ -971,28 +971,28 @@ export function RecommendationsView({ data, onBack }) {
         {metrics.map((m) => {
           const MIcon = resolveIcon(m.iconName || m.icon);
           return (
-            <div key={m.label} className="bg-white rounded-xl border border-surface-border p-4">
-              <MIcon className="w-4 h-4 mb-2" style={{ color: m.color || '#3b82f6' }} />
-              <p className="text-[10px] text-text-muted">{m.label}</p>
-              <p className="text-lg font-bold text-text-primary">{m.value}</p>
-              <p className="text-[10px] font-medium" style={{ color: m.changeColor || '#00a35e' }}>{m.change} vs last month</p>
+            <div key={m.label} className="bg-[#1C1B1A] rounded-xl border border-[#38332B] p-4">
+              <MIcon className="w-4 h-4 mb-2" style={{ color: m.color || '#64A8E0' }} />
+              <p className="text-[10px] text-[#6B6359]">{m.label}</p>
+              <p className="text-lg font-bold text-[#F0EDE8]">{m.value}</p>
+              <p className="text-[10px] font-medium" style={{ color: m.changeColor || '#00C27C' }}>{m.change} vs last month</p>
             </div>
           );
         })}
       </div>
 
       {/* recommendations */}
-      <Section title="Action Items" icon={Zap} iconColor="#d97706" badge={`${actionItems.length} recommendations`}>
+      <Section title="Action Items" icon={Zap} iconColor="#D4A03A" badge={`${actionItems.length} recommendations`}>
         <div className="space-y-3">
           {actionItems.map((r, i) => {
             const color = priorityColors[r.priority] || '#8B949E';
             return (
-              <div key={i} className="bg-surface-bg rounded-lg p-4 border border-surface-border">
+              <div key={i} className="bg-[#141210] rounded-lg p-4 border border-[#38332B]">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded" style={{ background: color + '22', color }}>{r.priority}</span>
                 </div>
-                <p className="text-sm font-medium text-text-primary mb-1">{r.action}</p>
-                <p className="text-xs text-text-secondary leading-relaxed">{r.reason}</p>
+                <p className="text-sm font-medium text-[#F0EDE8] mb-1">{r.action}</p>
+                <p className="text-xs text-[#ADA599] leading-relaxed">{r.reason}</p>
               </div>
             );
           })}
@@ -1009,10 +1009,10 @@ export function RecommendationsView({ data, onBack }) {
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-3 animate-fade-in">
-      <div className="w-8 h-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0">
-        <Bot className="w-4 h-4 text-[#3b82f6]" />
+      <div className="w-8 h-8 rounded-full bg-[#64A8E0]/20 flex items-center justify-center flex-shrink-0">
+        <Bot className="w-4 h-4 text-[#64A8E0]" />
       </div>
-      <div className="bg-white border border-surface-border rounded-2xl rounded-tl-sm px-4 py-3">
+      <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-4 py-3">
         <div className="flex items-center gap-1.5">
           <div className="w-2 h-2 rounded-full bg-[#8B949E] animate-bounce" style={{ animationDelay: '0ms' }} />
           <div className="w-2 h-2 rounded-full bg-[#8B949E] animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -1037,7 +1037,7 @@ const SUGGESTIONS = [
     gradient: 'from-red-600/20 to-orange-600/20',
     border: 'hover:border-red-500/40',
     tag: 'Urgent',
-    tagColor: '#ef4444',
+    tagColor: '#E87068',
     confidence: 'high',
   },
   {
@@ -1049,7 +1049,7 @@ const SUGGESTIONS = [
     gradient: 'from-blue-600/20 to-indigo-600/20',
     border: 'hover:border-blue-500/40',
     tag: 'Discovery',
-    tagColor: '#3b82f6',
+    tagColor: '#64A8E0',
     confidence: 'medium',
   },
   {
@@ -1061,7 +1061,7 @@ const SUGGESTIONS = [
     gradient: 'from-green-600/20 to-emerald-600/20',
     border: 'hover:border-green-500/40',
     tag: 'Optimization',
-    tagColor: '#00a35e',
+    tagColor: '#00C27C',
     confidence: 'high',
   },
   {
@@ -1073,7 +1073,7 @@ const SUGGESTIONS = [
     gradient: 'from-emerald-600/20 to-green-600/20',
     border: 'hover:border-emerald-500/40',
     tag: 'Profitability',
-    tagColor: '#00a35e',
+    tagColor: '#00C27C',
   },
   {
     key: 'vendor-comparison',
@@ -1084,7 +1084,7 @@ const SUGGESTIONS = [
     gradient: 'from-indigo-600/20 to-purple-600/20',
     border: 'hover:border-indigo-500/40',
     tag: 'Suppliers',
-    tagColor: '#8b5cf6',
+    tagColor: '#B598E8',
   },
   {
     key: 'seasonal-forecast',
@@ -1095,7 +1095,7 @@ const SUGGESTIONS = [
     gradient: 'from-amber-600/20 to-orange-600/20',
     border: 'hover:border-amber-500/40',
     tag: 'Planning',
-    tagColor: '#d97706',
+    tagColor: '#D4A03A',
   },
 ];
 
@@ -1210,40 +1210,40 @@ export default function ConnectAgent() {
     <div className="max-w-5xl mx-auto flex flex-col h-[calc(100vh-10rem)]">
       {/* header */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#3b82f6] to-[#2563EB] flex items-center justify-center shadow-lg shadow-[#3b82f6]/20">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#64A8E0] to-[#2563EB] flex items-center justify-center shadow-lg shadow-[#64A8E0]/20">
           <ShoppingCart className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-text-primary">Connect</h1>
-          <p className="text-xs text-text-secondary">Purchasing & Inventory Agent</p>
+          <h1 className="text-xl font-bold text-[#F0EDE8]">Connect</h1>
+          <p className="text-xs text-[#ADA599]">Purchasing & Inventory Agent</p>
         </div>
-        <div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#3b82f6]/10 border border-[#3b82f6]/20">
-          <div className="w-2 h-2 rounded-full bg-[#3b82f6] animate-pulse" />
-          <span className="text-xs text-[#3b82f6] font-medium">Online</span>
+        <div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#64A8E0]/10 border border-[#64A8E0]/20">
+          <div className="w-2 h-2 rounded-full bg-[#64A8E0] animate-pulse" />
+          <span className="text-xs text-[#64A8E0] font-medium">Online</span>
         </div>
       </div>
 
       {/* Inventory at a Glance */}
       <div className="mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="p-3 rounded-xl border border-surface-border bg-white">
-          <p className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Stock Health</p>
-          <p className="text-xl font-bold text-text-primary">32/39</p>
-          <p className="text-[10px] text-[#00a35e]">stores fully stocked</p>
+        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
+          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Stock Health</p>
+          <p className="text-xl font-bold text-[#F0EDE8]">32/39</p>
+          <p className="text-[10px] text-[#00C27C]">stores fully stocked</p>
         </div>
-        <div className="p-3 rounded-xl border border-surface-border bg-white">
-          <p className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Urgent</p>
-          <p className="text-xl font-bold text-[#ef4444]">3</p>
-          <p className="text-[10px] text-[#ef4444]">SKUs at stockout risk</p>
+        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
+          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Urgent</p>
+          <p className="text-xl font-bold text-[#E87068]">3</p>
+          <p className="text-[10px] text-[#E87068]">SKUs at stockout risk</p>
         </div>
-        <div className="p-3 rounded-xl border border-surface-border bg-white">
-          <p className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Pending POs</p>
-          <p className="text-xl font-bold text-[#d97706]">1</p>
-          <p className="text-[10px] text-text-secondary">draft ready · $2,847</p>
+        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
+          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Pending POs</p>
+          <p className="text-xl font-bold text-[#D4A03A]">1</p>
+          <p className="text-[10px] text-[#ADA599]">draft ready · $2,847</p>
         </div>
-        <div className="p-3 rounded-xl border border-surface-border bg-white">
-          <p className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Last Reorder</p>
-          <p className="text-xl font-bold text-text-primary">2d ago</p>
-          <p className="text-[10px] text-[#00a35e]">All items received</p>
+        <div className="p-3 rounded-xl border border-[#38332B] bg-[#1C1B1A]">
+          <p className="text-[10px] uppercase tracking-wider text-[#ADA599] mb-1">Last Reorder</p>
+          <p className="text-xl font-bold text-[#F0EDE8]">2d ago</p>
+          <p className="text-[10px] text-[#00C27C]">All items received</p>
         </div>
       </div>
 
@@ -1251,15 +1251,15 @@ export default function ConnectAgent() {
       <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-1">
         {/* welcome */}
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0">
-            <Bot className="w-4 h-4 text-[#3b82f6]" />
+          <div className="w-8 h-8 rounded-full bg-[#64A8E0]/20 flex items-center justify-center flex-shrink-0">
+            <Bot className="w-4 h-4 text-[#64A8E0]" />
           </div>
-          <div className="bg-white border border-surface-border rounded-2xl rounded-tl-sm px-5 py-4 max-w-2xl">
-            <p className="text-sm text-text-primary leading-relaxed">
+          <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-5 py-4 max-w-2xl">
+            <p className="text-sm text-[#F0EDE8] leading-relaxed">
               Hey! I'm your Connect purchasing agent. I can help you restock out-of-stock items,
               discover new products from top brands, and optimize your purchasing strategy — all powered by your real sales data.
             </p>
-            <p className="text-sm text-text-secondary mt-2 leading-relaxed">
+            <p className="text-sm text-[#ADA599] mt-2 leading-relaxed">
               Select an action below or tell me what you need.
             </p>
           </div>
@@ -1269,14 +1269,14 @@ export default function ConnectAgent() {
         {messages.map((msg, i) => (
           <div key={i} className={`flex items-start gap-3 animate-fade-in ${msg.role === 'user' ? 'justify-end' : ''}`}>
             {msg.role === 'agent' && (
-              <div className="w-8 h-8 rounded-full bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0">
-                <Bot className="w-4 h-4 text-[#3b82f6]" />
+              <div className="w-8 h-8 rounded-full bg-[#64A8E0]/20 flex items-center justify-center flex-shrink-0">
+                <Bot className="w-4 h-4 text-[#64A8E0]" />
               </div>
             )}
             <div className={`rounded-2xl px-5 py-3 max-w-2xl text-sm leading-relaxed whitespace-pre-wrap ${
               msg.role === 'user'
-                ? 'bg-[#3b82f6] text-white rounded-tr-sm'
-                : 'bg-white border border-surface-border text-text-primary rounded-tl-sm'
+                ? 'bg-[#64A8E0] text-white rounded-tr-sm'
+                : 'bg-[#1C1B1A] border border-[#38332B] text-[#F0EDE8] rounded-tl-sm'
             }`}>
               {msg.text.split(/(\*\*[^*]+\*\*)/g).map((part, i) => part.startsWith('**') && part.endsWith('**') ? <strong key={i}>{part.slice(2, -2)}</strong> : part)}
             </div>
@@ -1292,25 +1292,25 @@ export default function ConnectAgent() {
         {/* suggestions */}
         {view === 'idle' && (
           <div className="pt-2 animate-fade-in">
-            <p className="text-xs text-text-secondary mb-3 ml-11">Quick actions</p>
+            <p className="text-xs text-[#ADA599] mb-3 ml-11">Quick actions</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 ml-11">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s.key}
                   onClick={() => handleSuggestionClick(s.key)}
-                  className={`group text-left bg-white border border-surface-border ${s.border} rounded-xl p-4 transition-all hover:scale-[1.02] active:scale-[0.98]`}
+                  className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl p-4 transition-all hover:scale-[1.02] active:scale-[0.98]`}
                 >
                   <div className="flex items-center gap-2 mb-3">
                     <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>
-                      <s.icon className="w-4 h-4 text-text-primary" />
+                      <s.icon className="w-4 h-4 text-[#F0EDE8]" />
                     </div>
                     <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full border border-white/10" style={{ color: s.tagColor }}>{s.tag}</span>
-                    {s.confidence === 'high' && <span className="text-[9px] font-semibold text-[#00a35e] bg-[#00a35e]/10 px-1.5 py-0.5 rounded border border-[#00a35e]/30">High Confidence</span>}
-                    {s.confidence === 'medium' && <span className="text-[9px] font-semibold text-[#d97706] bg-[#d97706]/10 px-1.5 py-0.5 rounded border border-dashed border-[#d97706]/30">Review Suggested</span>}
+                    {s.confidence === 'high' && <span className="text-[9px] font-semibold text-[#00C27C] bg-[#00C27C]/10 px-1.5 py-0.5 rounded border border-[#00C27C]/30">High Confidence</span>}
+                    {s.confidence === 'medium' && <span className="text-[9px] font-semibold text-[#D4A03A] bg-[#D4A03A]/10 px-1.5 py-0.5 rounded border border-dashed border-[#D4A03A]/30">Review Suggested</span>}
                   </div>
-                  <p className="text-sm font-medium text-text-primary mb-1">{s.label}</p>
-                  <p className="text-xs text-text-secondary leading-relaxed">{s.description}</p>
-                  <div className="flex items-center gap-1 mt-3 text-xs text-[#3b82f6] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="text-sm font-medium text-[#F0EDE8] mb-1">{s.label}</p>
+                  <p className="text-xs text-[#ADA599] leading-relaxed">{s.description}</p>
+                  <div className="flex items-center gap-1 mt-3 text-xs text-[#64A8E0] opacity-0 group-hover:opacity-100 transition-opacity">
                     <Zap className="w-3 h-3" /> Analyze <ChevronRight className="w-3 h-3" />
                   </div>
                 </button>
@@ -1324,25 +1324,25 @@ export default function ConnectAgent() {
 
       {/* input bar */}
       <form onSubmit={handleSubmit} className="sticky bottom-0 pb-2">
-        <div className="flex items-center gap-3 bg-white border border-surface-border rounded-2xl px-4 py-3 focus-within:border-[#3b82f6]/50 transition-colors">
-          <Search className="w-5 h-5 text-text-secondary flex-shrink-0" />
+        <div className="flex items-center gap-3 bg-[#1C1B1A] border border-[#38332B] rounded-2xl px-4 py-3 focus-within:border-[#64A8E0]/50 transition-colors">
+          <Search className="w-5 h-5 text-[#ADA599] flex-shrink-0" />
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Ask about inventory, products, or purchasing..."
-            className="flex-1 bg-transparent text-sm text-text-primary placeholder-[#484F58] outline-none"
+            className="flex-1 bg-transparent text-sm text-[#F0EDE8] placeholder-[#484F58] outline-none"
             disabled={view === 'typing'}
           />
           <button
             type="submit"
             disabled={!inputValue.trim() || view === 'typing'}
-            className="w-8 h-8 rounded-lg bg-[#3b82f6] flex items-center justify-center text-white disabled:opacity-30 hover:bg-[#6FB4FF] transition-colors disabled:hover:bg-[#3b82f6]"
+            className="w-8 h-8 rounded-lg bg-[#64A8E0] flex items-center justify-center text-white disabled:opacity-30 hover:bg-[#6FB4FF] transition-colors disabled:hover:bg-[#64A8E0]"
           >
             <Send className="w-4 h-4" />
           </button>
         </div>
-        <p className="text-center text-[10px] text-text-muted mt-2">
+        <p className="text-center text-[10px] text-[#6B6359] mt-2">
           Connect Agent uses real-time inventory data and market analytics. Review all orders before confirming.
         </p>
       </form>

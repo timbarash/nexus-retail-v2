@@ -8,7 +8,7 @@ export const TEAM_MEMBERS = {
     name: 'Rachel Torres',
     role: 'General Manager',
     initials: 'RT',
-    color: '#00a35e',
+    color: '#00C27C',
     status: 'online',
     isBot: false,
   },
@@ -17,7 +17,7 @@ export const TEAM_MEMBERS = {
     name: 'Marcus Chen',
     role: 'Marketing Director',
     initials: 'MC',
-    color: '#3b82f6',
+    color: '#64A8E0',
     status: 'online',
     isBot: false,
   },
@@ -26,7 +26,7 @@ export const TEAM_MEMBERS = {
     name: 'Sofia Rodriguez',
     role: 'Inventory Manager',
     initials: 'SR',
-    color: '#d97706',
+    color: '#D4A03A',
     status: 'online',
     isBot: false,
   },
@@ -71,7 +71,7 @@ export const TEAM_MEMBERS = {
     name: 'Customer Bridge',
     role: 'Dutchie AI Agent',
     initials: 'CB',
-    color: '#00a35e',
+    color: '#00C27C',
     status: 'online',
     isBot: true,
   },
@@ -119,7 +119,7 @@ export const INITIAL_MESSAGES = {
       text: '📢 New campaign launched and ready for review. @Marcus Chen — please confirm creative assets.',
       mentions: ['marcus'],
       attachment: {
-        color: '#00a35e',
+        color: '#00C27C',
         title: '🌿 "Spring Into Savings" — Weekend Flash Sale',
         fields: [
           { label: 'Channels', value: 'SMS, Email, Push Notification' },
@@ -153,7 +153,7 @@ export const INITIAL_MESSAGES = {
       text: '📊 **T+24h Performance Update** — "Spring Into Savings" is outperforming projections. @Marcus Chen',
       mentions: ['marcus'],
       attachment: {
-        color: '#3b82f6',
+        color: '#64A8E0',
         title: '📈 Campaign Performance — 24hr Snapshot',
         fields: [
           { label: 'SMS Delivered', value: '2,118 / 2,341 (90.5%)' },
@@ -185,7 +185,7 @@ export const INITIAL_MESSAGES = {
       text: '🔴 **Low Stock Alert** — Critical inventory levels detected. @Sofia Rodriguez — immediate attention required.',
       mentions: ['sofia'],
       attachment: {
-        color: '#ef4444',
+        color: '#E87068',
         title: '⚠️ Inventory Alert — 3 SKUs Below Threshold',
         fields: [
           { label: 'Blue Dream 3.5g', value: '4 units remaining (threshold: 20)' },
@@ -216,7 +216,7 @@ export const INITIAL_MESSAGES = {
       text: '🎫 **Escalated Support Ticket** — A VIP customer has submitted a complaint requiring manager attention. @Derek Williams @Rachel Torres',
       mentions: ['derek', 'rachel'],
       attachment: {
-        color: '#d97706',
+        color: '#D4A03A',
         title: '🎫 Ticket #4892 — VIP Customer Complaint',
         fields: [
           { label: 'Customer', value: 'Michael R. (Loyalty Tier: Gold, LTV: $4,200)' },
@@ -276,7 +276,7 @@ export const INITIAL_MESSAGES = {
       text: '📈 **Weekly Sentiment Digest** — Overall sentiment trending positive this week. @Lisa Chang @Rachel Torres',
       mentions: ['lisa', 'rachel'],
       attachment: {
-        color: '#00a35e',
+        color: '#00C27C',
         title: '🌡️ Sentiment Overview — Feb 24 to Mar 3',
         fields: [
           { label: 'Overall Score', value: '4.3 / 5.0 (+0.2 vs last week)' },
@@ -303,7 +303,7 @@ export const INITIAL_MESSAGES = {
       text: '🔴 **Negative Review Alert** — New 1-star review detected on Google requiring response. @Lisa Chang',
       mentions: ['lisa'],
       attachment: {
-        color: '#ef4444',
+        color: '#E87068',
         title: '⚠️ Negative Review — Google Maps',
         fields: [
           { label: 'Rating', value: '★☆☆☆☆ (1/5)' },
@@ -367,7 +367,7 @@ export const INITIAL_MESSAGES = {
       text: '🍀 Here\'s a quick concept for "Luck of the Green" — @Marcus Chen',
       mentions: ['marcus'],
       attachment: {
-        color: '#00a35e',
+        color: '#00C27C',
         title: '🍀 Campaign Concept: "Luck of the Green"',
         fields: [
           { label: 'Theme', value: 'St. Patrick\'s Day — Green-branded product spotlight' },

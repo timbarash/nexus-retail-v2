@@ -16,11 +16,11 @@ import {
    Constants
    ──────────────────────────────────────────── */
 const COMPANY_COLORS = {
-  Ascend: '#00a35e',
+  Ascend: '#00C27C',
   'Housing Works': '#f97316',
   Sunnyside: '#f59e0b',
-  Rise: '#ef4444',
-  'The Cannabist': '#8b5cf6',
+  Rise: '#E87068',
+  'The Cannabist': '#B598E8',
   'The Botanist': '#0ea5e9',
 };
 
@@ -39,14 +39,14 @@ const CATEGORY_LIST = [
 function SentimentBarTooltip({ active, payload, label }) {
   if (!active || !payload || !payload.length) return null;
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-surface-border p-3 text-sm">
-      <p className="font-semibold text-text-primary mb-1.5">{label}</p>
+    <div className="bg-[#1C1B1A] rounded-lg shadow-lg border border-[#38332B] p-3 text-sm">
+      <p className="font-semibold text-[#F0EDE8] mb-1.5">{label}</p>
       <div className="space-y-1">
         {payload.map((item) => (
           <div key={item.name} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} />
-              <span className="text-text-secondary">{item.name}</span>
+              <span className="text-[#ADA599]">{item.name}</span>
             </span>
             <span className="font-medium" style={{ color: item.color }}>
               {item.value >= 0 ? '+' : ''}{item.value.toFixed(2)}
@@ -202,12 +202,12 @@ export default function CompetitiveInsights({ reviews }) {
     <div className="space-y-8">
       {/* ─── Header ─── */}
       <div>
-        <h2 className="text-2xl font-bold text-text-primary flex items-center gap-2">
-          <Trophy className="w-6 h-6 text-[#00a35e]" />
+        <h2 className="text-2xl font-bold text-[#F0EDE8] flex items-center gap-2">
+          <Trophy className="w-6 h-6 text-[#00C27C]" />
           Competitive Landscape
         </h2>
-        <p className="text-text-secondary mt-1 flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-[#d97706]" />
+        <p className="text-[#ADA599] mt-1 flex items-center gap-2">
+          <span className="inline-block w-2 h-2 rounded-full bg-[#D4A03A]" />
           Simulated competitive data for demonstration purposes
         </p>
       </div>
@@ -246,18 +246,18 @@ export default function CompetitiveInsights({ reviews }) {
 
       {/* ─── Overall Comparison Table ─── */}
       <section>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">Overall Comparison</h3>
-        <div className="bg-white rounded-xl shadow-sm border border-surface-border overflow-hidden">
+        <h3 className="text-lg font-semibold text-[#F0EDE8] mb-4">Overall Comparison</h3>
+        <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-surface-bg border-b border-surface-border">
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Company</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Avg Sentiment</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">NPS Score</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider hidden md:table-cell">Review Volume</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider hidden lg:table-cell">Top Strength</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider hidden lg:table-cell">Top Weakness</th>
+                <tr className="bg-[#141210] border-b border-[#38332B]">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#ADA599] uppercase tracking-wider">Company</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#ADA599] uppercase tracking-wider">Avg Sentiment</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#ADA599] uppercase tracking-wider">NPS Score</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#ADA599] uppercase tracking-wider hidden md:table-cell">Review Volume</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#ADA599] uppercase tracking-wider hidden lg:table-cell">Top Strength</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#ADA599] uppercase tracking-wider hidden lg:table-cell">Top Weakness</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#30363D]">
@@ -266,7 +266,7 @@ export default function CompetitiveInsights({ reviews }) {
                   return (
                     <tr
                       key={company.name}
-                      className={isAscend ? 'bg-[rgba(0,163,94,0.06)]' : 'hover:bg-surface-hover'}
+                      className={isAscend ? 'bg-[rgba(0,194,124,0.06)]' : 'hover:bg-[#282724]'}
                     >
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2.5">
@@ -274,10 +274,10 @@ export default function CompetitiveInsights({ reviews }) {
                             className="w-3 h-3 rounded-full flex-shrink-0"
                             style={{ backgroundColor: COMPANY_COLORS[company.name] || '#6b7280' }}
                           />
-                          <span className={`font-medium ${isAscend ? 'text-[#00a35e]' : 'text-text-primary'}`}>
+                          <span className={`font-medium ${isAscend ? 'text-[#00C27C]' : 'text-[#F0EDE8]'}`}>
                             {company.name}
                             {isAscend && (
-                              <span className="ml-2 text-[10px] font-semibold bg-[rgba(0,163,94,0.1)] text-[#00a35e] px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+                              <span className="ml-2 text-[10px] font-semibold bg-[rgba(0,194,124,0.1)] text-[#00C27C] px-1.5 py-0.5 rounded-full uppercase tracking-wider">
                                 You
                               </span>
                             )}
@@ -286,7 +286,7 @@ export default function CompetitiveInsights({ reviews }) {
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <div className="w-16 h-2 bg-white rounded-full overflow-hidden">
+                          <div className="w-16 h-2 bg-[#1C1B1A] rounded-full overflow-hidden">
                             <div
                               className="h-full rounded-full"
                               style={{
@@ -295,26 +295,26 @@ export default function CompetitiveInsights({ reviews }) {
                               }}
                             />
                           </div>
-                          <span className="text-sm font-semibold text-text-primary">
+                          <span className="text-sm font-semibold text-[#F0EDE8]">
                             {company.avgSentiment >= 0 ? '+' : ''}{company.avgSentiment.toFixed(2)}
                           </span>
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <span className={`font-semibold ${company.nps >= 30 ? 'text-[#00a35e]' : company.nps >= 0 ? 'text-[#d97706]' : 'text-[#ef4444]'}`}>
+                        <span className={`font-semibold ${company.nps >= 30 ? 'text-[#00C27C]' : company.nps >= 0 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                           {company.nps}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-text-secondary hidden md:table-cell">
+                      <td className="px-4 py-3 text-[#ADA599] hidden md:table-cell">
                         {company.volume.toLocaleString()}
                       </td>
                       <td className="px-4 py-3 hidden lg:table-cell">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[rgba(0,163,94,0.12)] text-[#00a35e] text-xs font-medium border border-[rgba(0,163,94,0.2)]">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[rgba(0,194,124,0.12)] text-[#00C27C] text-xs font-medium border border-[rgba(0,194,124,0.2)]">
                           {company.strength}
                         </span>
                       </td>
                       <td className="px-4 py-3 hidden lg:table-cell">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[rgba(239,68,68,0.12)] text-[#ef4444] text-xs font-medium border border-[rgba(239,68,68,0.2)]">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[rgba(232,112,104,0.12)] text-[#E87068] text-xs font-medium border border-[rgba(232,112,104,0.2)]">
                           {company.weakness}
                         </span>
                       </td>
@@ -330,8 +330,8 @@ export default function CompetitiveInsights({ reviews }) {
       {/* ─── Charts Row: Sentiment Comparison + Radar ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sentiment Comparison Bar Chart */}
-        <section className="bg-white rounded-xl shadow-sm border border-surface-border p-6">
-          <h3 className="text-base font-semibold text-text-primary mb-4">Sentiment Comparison</h3>
+        <section className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-6">
+          <h3 className="text-base font-semibold text-[#F0EDE8] mb-4">Sentiment Comparison</h3>
           <ResponsiveContainer width="100%" height={320}>
             <BarChart data={sentimentChartData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
@@ -339,7 +339,7 @@ export default function CompetitiveInsights({ reviews }) {
                 dataKey="name"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 11, fill: '#6b7280' }}
+                tick={{ fontSize: 11, fill: '#6B6359' }}
                 angle={-25}
                 textAnchor="end"
                 height={60}
@@ -348,7 +348,7 @@ export default function CompetitiveInsights({ reviews }) {
                 domain={[0, 0.5]}
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tick={{ fontSize: 12, fill: '#6B6359' }}
                 tickFormatter={(v) => '+' + v.toFixed(1)}
               />
               <Tooltip content={<SentimentBarTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
@@ -362,27 +362,27 @@ export default function CompetitiveInsights({ reviews }) {
         </section>
 
         {/* Radar Chart */}
-        <section className="bg-white rounded-xl shadow-sm border border-surface-border p-6">
-          <h3 className="text-base font-semibold text-text-primary mb-1">Category Comparison</h3>
-          <p className="text-xs text-text-muted mb-4">Ascend vs {bestCompetitorName}</p>
+        <section className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-6">
+          <h3 className="text-base font-semibold text-[#F0EDE8] mb-1">Category Comparison</h3>
+          <p className="text-xs text-[#6B6359] mb-4">Ascend vs {bestCompetitorName}</p>
           <ResponsiveContainer width="100%" height={320}>
             <RadarChart data={radarData}>
               <PolarGrid stroke="#e5e7eb" />
               <PolarAngleAxis
                 dataKey="category"
-                tick={{ fontSize: 11, fill: '#6b7280' }}
+                tick={{ fontSize: 11, fill: '#6B6359' }}
               />
               <PolarRadiusAxis
                 angle={90}
                 domain={[30, 80]}
-                tick={{ fontSize: 10, fill: '#6b7280' }}
+                tick={{ fontSize: 10, fill: '#6B6359' }}
                 axisLine={false}
               />
               <Radar
                 name="Ascend"
                 dataKey="Ascend"
-                stroke="#00a35e"
-                fill="#00a35e"
+                stroke="#00C27C"
+                fill="#00C27C"
                 fillOpacity={0.2}
                 strokeWidth={2}
               />
@@ -405,47 +405,47 @@ export default function CompetitiveInsights({ reviews }) {
       </div>
 
       {/* ─── Market Position Summary ─── */}
-      <section className="bg-white rounded-xl shadow-sm border border-surface-border p-6">
-        <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-          <Target className="w-5 h-5 text-[#00a35e]" />
+      <section className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-6">
+        <h3 className="text-lg font-semibold text-[#F0EDE8] mb-4 flex items-center gap-2">
+          <Target className="w-5 h-5 text-[#00C27C]" />
           Market Position Summary
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(0,163,94,0.1)] flex items-center justify-center">
-              <Award className="w-5 h-5 text-[#00a35e]" />
+            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(0,194,124,0.1)] flex items-center justify-center">
+              <Award className="w-5 h-5 text-[#00C27C]" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-text-primary">
+              <p className="text-sm font-semibold text-[#F0EDE8]">
                 Ranks #{ascendRank} in overall sentiment
               </p>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-xs text-[#ADA599] mt-0.5">
                 Among {allCompanies.length} tracked competitors in the cannabis retail space
               </p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(0,163,94,0.12)] flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-[#00a35e]" />
+            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(0,194,124,0.12)] flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-[#00C27C]" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-text-primary">
+              <p className="text-sm font-semibold text-[#F0EDE8]">
                 Strongest in: {ascendMetrics.strength}
               </p>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-xs text-[#ADA599] mt-0.5">
                 Opportunity area: {ascendMetrics.weakness}
               </p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(59,130,246,0.12)] flex items-center justify-center">
-              <BarChart3 className="w-5 h-5 text-[#3b82f6]" />
+            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[rgba(100,168,224,0.12)] flex items-center justify-center">
+              <BarChart3 className="w-5 h-5 text-[#64A8E0]" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-text-primary">
+              <p className="text-sm font-semibold text-[#F0EDE8]">
                 {ascendMetrics.volume.toLocaleString()} reviews analyzed
               </p>
-              <p className="text-xs text-text-secondary mt-0.5">
+              <p className="text-xs text-[#ADA599] mt-0.5">
                 Comprehensive coverage across Reddit, Google, Leafly, and Weedmaps
               </p>
             </div>
@@ -455,20 +455,20 @@ export default function CompetitiveInsights({ reviews }) {
 
       {/* ─── SWOT Analysis ─── */}
       <section>
-        <h3 className="text-lg font-semibold text-text-primary mb-4">SWOT Analysis</h3>
+        <h3 className="text-lg font-semibold text-[#F0EDE8] mb-4">SWOT Analysis</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Strengths */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-l-[#00a35e] border border-surface-border p-5">
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border-l-4 border-l-[#00C27C] border border-[#38332B] p-5">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-[rgba(0,163,94,0.12)] flex items-center justify-center">
-                <Shield className="w-4 h-4 text-[#00a35e]" />
+              <div className="w-8 h-8 rounded-lg bg-[rgba(0,194,124,0.12)] flex items-center justify-center">
+                <Shield className="w-4 h-4 text-[#00C27C]" />
               </div>
-              <h4 className="font-semibold text-[#00a35e]">Strengths</h4>
+              <h4 className="font-semibold text-[#00C27C]">Strengths</h4>
             </div>
             <ul className="space-y-2">
               {swotData.strengths.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-sm text-text-primary">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00a35e] flex-shrink-0 mt-1.5" />
+                <li key={idx} className="flex items-start gap-2 text-sm text-[#F0EDE8]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00C27C] flex-shrink-0 mt-1.5" />
                   {item}
                 </li>
               ))}
@@ -476,17 +476,17 @@ export default function CompetitiveInsights({ reviews }) {
           </div>
 
           {/* Weaknesses */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-l-[#ef4444] border border-surface-border p-5">
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border-l-4 border-l-[#E87068] border border-[#38332B] p-5">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-[rgba(239,68,68,0.12)] flex items-center justify-center">
-                <AlertTriangle className="w-4 h-4 text-[#ef4444]" />
+              <div className="w-8 h-8 rounded-lg bg-[rgba(232,112,104,0.12)] flex items-center justify-center">
+                <AlertTriangle className="w-4 h-4 text-[#E87068]" />
               </div>
-              <h4 className="font-semibold text-[#ef4444]">Weaknesses</h4>
+              <h4 className="font-semibold text-[#E87068]">Weaknesses</h4>
             </div>
             <ul className="space-y-2">
               {swotData.weaknesses.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-sm text-text-primary">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444] flex-shrink-0 mt-1.5" />
+                <li key={idx} className="flex items-start gap-2 text-sm text-[#F0EDE8]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E87068] flex-shrink-0 mt-1.5" />
                   {item}
                 </li>
               ))}
@@ -494,17 +494,17 @@ export default function CompetitiveInsights({ reviews }) {
           </div>
 
           {/* Opportunities */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-l-[#3b82f6] border border-surface-border p-5">
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border-l-4 border-l-[#64A8E0] border border-[#38332B] p-5">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-[rgba(59,130,246,0.12)] flex items-center justify-center">
-                <Lightbulb className="w-4 h-4 text-[#3b82f6]" />
+              <div className="w-8 h-8 rounded-lg bg-[rgba(100,168,224,0.12)] flex items-center justify-center">
+                <Lightbulb className="w-4 h-4 text-[#64A8E0]" />
               </div>
-              <h4 className="font-semibold text-[#3b82f6]">Opportunities</h4>
+              <h4 className="font-semibold text-[#64A8E0]">Opportunities</h4>
             </div>
             <ul className="space-y-2">
               {swotData.opportunities.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-sm text-text-primary">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] flex-shrink-0 mt-1.5" />
+                <li key={idx} className="flex items-start gap-2 text-sm text-[#F0EDE8]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#64A8E0] flex-shrink-0 mt-1.5" />
                   {item}
                 </li>
               ))}
@@ -512,7 +512,7 @@ export default function CompetitiveInsights({ reviews }) {
           </div>
 
           {/* Threats */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-l-[#FFA657] border border-surface-border p-5">
+          <div className="bg-[#1C1B1A] rounded-xl shadow-sm border-l-4 border-l-[#FFA657] border border-[#38332B] p-5">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-lg bg-[rgba(255,166,87,0.12)] flex items-center justify-center">
                 <TrendingDown className="w-4 h-4 text-[#FFA657]" />
@@ -521,7 +521,7 @@ export default function CompetitiveInsights({ reviews }) {
             </div>
             <ul className="space-y-2">
               {swotData.threats.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-sm text-text-primary">
+                <li key={idx} className="flex items-start gap-2 text-sm text-[#F0EDE8]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#FFA657] flex-shrink-0 mt-1.5" />
                   {item}
                 </li>

@@ -3,96 +3,56 @@
 @tailwind utilities;
 
 /* ========================================
-   Nexus Retail v2 — Light Mode Styles
-   Inspired by Dutchie Connect aesthetic
+   Nexus Retail v2 — Warm Dark Theme
+   Inspired by Dutchie Connect 2.0
    ======================================== */
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Base body — light background */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f7f8fa;
-  color: #1a1a2e;
+  background-color: #141210;
+  color: #F0EDE8;
 }
 
-/* ---- Custom scrollbar (light theme) ---- */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
+/* ---- Scrollbar (warm dark) ---- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #38332B; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #6B6359; }
+* { scrollbar-width: thin; scrollbar-color: #38332B transparent; }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.12);
-  border-radius: 3px;
-  transition: background 0.2s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
-}
-
-/* ---- Sidebar scrollbar (dark context) ---- */
-.sidebar-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.sidebar-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.sidebar-scroll {
-  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
-}
-
-/* ---- Card system ---- */
+/* ---- Card hover ---- */
 @layer components {
   .card-hover {
     @apply transition-all duration-200 ease-in-out;
   }
-
   .card-hover:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+    background-color: #282724;
     transform: translateY(-1px);
   }
 }
 
 /* ---- Smooth transitions ---- */
-button,
-a,
-input,
-select,
-[role="button"] {
+button, a, input, select, [role="button"] {
   transition: all 0.15s ease-in-out;
 }
 
-/* ---- Gradient text utilities ---- */
+/* ---- Gradient text ---- */
 @layer utilities {
   .text-gradient-green {
-    background: linear-gradient(90deg, #00a35e, #10b981);
+    background: linear-gradient(90deg, #00C27C, #00E08E);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .text-gradient-brand {
-    background: linear-gradient(135deg, #00a35e, #3b82f6);
+    background: linear-gradient(135deg, #00C27C, #64A8E0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -104,19 +64,13 @@ select,
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out;
-}
+.animate-fadeIn { animation: fadeIn 0.3s ease-out; }
 
 @keyframes thinking-shimmer {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
 }
-
-.thinking-shimmer {
-  animation: thinking-shimmer 2s ease-in-out infinite;
-}
+.thinking-shimmer { animation: thinking-shimmer 2s ease-in-out infinite; }
 
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(-16px); }
@@ -129,72 +83,60 @@ select,
 }
 
 @layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.3s ease-out forwards;
-  }
-
-  .animate-slide-in-left {
-    animation: slideInLeft 0.3s ease-out forwards;
-  }
-
-  .animate-pulse-subtle {
-    animation: pulse-subtle 2s ease-in-out infinite;
-  }
+  .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+  .animate-slide-in-left { animation: slideInLeft 0.3s ease-out forwards; }
+  .animate-pulse-subtle { animation: pulse-subtle 2s ease-in-out infinite; }
 }
 
-/* Staggered card animation */
+/* Staggered card entrance */
 .animate-fade-in:nth-child(1) { animation-delay: 0ms; }
-.animate-fade-in:nth-child(2) { animation-delay: 50ms; }
-.animate-fade-in:nth-child(3) { animation-delay: 100ms; }
-.animate-fade-in:nth-child(4) { animation-delay: 150ms; }
-.animate-fade-in:nth-child(5) { animation-delay: 200ms; }
-.animate-fade-in:nth-child(6) { animation-delay: 250ms; }
+.animate-fade-in:nth-child(2) { animation-delay: 60ms; }
+.animate-fade-in:nth-child(3) { animation-delay: 120ms; }
+.animate-fade-in:nth-child(4) { animation-delay: 180ms; }
+.animate-fade-in:nth-child(5) { animation-delay: 240ms; }
+.animate-fade-in:nth-child(6) { animation-delay: 300ms; }
 
-/* ---- Sentiment badges (light theme) ---- */
+/* ---- Sentiment badges (warm dark) ---- */
 @layer components {
   .badge-positive {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-    background-color: rgba(0, 163, 94, 0.08);
-    color: #00a35e;
+    background-color: rgba(0,194,124,0.12);
+    color: #00C27C;
   }
-
   .badge-neutral {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-    background-color: rgba(217, 119, 6, 0.08);
-    color: #d97706;
+    background-color: rgba(212,160,58,0.12);
+    color: #D4A03A;
   }
-
   .badge-negative {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-    background-color: rgba(239, 68, 68, 0.08);
-    color: #ef4444;
+    background-color: rgba(232,112,104,0.12);
+    color: #E87068;
   }
 }
 
-/* ---- Chart containers (light) ---- */
+/* ---- Chart container (warm dark) ---- */
 @layer components {
   .chart-container {
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
+    background-color: #1C1B1A;
+    border: 1px solid #38332B;
     @apply rounded-xl p-6;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-    @apply transition-shadow duration-200;
+    @apply transition-all duration-200;
   }
-
   .chart-container:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+    background-color: #282724;
   }
 }
 
-/* ---- Source icon colors ---- */
+/* ---- Source colors ---- */
 @layer utilities {
   .source-reddit { color: #ff4500; }
-  .source-google { color: #3b82f6; }
-  .source-leafly { color: #00a35e; }
-  .source-weedmaps { color: #d97706; }
+  .source-google { color: #64A8E0; }
+  .source-leafly { color: #00C27C; }
+  .source-weedmaps { color: #D4A03A; }
 }
 
-/* ---- Loading skeleton (light) ---- */
+/* ---- Loading skeleton (warm dark) ---- */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
@@ -202,40 +144,19 @@ select,
 
 @layer components {
   .skeleton {
-    background: linear-gradient(
-      90deg,
-      #f3f4f6 25%,
-      #e5e7eb 50%,
-      #f3f4f6 75%
-    );
+    background: linear-gradient(90deg, #1C1B1A 25%, #282724 50%, #1C1B1A 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s ease-in-out infinite;
     border-radius: 4px;
   }
 }
 
-/* ---- DTCH sidebar thin scrollbar ---- */
-.dtch-sidebar-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-
-.dtch-sidebar-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.dtch-sidebar-scroll::-webkit-scrollbar-thumb {
-  background: rgba(139, 148, 158, 0.2);
-  border-radius: 2px;
-}
-
-.dtch-sidebar-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 148, 158, 0.4);
-}
-
-.dtch-sidebar-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(139, 148, 158, 0.2) transparent;
-}
+/* ---- DTCH sidebar scrollbar ---- */
+.dtch-sidebar-scroll::-webkit-scrollbar { width: 4px; }
+.dtch-sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+.dtch-sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(173,165,153,0.2); border-radius: 2px; }
+.dtch-sidebar-scroll::-webkit-scrollbar-thumb:hover { background: rgba(173,165,153,0.4); }
+.dtch-sidebar-scroll { scrollbar-width: thin; scrollbar-color: rgba(173,165,153,0.2) transparent; }
 
 /* ---- Line clamp ---- */
 @layer utilities {
@@ -245,4 +166,10 @@ select,
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+}
+
+/* ---- Input placeholder (warm) ---- */
+.nexus-input::placeholder {
+  color: #7A746B;
+  opacity: 1;
 }

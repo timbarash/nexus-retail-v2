@@ -423,7 +423,7 @@ function normalizeMarketingPlan(raw) {
 
   // Normalize tierRewards
   if (Array.isArray(plan.tierRewards)) {
-    const tierColors = ['#9333EA', '#d97706', '#EC4899'];
+    const tierColors = ['#9333EA', '#D4A03A', '#EC4899'];
     plan.tierRewards = plan.tierRewards.map((t, i) => ({
       tier: t.tier || `Tier ${i + 1}`,
       reward: t.reward || 'Special Reward',
@@ -574,7 +574,7 @@ function normalizeConnectAnalysis(raw) {
       brand: p.brand || 'Brand',
       name: p.name || 'Product',
       type: p.type || '',
-      brandColor: p.brandColor || '#3b82f6',
+      brandColor: p.brandColor || '#64A8E0',
       // Reorder-specific fields
       lastPrice: p.lastPrice || p.price || '$0.00',
       avgWeeklySales: typeof p.avgWeeklySales === 'number' ? p.avgWeeklySales : parseInt(p.avgWeeklySales) || 20,
@@ -631,13 +631,13 @@ function normalizeConnectAnalysis(raw) {
       revenue: b.revenue || '—',
       growth: b.growth || '—',
       pct: b.pct || Math.max(20, 90 - i * 15),
-      color: b.color || '#3b82f6',
+      color: b.color || '#64A8E0',
     }));
   }
 
   // Ensure categoryGaps items have color
   if (Array.isArray(analysis.categoryGaps)) {
-    const gapColors = ['#3b82f6', '#8b5cf6', '#00a35e'];
+    const gapColors = ['#64A8E0', '#B598E8', '#00C27C'];
     analysis.categoryGaps = analysis.categoryGaps.map((c, i) => ({
       ...c,
       category: c.category || 'Category',
@@ -792,7 +792,7 @@ function normalizePricingAnalysis(raw) {
 
   const toNum = (v, fallback = 0) => typeof v === 'number' ? v : parseFloat(v) || fallback;
   const toInt = (v, fallback = 0) => typeof v === 'number' ? v : parseInt(v) || fallback;
-  const colors = ['#00a35e', '#3b82f6', '#8b5cf6', '#d97706', '#ef4444', '#FF6B35', '#E91E63', '#00BCD4'];
+  const colors = ['#00C27C', '#64A8E0', '#B598E8', '#D4A03A', '#E87068', '#FF6B35', '#E91E63', '#00BCD4'];
 
   // Normalize products (used by market_comparison and price_cost_overview)
   if (Array.isArray(analysis.products)) {

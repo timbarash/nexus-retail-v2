@@ -361,9 +361,9 @@ const SALES_DATA = {
     },
   },
   categories: [
-    { name: 'Flower', revenue: 5_196_000, pct: 38.1, units: 62_400, margin: 42.9, marketShare: 35, color: '#ef4444' },
+    { name: 'Flower', revenue: 5_196_000, pct: 38.1, units: 62_400, margin: 42.9, marketShare: 35, color: '#E87068' },
     { name: 'Vapes', revenue: 3_093_000, pct: 22.7, units: 49_600, margin: 45.9, marketShare: 24, color: '#00BCD4' },
-    { name: 'Edibles', revenue: 2_401_000, pct: 17.6, units: 82_000, margin: 55.0, marketShare: 19, color: '#8b5cf6' },
+    { name: 'Edibles', revenue: 2_401_000, pct: 17.6, units: 82_000, margin: 55.0, marketShare: 19, color: '#B598E8' },
     { name: 'Pre-Rolls', revenue: 1_610_000, pct: 11.8, units: 31_200, margin: 48.6, marketShare: 12, color: '#FF6B35' },
     { name: 'Concentrates', revenue: 887_000, pct: 6.5, units: 15_600, margin: 44.7, marketShare: 7, color: '#E91E63' },
     { name: 'Other', revenue: 453_000, pct: 3.2, units: 12_800, margin: 52.3, marketShare: 3, color: '#8B949E' },
@@ -428,10 +428,10 @@ const SALES_TIMESERIES = {
 };
 
 const CHART_METRICS = [
-  { key: 'revenue', label: 'Revenue', color: '#00a35e', format: v => v >= 1_000_000 ? `$${(v / 1_000_000).toFixed(1)}M` : `$${(v / 1000).toFixed(0)}K`, benchKey: 'marketRevenue' },
-  { key: 'transactions', label: 'Transactions', color: '#3b82f6', format: v => v.toLocaleString(), benchKey: null },
-  { key: 'avgBasket', label: 'Avg Basket', color: '#8b5cf6', format: v => `$${v}`, benchKey: null },
-  { key: 'margin', label: 'Margin %', color: '#d97706', format: v => `${v}%`, benchKey: null },
+  { key: 'revenue', label: 'Revenue', color: '#00C27C', format: v => v >= 1_000_000 ? `$${(v / 1_000_000).toFixed(1)}M` : `$${(v / 1000).toFixed(0)}K`, benchKey: 'marketRevenue' },
+  { key: 'transactions', label: 'Transactions', color: '#64A8E0', format: v => v.toLocaleString(), benchKey: null },
+  { key: 'avgBasket', label: 'Avg Basket', color: '#B598E8', format: v => `$${v}`, benchKey: null },
+  { key: 'margin', label: 'Margin %', color: '#D4A03A', format: v => `${v}%`, benchKey: null },
 ];
 
 // ---------------------------------------------------------------------------
@@ -451,33 +451,33 @@ function fmtDollar(v) {
 function NexusTile({ children, className = '', span = 1 }) {
   const spanClass = span === 2 ? 'lg:col-span-2' : '';
   return (
-    <div className={`rounded-2xl border border-surface-border bg-white shadow-sm transition-all duration-200 hover:border-gray-300 ${spanClass} ${className}`}>
+    <div className={`rounded-2xl border border-[#38332B] bg-[#1C1B1A] shadow-sm transition-all duration-200 hover:border-[#38332B] ${spanClass} ${className}`}>
       {children}
     </div>
   );
 }
 
-function TileHeader({ icon: Icon, title, subtitle, action, actionLabel, iconBg = 'bg-[#00a35e]/10 text-[#00a35e]', badge }) {
+function TileHeader({ icon: Icon, title, subtitle, action, actionLabel, iconBg = 'bg-[#00C27C]/10 text-[#00C27C]', badge }) {
   return (
-    <div className="flex items-start justify-between border-b border-surface-border px-6 py-4">
+    <div className="flex items-start justify-between border-b border-[#38332B] px-6 py-4">
       <div className="flex items-center gap-3">
         <div className={`relative flex h-10 w-10 items-center justify-center rounded-xl ${iconBg}`}>
           <Icon size={20} />
           {badge && (
-            <span className={`absolute -top-1.5 -right-1.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full px-1 text-[10px] font-bold text-white ${badge.color || 'bg-[#ef4444]'}`}>
+            <span className={`absolute -top-1.5 -right-1.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full px-1 text-[10px] font-bold text-white ${badge.color || 'bg-[#E87068]'}`}>
               {badge.count}
             </span>
           )}
         </div>
         <div>
-          <h3 className="text-base font-semibold text-text-primary">{title}</h3>
+          <h3 className="text-base font-semibold text-[#F0EDE8]">{title}</h3>
           {subtitle && <p className="text-xs text-panel-300">{subtitle}</p>}
         </div>
       </div>
       {action && (
         <button
           onClick={action}
-          className="flex items-center gap-1 rounded-lg bg-[#00a35e] px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#00B07A]"
+          className="flex items-center gap-1 rounded-lg bg-[#00C27C] px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#00B07A]"
         >
           {actionLabel}
           <ChevronRight size={14} />
@@ -492,10 +492,10 @@ function StatRow({ label, value, sub, trend, color }) {
     <div className="flex items-center justify-between py-2">
       <span className="text-sm text-panel-300">{label}</span>
       <div className="text-right">
-        <span className={`text-lg font-bold ${color || 'text-text-primary'}`}>{value}</span>
+        <span className={`text-lg font-bold ${color || 'text-[#F0EDE8]'}`}>{value}</span>
         {sub && <p className="text-[11px] text-panel-300">{sub}</p>}
         {trend !== undefined && (
-          <span className={`ml-2 text-xs font-medium ${trend >= 0 ? 'text-[#00a35e]' : 'text-[#ef4444]'}`}>
+          <span className={`ml-2 text-xs font-medium ${trend >= 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
             {trend >= 0 ? '+' : ''}{trend}%
           </span>
         )}
@@ -510,16 +510,16 @@ function StatRow({ label, value, sub, trend, color }) {
 
 function AccountHealthTile() {
   const score = 82;
-  const color = score >= 80 ? '#00a35e' : score >= 60 ? '#d97706' : '#ef4444';
+  const color = score >= 80 ? '#00C27C' : score >= 60 ? '#D4A03A' : '#E87068';
   const gaugeData = [
     { name: 'score', value: score },
     { name: 'rest', value: 100 - score },
   ];
   const subMetrics = [
-    { label: 'POS Uptime', value: '99.7%', color: '#00a35e' },
-    { label: 'Ecomm Conv.', value: '3.2%', color: '#3b82f6' },
-    { label: 'Payment Vol.', value: '$142K', color: '#8b5cf6' },
-    { label: 'Support Vel.', value: '4.2h', color: '#d97706' },
+    { label: 'POS Uptime', value: '99.7%', color: '#00C27C' },
+    { label: 'Ecomm Conv.', value: '3.2%', color: '#64A8E0' },
+    { label: 'Payment Vol.', value: '$142K', color: '#B598E8' },
+    { label: 'Support Vel.', value: '4.2h', color: '#D4A03A' },
   ];
   return (
     <NexusTile>
@@ -540,9 +540,9 @@ function AccountHealthTile() {
         </div>
         <div className="grid grid-cols-2 gap-2 flex-1">
           {subMetrics.map(m => (
-            <div key={m.label} className="bg-white rounded-lg p-2 text-center border border-[#21262D]">
-              <p className="text-sm font-bold text-text-primary">{m.value}</p>
-              <p className="text-[10px] text-text-secondary uppercase">{m.label}</p>
+            <div key={m.label} className="bg-[#1C1B1A] rounded-lg p-2 text-center border border-[#21262D]">
+              <p className="text-sm font-bold text-[#F0EDE8]">{m.value}</p>
+              <p className="text-[10px] text-[#ADA599] uppercase">{m.label}</p>
             </div>
           ))}
         </div>
@@ -558,7 +558,7 @@ function IntegrationStatusTile() {
     { name: 'Payments', detail: '2 terminals', status: 'ok', sub: 'All online', icon: Receipt },
     { name: 'METRC', detail: 'Connected', status: 'warn', sub: '3 pending manifests', icon: Shield },
   ];
-  const statusDot = { ok: 'bg-[#00a35e]', partial: 'bg-[#ef4444]', warn: 'bg-[#d97706]' };
+  const statusDot = { ok: 'bg-[#00C27C]', partial: 'bg-[#E87068]', warn: 'bg-[#D4A03A]' };
   return (
     <NexusTile>
       <TileHeader icon={Wifi} title="Integration Status" subtitle="System Health" />
@@ -566,11 +566,11 @@ function IntegrationStatusTile() {
         {integrations.map(i => {
           const Icon = i.icon;
           return (
-            <div key={i.name} className={`flex items-center gap-3 p-2.5 rounded-lg border ${i.status === 'partial' ? 'border-[#ef4444]/30 bg-[#ef4444]/[0.04]' : 'border-[#21262D] bg-white'}`}>
-              <Icon className="w-4 h-4 text-text-secondary flex-shrink-0" />
+            <div key={i.name} className={`flex items-center gap-3 p-2.5 rounded-lg border ${i.status === 'partial' ? 'border-[#E87068]/30 bg-[#E87068]/[0.04]' : 'border-[#21262D] bg-[#1C1B1A]'}`}>
+              <Icon className="w-4 h-4 text-[#ADA599] flex-shrink-0" />
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium text-text-primary">{i.name} — {i.detail}</p>
-                <p className="text-[10px] text-text-secondary">{i.sub}</p>
+                <p className="text-xs font-medium text-[#F0EDE8]">{i.name} — {i.detail}</p>
+                <p className="text-[10px] text-[#ADA599]">{i.sub}</p>
               </div>
               <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${statusDot[i.status]}`} />
             </div>
@@ -583,10 +583,10 @@ function IntegrationStatusTile() {
 
 function FeatureAdoptionTile() {
   const features = [
-    { name: 'POS', pct: 92, color: '#00a35e' },
-    { name: 'Ecommerce', pct: 78, color: '#00a35e' },
-    { name: 'Payments', pct: 45, color: '#d97706' },
-    { name: 'Analytics', pct: 31, color: '#d97706' },
+    { name: 'POS', pct: 92, color: '#00C27C' },
+    { name: 'Ecommerce', pct: 78, color: '#00C27C' },
+    { name: 'Payments', pct: 45, color: '#D4A03A' },
+    { name: 'Analytics', pct: 31, color: '#D4A03A' },
     { name: 'White Label', pct: 0, color: '#484F58' },
     { name: 'Menu Boards', pct: 0, color: '#484F58' },
   ];
@@ -596,11 +596,11 @@ function FeatureAdoptionTile() {
       <div className="space-y-2 mt-3">
         {features.map(f => (
           <div key={f.name} className="flex items-center gap-2 text-xs">
-            <span className="text-text-secondary w-20 text-right truncate">{f.name}</span>
-            <div className="flex-1 bg-gray-100 rounded-full h-2 overflow-hidden">
+            <span className="text-[#ADA599] w-20 text-right truncate">{f.name}</span>
+            <div className="flex-1 bg-[#282724] rounded-full h-2 overflow-hidden">
               <div className="h-full rounded-full transition-all" style={{ width: `${f.pct}%`, backgroundColor: f.color }} />
             </div>
-            <span className="text-text-primary w-8 text-right font-medium">{f.pct > 0 ? `${f.pct}%` : 'Off'}</span>
+            <span className="text-[#F0EDE8] w-8 text-right font-medium">{f.pct > 0 ? `${f.pct}%` : 'Off'}</span>
           </div>
         ))}
       </div>
@@ -614,16 +614,16 @@ function PeerBenchmarkTile() {
     { metric: 'Conversion', yours: '3.2%', peers: '2.8%', pctile: 81 },
     { metric: 'Google Rating', yours: '4.3', peers: '4.1', pctile: 68 },
   ];
-  const badgeColor = p => p >= 75 ? 'bg-[#00a35e]/15 text-[#00a35e]' : p >= 50 ? 'bg-[#d97706]/15 text-[#d97706]' : 'bg-[#ef4444]/15 text-[#ef4444]';
+  const badgeColor = p => p >= 75 ? 'bg-[#00C27C]/15 text-[#00C27C]' : p >= 50 ? 'bg-[#D4A03A]/15 text-[#D4A03A]' : 'bg-[#E87068]/15 text-[#E87068]';
   return (
     <NexusTile>
       <TileHeader icon={Users} title="Peer Benchmarks" subtitle="Stores Like Yours" />
       <div className="space-y-3 mt-3">
         {benchmarks.map(b => (
-          <div key={b.metric} className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-[#21262D]">
+          <div key={b.metric} className="flex items-center justify-between p-2.5 rounded-lg bg-[#1C1B1A] border border-[#21262D]">
             <div>
-              <p className="text-xs font-medium text-text-primary">{b.metric}</p>
-              <p className="text-[10px] text-text-secondary">You: {b.yours} vs Peers: {b.peers}</p>
+              <p className="text-xs font-medium text-[#F0EDE8]">{b.metric}</p>
+              <p className="text-[10px] text-[#ADA599]">You: {b.yours} vs Peers: {b.peers}</p>
             </div>
             <span className={`text-xs font-bold px-2 py-0.5 rounded ${badgeColor(b.pctile)}`}>
               P{b.pctile}
@@ -637,20 +637,20 @@ function PeerBenchmarkTile() {
 
 function LockedTile({ icon: Icon, title, desc }) {
   return (
-    <div className="relative rounded-2xl border border-surface-border bg-surface-bg p-4 opacity-50">
+    <div className="relative rounded-2xl border border-[#38332B] bg-[#141210] p-4 opacity-50">
       <div className="absolute top-3 right-3">
-        <Lock className="w-3.5 h-3.5 text-text-muted" />
+        <Lock className="w-3.5 h-3.5 text-[#6B6359]" />
       </div>
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center flex-shrink-0">
-          <Icon className="w-4 h-4 text-text-muted" />
+        <div className="w-9 h-9 rounded-lg bg-[#1C1B1A] flex items-center justify-center flex-shrink-0">
+          <Icon className="w-4 h-4 text-[#6B6359]" />
         </div>
         <div>
-          <p className="text-sm font-medium text-text-secondary">{title}</p>
-          <p className="text-[10px] text-text-muted">{desc}</p>
+          <p className="text-sm font-medium text-[#ADA599]">{title}</p>
+          <p className="text-[10px] text-[#6B6359]">{desc}</p>
         </div>
       </div>
-      <span className="mt-2 inline-block text-[9px] uppercase font-bold tracking-wider text-text-muted bg-white rounded px-1.5 py-0.5">Phase 3</span>
+      <span className="mt-2 inline-block text-[9px] uppercase font-bold tracking-wider text-[#6B6359] bg-[#1C1B1A] rounded px-1.5 py-0.5">Phase 3</span>
     </div>
   );
 }
@@ -696,35 +696,35 @@ function SalesTodayTile() {
         icon={BarChart3}
         title="Contextualized Insights"
         subtitle={`${rangeLabel} — ${selectionLabel}`}
-        iconBg="bg-[#00a35e]/10 text-[#00a35e]"
+        iconBg="bg-[#00C27C]/10 text-[#00C27C]"
       />
       <div className="grid gap-6 p-6 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-wider text-panel-300">Sales</p>
-          <p className="mt-1 text-3xl font-bold text-text-primary">{fmtDollar(ctx.todaySales)}</p>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-white">
-            <div className="h-full rounded-full bg-[#00a35e] transition-all" style={{ width: `${pct}%` }} />
+          <p className="mt-1 text-3xl font-bold text-[#F0EDE8]">{fmtDollar(ctx.todaySales)}</p>
+          <div className="mt-2 h-2 overflow-hidden rounded-full bg-[#1C1B1A]">
+            <div className="h-full rounded-full bg-[#00C27C] transition-all" style={{ width: `${pct}%` }} />
           </div>
           <p className="mt-1 text-xs text-panel-300">{pct}% of {fmtDollar(ctx.salesGoal)} goal</p>
         </div>
         <div>
           <p className="text-xs font-medium uppercase tracking-wider text-panel-300">Top Store</p>
-          <p className="mt-1 text-lg font-bold text-text-primary">{ctx.topStore}</p>
-          <p className="text-sm text-[#00a35e]">{fmtDollar(ctx.topStoreRevenue)}</p>
+          <p className="mt-1 text-lg font-bold text-[#F0EDE8]">{ctx.topStore}</p>
+          <p className="text-sm text-[#00C27C]">{fmtDollar(ctx.topStoreRevenue)}</p>
         </div>
         <div>
           <p className="text-xs font-medium uppercase tracking-wider text-panel-300">Traffic</p>
-          <p className="mt-1 text-3xl font-bold text-text-primary">{ctx.trafficToday}</p>
-          <p className="text-xs text-[#00a35e]">
+          <p className="mt-1 text-3xl font-bold text-[#F0EDE8]">{ctx.trafficToday}</p>
+          <p className="text-xs text-[#00C27C]">
             <TrendingUp size={12} className="inline mr-0.5" />
             +{ctx.trafficToday - ctx.trafficYesterday} {periodLabel}
           </p>
         </div>
-        <div className="rounded-xl bg-[rgba(239,68,68,0.12)] p-4">
-          <p className="text-xs font-medium uppercase tracking-wider text-[#ef4444]">Needs Attention</p>
-          <p className="mt-1 text-lg font-bold text-[#ef4444]">{ctx.underperformer}</p>
-          <p className="text-sm text-[#ef4444]">{ctx.underperformerDelta}% below avg</p>
-          <button className="mt-2 rounded-lg bg-[rgba(239,68,68,0.12)] px-3 py-1 text-xs font-semibold text-[#ef4444] hover:bg-gray-200 transition-colors">
+        <div className="rounded-xl bg-[rgba(232,112,104,0.12)] p-4">
+          <p className="text-xs font-medium uppercase tracking-wider text-[#E87068]">Needs Attention</p>
+          <p className="mt-1 text-lg font-bold text-[#E87068]">{ctx.underperformer}</p>
+          <p className="text-sm text-[#E87068]">{ctx.underperformerDelta}% below avg</p>
+          <button className="mt-2 rounded-lg bg-[rgba(232,112,104,0.12)] px-3 py-1 text-xs font-semibold text-[#E87068] hover:bg-[#38332B] transition-colors">
             Investigate
           </button>
         </div>
@@ -740,19 +740,19 @@ function VoiceAITile() {
         icon={PhoneCall}
         title="Voice AI Ordering"
         subtitle="Dutchie Voice AI performance"
-        iconBg="bg-[#00a35e]/10 text-[#00a35e]"
+        iconBg="bg-[#00C27C]/10 text-[#00C27C]"
         action={() => {}}
         actionLabel="Deep Dive"
       />
       <div className="p-6 space-y-1">
         <StatRow label="Total Calls" value={NEXUS_DATA.voiceCalls} />
         <StatRow label="Orders Placed" value={NEXUS_DATA.voiceOrders} sub={`${Math.round((NEXUS_DATA.voiceOrders / NEXUS_DATA.voiceCalls) * 100)}% conversion`} />
-        <StatRow label="Voice Revenue" value={`$${NEXUS_DATA.voiceRevenue.toLocaleString()}`} color="text-[#00a35e]" />
+        <StatRow label="Voice Revenue" value={`$${NEXUS_DATA.voiceRevenue.toLocaleString()}`} color="text-[#00C27C]" />
         <StatRow label="Avg Order" value={`$${NEXUS_DATA.voiceAvgOrder}`} />
         <StatRow label="Resolution" value={`${NEXUS_DATA.voiceResolution}%`} />
-        <div className="mt-3 flex items-center gap-2 rounded-xl bg-[#00a35e]/5 p-3">
-          <Bot size={16} className="text-[#00a35e]" />
-          <p className="text-xs text-text-primary">
+        <div className="mt-3 flex items-center gap-2 rounded-xl bg-[#00C27C]/5 p-3">
+          <Bot size={16} className="text-[#00C27C]" />
+          <p className="text-xs text-[#F0EDE8]">
             <span className="font-semibold">AI Insight:</span> Voice orders have 18% higher AOV than online orders. Consider promoting phone ordering during peak hours.
           </p>
         </div>
@@ -784,17 +784,17 @@ function SentimentTile() {
   }, [selectedStoreNames]);
 
   const TrendIcon = ({ trend }) => {
-    if (trend === 'up') return <ArrowUpRight size={12} className="text-[#00a35e]" />;
-    if (trend === 'down') return <ArrowDownRight size={12} className="text-[#ef4444]" />;
-    return <Minus size={12} className="text-text-muted" />;
+    if (trend === 'up') return <ArrowUpRight size={12} className="text-[#00C27C]" />;
+    if (trend === 'down') return <ArrowDownRight size={12} className="text-[#E87068]" />;
+    return <Minus size={12} className="text-[#6B6359]" />;
   };
 
   const priorityStyles = {
-    high: 'border-surface-border bg-[rgba(239,68,68,0.12)]',
-    medium: 'border-surface-border bg-[rgba(217,119,6,0.12)]',
-    low: 'border-surface-border bg-[rgba(59,130,246,0.12)]',
+    high: 'border-[#38332B] bg-[rgba(232,112,104,0.12)]',
+    medium: 'border-[#38332B] bg-[rgba(212,160,58,0.12)]',
+    low: 'border-[#38332B] bg-[rgba(100,168,224,0.12)]',
   };
-  const priorityDot = { high: 'bg-[#ef4444]', medium: 'bg-[#d97706]', low: 'bg-[#3b82f6]' };
+  const priorityDot = { high: 'bg-[#E87068]', medium: 'bg-[#D4A03A]', low: 'bg-[#64A8E0]' };
 
   return (
     <NexusTile span={2}>
@@ -802,10 +802,10 @@ function SentimentTile() {
         icon={MessageSquare}
         title="Consumer Sentiment"
         subtitle={`${Math.round(NEXUS_DATA.unifiedPipeline.totalSignals * dateMultiplier).toLocaleString()} signals across ${NEXUS_DATA.unifiedPipeline.channelScores.length} channels — ${rangeLabel}`}
-        iconBg="bg-[#00a35e]/10 text-[#00a35e]"
+        iconBg="bg-[#00C27C]/10 text-[#00C27C]"
         action={() => {}}
         actionLabel="Deep Dive"
-        badge={{ count: 2, color: 'bg-[#d97706]' }}
+        badge={{ count: 2, color: 'bg-[#D4A03A]' }}
       />
       <div className="p-6">
         {/* Top row — score gauge + key metrics + source breakdown */}
@@ -815,26 +815,26 @@ function SentimentTile() {
             <div className="relative flex h-24 w-24 flex-shrink-0 items-center justify-center">
               <svg className="h-24 w-24 -rotate-90" viewBox="0 0 96 96">
                 <circle cx="48" cy="48" r="40" fill="none" stroke="#e5e7eb" strokeWidth="8" />
-                <circle cx="48" cy="48" r="40" fill="none" stroke="#10b981" strokeWidth="8"
+                <circle cx="48" cy="48" r="40" fill="none" stroke="#00E08E" strokeWidth="8"
                   strokeDasharray={`${(NEXUS_DATA.overallSentiment / 100) * 251.3} 251.3`}
                   strokeLinecap="round"
                 />
               </svg>
-              <span className="absolute text-2xl font-bold text-text-primary">{NEXUS_DATA.overallSentiment}</span>
+              <span className="absolute text-2xl font-bold text-[#F0EDE8]">{NEXUS_DATA.overallSentiment}</span>
             </div>
             <div>
-              <p className="text-sm font-semibold text-text-primary">Overall Sentiment</p>
-              <p className="flex items-center gap-1 text-xs text-[#00a35e] font-medium">
+              <p className="text-sm font-semibold text-[#F0EDE8]">Overall Sentiment</p>
+              <p className="flex items-center gap-1 text-xs text-[#00C27C] font-medium">
                 <TrendingUp size={12} />
                 +{NEXUS_DATA.sentimentDelta} pts {periodLabel}
               </p>
               <div className="mt-2 flex gap-3">
                 <div>
-                  <p className="text-lg font-bold text-text-primary">{NEXUS_DATA.npsScore}</p>
+                  <p className="text-lg font-bold text-[#F0EDE8]">{NEXUS_DATA.npsScore}</p>
                   <p className="text-[10px] text-panel-300 uppercase tracking-wide">NPS</p>
                 </div>
-                <div className="border-l border-surface-border pl-3">
-                  <p className="text-lg font-bold text-[#00a35e]">+{NEXUS_DATA.npsDelta}</p>
+                <div className="border-l border-[#38332B] pl-3">
+                  <p className="text-lg font-bold text-[#00C27C]">+{NEXUS_DATA.npsDelta}</p>
                   <p className="text-[10px] text-panel-300 uppercase tracking-wide">{periodLabel}</p>
                 </div>
               </div>
@@ -845,21 +845,21 @@ function SentimentTile() {
           <div>
             <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Review Volume</p>
             <div className="flex items-end gap-1 mb-2">
-              <span className="text-2xl font-bold text-text-primary">{Math.round(NEXUS_DATA.totalReviews * dateMultiplier)}</span>
+              <span className="text-2xl font-bold text-[#F0EDE8]">{Math.round(NEXUS_DATA.totalReviews * dateMultiplier)}</span>
               <span className="text-xs text-panel-300 mb-1">{rangeLabel.toLowerCase()}</span>
             </div>
             <div className="flex h-3 overflow-hidden rounded-full">
-              <div className="bg-[#00a35e]" style={{ width: `${(NEXUS_DATA.positiveReviews / NEXUS_DATA.totalReviews) * 100}%` }} />
-              <div className="bg-gray-700" style={{ width: `${(NEXUS_DATA.neutralReviews / NEXUS_DATA.totalReviews) * 100}%` }} />
-              <div className="bg-[#ef4444]" style={{ width: `${(NEXUS_DATA.negativeReviews / NEXUS_DATA.totalReviews) * 100}%` }} />
+              <div className="bg-[#00C27C]" style={{ width: `${(NEXUS_DATA.positiveReviews / NEXUS_DATA.totalReviews) * 100}%` }} />
+              <div className="bg-[#1C1B1A]" style={{ width: `${(NEXUS_DATA.neutralReviews / NEXUS_DATA.totalReviews) * 100}%` }} />
+              <div className="bg-[#E87068]" style={{ width: `${(NEXUS_DATA.negativeReviews / NEXUS_DATA.totalReviews) * 100}%` }} />
             </div>
             <div className="mt-2 flex justify-between text-[11px]">
-              <span className="flex items-center gap-1 text-[#00a35e]"><ThumbsUp size={10} /> {Math.round(NEXUS_DATA.positiveReviews * dateMultiplier)} positive</span>
-              <span className="text-text-muted">{Math.round(NEXUS_DATA.neutralReviews * dateMultiplier)} neutral</span>
-              <span className="flex items-center gap-1 text-[#ef4444]"><ThumbsDown size={10} /> {Math.round(NEXUS_DATA.negativeReviews * dateMultiplier)} negative</span>
+              <span className="flex items-center gap-1 text-[#00C27C]"><ThumbsUp size={10} /> {Math.round(NEXUS_DATA.positiveReviews * dateMultiplier)} positive</span>
+              <span className="text-[#6B6359]">{Math.round(NEXUS_DATA.neutralReviews * dateMultiplier)} neutral</span>
+              <span className="flex items-center gap-1 text-[#E87068]"><ThumbsDown size={10} /> {Math.round(NEXUS_DATA.negativeReviews * dateMultiplier)} negative</span>
             </div>
             <p className="mt-2 text-xs text-panel-300">
-              Response rate: <span className="font-semibold text-text-primary">{NEXUS_DATA.responseRate}%</span>
+              Response rate: <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.responseRate}%</span>
             </p>
           </div>
 
@@ -869,15 +869,15 @@ function SentimentTile() {
             <div className="space-y-2">
               {NEXUS_DATA.sentimentBySrc.map((s) => (
                 <div key={s.source} className="flex items-center justify-between">
-                  <span className="text-sm text-text-primary">{s.source}</span>
+                  <span className="text-sm text-[#F0EDE8]">{s.source}</span>
                   <div className="flex items-center gap-3">
                     <span className="text-xs text-panel-300">{Math.round(s.reviews * dateMultiplier)} reviews</span>
                     <div className="flex items-center gap-0.5">
                       {[1, 2, 3, 4, 5].map((star) => (
-                        <Star key={star} size={10} className={star <= Math.round(s.avg) ? 'text-[#00a35e] fill-[#00a35e]' : 'text-gray-300'} />
+                        <Star key={star} size={10} className={star <= Math.round(s.avg) ? 'text-[#00C27C] fill-[#00C27C]' : 'text-[#6B6359]'} />
                       ))}
                     </div>
-                    <span className="text-xs font-semibold text-text-primary w-6 text-right">{s.avg}</span>
+                    <span className="text-xs font-semibold text-[#F0EDE8] w-6 text-right">{s.avg}</span>
                   </div>
                 </div>
               ))}
@@ -896,19 +896,19 @@ function SentimentTile() {
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-1.5">
                       <TrendIcon trend={t.trend} />
-                      <span className="text-sm text-text-primary">{t.topic}</span>
+                      <span className="text-sm text-[#F0EDE8]">{t.topic}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] text-panel-300">{Math.round(t.reviews * dateMultiplier)} mentions</span>
-                      <span className={`text-xs font-bold ${t.score >= 60 ? 'text-[#00a35e]' : 'text-[#ef4444]'}`}>{t.score}</span>
-                      <span className={`text-[11px] font-medium ${t.delta > 0 ? 'text-[#00a35e]' : t.delta < 0 ? 'text-[#ef4444]' : 'text-text-muted'}`}>
+                      <span className={`text-xs font-bold ${t.score >= 60 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>{t.score}</span>
+                      <span className={`text-[11px] font-medium ${t.delta > 0 ? 'text-[#00C27C]' : t.delta < 0 ? 'text-[#E87068]' : 'text-[#6B6359]'}`}>
                         {t.delta > 0 ? '+' : ''}{t.delta}
                       </span>
                     </div>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-white">
+                  <div className="h-2 overflow-hidden rounded-full bg-[#1C1B1A]">
                     <div
-                      className={`h-full rounded-full transition-all ${t.score >= 70 ? 'bg-[#00a35e]' : t.score >= 50 ? 'bg-[#d97706]' : 'bg-[#ef4444]'}`}
+                      className={`h-full rounded-full transition-all ${t.score >= 70 ? 'bg-[#00C27C]' : t.score >= 50 ? 'bg-[#D4A03A]' : 'bg-[#E87068]'}`}
                       style={{ width: `${t.score}%` }}
                     />
                   </div>
@@ -923,28 +923,28 @@ function SentimentTile() {
             <div className="space-y-2">
               {filteredLocationSentiment.map((loc) => (
                 <div key={loc.location} className={`flex items-center justify-between rounded-lg px-3 py-2.5 ${
-                  loc.flag === 'alert' ? 'bg-[rgba(239,68,68,0.12)] border border-surface-border' :
-                  loc.flag === 'watch' ? 'bg-[rgba(217,119,6,0.12)] border border-surface-border' :
-                  loc.flag === 'improving' ? 'bg-[rgba(0,163,94,0.12)] border border-surface-border' :
-                  'bg-surface-bg border border-surface-border'
+                  loc.flag === 'alert' ? 'bg-[rgba(232,112,104,0.12)] border border-[#38332B]' :
+                  loc.flag === 'watch' ? 'bg-[rgba(212,160,58,0.12)] border border-[#38332B]' :
+                  loc.flag === 'improving' ? 'bg-[rgba(0,194,124,0.12)] border border-[#38332B]' :
+                  'bg-[#141210] border border-[#38332B]'
                 }`}>
                   <div className="flex items-center gap-2">
                     <MapPin size={14} className={
-                      loc.flag === 'alert' ? 'text-[#ef4444]' :
-                      loc.flag === 'watch' ? 'text-[#d97706]' :
-                      loc.flag === 'improving' ? 'text-[#00a35e]' :
-                      'text-text-muted'
+                      loc.flag === 'alert' ? 'text-[#E87068]' :
+                      loc.flag === 'watch' ? 'text-[#D4A03A]' :
+                      loc.flag === 'improving' ? 'text-[#00C27C]' :
+                      'text-[#6B6359]'
                     } />
                     <div>
-                      <p className="text-sm font-medium text-text-primary">{loc.location}</p>
-                      {loc.flag === 'alert' && <p className="text-[10px] text-[#ef4444] font-medium uppercase">Needs attention</p>}
-                      {loc.flag === 'improving' && <p className="text-[10px] text-[#00a35e] font-medium uppercase">Improving</p>}
-                      {loc.flag === 'watch' && <p className="text-[10px] text-[#d97706] font-medium uppercase">Watch</p>}
+                      <p className="text-sm font-medium text-[#F0EDE8]">{loc.location}</p>
+                      {loc.flag === 'alert' && <p className="text-[10px] text-[#E87068] font-medium uppercase">Needs attention</p>}
+                      {loc.flag === 'improving' && <p className="text-[10px] text-[#00C27C] font-medium uppercase">Improving</p>}
+                      {loc.flag === 'watch' && <p className="text-[10px] text-[#D4A03A] font-medium uppercase">Watch</p>}
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className={`text-lg font-bold ${loc.score >= 65 ? 'text-text-primary' : 'text-[#ef4444]'}`}>{loc.score}</span>
-                    <p className={`text-xs font-medium ${loc.delta >= 0 ? 'text-[#00a35e]' : 'text-[#ef4444]'}`}>
+                    <span className={`text-lg font-bold ${loc.score >= 65 ? 'text-[#F0EDE8]' : 'text-[#E87068]'}`}>{loc.score}</span>
+                    <p className={`text-xs font-medium ${loc.delta >= 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
                       {loc.delta >= 0 ? '+' : ''}{loc.delta} pts
                     </p>
                   </div>
@@ -957,7 +957,7 @@ function SentimentTile() {
         {/* Bottom row — AI Suggestions */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Sparkles size={14} className="text-[#00a35e]" />
+            <Sparkles size={14} className="text-[#00C27C]" />
             <p className="text-xs font-medium uppercase tracking-wider text-panel-300">AI-Powered Suggestions</p>
           </div>
           <div className="space-y-2">
@@ -965,10 +965,10 @@ function SentimentTile() {
               <div key={i} className={`flex items-start gap-3 rounded-xl border px-4 py-3 ${priorityStyles[item.priority]}`}>
                 <div className={`mt-0.5 h-2 w-2 flex-shrink-0 rounded-full ${priorityDot[item.priority]}`} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-text-primary">{item.action}</p>
+                  <p className="text-sm text-[#F0EDE8]">{item.action}</p>
                   <p className="mt-0.5 text-xs text-panel-300 font-medium">{item.impact}</p>
                 </div>
-                <button className="flex-shrink-0 rounded-lg bg-white border border-surface-border px-3 py-1.5 text-xs font-semibold text-text-primary hover:bg-surface-hover transition-colors">
+                <button className="flex-shrink-0 rounded-lg bg-[#1C1B1A] border border-[#38332B] px-3 py-1.5 text-xs font-semibold text-[#F0EDE8] hover:bg-[#282724] transition-colors">
                   Execute
                 </button>
               </div>
@@ -999,7 +999,7 @@ function OmnichannelTile() {
         icon={Radio}
         title="Omnichannel Sentiment Collection"
         subtitle="Proprietary first-party signals — no competitor can replicate this"
-        iconBg="bg-[rgba(163,113,247,0.12)] text-[#8b5cf6]"
+        iconBg="bg-[rgba(163,113,247,0.12)] text-[#B598E8]"
         action={() => {}}
         actionLabel="Configure Channels"
       />
@@ -1020,15 +1020,15 @@ function OmnichannelTile() {
                 onClick={() => setActiveTab(id)}
                 className={`rounded-xl border p-3 text-left transition-all ${
                   isActive
-                    ? 'border-[#8b5cf6] bg-[rgba(163,113,247,0.12)] ring-1 ring-[#8b5cf6]/30'
-                    : 'border-surface-border bg-white hover:border-[#8b5cf6]/40 hover:bg-[rgba(163,113,247,0.06)]'
+                    ? 'border-[#B598E8] bg-[rgba(163,113,247,0.12)] ring-1 ring-[#B598E8]/30'
+                    : 'border-[#38332B] bg-[#1C1B1A] hover:border-[#B598E8]/40 hover:bg-[rgba(163,113,247,0.06)]'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <TabIcon size={14} className={isActive ? 'text-[#8b5cf6]' : 'text-panel-300'} />
-                  <span className={`text-xs font-semibold ${isActive ? 'text-[#8b5cf6]' : 'text-panel-300'}`}>{label}</span>
+                  <TabIcon size={14} className={isActive ? 'text-[#B598E8]' : 'text-panel-300'} />
+                  <span className={`text-xs font-semibold ${isActive ? 'text-[#B598E8]' : 'text-panel-300'}`}>{label}</span>
                 </div>
-                <p className="text-xl font-bold text-text-primary">{stats.signals.toLocaleString()}</p>
+                <p className="text-xl font-bold text-[#F0EDE8]">{stats.signals.toLocaleString()}</p>
                 <p className="text-[11px] text-panel-300">{stats.rate} {stats.rateLabel}</p>
               </button>
             );
@@ -1043,12 +1043,12 @@ function OmnichannelTile() {
               <div className="space-y-3">
                 {NEXUS_DATA.smsChannel.recentConversations.map((convo, i) => (
                   <div key={i} className={`rounded-xl border p-4 ${
-                    convo.sentiment === 'positive' ? 'border-surface-border bg-[rgba(0,163,94,0.12)]/30' : 'border-surface-border bg-[rgba(239,68,68,0.12)]/30'
+                    convo.sentiment === 'positive' ? 'border-[#38332B] bg-[rgba(0,194,124,0.12)]/30' : 'border-[#38332B] bg-[rgba(232,112,104,0.12)]/30'
                   }`}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <MapPin size={12} className="text-panel-300" />
-                        <span className="text-xs font-medium text-text-primary">{convo.store}</span>
+                        <span className="text-xs font-medium text-[#F0EDE8]">{convo.store}</span>
                       </div>
                       <span className="text-[11px] text-panel-300">{convo.time}</span>
                     </div>
@@ -1056,8 +1056,8 @@ function OmnichannelTile() {
                       <div key={j} className={`flex ${msg.from === 'system' ? 'justify-start' : 'justify-end'} mb-1`}>
                         <div className={`rounded-lg px-3 py-1.5 text-xs max-w-[85%] ${
                           msg.from === 'system'
-                            ? 'bg-surface-bg text-white'
-                            : convo.sentiment === 'positive' ? 'bg-[rgba(0,163,94,0.12)] text-[#00a35e]' : 'bg-[rgba(239,68,68,0.12)] text-[#ef4444]'
+                            ? 'bg-[#141210] text-white'
+                            : convo.sentiment === 'positive' ? 'bg-[rgba(0,194,124,0.12)] text-[#00C27C]' : 'bg-[rgba(232,112,104,0.12)] text-[#E87068]'
                         }`}>
                           {msg.text}
                         </div>
@@ -1066,16 +1066,16 @@ function OmnichannelTile() {
                     {convo.mappedTo && (
                       <div className="mt-2 flex flex-wrap gap-1.5">
                         {convo.mappedTo.budtender && (
-                          <span className="rounded-full bg-white border border-surface-border px-2 py-0.5 text-[10px] text-panel-300">
+                          <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-panel-300">
                             Staff: {convo.mappedTo.budtender}
                           </span>
                         )}
                         {convo.mappedTo.product && (
-                          <span className="rounded-full bg-white border border-surface-border px-2 py-0.5 text-[10px] text-panel-300">
+                          <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-panel-300">
                             Product: {convo.mappedTo.product}
                           </span>
                         )}
-                        <span className="rounded-full bg-white border border-surface-border px-2 py-0.5 text-[10px] text-panel-300">
+                        <span className="rounded-full bg-[#1C1B1A] border border-[#38332B] px-2 py-0.5 text-[10px] text-panel-300">
                           {convo.mappedTo.txnId}
                         </span>
                       </div>
@@ -1092,12 +1092,12 @@ function OmnichannelTile() {
                 <StatRow label="Avg Sentiment" value={NEXUS_DATA.smsChannel.avgSentiment} trend={NEXUS_DATA.smsChannel.sentimentDelta} />
                 <StatRow label="Today" value={`${NEXUS_DATA.smsChannel.todayResponded}/${NEXUS_DATA.smsChannel.todaySent}`} sub="responded/sent" />
               </div>
-              <div className="rounded-xl bg-[rgba(163,113,247,0.08)] border border-[#8b5cf6]/20 p-3">
+              <div className="rounded-xl bg-[rgba(163,113,247,0.08)] border border-[#B598E8]/20 p-3">
                 <div className="flex items-center gap-2 mb-1">
-                  <Sparkles size={14} className="text-[#8b5cf6]" />
-                  <span className="text-xs font-semibold text-[#8b5cf6]">AI Insight</span>
+                  <Sparkles size={14} className="text-[#B598E8]" />
+                  <span className="text-xs font-semibold text-[#B598E8]">AI Insight</span>
                 </div>
-                <p className="text-xs text-[#8b5cf6]/80">{NEXUS_DATA.smsChannel.topInsight}</p>
+                <p className="text-xs text-[#B598E8]/80">{NEXUS_DATA.smsChannel.topInsight}</p>
               </div>
             </div>
           </div>
@@ -1114,17 +1114,17 @@ function OmnichannelTile() {
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-2">
                         <span className="text-lg">{r.emoji}</span>
-                        <span className="text-sm text-text-primary">{r.label}</span>
+                        <span className="text-sm text-[#F0EDE8]">{r.label}</span>
                       </div>
-                      <span className="text-sm font-bold text-text-primary">{r.count.toLocaleString()}</span>
+                      <span className="text-sm font-bold text-[#F0EDE8]">{r.count.toLocaleString()}</span>
                     </div>
-                    <div className="h-2.5 overflow-hidden rounded-full bg-white">
+                    <div className="h-2.5 overflow-hidden rounded-full bg-[#1C1B1A]">
                       <div
                         className={`h-full rounded-full transition-all ${
-                          r.emoji === '😍' ? 'bg-[#00a35e]' :
-                          r.emoji === '😊' ? 'bg-[#00a35e]' :
-                          r.emoji === '😐' ? 'bg-[#d97706]' :
-                          'bg-[#ef4444]'
+                          r.emoji === '😍' ? 'bg-[#00C27C]' :
+                          r.emoji === '😊' ? 'bg-[#00C27C]' :
+                          r.emoji === '😐' ? 'bg-[#D4A03A]' :
+                          'bg-[#E87068]'
                         }`}
                         style={{ width: `${r.pct}%` }}
                       />
@@ -1133,17 +1133,17 @@ function OmnichannelTile() {
                 ))}
               </div>
               <p className="text-xs text-panel-300">
-                <span className="font-semibold text-text-primary">{NEXUS_DATA.ecommChannel.withFreeText.toLocaleString()}</span> reactions included free-text feedback ({NEXUS_DATA.ecommChannel.freeTextRate}%)
+                <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.ecommChannel.withFreeText.toLocaleString()}</span> reactions included free-text feedback ({NEXUS_DATA.ecommChannel.freeTextRate}%)
               </p>
             </div>
             <div>
               <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">Product-Level Sentiment</p>
               <div className="space-y-3 mb-4">
                 {NEXUS_DATA.ecommChannel.topProductSentiment.map((p) => (
-                  <div key={p.product} className="rounded-lg border border-surface-border p-3">
+                  <div key={p.product} className="rounded-lg border border-[#38332B] p-3">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-text-primary">{p.product}</span>
-                      <span className={`text-sm font-bold ${p.score >= 75 ? 'text-[#00a35e]' : p.score >= 60 ? 'text-[#d97706]' : 'text-[#ef4444]'}`}>
+                      <span className="text-sm font-medium text-[#F0EDE8]">{p.product}</span>
+                      <span className={`text-sm font-bold ${p.score >= 75 ? 'text-[#00C27C]' : p.score >= 60 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                         {p.score}
                       </span>
                     </div>
@@ -1156,12 +1156,12 @@ function OmnichannelTile() {
                   </div>
                 ))}
               </div>
-              <div className="rounded-xl bg-[rgba(163,113,247,0.08)] border border-[#8b5cf6]/20 p-3">
+              <div className="rounded-xl bg-[rgba(163,113,247,0.08)] border border-[#B598E8]/20 p-3">
                 <div className="flex items-center gap-2 mb-1">
-                  <Sparkles size={14} className="text-[#8b5cf6]" />
-                  <span className="text-xs font-semibold text-[#8b5cf6]">AI Insight</span>
+                  <Sparkles size={14} className="text-[#B598E8]" />
+                  <span className="text-xs font-semibold text-[#B598E8]">AI Insight</span>
                 </div>
-                <p className="text-xs text-[#8b5cf6]/80">{NEXUS_DATA.ecommChannel.topInsight}</p>
+                <p className="text-xs text-[#B598E8]/80">{NEXUS_DATA.ecommChannel.topInsight}</p>
               </div>
             </div>
           </div>
@@ -1174,18 +1174,18 @@ function OmnichannelTile() {
               <p className="text-xs font-medium uppercase tracking-wider text-panel-300 mb-3">CSAT Distribution</p>
               <div className="flex items-end gap-6 mb-4">
                 <div>
-                  <p className="text-4xl font-bold text-text-primary">{NEXUS_DATA.voiceSurveyChannel.avgCsat}</p>
+                  <p className="text-4xl font-bold text-[#F0EDE8]">{NEXUS_DATA.voiceSurveyChannel.avgCsat}</p>
                   <p className="text-xs text-panel-300">Avg CSAT (1–5)</p>
-                  <p className="text-xs font-medium text-[#00a35e]">+{NEXUS_DATA.voiceSurveyChannel.csatDelta} this month</p>
+                  <p className="text-xs font-medium text-[#00C27C]">+{NEXUS_DATA.voiceSurveyChannel.csatDelta} this month</p>
                 </div>
                 <div className="flex-1">
                   {NEXUS_DATA.voiceSurveyChannel.distribution.map((d) => (
                     <div key={d.rating} className="flex items-center gap-2 mb-1">
                       <span className="w-4 text-xs text-right text-panel-300">{d.rating}</span>
-                      <div className="flex-1 h-3 overflow-hidden rounded-full bg-white">
+                      <div className="flex-1 h-3 overflow-hidden rounded-full bg-[#1C1B1A]">
                         <div
                           className={`h-full rounded-full ${
-                            d.rating >= 4 ? 'bg-[#00a35e]' : d.rating === 3 ? 'bg-[#d97706]' : 'bg-[#ef4444]'
+                            d.rating >= 4 ? 'bg-[#00C27C]' : d.rating === 3 ? 'bg-[#D4A03A]' : 'bg-[#E87068]'
                           }`}
                           style={{ width: `${d.pct}%` }}
                         />
@@ -1196,9 +1196,9 @@ function OmnichannelTile() {
                 </div>
               </div>
               <div className="flex gap-3 text-xs text-panel-300">
-                <span>Surveyed: <span className="font-semibold text-text-primary">{NEXUS_DATA.voiceSurveyChannel.surveyed}</span></span>
-                <span>Completed: <span className="font-semibold text-text-primary">{NEXUS_DATA.voiceSurveyChannel.completed}</span></span>
-                <span>Rate: <span className="font-semibold text-text-primary">{NEXUS_DATA.voiceSurveyChannel.completionRate}%</span></span>
+                <span>Surveyed: <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.voiceSurveyChannel.surveyed}</span></span>
+                <span>Completed: <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.voiceSurveyChannel.completed}</span></span>
+                <span>Rate: <span className="font-semibold text-[#F0EDE8]">{NEXUS_DATA.voiceSurveyChannel.completionRate}%</span></span>
               </div>
             </div>
             <div>
@@ -1206,26 +1206,26 @@ function OmnichannelTile() {
               <div className="space-y-3 mb-4">
                 {NEXUS_DATA.voiceSurveyChannel.recentVerbatim.map((v, i) => (
                   <div key={i} className={`rounded-lg border p-3 ${
-                    v.rating >= 4 ? 'border-surface-border bg-[rgba(0,163,94,0.12)]/30' : v.rating <= 2 ? 'border-surface-border bg-[rgba(239,68,68,0.12)]/30' : 'border-surface-border'
+                    v.rating >= 4 ? 'border-[#38332B] bg-[rgba(0,194,124,0.12)]/30' : v.rating <= 2 ? 'border-[#38332B] bg-[rgba(232,112,104,0.12)]/30' : 'border-[#38332B]'
                   }`}>
                     <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-1">
                         {[1,2,3,4,5].map((s) => (
-                          <Star key={s} size={10} className={s <= v.rating ? 'text-[#00a35e] fill-[#00a35e]' : 'text-gray-300'} />
+                          <Star key={s} size={10} className={s <= v.rating ? 'text-[#00C27C] fill-[#00C27C]' : 'text-[#6B6359]'} />
                         ))}
                       </div>
                       <span className="text-[11px] text-panel-300">{v.store}</span>
                     </div>
-                    <p className="text-xs text-text-primary italic">"{v.text}"</p>
+                    <p className="text-xs text-[#F0EDE8] italic">"{v.text}"</p>
                   </div>
                 ))}
               </div>
-              <div className="rounded-xl bg-[rgba(163,113,247,0.08)] border border-[#8b5cf6]/20 p-3">
+              <div className="rounded-xl bg-[rgba(163,113,247,0.08)] border border-[#B598E8]/20 p-3">
                 <div className="flex items-center gap-2 mb-1">
-                  <Sparkles size={14} className="text-[#8b5cf6]" />
-                  <span className="text-xs font-semibold text-[#8b5cf6]">AI Insight</span>
+                  <Sparkles size={14} className="text-[#B598E8]" />
+                  <span className="text-xs font-semibold text-[#B598E8]">AI Insight</span>
                 </div>
-                <p className="text-xs text-[#8b5cf6]/80">{NEXUS_DATA.voiceSurveyChannel.topInsight}</p>
+                <p className="text-xs text-[#B598E8]/80">{NEXUS_DATA.voiceSurveyChannel.topInsight}</p>
               </div>
             </div>
           </div>
@@ -1239,23 +1239,23 @@ function OmnichannelTile() {
               <div className="space-y-2 mb-4">
                 {NEXUS_DATA.qrChannel.budtenderLeaderboard.map((b, i) => (
                   <div key={b.name} className={`rounded-lg border p-3 ${
-                    i === 0 ? 'border-[#00a35e]/20 bg-[#00a35e]/5' : 'border-surface-border'
+                    i === 0 ? 'border-[#00C27C]/20 bg-[#00C27C]/5' : 'border-[#38332B]'
                   }`}>
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-2">
                         <div className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold ${
-                          i === 0 ? 'bg-[#00a35e] text-white' : i === 1 ? 'bg-gray-700 text-white' : 'bg-orange-300 text-white'
+                          i === 0 ? 'bg-[#00C27C] text-white' : i === 1 ? 'bg-[#1C1B1A] text-white' : 'bg-orange-300 text-white'
                         }`}>
                           {i + 1}
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-text-primary">{b.name}</span>
+                          <span className="text-sm font-medium text-[#F0EDE8]">{b.name}</span>
                           <span className="text-[11px] text-panel-300 ml-2">{b.store}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-panel-300">{b.surveys} surveys</span>
-                        <span className={`text-sm font-bold ${b.avgScore >= 4 ? 'text-[#00a35e]' : b.avgScore >= 3 ? 'text-[#d97706]' : 'text-[#ef4444]'}`}>
+                        <span className={`text-sm font-bold ${b.avgScore >= 4 ? 'text-[#00C27C]' : b.avgScore >= 3 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                           {b.avgScore}
                         </span>
                       </div>
@@ -1274,23 +1274,23 @@ function OmnichannelTile() {
                 <StatRow label="Avg Score" value={`${NEXUS_DATA.qrChannel.avgScore}/5`} />
               </div>
               <div className="flex gap-3 mb-4">
-                <div className="flex-1 rounded-lg border border-surface-border bg-[rgba(0,163,94,0.12)]/30 p-2.5 text-center">
+                <div className="flex-1 rounded-lg border border-[#38332B] bg-[rgba(0,194,124,0.12)]/30 p-2.5 text-center">
                   <p className="text-xs text-panel-300">Best scan rate</p>
-                  <p className="text-sm font-bold text-[#00a35e]">{NEXUS_DATA.qrChannel.topStore.name}</p>
-                  <p className="text-xs text-[#00a35e]">{NEXUS_DATA.qrChannel.topStore.scanRate}%</p>
+                  <p className="text-sm font-bold text-[#00C27C]">{NEXUS_DATA.qrChannel.topStore.name}</p>
+                  <p className="text-xs text-[#00C27C]">{NEXUS_DATA.qrChannel.topStore.scanRate}%</p>
                 </div>
-                <div className="flex-1 rounded-lg border border-surface-border bg-[rgba(239,68,68,0.12)]/30 p-2.5 text-center">
+                <div className="flex-1 rounded-lg border border-[#38332B] bg-[rgba(232,112,104,0.12)]/30 p-2.5 text-center">
                   <p className="text-xs text-panel-300">Lowest scan rate</p>
-                  <p className="text-sm font-bold text-[#ef4444]">{NEXUS_DATA.qrChannel.worstStore.name}</p>
-                  <p className="text-xs text-[#ef4444]">{NEXUS_DATA.qrChannel.worstStore.scanRate}%</p>
+                  <p className="text-sm font-bold text-[#E87068]">{NEXUS_DATA.qrChannel.worstStore.name}</p>
+                  <p className="text-xs text-[#E87068]">{NEXUS_DATA.qrChannel.worstStore.scanRate}%</p>
                 </div>
               </div>
-              <div className="rounded-xl bg-[rgba(163,113,247,0.08)] border border-[#8b5cf6]/20 p-3">
+              <div className="rounded-xl bg-[rgba(163,113,247,0.08)] border border-[#B598E8]/20 p-3">
                 <div className="flex items-center gap-2 mb-1">
-                  <Sparkles size={14} className="text-[#8b5cf6]" />
-                  <span className="text-xs font-semibold text-[#8b5cf6]">AI Insight</span>
+                  <Sparkles size={14} className="text-[#B598E8]" />
+                  <span className="text-xs font-semibold text-[#B598E8]">AI Insight</span>
                 </div>
-                <p className="text-xs text-[#8b5cf6]/80">{NEXUS_DATA.qrChannel.topInsight}</p>
+                <p className="text-xs text-[#B598E8]/80">{NEXUS_DATA.qrChannel.topInsight}</p>
               </div>
             </div>
           </div>
@@ -1320,18 +1320,18 @@ function UnifiedPipelineTile() {
         icon={Layers}
         title="Unified Sentiment Pipeline"
         subtitle={`${d.totalSignals.toLocaleString()} signals from ${d.channelScores.length} channels — first-party + third-party merged`}
-        iconBg="bg-[rgba(59,130,246,0.12)] text-[#3b82f6]"
+        iconBg="bg-[rgba(100,168,224,0.12)] text-[#64A8E0]"
       />
       <div className="p-6">
         {/* Hero insight */}
-        <div className="rounded-xl bg-surface-bg p-5 mb-6">
+        <div className="rounded-xl bg-[#141210] p-5 mb-6">
           <div className="flex items-start gap-3">
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#00a35e]">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#00C27C]">
               <Sparkles size={18} className="text-white" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-[#00a35e] mb-1">The Unified View</p>
-              <p className="text-sm text-text-primary/70 leading-relaxed">{d.keyInsight}</p>
+              <p className="text-sm font-semibold text-[#00C27C] mb-1">The Unified View</p>
+              <p className="text-sm text-[#F0EDE8]/70 leading-relaxed">{d.keyInsight}</p>
             </div>
           </div>
         </div>
@@ -1342,22 +1342,22 @@ function UnifiedPipelineTile() {
             <div className="relative flex h-28 w-28 items-center justify-center mb-3">
               <svg className="h-28 w-28 -rotate-90" viewBox="0 0 112 112">
                 <circle cx="56" cy="56" r="48" fill="none" stroke="#e5e7eb" strokeWidth="10" />
-                <circle cx="56" cy="56" r="48" fill="none" stroke="#10b981" strokeWidth="10"
+                <circle cx="56" cy="56" r="48" fill="none" stroke="#00E08E" strokeWidth="10"
                   strokeDasharray={`${(d.unifiedScore / 100) * 301.6} 301.6`}
                   strokeLinecap="round"
                 />
               </svg>
-              <span className="absolute text-3xl font-bold text-text-primary">{d.unifiedScore}</span>
+              <span className="absolute text-3xl font-bold text-[#F0EDE8]">{d.unifiedScore}</span>
             </div>
-            <p className="text-sm font-semibold text-text-primary">Unified Sentiment Score</p>
-            <p className="text-xs font-medium text-[#00a35e]">+{d.unifiedDelta} pts this month</p>
+            <p className="text-sm font-semibold text-[#F0EDE8]">Unified Sentiment Score</p>
+            <p className="text-xs font-medium text-[#00C27C]">+{d.unifiedDelta} pts this month</p>
             <div className="mt-3 flex gap-4 text-center">
               <div>
-                <p className="text-lg font-bold text-[#8b5cf6]">{d.firstPartyPct}%</p>
+                <p className="text-lg font-bold text-[#B598E8]">{d.firstPartyPct}%</p>
                 <p className="text-[10px] text-panel-300 uppercase">First-party</p>
               </div>
-              <div className="border-l border-surface-border pl-4">
-                <p className="text-lg font-bold text-[#3b82f6]">{(100 - d.firstPartyPct).toFixed(1)}%</p>
+              <div className="border-l border-[#38332B] pl-4">
+                <p className="text-lg font-bold text-[#64A8E0]">{(100 - d.firstPartyPct).toFixed(1)}%</p>
                 <p className="text-[10px] text-panel-300 uppercase">Third-party</p>
               </div>
             </div>
@@ -1369,21 +1369,21 @@ function UnifiedPipelineTile() {
               {/* First-party */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="h-2 w-2 rounded-full bg-[#8b5cf6]" />
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#8b5cf6]">First-Party (Proprietary)</p>
+                  <div className="h-2 w-2 rounded-full bg-[#B598E8]" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#B598E8]">First-Party (Proprietary)</p>
                 </div>
                 <div className="space-y-2">
                   {firstParty.map((c) => {
                     const Icon = channelIcons[c.icon];
                     return (
-                      <div key={c.channel} className="flex items-center justify-between rounded-lg border border-[#8b5cf6]/20 bg-[rgba(163,113,247,0.06)] px-3 py-2">
+                      <div key={c.channel} className="flex items-center justify-between rounded-lg border border-[#B598E8]/20 bg-[rgba(163,113,247,0.06)] px-3 py-2">
                         <div className="flex items-center gap-2">
-                          <Icon size={12} className="text-[#8b5cf6]" />
-                          <span className="text-sm text-text-primary">{c.channel}</span>
+                          <Icon size={12} className="text-[#B598E8]" />
+                          <span className="text-sm text-[#F0EDE8]">{c.channel}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <span className="text-[11px] text-panel-300">{c.signals.toLocaleString()}</span>
-                          <span className={`text-sm font-bold ${c.score >= 70 ? 'text-[#00a35e]' : c.score >= 55 ? 'text-[#d97706]' : 'text-[#ef4444]'}`}>
+                          <span className={`text-sm font-bold ${c.score >= 70 ? 'text-[#00C27C]' : c.score >= 55 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                             {c.score}
                           </span>
                         </div>
@@ -1396,21 +1396,21 @@ function UnifiedPipelineTile() {
               {/* Third-party */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="h-2 w-2 rounded-full bg-[#3b82f6]" />
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#3b82f6]">Third-Party (Scraped)</p>
+                  <div className="h-2 w-2 rounded-full bg-[#64A8E0]" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#64A8E0]">Third-Party (Scraped)</p>
                 </div>
                 <div className="space-y-2">
                   {thirdParty.map((c) => {
                     const Icon = channelIcons[c.icon];
                     return (
-                      <div key={c.channel} className="flex items-center justify-between rounded-lg border border-surface-border bg-[rgba(59,130,246,0.12)]/30 px-3 py-2">
+                      <div key={c.channel} className="flex items-center justify-between rounded-lg border border-[#38332B] bg-[rgba(100,168,224,0.12)]/30 px-3 py-2">
                         <div className="flex items-center gap-2">
                           <Icon size={12} className="text-blue-500" />
-                          <span className="text-sm text-text-primary">{c.channel}</span>
+                          <span className="text-sm text-[#F0EDE8]">{c.channel}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <span className="text-[11px] text-panel-300">{c.signals.toLocaleString()}</span>
-                          <span className={`text-sm font-bold ${c.score >= 70 ? 'text-[#00a35e]' : c.score >= 55 ? 'text-[#d97706]' : 'text-[#ef4444]'}`}>
+                          <span className={`text-sm font-bold ${c.score >= 70 ? 'text-[#00C27C]' : c.score >= 55 ? 'text-[#D4A03A]' : 'text-[#E87068]'}`}>
                             {c.score}
                           </span>
                         </div>
@@ -1426,23 +1426,23 @@ function UnifiedPipelineTile() {
         {/* Signal Divergences */}
         <div className="mt-6">
           <div className="flex items-center gap-2 mb-3">
-            <Activity size={14} className="text-[#d97706]" />
+            <Activity size={14} className="text-[#D4A03A]" />
             <p className="text-xs font-medium uppercase tracking-wider text-panel-300">Signal Divergences — Where First-Party ≠ Third-Party</p>
           </div>
           <div className="space-y-2">
             {d.divergences.map((div, i) => (
-              <div key={i} className="rounded-xl border border-surface-border bg-[rgba(217,119,6,0.12)]/30 px-4 py-3">
+              <div key={i} className="rounded-xl border border-[#38332B] bg-[rgba(212,160,58,0.12)]/30 px-4 py-3">
                 <div className="flex items-center gap-4 mb-1.5">
-                  <span className="text-sm font-semibold text-text-primary">{div.store}</span>
+                  <span className="text-sm font-semibold text-[#F0EDE8]">{div.store}</span>
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="rounded-full bg-[rgba(163,113,247,0.15)] px-2 py-0.5 text-[#8b5cf6] font-medium">1st: {div.firstParty}</span>
-                    <span className="rounded-full bg-[rgba(59,130,246,0.15)] px-2 py-0.5 text-[#3b82f6] font-medium">3rd: {div.thirdParty}</span>
-                    <span className={`font-bold ${div.delta > 0 ? 'text-[#00a35e]' : 'text-[#ef4444]'}`}>
+                    <span className="rounded-full bg-[rgba(163,113,247,0.15)] px-2 py-0.5 text-[#B598E8] font-medium">1st: {div.firstParty}</span>
+                    <span className="rounded-full bg-[rgba(100,168,224,0.15)] px-2 py-0.5 text-[#64A8E0] font-medium">3rd: {div.thirdParty}</span>
+                    <span className={`font-bold ${div.delta > 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
                       {div.delta > 0 ? '+' : ''}{div.delta} gap
                     </span>
                   </div>
                 </div>
-                <p className="text-xs text-[#d97706]">{div.insight}</p>
+                <p className="text-xs text-[#D4A03A]">{div.insight}</p>
               </div>
             ))}
           </div>
@@ -1462,15 +1462,15 @@ function InventoryTile() {
         iconBg="bg-[rgba(255,166,87,0.12)] text-[#FFA657]"
         action={() => {}}
         actionLabel="Draft Reorder"
-        badge={{ count: NEXUS_DATA.stockoutRisk, color: 'bg-[#ef4444]' }}
+        badge={{ count: NEXUS_DATA.stockoutRisk, color: 'bg-[#E87068]' }}
       />
       <div className="p-6">
         <div className="mb-4 flex items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[rgba(239,68,68,0.12)]">
-            <AlertTriangle size={24} className="text-[#ef4444]" />
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[rgba(232,112,104,0.12)]">
+            <AlertTriangle size={24} className="text-[#E87068]" />
           </div>
           <div>
-            <p className="text-2xl font-bold text-[#ef4444]">{NEXUS_DATA.stockoutRisk}</p>
+            <p className="text-2xl font-bold text-[#E87068]">{NEXUS_DATA.stockoutRisk}</p>
             <p className="text-xs text-panel-300">Products at stockout risk</p>
           </div>
         </div>
@@ -1478,11 +1478,11 @@ function InventoryTile() {
           {NEXUS_DATA.topLowStock.map((item) => (
             <div key={item.product} className="flex items-center justify-between rounded-lg border border-[#FFA657]/20 bg-[rgba(255,166,87,0.06)] px-3 py-2">
               <div>
-                <p className="text-sm font-medium text-text-primary">{item.product}</p>
+                <p className="text-sm font-medium text-[#F0EDE8]">{item.product}</p>
                 <p className="text-xs text-panel-300">{item.store}</p>
               </div>
               <div className="text-right">
-                <p className={`text-sm font-bold ${item.daysLeft <= 1 ? 'text-[#ef4444]' : 'text-[#FFA657]'}`}>
+                <p className={`text-sm font-bold ${item.daysLeft <= 1 ? 'text-[#E87068]' : 'text-[#FFA657]'}`}>
                   {item.daysLeft}d left
                 </p>
               </div>
@@ -1501,24 +1501,24 @@ function LoyaltyTile() {
         icon={Users}
         title="Loyalty Score"
         subtitle="Customer retention health"
-        iconBg="bg-[rgba(163,113,247,0.12)] text-[#8b5cf6]"
+        iconBg="bg-[rgba(163,113,247,0.12)] text-[#B598E8]"
         action={() => {}}
         actionLabel="Win-back Campaign"
-        badge={{ count: '!', color: 'bg-[#d97706]' }}
+        badge={{ count: '!', color: 'bg-[#D4A03A]' }}
       />
       <div className="p-6 space-y-1">
         <StatRow label="Active Members" value={NEXUS_DATA.activeMembers.toLocaleString()} />
         <StatRow label="Loyalty Score" value={NEXUS_DATA.loyaltyScore} trend={NEXUS_DATA.loyaltyTrend} />
         <StatRow label="Avg Visit Freq" value={`${NEXUS_DATA.avgVisitFreq}x/mo`} />
-        <div className="mt-3 rounded-xl border border-surface-border bg-[rgba(239,68,68,0.12)]/50 p-3">
+        <div className="mt-3 rounded-xl border border-[#38332B] bg-[rgba(232,112,104,0.12)]/50 p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <AlertTriangle size={14} className="text-[#ef4444]" />
-              <span className="text-sm font-semibold text-[#ef4444]">At-risk customers</span>
+              <AlertTriangle size={14} className="text-[#E87068]" />
+              <span className="text-sm font-semibold text-[#E87068]">At-risk customers</span>
             </div>
-            <span className="text-lg font-bold text-[#ef4444]">{NEXUS_DATA.atRiskCustomers.toLocaleString()}</span>
+            <span className="text-lg font-bold text-[#E87068]">{NEXUS_DATA.atRiskCustomers.toLocaleString()}</span>
           </div>
-          <p className="mt-1 text-xs text-[#ef4444]">Haven't visited in 30+ days</p>
+          <p className="mt-1 text-xs text-[#E87068]">Haven't visited in 30+ days</p>
         </div>
       </div>
     </NexusTile>
@@ -1533,20 +1533,20 @@ function PricingTile() {
     const d = payload[0].payload;
     const gapStr = `${d.gap >= 0 ? '+' : ''}${d.gap.toFixed(1)}%`;
     return (
-      <div className="bg-surface-hover border border-surface-border rounded-lg px-3 py-2 shadow-xl text-xs" style={{ minWidth: 140 }}>
-        <p className="text-text-primary font-semibold">{d.name}</p>
-        <p className="text-text-secondary text-[10px] mb-1">{d.brand}</p>
+      <div className="bg-[#282724] border border-[#38332B] rounded-lg px-3 py-2 shadow-xl text-xs" style={{ minWidth: 140 }}>
+        <p className="text-[#F0EDE8] font-semibold">{d.name}</p>
+        <p className="text-[#ADA599] text-[10px] mb-1">{d.brand}</p>
         <div className="flex justify-between gap-3">
-          <span className="text-text-muted">You</span>
-          <span className="text-text-primary font-medium">${d.y}</span>
+          <span className="text-[#6B6359]">You</span>
+          <span className="text-[#F0EDE8] font-medium">${d.y}</span>
         </div>
         <div className="flex justify-between gap-3">
-          <span className="text-text-muted">Market</span>
-          <span className="text-text-secondary">${d.x}</span>
+          <span className="text-[#6B6359]">Market</span>
+          <span className="text-[#ADA599]">${d.x}</span>
         </div>
         <div className="flex justify-between gap-3">
-          <span className="text-text-muted">Gap</span>
-          <span className={`font-bold ${d.gap > 3 ? 'text-[#d97706]' : d.gap < -3 ? 'text-[#3b82f6]' : 'text-text-secondary'}`}>{gapStr}</span>
+          <span className="text-[#6B6359]">Gap</span>
+          <span className={`font-bold ${d.gap > 3 ? 'text-[#D4A03A]' : d.gap < -3 ? 'text-[#64A8E0]' : 'text-[#ADA599]'}`}>{gapStr}</span>
         </div>
       </div>
     );
@@ -1558,22 +1558,22 @@ function PricingTile() {
         icon={DollarSign}
         title="Pricing & Discounts"
         subtitle="Your price vs market"
-        iconBg="bg-[#00a35e]/10 text-[#00a35e]"
+        iconBg="bg-[#00C27C]/10 text-[#00C27C]"
         action={() => navigate('/pricing')}
         actionLabel="Optimize"
-        badge={{ count: NEXUS_DATA.underperformingPromos, color: 'bg-[#d97706]' }}
+        badge={{ count: NEXUS_DATA.underperformingPromos, color: 'bg-[#D4A03A]' }}
       />
       <div className="px-4 pt-3 pb-2">
         {/* Mini legend */}
-        <div className="flex items-center justify-end gap-3 text-[10px] text-text-secondary mb-1">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#d97706]" /> Above</span>
+        <div className="flex items-center justify-end gap-3 text-[10px] text-[#ADA599] mb-1">
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#D4A03A]" /> Above</span>
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#8B949E]" /> At</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#3b82f6]" /> Below</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#64A8E0]" /> Below</span>
         </div>
 
         {/* Mini scatterplot — click navigates to full pricing page */}
         <div
-          className="h-[180px] cursor-pointer rounded-lg hover:bg-surface-hover transition-colors"
+          className="h-[180px] cursor-pointer rounded-lg hover:bg-[#282724] transition-colors"
           onClick={() => navigate('/pricing')}
         >
           <ResponsiveContainer width="100%" height="100%">
@@ -1582,17 +1582,17 @@ function PricingTile() {
               <XAxis
                 type="number" dataKey="x" name="Market Avg"
                 domain={[MINI_PRICE_MIN, MINI_PRICE_MAX]}
-                tick={{ fill: '#9ca3af', fontSize: 9 }}
+                tick={{ fill: '#ADA599', fontSize: 9 }}
                 tickFormatter={v => `$${v}`}
-                label={{ value: 'Market', position: 'bottom', offset: 0, fill: '#9ca3af', fontSize: 9 }}
+                label={{ value: 'Market', position: 'bottom', offset: 0, fill: '#ADA599', fontSize: 9 }}
                 stroke="#e5e7eb"
               />
               <YAxis
                 type="number" dataKey="y" name="Your Price"
                 domain={[MINI_PRICE_MIN, MINI_PRICE_MAX]}
-                tick={{ fill: '#9ca3af', fontSize: 9 }}
+                tick={{ fill: '#ADA599', fontSize: 9 }}
                 tickFormatter={v => `$${v}`}
-                label={{ value: 'You', angle: -90, position: 'insideLeft', offset: 8, fill: '#9ca3af', fontSize: 9 }}
+                label={{ value: 'You', angle: -90, position: 'insideLeft', offset: 8, fill: '#ADA599', fontSize: 9 }}
                 stroke="#e5e7eb"
                 width={32}
               />
@@ -1606,9 +1606,9 @@ function PricingTile() {
                 {MINI_SCATTER_DATA.map((entry, index) => (
                   <Cell
                     key={`mc-${index}`}
-                    fill={entry.gap > 3 ? '#d97706' : entry.gap < -3 ? '#3b82f6' : '#8B949E'}
+                    fill={entry.gap > 3 ? '#D4A03A' : entry.gap < -3 ? '#64A8E0' : '#8B949E'}
                     fillOpacity={0.85}
-                    stroke={entry.gap > 3 ? '#d97706' : entry.gap < -3 ? '#3b82f6' : '#8B949E'}
+                    stroke={entry.gap > 3 ? '#D4A03A' : entry.gap < -3 ? '#64A8E0' : '#8B949E'}
                     strokeWidth={1.5}
                     strokeOpacity={0.4}
                   />
@@ -1621,13 +1621,13 @@ function PricingTile() {
         {/* Quick stats below chart */}
         <div className="flex items-center justify-between mt-2 text-xs">
           <div className="flex items-center gap-1.5">
-            <span className="text-text-secondary">Gap:</span>
-            <span className="text-[#d97706] font-semibold">{NEXUS_DATA.marketPriceGap}</span>
-            <span className="text-text-muted">above avg</span>
+            <span className="text-[#ADA599]">Gap:</span>
+            <span className="text-[#D4A03A] font-semibold">{NEXUS_DATA.marketPriceGap}</span>
+            <span className="text-[#6B6359]">above avg</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="text-text-secondary">Wasted:</span>
-            <span className="text-[#ef4444] font-semibold">{fmtDollar(NEXUS_DATA.discountWaste)}</span>
+            <span className="text-[#ADA599]">Wasted:</span>
+            <span className="text-[#E87068] font-semibold">{fmtDollar(NEXUS_DATA.discountWaste)}</span>
           </div>
         </div>
       </div>
@@ -1642,16 +1642,16 @@ function BrandTile() {
         icon={Star}
         title="Brand Awareness"
         subtitle="Partner performance"
-        iconBg="bg-[rgba(59,130,246,0.12)] text-[#3b82f6]"
+        iconBg="bg-[rgba(100,168,224,0.12)] text-[#64A8E0]"
         action={() => {}}
         actionLabel="View Brands"
       />
       <div className="p-6 space-y-1">
         <StatRow label="Top Brand" value={NEXUS_DATA.topBrand} sub={`Score: ${NEXUS_DATA.topBrandScore}/100`} />
-        <StatRow label="Brand Funding" value={`$${NEXUS_DATA.brandFundingAvailable.toLocaleString()}`} color="text-[#00a35e]" sub="Available credits" />
-        <div className="mt-3 flex items-center gap-2 rounded-xl bg-[rgba(59,130,246,0.08)] p-3">
-          <Sparkles size={16} className="text-[#3b82f6]" />
-          <p className="text-xs text-[#3b82f6]/80">
+        <StatRow label="Brand Funding" value={`$${NEXUS_DATA.brandFundingAvailable.toLocaleString()}`} color="text-[#00C27C]" sub="Available credits" />
+        <div className="mt-3 flex items-center gap-2 rounded-xl bg-[rgba(100,168,224,0.08)] p-3">
+          <Sparkles size={16} className="text-[#64A8E0]" />
+          <p className="text-xs text-[#64A8E0]/80">
             <span className="font-semibold">Opportunity:</span> Ozone has $1,200 in unused brand-funded credits. Apply to top SKUs to boost margin.
           </p>
         </div>
@@ -1752,23 +1752,23 @@ function SalesReportingTile() {
     {
       label: 'Revenue', value: fmtDollar(d.revenue), delta: d.revenueDelta,
       bench: fmtDollar(bench.revenue), benchLabel: 'Market avg',
-      icon: DollarSign, color: '#00a35e',
+      icon: DollarSign, color: '#00C27C',
       sub: `Goal: ${fmtDollar(d.revenueGoal)}`,
     },
     {
       label: 'Transactions', value: d.transactions.toLocaleString(), delta: d.transactionsDelta,
       bench: bench.transactions.toLocaleString(), benchLabel: 'Market avg',
-      icon: Receipt, color: '#3b82f6',
+      icon: Receipt, color: '#64A8E0',
     },
     {
       label: 'Avg Basket', value: `$${d.avgBasket.toFixed(2)}`, delta: d.avgBasketDelta,
       bench: `$${bench.avgBasket}`, benchLabel: 'Market avg',
-      icon: ShoppingBag, color: '#8b5cf6',
+      icon: ShoppingBag, color: '#B598E8',
     },
     {
       label: 'Gross Margin', value: `${d.grossMargin}%`, delta: d.grossMarginDelta,
       bench: `${bench.margin}%`, benchLabel: 'Market avg',
-      icon: Percent, color: '#d97706',
+      icon: Percent, color: '#D4A03A',
     },
   ];
 
@@ -1778,13 +1778,13 @@ function SalesReportingTile() {
     const d = payload[0]?.payload;
     if (!d) return null;
     return (
-      <div className="bg-surface-hover border border-surface-border rounded-lg px-3 py-2 shadow-xl text-xs">
-        <p className="text-text-primary font-semibold mb-1">{d.name}</p>
+      <div className="bg-[#282724] border border-[#38332B] rounded-lg px-3 py-2 shadow-xl text-xs">
+        <p className="text-[#F0EDE8] font-semibold mb-1">{d.name}</p>
         <div className="space-y-0.5">
-          <div className="flex justify-between gap-4"><span className="text-text-muted">Revenue</span><span className="text-text-primary">{fmtDollar(d.revenue)}</span></div>
-          <div className="flex justify-between gap-4"><span className="text-text-muted">Your Share</span><span className="text-text-primary">{d.yourShare}%</span></div>
-          <div className="flex justify-between gap-4"><span className="text-text-muted">Market Share</span><span className="text-text-secondary">{d.marketShare}%</span></div>
-          <div className="flex justify-between gap-4"><span className="text-text-muted">Margin</span><span className="text-[#00a35e]">{d.margin}%</span></div>
+          <div className="flex justify-between gap-4"><span className="text-[#6B6359]">Revenue</span><span className="text-[#F0EDE8]">{fmtDollar(d.revenue)}</span></div>
+          <div className="flex justify-between gap-4"><span className="text-[#6B6359]">Your Share</span><span className="text-[#F0EDE8]">{d.yourShare}%</span></div>
+          <div className="flex justify-between gap-4"><span className="text-[#6B6359]">Market Share</span><span className="text-[#ADA599]">{d.marketShare}%</span></div>
+          <div className="flex justify-between gap-4"><span className="text-[#6B6359]">Margin</span><span className="text-[#00C27C]">{d.margin}%</span></div>
         </div>
       </div>
     );
@@ -1793,28 +1793,28 @@ function SalesReportingTile() {
   return (
     <NexusTile span={2}>
       {/* Header with period selector */}
-      <div className="flex items-start justify-between border-b border-surface-border px-6 py-4">
+      <div className="flex items-start justify-between border-b border-[#38332B] px-6 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgba(59,130,246,0.12)] text-[#3b82f6]">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgba(100,168,224,0.12)] text-[#64A8E0]">
             <BarChart3 size={20} />
           </div>
           <div>
-            <h3 className="text-base font-semibold text-text-primary">Sales Reporting</h3>
+            <h3 className="text-base font-semibold text-[#F0EDE8]">Sales Reporting</h3>
             <p className="text-xs text-panel-300">Performance vs market benchmarks — {rangeLabel} — {selectionLabel}</p>
           </div>
         </div>
-        <div className="flex items-center gap-1 rounded-lg bg-surface-bg px-3 py-1.5">
-          <span className="text-xs font-medium text-text-primary">{rangeLabel}</span>
+        <div className="flex items-center gap-1 rounded-lg bg-[#141210] px-3 py-1.5">
+          <span className="text-xs font-medium text-[#F0EDE8]">{rangeLabel}</span>
         </div>
       </div>
 
       {/* Tab bar */}
-      <div className="flex items-center gap-0 border-b border-surface-border px-6">
+      <div className="flex items-center gap-0 border-b border-[#38332B] px-6">
         {tabs.map(t => (
           <button
             key={t.key}
             onClick={() => setActiveTab(t.key)}
-            className={`px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${activeTab === t.key ? 'border-[#3b82f6] text-text-primary' : 'border-transparent text-text-secondary hover:text-text-primary'}`}
+            className={`px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${activeTab === t.key ? 'border-[#64A8E0] text-[#F0EDE8]' : 'border-transparent text-[#ADA599] hover:text-[#F0EDE8]'}`}
           >
             {t.label}
           </button>
@@ -1830,27 +1830,27 @@ function SalesReportingTile() {
               {kpis.map(k => {
                 const Icon = k.icon;
                 return (
-                  <div key={k.label} className="bg-surface-bg rounded-xl border border-surface-border p-4">
+                  <div key={k.label} className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-text-secondary text-xs font-medium">{k.label}</span>
+                      <span className="text-[#ADA599] text-xs font-medium">{k.label}</span>
                       <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${k.color}15` }}>
                         <Icon size={14} style={{ color: k.color }} />
                       </div>
                     </div>
-                    <p className="text-xl font-bold text-text-primary">{k.value}</p>
+                    <p className="text-xl font-bold text-[#F0EDE8]">{k.value}</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className={`text-xs font-semibold flex items-center gap-0.5 ${k.delta >= 0 ? 'text-[#00a35e]' : 'text-[#ef4444]'}`}>
+                      <span className={`text-xs font-semibold flex items-center gap-0.5 ${k.delta >= 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
                         {k.delta >= 0 ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
                         {k.delta >= 0 ? '+' : ''}{k.delta}%
                       </span>
-                      <span className="text-text-muted text-[10px]">vs last {period === 'today' ? 'day' : period === 'week' ? 'week' : 'month'}</span>
+                      <span className="text-[#6B6359] text-[10px]">vs last {period === 'today' ? 'day' : period === 'week' ? 'week' : 'month'}</span>
                     </div>
-                    {k.sub && <p className="text-text-muted text-[10px] mt-1">{k.sub}</p>}
+                    {k.sub && <p className="text-[#6B6359] text-[10px] mt-1">{k.sub}</p>}
                     <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-[#21262D]">
-                      <span className="text-text-muted text-[10px]">{k.benchLabel}:</span>
-                      <span className="text-text-secondary text-[10px] font-medium">{k.bench}</span>
+                      <span className="text-[#6B6359] text-[10px]">{k.benchLabel}:</span>
+                      <span className="text-[#ADA599] text-[10px] font-medium">{k.bench}</span>
                       {k.label === 'Revenue' && (
-                        <span className="text-[#00a35e] text-[10px] font-bold ml-auto">
+                        <span className="text-[#00C27C] text-[10px] font-bold ml-auto">
                           +{Math.round(((d.revenue - bench.revenue) / bench.revenue) * 100)}% vs market
                         </span>
                       )}
@@ -1861,15 +1861,15 @@ function SalesReportingTile() {
             </div>
 
             {/* Sales trend chart with metric toggle */}
-            <div className="bg-surface-bg rounded-xl border border-surface-border p-4">
+            <div className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-text-secondary text-xs font-semibold uppercase tracking-wider">Sales Trend</p>
-                <div className="flex items-center gap-1 rounded-lg bg-white p-0.5">
+                <p className="text-[#ADA599] text-xs font-semibold uppercase tracking-wider">Sales Trend</p>
+                <div className="flex items-center gap-1 rounded-lg bg-[#1C1B1A] p-0.5">
                   {CHART_METRICS.map(m => (
                     <button
                       key={m.key}
                       onClick={() => setChartMetric(m.key)}
-                      className={`px-2.5 py-1 rounded-md text-[10px] font-medium transition-all ${chartMetric === m.key ? 'text-text-primary' : 'text-text-muted hover:text-text-secondary'}`}
+                      className={`px-2.5 py-1 rounded-md text-[10px] font-medium transition-all ${chartMetric === m.key ? 'text-[#F0EDE8]' : 'text-[#6B6359] hover:text-[#ADA599]'}`}
                       style={chartMetric === m.key ? { background: `${m.color}20`, color: m.color } : {}}
                     >
                       {m.label}
@@ -1878,14 +1878,14 @@ function SalesReportingTile() {
                 </div>
               </div>
               {/* Legend */}
-              <div className="flex items-center gap-4 mb-2 text-[10px] text-text-secondary">
+              <div className="flex items-center gap-4 mb-2 text-[10px] text-[#ADA599]">
                 <span className="flex items-center gap-1.5">
                   <span className="w-3 h-[2px] rounded-full" style={{ background: activeCM.color }} />
                   {activeCM.label}
                 </span>
                 {activeCM.benchKey && (
                   <span className="flex items-center gap-1.5">
-                    <span className="w-3 h-[2px] rounded-full bg-gray-700" style={{ borderTop: '2px dashed #484F58' }} />
+                    <span className="w-3 h-[2px] rounded-full bg-[#1C1B1A]" style={{ borderTop: '2px dashed #484F58' }} />
                     Market Benchmark
                   </span>
                 )}
@@ -1900,14 +1900,14 @@ function SalesReportingTile() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#21262D" vertical={false} />
-                    <XAxis dataKey="time" tick={{ fill: '#9ca3af', fontSize: 10 }} stroke="#e5e7eb" />
+                    <XAxis dataKey="time" tick={{ fill: '#ADA599', fontSize: 10 }} stroke="#e5e7eb" />
                     <YAxis
-                      tick={{ fill: '#9ca3af', fontSize: 10 }} stroke="#e5e7eb"
+                      tick={{ fill: '#ADA599', fontSize: 10 }} stroke="#e5e7eb"
                       tickFormatter={activeCM.format}
                       width={52}
                     />
                     <RechartsTooltip
-                      contentStyle={{ background: '#ffffff', border: '1px solid #e5e7eb', borderRadius: 8, fontSize: 11 }}
+                      contentStyle={{ background: '#1C1B1A', border: '1px solid #e5e7eb', borderRadius: 8, fontSize: 11 }}
                       labelStyle={{ color: '#8B949E', marginBottom: 4 }}
                       formatter={(value, name) => {
                         const m = CHART_METRICS.find(cm => cm.key === name) || (name === 'marketRevenue' ? { format: v => v >= 1_000_000 ? `$${(v / 1_000_000).toFixed(1)}M` : `$${(v / 1000).toFixed(0)}K` } : null);
@@ -1926,8 +1926,8 @@ function SalesReportingTile() {
                       type="monotone" dataKey={chartMetric}
                       stroke={activeCM.color} strokeWidth={2}
                       fill={`url(#grad-${chartMetric})`}
-                      dot={{ r: 3, fill: activeCM.color, stroke: '#ffffff', strokeWidth: 2 }}
-                      activeDot={{ r: 5, fill: activeCM.color, stroke: '#ffffff', strokeWidth: 2 }}
+                      dot={{ r: 3, fill: activeCM.color, stroke: '#141210', strokeWidth: 2 }}
+                      activeDot={{ r: 5, fill: activeCM.color, stroke: '#141210', strokeWidth: 2 }}
                     />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -1935,21 +1935,21 @@ function SalesReportingTile() {
             </div>
 
             {/* Revenue progress bar */}
-            <div className="bg-surface-bg rounded-xl border border-surface-border p-4">
+            <div className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-text-secondary text-xs font-medium">Revenue vs Goal</span>
-                <span className="text-text-primary text-sm font-bold">{Math.round((d.revenue / d.revenueGoal) * 100)}%</span>
+                <span className="text-[#ADA599] text-xs font-medium">Revenue vs Goal</span>
+                <span className="text-[#F0EDE8] text-sm font-bold">{Math.round((d.revenue / d.revenueGoal) * 100)}%</span>
               </div>
-              <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
+              <div className="h-3 bg-[#282724] rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{
                     width: `${Math.min(100, (d.revenue / d.revenueGoal) * 100)}%`,
-                    background: d.revenue >= d.revenueGoal ? '#00a35e' : d.revenue >= d.revenueGoal * 0.85 ? '#d97706' : '#ef4444',
+                    background: d.revenue >= d.revenueGoal ? '#00C27C' : d.revenue >= d.revenueGoal * 0.85 ? '#D4A03A' : '#E87068',
                   }}
                 />
               </div>
-              <div className="flex items-center justify-between mt-1.5 text-[10px] text-text-muted">
+              <div className="flex items-center justify-between mt-1.5 text-[10px] text-[#6B6359]">
                 <span>{fmtDollar(d.revenue)}</span>
                 <span>Goal: {fmtDollar(d.revenueGoal)}</span>
               </div>
@@ -1958,42 +1958,42 @@ function SalesReportingTile() {
             {/* Quick category + store summary side by side */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {/* Category mini breakdown */}
-              <div className="bg-surface-bg rounded-xl border border-surface-border p-4">
+              <div className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-text-secondary text-xs font-semibold uppercase tracking-wider">Revenue by Category</p>
-                  <button onClick={() => setActiveTab('categories')} className="text-[#3b82f6] text-[10px] hover:underline">Details</button>
+                  <p className="text-[#ADA599] text-xs font-semibold uppercase tracking-wider">Revenue by Category</p>
+                  <button onClick={() => setActiveTab('categories')} className="text-[#64A8E0] text-[10px] hover:underline">Details</button>
                 </div>
                 <div className="space-y-2">
                   {SALES_DATA.categories.map(c => (
                     <div key={c.name} className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: c.color }} />
-                      <span className="text-text-secondary text-xs w-20 truncate">{c.name}</span>
-                      <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <span className="text-[#ADA599] text-xs w-20 truncate">{c.name}</span>
+                      <div className="flex-1 h-2 bg-[#282724] rounded-full overflow-hidden">
                         <div className="h-full rounded-full" style={{ width: `${c.pct}%`, background: c.color, opacity: 0.8 }} />
                       </div>
-                      <span className="text-text-primary text-xs font-medium w-12 text-right">{c.pct}%</span>
-                      <span className="text-text-muted text-[10px] w-16 text-right">${(c.revenue / 1000).toFixed(1)}k</span>
+                      <span className="text-[#F0EDE8] text-xs font-medium w-12 text-right">{c.pct}%</span>
+                      <span className="text-[#6B6359] text-[10px] w-16 text-right">${(c.revenue / 1000).toFixed(1)}k</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Store mini breakdown */}
-              <div className="bg-surface-bg rounded-xl border border-surface-border p-4">
+              <div className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-text-secondary text-xs font-semibold uppercase tracking-wider">Revenue by Store</p>
-                  <button onClick={() => setActiveTab('stores')} className="text-[#3b82f6] text-[10px] hover:underline">Details</button>
+                  <p className="text-[#ADA599] text-xs font-semibold uppercase tracking-wider">Revenue by Store</p>
+                  <button onClick={() => setActiveTab('stores')} className="text-[#64A8E0] text-[10px] hover:underline">Details</button>
                 </div>
                 <div className="space-y-2">
                   {displayStores.map(s => (
                     <div key={s.name} className="flex items-center gap-2">
-                      <MapPin size={10} className="text-text-muted flex-shrink-0" />
-                      <span className="text-text-secondary text-xs w-32 truncate">{s.name}</span>
-                      <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full rounded-full bg-[#3b82f6]" style={{ width: `${s.pct}%`, opacity: 0.7 }} />
+                      <MapPin size={10} className="text-[#6B6359] flex-shrink-0" />
+                      <span className="text-[#ADA599] text-xs w-32 truncate">{s.name}</span>
+                      <div className="flex-1 h-2 bg-[#282724] rounded-full overflow-hidden">
+                        <div className="h-full rounded-full bg-[#64A8E0]" style={{ width: `${s.pct}%`, opacity: 0.7 }} />
                       </div>
-                      <span className="text-text-primary text-xs font-medium w-12 text-right">{s.pct}%</span>
-                      <span className={`text-[10px] font-bold w-10 text-right ${s.vsBenchmark >= 0 ? 'text-[#00a35e]' : 'text-[#ef4444]'}`}>
+                      <span className="text-[#F0EDE8] text-xs font-medium w-12 text-right">{s.pct}%</span>
+                      <span className={`text-[10px] font-bold w-10 text-right ${s.vsBenchmark >= 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
                         {s.vsBenchmark >= 0 ? '+' : ''}{s.vsBenchmark}%
                       </span>
                     </div>
@@ -2008,22 +2008,22 @@ function SalesReportingTile() {
         {activeTab === 'categories' && (
           <div className="space-y-4">
             {/* Bar chart: Your share vs market share */}
-            <div className="bg-surface-bg rounded-xl border border-surface-border p-4">
+            <div className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-text-secondary text-xs font-semibold uppercase tracking-wider">Your Mix vs Market Mix</p>
-                <div className="flex items-center gap-3 text-[10px] text-text-secondary">
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-[#3b82f6]" /> You</span>
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-gray-700" /> Market</span>
+                <p className="text-[#ADA599] text-xs font-semibold uppercase tracking-wider">Your Mix vs Market Mix</p>
+                <div className="flex items-center gap-3 text-[10px] text-[#ADA599]">
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-[#64A8E0]" /> You</span>
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-[#1C1B1A]" /> Market</span>
                 </div>
               </div>
               <div className="h-[200px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={CATEGORY_BAR_DATA} margin={{ top: 4, right: 4, bottom: 4, left: 4 }} barGap={2}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#21262D" vertical={false} />
-                    <XAxis dataKey="name" tick={{ fill: '#6b7280', fontSize: 10 }} stroke="#e5e7eb" />
-                    <YAxis tick={{ fill: '#9ca3af', fontSize: 10 }} stroke="#e5e7eb" tickFormatter={v => `${v}%`} />
-                    <RechartsTooltip content={<CatTooltip />} cursor={{ fill: 'rgba(59,130,246,0.06)' }} />
-                    <Bar dataKey="yourShare" name="Your Share" fill="#3b82f6" radius={[3, 3, 0, 0]} maxBarSize={28} />
+                    <XAxis dataKey="name" tick={{ fill: '#6B6359', fontSize: 10 }} stroke="#e5e7eb" />
+                    <YAxis tick={{ fill: '#ADA599', fontSize: 10 }} stroke="#e5e7eb" tickFormatter={v => `${v}%`} />
+                    <RechartsTooltip content={<CatTooltip />} cursor={{ fill: 'rgba(100,168,224,0.06)' }} />
+                    <Bar dataKey="yourShare" name="Your Share" fill="#64A8E0" radius={[3, 3, 0, 0]} maxBarSize={28} />
                     <Bar dataKey="marketShare" name="Market Share" fill="#484F58" radius={[3, 3, 0, 0]} maxBarSize={28} />
                   </BarChart>
                 </ResponsiveContainer>
@@ -2031,31 +2031,31 @@ function SalesReportingTile() {
             </div>
 
             {/* Category detail table */}
-            <div className="bg-surface-bg rounded-xl border border-surface-border overflow-hidden">
+            <div className="bg-[#141210] rounded-xl border border-[#38332B] overflow-hidden">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-surface-border">
-                    <th className="text-left text-text-secondary font-medium px-4 py-2.5">Category</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Revenue</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Units</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Your %</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Market %</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Margin</th>
+                  <tr className="border-b border-[#38332B]">
+                    <th className="text-left text-[#ADA599] font-medium px-4 py-2.5">Category</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Revenue</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Units</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Your %</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Market %</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Margin</th>
                   </tr>
                 </thead>
                 <tbody>
                   {SALES_DATA.categories.map(c => (
-                    <tr key={c.name} className="border-b border-[#21262D] hover:bg-white transition-colors">
+                    <tr key={c.name} className="border-b border-[#21262D] hover:bg-[#1C1B1A] transition-colors">
                       <td className="px-4 py-2.5 flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full" style={{ background: c.color }} />
-                        <span className="text-text-primary font-medium">{c.name}</span>
+                        <span className="text-[#F0EDE8] font-medium">{c.name}</span>
                       </td>
-                      <td className="text-right px-4 py-2.5 text-text-primary font-medium">{fmtDollar(c.revenue)}</td>
-                      <td className="text-right px-4 py-2.5 text-text-secondary">{c.units}</td>
-                      <td className="text-right px-4 py-2.5 text-text-primary font-medium">{c.pct}%</td>
-                      <td className="text-right px-4 py-2.5 text-text-secondary">{c.marketShare}%</td>
+                      <td className="text-right px-4 py-2.5 text-[#F0EDE8] font-medium">{fmtDollar(c.revenue)}</td>
+                      <td className="text-right px-4 py-2.5 text-[#ADA599]">{c.units}</td>
+                      <td className="text-right px-4 py-2.5 text-[#F0EDE8] font-medium">{c.pct}%</td>
+                      <td className="text-right px-4 py-2.5 text-[#ADA599]">{c.marketShare}%</td>
                       <td className="text-right px-4 py-2.5">
-                        <span className={c.margin >= 50 ? 'text-[#00a35e] font-bold' : 'text-[#d97706] font-medium'}>{c.margin}%</span>
+                        <span className={c.margin >= 50 ? 'text-[#00C27C] font-bold' : 'text-[#D4A03A] font-medium'}>{c.margin}%</span>
                       </td>
                     </tr>
                   ))}
@@ -2068,36 +2068,36 @@ function SalesReportingTile() {
         {/* ── Brands Tab ── */}
         {activeTab === 'brands' && (
           <div className="space-y-4">
-            <div className="bg-surface-bg rounded-xl border border-surface-border overflow-hidden">
+            <div className="bg-[#141210] rounded-xl border border-[#38332B] overflow-hidden">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-surface-border">
-                    <th className="text-left text-text-secondary font-medium px-4 py-2.5">#</th>
-                    <th className="text-left text-text-secondary font-medium px-4 py-2.5">Brand</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Revenue</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Units</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Avg Price</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Margin</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Trend</th>
+                  <tr className="border-b border-[#38332B]">
+                    <th className="text-left text-[#ADA599] font-medium px-4 py-2.5">#</th>
+                    <th className="text-left text-[#ADA599] font-medium px-4 py-2.5">Brand</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Revenue</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Units</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Avg Price</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Margin</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Trend</th>
                   </tr>
                 </thead>
                 <tbody>
                   {SALES_DATA.brands.map(b => (
-                    <tr key={b.name} className="border-b border-[#21262D] hover:bg-white transition-colors">
+                    <tr key={b.name} className="border-b border-[#21262D] hover:bg-[#1C1B1A] transition-colors">
                       <td className="px-4 py-2.5">
-                        <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${b.rank <= 3 ? 'bg-[rgba(217,119,6,0.15)] text-[#d97706]' : 'bg-gray-100 text-text-muted'}`}>
+                        <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${b.rank <= 3 ? 'bg-[rgba(212,160,58,0.15)] text-[#D4A03A]' : 'bg-[#282724] text-[#6B6359]'}`}>
                           {b.rank}
                         </span>
                       </td>
-                      <td className="px-4 py-2.5 text-text-primary font-semibold">{b.name}</td>
-                      <td className="text-right px-4 py-2.5 text-text-primary font-medium">{fmtDollar(b.revenue)}</td>
-                      <td className="text-right px-4 py-2.5 text-text-secondary">{b.units}</td>
-                      <td className="text-right px-4 py-2.5 text-text-secondary">${b.avgPrice.toFixed(2)}</td>
+                      <td className="px-4 py-2.5 text-[#F0EDE8] font-semibold">{b.name}</td>
+                      <td className="text-right px-4 py-2.5 text-[#F0EDE8] font-medium">{fmtDollar(b.revenue)}</td>
+                      <td className="text-right px-4 py-2.5 text-[#ADA599]">{b.units}</td>
+                      <td className="text-right px-4 py-2.5 text-[#ADA599]">${b.avgPrice.toFixed(2)}</td>
                       <td className="text-right px-4 py-2.5">
-                        <span className={b.margin >= 50 ? 'text-[#00a35e] font-bold' : 'text-[#d97706] font-medium'}>{b.margin}%</span>
+                        <span className={b.margin >= 50 ? 'text-[#00C27C] font-bold' : 'text-[#D4A03A] font-medium'}>{b.margin}%</span>
                       </td>
                       <td className="text-right px-4 py-2.5">
-                        <span className={`font-bold flex items-center justify-end gap-0.5 ${b.trend >= 0 ? 'text-[#00a35e]' : 'text-[#ef4444]'}`}>
+                        <span className={`font-bold flex items-center justify-end gap-0.5 ${b.trend >= 0 ? 'text-[#00C27C]' : 'text-[#E87068]'}`}>
                           {b.trend >= 0 ? <ArrowUpRight size={10} /> : <ArrowDownRight size={10} />}
                           {b.trend >= 0 ? '+' : ''}{b.trend}%
                         </span>
@@ -2110,20 +2110,20 @@ function SalesReportingTile() {
 
             {/* Brand insights */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-              <div className="bg-surface-bg rounded-xl border border-surface-border p-4">
-                <p className="text-text-muted text-[10px] uppercase tracking-wider mb-1">Top Revenue</p>
-                <p className="text-text-primary text-lg font-bold">Jeeter</p>
-                <p className="text-[#00a35e] text-xs font-semibold">$8,420 · +12.3%</p>
+              <div className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
+                <p className="text-[#6B6359] text-[10px] uppercase tracking-wider mb-1">Top Revenue</p>
+                <p className="text-[#F0EDE8] text-lg font-bold">Jeeter</p>
+                <p className="text-[#00C27C] text-xs font-semibold">$8,420 · +12.3%</p>
               </div>
-              <div className="bg-surface-bg rounded-xl border border-surface-border p-4">
-                <p className="text-text-muted text-[10px] uppercase tracking-wider mb-1">Best Margin</p>
-                <p className="text-text-primary text-lg font-bold">Wyld</p>
-                <p className="text-[#d97706] text-xs font-semibold">55.6% margin · +15.2% trending</p>
+              <div className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
+                <p className="text-[#6B6359] text-[10px] uppercase tracking-wider mb-1">Best Margin</p>
+                <p className="text-[#F0EDE8] text-lg font-bold">Wyld</p>
+                <p className="text-[#D4A03A] text-xs font-semibold">55.6% margin · +15.2% trending</p>
               </div>
-              <div className="bg-surface-bg rounded-xl border border-surface-border p-4">
-                <p className="text-text-muted text-[10px] uppercase tracking-wider mb-1">Declining</p>
-                <p className="text-text-primary text-lg font-bold">Cookies</p>
-                <p className="text-[#ef4444] text-xs font-semibold">-3.2% · Lowest margin at 41.8%</p>
+              <div className="bg-[#141210] rounded-xl border border-[#38332B] p-4">
+                <p className="text-[#6B6359] text-[10px] uppercase tracking-wider mb-1">Declining</p>
+                <p className="text-[#F0EDE8] text-lg font-bold">Cookies</p>
+                <p className="text-[#E87068] text-xs font-semibold">-3.2% · Lowest margin at 41.8%</p>
               </div>
             </div>
           </div>
@@ -2132,35 +2132,35 @@ function SalesReportingTile() {
         {/* ── Stores Tab ── */}
         {activeTab === 'stores' && (
           <div className="space-y-4">
-            <div className="bg-surface-bg rounded-xl border border-surface-border overflow-hidden">
+            <div className="bg-[#141210] rounded-xl border border-[#38332B] overflow-hidden">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-surface-border">
-                    <th className="text-left text-text-secondary font-medium px-4 py-2.5">Store</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Revenue</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Transactions</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Avg Basket</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">Margin</th>
-                    <th className="text-right text-text-secondary font-medium px-4 py-2.5">vs Benchmark</th>
+                  <tr className="border-b border-[#38332B]">
+                    <th className="text-left text-[#ADA599] font-medium px-4 py-2.5">Store</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Revenue</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Transactions</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Avg Basket</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">Margin</th>
+                    <th className="text-right text-[#ADA599] font-medium px-4 py-2.5">vs Benchmark</th>
                   </tr>
                 </thead>
                 <tbody>
                   {displayStores.map(s => (
-                    <tr key={s.name} className="border-b border-[#21262D] hover:bg-white transition-colors">
+                    <tr key={s.name} className="border-b border-[#21262D] hover:bg-[#1C1B1A] transition-colors">
                       <td className="px-4 py-2.5">
                         <div className="flex items-center gap-2">
-                          <MapPin size={12} className="text-text-muted" />
-                          <span className="text-text-primary font-medium">{s.name}</span>
+                          <MapPin size={12} className="text-[#6B6359]" />
+                          <span className="text-[#F0EDE8] font-medium">{s.name}</span>
                         </div>
                       </td>
-                      <td className="text-right px-4 py-2.5 text-text-primary font-medium">{fmtDollar(s.revenue)}</td>
-                      <td className="text-right px-4 py-2.5 text-text-secondary">{s.transactions}</td>
-                      <td className="text-right px-4 py-2.5 text-text-secondary">${s.avgBasket.toFixed(2)}</td>
+                      <td className="text-right px-4 py-2.5 text-[#F0EDE8] font-medium">{fmtDollar(s.revenue)}</td>
+                      <td className="text-right px-4 py-2.5 text-[#ADA599]">{s.transactions}</td>
+                      <td className="text-right px-4 py-2.5 text-[#ADA599]">${s.avgBasket.toFixed(2)}</td>
                       <td className="text-right px-4 py-2.5">
-                        <span className={s.margin >= 48 ? 'text-[#00a35e] font-bold' : 'text-[#d97706] font-medium'}>{s.margin}%</span>
+                        <span className={s.margin >= 48 ? 'text-[#00C27C] font-bold' : 'text-[#D4A03A] font-medium'}>{s.margin}%</span>
                       </td>
                       <td className="text-right px-4 py-2.5">
-                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${s.vsBenchmark >= 0 ? 'bg-[rgba(0,163,94,0.12)] text-[#00a35e]' : 'bg-[rgba(239,68,68,0.12)] text-[#ef4444]'}`}>
+                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${s.vsBenchmark >= 0 ? 'bg-[rgba(0,194,124,0.12)] text-[#00C27C]' : 'bg-[rgba(232,112,104,0.12)] text-[#E87068]'}`}>
                           {s.vsBenchmark >= 0 ? '+' : ''}{s.vsBenchmark}% vs market
                         </span>
                       </td>
@@ -2172,21 +2172,21 @@ function SalesReportingTile() {
 
             {/* Store insights */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-              <div className="bg-[rgba(0,163,94,0.06)] rounded-xl border border-[rgba(0,163,94,0.15)] p-4">
+              <div className="bg-[rgba(0,194,124,0.06)] rounded-xl border border-[rgba(0,194,124,0.15)] p-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <ArrowUpRight size={14} className="text-[#00a35e]" />
-                  <span className="text-[#00a35e] text-xs font-semibold">Top Performer</span>
+                  <ArrowUpRight size={14} className="text-[#00C27C]" />
+                  <span className="text-[#00C27C] text-xs font-semibold">Top Performer</span>
                 </div>
-                <p className="text-text-primary text-sm font-medium">{displayStores[0]?.name || 'Top Store'}</p>
-                <p className="text-text-secondary text-xs mt-1">${((displayStores[0]?.revenue || 0) / 1000).toFixed(1)}k revenue · {displayStores[0]?.margin || 0}% margin · +{displayStores[0]?.vsBenchmark || 0}% vs market benchmark.</p>
+                <p className="text-[#F0EDE8] text-sm font-medium">{displayStores[0]?.name || 'Top Store'}</p>
+                <p className="text-[#ADA599] text-xs mt-1">${((displayStores[0]?.revenue || 0) / 1000).toFixed(1)}k revenue · {displayStores[0]?.margin || 0}% margin · +{displayStores[0]?.vsBenchmark || 0}% vs market benchmark.</p>
               </div>
-              <div className="bg-[rgba(239,68,68,0.06)] rounded-xl border border-[rgba(239,68,68,0.15)] p-4">
+              <div className="bg-[rgba(232,112,104,0.06)] rounded-xl border border-[rgba(232,112,104,0.15)] p-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <ArrowDownRight size={14} className="text-[#ef4444]" />
-                  <span className="text-[#ef4444] text-xs font-semibold">Needs Attention</span>
+                  <ArrowDownRight size={14} className="text-[#E87068]" />
+                  <span className="text-[#E87068] text-xs font-semibold">Needs Attention</span>
                 </div>
-                <p className="text-text-primary text-sm font-medium">{displayStores[displayStores.length - 1]?.name || 'Store'}</p>
-                <p className="text-text-secondary text-xs mt-1">${((displayStores[displayStores.length - 1]?.revenue || 0) / 1000).toFixed(1)}k revenue · {displayStores[displayStores.length - 1]?.vsBenchmark || 0}% vs benchmark.</p>
+                <p className="text-[#F0EDE8] text-sm font-medium">{displayStores[displayStores.length - 1]?.name || 'Store'}</p>
+                <p className="text-[#ADA599] text-xs mt-1">${((displayStores[displayStores.length - 1]?.revenue || 0) / 1000).toFixed(1)}k revenue · {displayStores[displayStores.length - 1]?.vsBenchmark || 0}% vs benchmark.</p>
               </div>
             </div>
           </div>
@@ -2202,7 +2202,7 @@ function SalesReportingTile() {
 
 function AgentBar() {
   return (
-    <div className="rounded-2xl border border-surface-border bg-surface-bg p-5 shadow-lg">
+    <div className="rounded-2xl border border-[#38332B] bg-[#141210] p-5 shadow-lg">
       <CustomerBridge compact />
     </div>
   );
@@ -2220,69 +2220,69 @@ export default function NexusHome() {
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary">Nexus Command Center</h1>
+          <h1 className="text-2xl font-bold text-[#F0EDE8]">Nexus Command Center</h1>
         </div>
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1.5 rounded-full bg-[#00a35e]/5 px-3 py-1.5 text-xs font-medium text-text-primary">
-            <span className="h-2 w-2 rounded-full bg-[#00a35e] animate-pulse" />
+          <span className="flex items-center gap-1.5 rounded-full bg-[#00C27C]/5 px-3 py-1.5 text-xs font-medium text-[#F0EDE8]">
+            <span className="h-2 w-2 rounded-full bg-[#00C27C] animate-pulse" />
             Live
           </span>
         </div>
       </div>
 
       {/* Agent Status Panel */}
-      <div className="mb-6 p-4 rounded-2xl border border-surface-border bg-white">
+      <div className="mb-6 p-4 rounded-2xl border border-[#38332B] bg-[#1C1B1A]">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider flex items-center gap-2">
+          <h3 className="text-sm font-semibold text-[#ADA599] uppercase tracking-wider flex items-center gap-2">
             <Bot className="w-4 h-4" />
             Agent Activity
           </h3>
-          <span className="text-xs text-text-muted">Last 24 hours</span>
+          <span className="text-xs text-[#6B6359]">Last 24 hours</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {/* Marketing Agent */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-bg border border-surface-border">
-            <div className="w-8 h-8 rounded-lg bg-[#8b5cf6]/10 flex items-center justify-center flex-shrink-0">
-              <Megaphone className="w-4 h-4 text-[#8b5cf6]" />
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B]">
+            <div className="w-8 h-8 rounded-lg bg-[#B598E8]/10 flex items-center justify-center flex-shrink-0">
+              <Megaphone className="w-4 h-4 text-[#B598E8]" />
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-medium text-text-primary truncate">Marketing</p>
-              <p className="text-[10px] text-text-secondary truncate">1 campaign ready for review</p>
+              <p className="text-xs font-medium text-[#F0EDE8] truncate">Marketing</p>
+              <p className="text-[10px] text-[#ADA599] truncate">1 campaign ready for review</p>
             </div>
-            <div className="w-2 h-2 rounded-full bg-[#d97706] flex-shrink-0" title="Pending review" />
+            <div className="w-2 h-2 rounded-full bg-[#D4A03A] flex-shrink-0" title="Pending review" />
           </div>
           {/* Connect Agent */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-bg border border-surface-border">
-            <div className="w-8 h-8 rounded-lg bg-[#3b82f6]/10 flex items-center justify-center flex-shrink-0">
-              <ShoppingCart className="w-4 h-4 text-[#3b82f6]" />
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B]">
+            <div className="w-8 h-8 rounded-lg bg-[#64A8E0]/10 flex items-center justify-center flex-shrink-0">
+              <ShoppingCart className="w-4 h-4 text-[#64A8E0]" />
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-medium text-text-primary truncate">Connect</p>
-              <p className="text-[10px] text-text-secondary truncate">3 stockout alerts flagged</p>
+              <p className="text-xs font-medium text-[#F0EDE8] truncate">Connect</p>
+              <p className="text-[10px] text-[#ADA599] truncate">3 stockout alerts flagged</p>
             </div>
-            <div className="w-2 h-2 rounded-full bg-[#ef4444] flex-shrink-0" title="Needs attention" />
+            <div className="w-2 h-2 rounded-full bg-[#E87068] flex-shrink-0" title="Needs attention" />
           </div>
           {/* Pricing Agent */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-bg border border-surface-border">
-            <div className="w-8 h-8 rounded-lg bg-[#00a35e]/10 flex items-center justify-center flex-shrink-0">
-              <TrendingUp className="w-4 h-4 text-[#00a35e]" />
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B]">
+            <div className="w-8 h-8 rounded-lg bg-[#00C27C]/10 flex items-center justify-center flex-shrink-0">
+              <TrendingUp className="w-4 h-4 text-[#00C27C]" />
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-medium text-text-primary truncate">Pricing</p>
-              <p className="text-[10px] text-text-secondary truncate">$4,200/mo opportunity found</p>
+              <p className="text-xs font-medium text-[#F0EDE8] truncate">Pricing</p>
+              <p className="text-[10px] text-[#ADA599] truncate">$4,200/mo opportunity found</p>
             </div>
-            <div className="w-2 h-2 rounded-full bg-[#00a35e] flex-shrink-0" title="Ready" />
+            <div className="w-2 h-2 rounded-full bg-[#00C27C] flex-shrink-0" title="Ready" />
           </div>
           {/* Customer Bridge */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-bg border border-surface-border">
-            <div className="w-8 h-8 rounded-lg bg-[#d97706]/10 flex items-center justify-center flex-shrink-0">
-              <Users className="w-4 h-4 text-[#d97706]" />
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#141210] border border-[#38332B]">
+            <div className="w-8 h-8 rounded-lg bg-[#D4A03A]/10 flex items-center justify-center flex-shrink-0">
+              <Users className="w-4 h-4 text-[#D4A03A]" />
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-medium text-text-primary truncate">Bridge</p>
-              <p className="text-[10px] text-text-secondary truncate">12 tickets resolved today</p>
+              <p className="text-xs font-medium text-[#F0EDE8] truncate">Bridge</p>
+              <p className="text-[10px] text-[#ADA599] truncate">12 tickets resolved today</p>
             </div>
-            <div className="w-2 h-2 rounded-full bg-[#00a35e] flex-shrink-0" title="Healthy" />
+            <div className="w-2 h-2 rounded-full bg-[#00C27C] flex-shrink-0" title="Healthy" />
           </div>
         </div>
       </div>
@@ -2312,7 +2312,7 @@ export default function NexusHome() {
       {!showAllTiles && (
         <button
           onClick={() => setShowAllTiles(true)}
-          className="w-full py-3 rounded-xl border border-dashed border-surface-border text-sm text-text-secondary hover:text-text-primary hover:border-gray-300 transition-all flex items-center justify-center gap-2"
+          className="w-full py-3 rounded-xl border border-dashed border-[#38332B] text-sm text-[#ADA599] hover:text-[#F0EDE8] hover:border-[#38332B] transition-all flex items-center justify-center gap-2"
         >
           <ChevronDown className="w-4 h-4" />
           Show all tiles (5 more)
@@ -2343,7 +2343,7 @@ export default function NexusHome() {
 
       {/* Coming Soon — Phase 3 stubs */}
       <div className="mt-2">
-        <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">Coming in Phase 3</p>
+        <p className="text-xs font-semibold text-[#6B6359] uppercase tracking-wider mb-3">Coming in Phase 3</p>
         <div className="grid gap-3 lg:grid-cols-3">
           <LockedTile icon={Users} title="Predictive Staffing" desc="AI shift optimization" />
           <LockedTile icon={Package} title="Vendor Intelligence" desc="Price benchmarks & scores" />

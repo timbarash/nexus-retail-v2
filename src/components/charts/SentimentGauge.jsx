@@ -7,10 +7,10 @@ const sizeConfig = {
 };
 
 function scoreToColor(normalizedScore) {
-  if (normalizedScore >= 65) return '#00a35e';
-  if (normalizedScore >= 45) return '#d97706';
+  if (normalizedScore >= 65) return '#00C27C';
+  if (normalizedScore >= 45) return '#D4A03A';
   if (normalizedScore >= 25) return '#FFA657';
-  return '#ef4444';
+  return '#E87068';
 }
 
 export default function SentimentGauge({ score, size = 'lg' }) {
@@ -49,11 +49,11 @@ export default function SentimentGauge({ score, size = 'lg' }) {
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         <defs>
           <linearGradient id={`gauge-gradient-${size}`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ef4444" />
+            <stop offset="0%" stopColor="#E87068" />
             <stop offset="35%" stopColor="#FFA657" />
-            <stop offset="50%" stopColor="#d97706" />
-            <stop offset="75%" stopColor="#10b981" />
-            <stop offset="100%" stopColor="#00a35e" />
+            <stop offset="50%" stopColor="#D4A03A" />
+            <stop offset="75%" stopColor="#00E08E" />
+            <stop offset="100%" stopColor="#00C27C" />
           </linearGradient>
         </defs>
 
@@ -104,7 +104,7 @@ export default function SentimentGauge({ score, size = 'lg' }) {
         </text>
       </svg>
       <span
-        className="text-text-secondary font-medium -mt-1"
+        className="text-[#ADA599] font-medium -mt-1"
         style={{ fontSize: `${labelSize}px` }}
       >
         Overall Sentiment

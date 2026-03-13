@@ -34,20 +34,16 @@ function SidebarContent({ onClose, onSlackOpen, onDtchOpen }) {
       {/* Logo */}
       <div className="flex items-center justify-between px-5 py-5 border-b border-white/[0.08]">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a35e] to-[#10b981] flex items-center justify-center shadow-lg">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00C27C] to-[#64A8E0] flex items-center justify-center shadow-lg">
             <span className="text-white font-bold text-sm">N</span>
           </div>
           <div>
             <span className="text-lg font-bold tracking-tight text-white">Nexus</span>
-            <span className="text-lg font-light text-white/60 ml-1">Retail</span>
+            <span className="text-lg font-light text-white/50 ml-1">Retail</span>
           </div>
         </div>
         {onClose && (
-          <button
-            onClick={onClose}
-            className="lg:hidden p-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/[0.08] transition-colors"
-            aria-label="Close sidebar"
-          >
+          <button onClick={onClose} className="lg:hidden p-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/[0.08] transition-colors" aria-label="Close sidebar">
             <X className="w-5 h-5" />
           </button>
         )}
@@ -62,7 +58,7 @@ function SidebarContent({ onClose, onSlackOpen, onDtchOpen }) {
           { label: 'Help', items: HELP_ITEMS },
         ].map(({ label: groupLabel, items, icon: GroupIcon }, gi) => (
           <React.Fragment key={groupLabel}>
-            <p className={`px-3 ${gi > 0 ? 'mt-6' : ''} mb-2 text-[11px] font-semibold text-white/30 uppercase tracking-widest flex items-center gap-2`}>
+            <p className={`px-3 ${gi > 0 ? 'mt-6' : ''} mb-2 text-[11px] font-semibold text-white/25 uppercase tracking-widest flex items-center gap-2`}>
               {GroupIcon && <GroupIcon className="w-3 h-3" />}
               {groupLabel}
             </p>
@@ -73,20 +69,18 @@ function SidebarContent({ onClose, onSlackOpen, onDtchOpen }) {
                 end={to === '/'}
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all ${
+                  `group flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] font-medium transition-all duration-150 ${
                     isActive
-                      ? 'bg-white/[0.1] text-white shadow-sm'
-                      : 'text-white/50 hover:text-white/80 hover:bg-white/[0.06]'
+                      ? 'bg-white/[0.10] text-white'
+                      : 'text-white/60 hover:bg-white/[0.06] hover:text-white/90'
                   }`
                 }
               >
                 {({ isActive }) => (
                   <>
-                    <Icon className={`w-[18px] h-[18px] flex-shrink-0 ${isActive ? 'text-[#00a35e]' : ''}`} />
+                    <Icon className={`w-[18px] h-[18px] flex-shrink-0 transition-colors duration-150 ${isActive ? 'text-white/90' : 'text-white/40 group-hover:text-white/70'}`} strokeWidth={isActive ? 2.2 : 1.8} />
                     <span>{label}</span>
-                    {isActive && (
-                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#00a35e]" />
-                    )}
+                    {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#00C27C]" />}
                   </>
                 )}
               </NavLink>
@@ -99,14 +93,14 @@ function SidebarContent({ onClose, onSlackOpen, onDtchOpen }) {
       <div className="px-3 pb-2 space-y-1">
         <button
           onClick={() => { if (onSlackOpen) onSlackOpen(); if (onClose) onClose(); }}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium text-white/50 hover:text-white/80 hover:bg-white/[0.06] transition-all"
+          className="group w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] font-medium text-white/60 hover:bg-white/[0.06] hover:text-white/90 transition-all duration-150"
         >
-          <Hash className="w-[18px] h-[18px] flex-shrink-0" />
+          <Hash className="w-[18px] h-[18px] flex-shrink-0 text-white/40 group-hover:text-white/70" />
           <span>Team Chat</span>
           {(() => {
             const totalUnread = CHANNELS.reduce((sum, c) => sum + (c.unread || 0), 0);
             return totalUnread > 0 ? (
-              <span className="ml-auto bg-red-500 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+              <span className="ml-auto bg-[#E87068] text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
                 {totalUnread}
               </span>
             ) : null;
@@ -114,18 +108,18 @@ function SidebarContent({ onClose, onSlackOpen, onDtchOpen }) {
         </button>
         <button
           onClick={() => { if (onDtchOpen) onDtchOpen(); if (onClose) onClose(); }}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium text-white/50 hover:text-white/80 hover:bg-white/[0.06] transition-all"
+          className="group w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] font-medium text-white/60 hover:bg-[#00C27C]/[0.08] hover:text-white/90 transition-all duration-150"
         >
-          <MessageSquare className="w-[18px] h-[18px] flex-shrink-0" />
+          <MessageSquare className="w-[18px] h-[18px] flex-shrink-0 text-white/40 group-hover:text-white/70" />
           <span>DTCH Team Chat</span>
-          <span className="ml-auto text-[9px] font-bold text-[#10b981] bg-[rgba(16,185,129,0.12)] rounded px-1.5 py-0.5">NEW</span>
+          <span className="ml-auto text-[9px] font-bold text-[#00C27C] bg-[#00C27C]/10 rounded px-1.5 py-0.5" style={{ boxShadow: '0 0 8px rgba(0,194,124,0.15)' }}>NEW</span>
         </button>
       </div>
 
       {/* Tenant badge */}
       <div className="px-4 py-4 border-t border-white/[0.08]">
-        <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/[0.04]">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00a35e] to-[#10b981] flex items-center justify-center flex-shrink-0">
+        <div className="flex items-center gap-3 rounded-lg bg-white/[0.06] px-3 py-3 transition-colors duration-150 hover:bg-white/[0.10] cursor-pointer">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#D4A03A] to-[#E8C06A] flex items-center justify-center flex-shrink-0">
             <span className="text-white font-bold text-xs">A</span>
           </div>
           <div className="min-w-0">
@@ -143,16 +137,16 @@ function SidebarContent({ onClose, onSlackOpen, onDtchOpen }) {
           className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-all border border-dashed ${
               isActive
-                ? 'border-purple-400/40 bg-purple-500/10 text-purple-300'
+                ? 'border-[#B598E8]/40 bg-[#B598E8]/10 text-[#B598E8]'
                 : 'border-white/10 text-white/30 hover:text-white/50 hover:border-white/20 hover:bg-white/[0.04]'
             }`
           }
         >
           {({ isActive }) => (
             <>
-              <Globe className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-purple-300' : ''}`} />
+              <Globe className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-[#B598E8]' : ''}`} />
               <span>Dutchie AI Website</span>
-              <span className="ml-auto text-[8px] font-bold text-purple-400/60 uppercase tracking-wider">Marketing</span>
+              <span className="ml-auto text-[8px] font-bold text-[#B598E8]/60 uppercase tracking-wider">Marketing</span>
             </>
           )}
         </NavLink>
@@ -165,7 +159,7 @@ export default function Sidebar({ open, onClose, onSlackOpen, onDtchOpen }) {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:left-0 bg-[#0f172a] shadow-sidebar z-30">
+      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:left-0 bg-[#042017] border-r border-white/[0.08] z-30">
         <SidebarContent onSlackOpen={onSlackOpen} onDtchOpen={onDtchOpen} />
       </aside>
       <div className="hidden lg:block lg:w-64 lg:flex-shrink-0" />
@@ -173,25 +167,19 @@ export default function Sidebar({ open, onClose, onSlackOpen, onDtchOpen }) {
       {/* Mobile overlay */}
       {open && (
         <>
-          <div
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
-            onClick={onClose}
-            aria-hidden="true"
-          />
-          <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-[#0f172a] shadow-2xl lg:hidden animate-slide-in">
+          <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden" onClick={onClose} aria-hidden="true" />
+          <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-[#042017] shadow-2xl lg:hidden animate-slide-in">
             <SidebarContent onClose={onClose} onSlackOpen={onSlackOpen} onDtchOpen={onDtchOpen} />
           </aside>
         </>
       )}
 
       <style>{`
-        @keyframes slide-in {
-          from { transform: translateX(-100%); }
-          to { transform: translateX(0); }
-        }
-        .animate-slide-in {
-          animation: slide-in 0.2s ease-out;
-        }
+        @keyframes slide-in { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+        .animate-slide-in { animation: slide-in 0.2s ease-out; }
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
       `}</style>
     </>
   );

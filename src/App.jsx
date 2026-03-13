@@ -86,15 +86,19 @@ export default function App() {
   if (location.pathname === '/nexus-mobile') return <NexusMobileApp />;
 
   return (
-    <div className="min-h-screen bg-surface-bg flex">
+    <div className="min-h-screen bg-[#141210] flex">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} onSlackOpen={() => setSlackOpen(true)} onDtchOpen={() => setDtchMode('full')} />
       <div className="flex-1 flex flex-col min-w-0">
         <Header onMenuClick={() => setSidebarOpen(true)} />
         {/* Prototype banner */}
-        <div className="bg-[rgba(0,163,94,0.08)] border-b border-surface-border text-[#00a35e] px-4 py-2 text-center text-sm font-medium">
+        <div className="bg-[rgba(0,194,124,0.08)] border-b border-[#38332B] text-[#00C27C] px-4 py-2 text-center text-sm font-medium">
           Prototype: Dutchie Nexus — AI-Powered Command Center for Cannabis Retail
         </div>
-        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-auto">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-auto" style={{
+          background: `radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,194,124,0.02) 0%, rgba(0,194,124,0) 60%), radial-gradient(ellipse 120% 100% at 50% 0%, #181513 0%, #141210 50%)`,
+          backgroundColor: '#141210',
+          backgroundAttachment: 'fixed',
+        }}>
           <Routes>
             <Route path="/" element={<NexusHome />} />
             <Route path="/proto/sms" element={<ProtoSMS />} />
@@ -128,10 +132,10 @@ export default function App() {
       {/* CX Prototypes floating button */}
       <div className="fixed bottom-5 right-5 z-50">
         {cxOpen && (
-          <div className="absolute bottom-12 right-0 w-56 rounded-xl border border-surface-border bg-white shadow-2xl overflow-hidden mb-2 animate-fade-in">
-            <div className="flex items-center justify-between px-4 py-2.5 border-b border-surface-border">
-              <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">CX Prototypes</span>
-              <button onClick={() => setCxOpen(false)} className="text-text-secondary hover:text-text-primary transition-colors">
+          <div className="absolute bottom-12 right-0 w-56 rounded-xl border border-[#38332B] bg-[#1C1B1A] shadow-2xl overflow-hidden mb-2 animate-fade-in">
+            <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#38332B]">
+              <span className="text-xs font-semibold text-[#ADA599] uppercase tracking-wider">CX Prototypes</span>
+              <button onClick={() => setCxOpen(false)} className="text-[#ADA599] hover:text-[#F0EDE8] transition-colors">
                 <X className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -145,7 +149,7 @@ export default function App() {
                   key={to}
                   to={to}
                   onClick={() => setCxOpen(false)}
-                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover transition-colors"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#ADA599] hover:text-[#F0EDE8] hover:bg-[#282724] transition-colors"
                 >
                   <Icon className="w-4 h-4" />
                   <span>{label}</span>
@@ -156,7 +160,7 @@ export default function App() {
         )}
         <button
           onClick={() => setCxOpen(!cxOpen)}
-          className="w-10 h-10 rounded-full bg-white border border-surface-border text-text-secondary hover:text-text-primary hover:shadow-card-hover transition-all shadow-card flex items-center justify-center text-xs font-bold"
+          className="w-10 h-10 rounded-full bg-[#1C1B1A] border border-[#38332B] text-[#ADA599] hover:text-[#F0EDE8] hover:shadow-lg transition-all shadow-sm flex items-center justify-center text-xs font-bold"
         >
           CX
         </button>

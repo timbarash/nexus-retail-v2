@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 
 const COLORS = [
-  'text-[#00a35e]',
-  'text-[#3b82f6]',
-  'text-[#d97706]',
-  'text-[#10b981]',
-  'text-[#8b5cf6]',
-  'text-text-primary',
-  'text-[#ef4444]',
+  'text-[#00C27C]',
+  'text-[#64A8E0]',
+  'text-[#D4A03A]',
+  'text-[#00E08E]',
+  'text-[#B598E8]',
+  'text-[#F0EDE8]',
+  'text-[#E87068]',
   'text-[#79C0FF]',
   'text-[#7EE787]',
   'text-[#FFA657]',
@@ -55,7 +55,7 @@ export default function WordCloud({ words = [], maxWords = 40 }) {
 
   if (shuffled.length === 0) {
     return (
-      <div className="flex items-center justify-center h-48 text-text-muted text-sm">
+      <div className="flex items-center justify-center h-48 text-[#6B6359] text-sm">
         No word data available
       </div>
     );

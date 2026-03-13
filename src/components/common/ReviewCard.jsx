@@ -4,16 +4,16 @@ import SentimentBadge from './SentimentBadge';
 
 const sourceIcons = {
   Reddit: { label: 'Reddit', color: 'text-orange-500' },
-  Google: { label: 'Google', color: 'text-[#3b82f6]' },
-  Leafly: { label: 'Leafly', color: 'text-[#00a35e]' },
-  Weedmaps: { label: 'Weedmaps', color: 'text-[#d97706]' },
+  Google: { label: 'Google', color: 'text-[#64A8E0]' },
+  Leafly: { label: 'Leafly', color: 'text-[#00C27C]' },
+  Weedmaps: { label: 'Weedmaps', color: 'text-[#D4A03A]' },
 };
 
 const highlightBorderColors = {
-  positive: 'border-l-[#00a35e]',
-  negative: 'border-l-[#ef4444]',
-  neutral: 'border-l-[#d97706]',
-  recent: 'border-l-[#3b82f6]',
+  positive: 'border-l-[#00C27C]',
+  negative: 'border-l-[#E87068]',
+  neutral: 'border-l-[#D4A03A]',
+  recent: 'border-l-[#64A8E0]',
 };
 
 function StarRating({ rating }) {
@@ -25,12 +25,12 @@ function StarRating({ rating }) {
           key={star}
           className={`w-3.5 h-3.5 ${
             star <= rating
-              ? 'fill-[#d97706] text-[#d97706]'
-              : 'fill-gray-200 text-gray-300'
+              ? 'fill-[#D4A03A] text-[#D4A03A]'
+              : 'fill-gray-200 text-[#6B6359]'
           }`}
         />
       ))}
-      <span className="ml-1 text-xs text-text-secondary">{rating}/5</span>
+      <span className="ml-1 text-xs text-[#ADA599]">{rating}/5</span>
     </div>
   );
 }
@@ -57,7 +57,7 @@ export default function ReviewCard({ review, highlight }) {
 
   const isLong = text.length > maxLength;
   const displayText = expanded || !isLong ? text : text.slice(0, maxLength) + '...';
-  const sourceInfo = sourceIcons[source] || { label: source, color: 'text-text-secondary' };
+  const sourceInfo = sourceIcons[source] || { label: source, color: 'text-[#ADA599]' };
   const borderColor = highlight
     ? highlightBorderColors[highlight] || 'border-l-[#30363D]'
     : '';
@@ -72,7 +72,7 @@ export default function ReviewCard({ review, highlight }) {
 
   return (
     <div
-      className={`bg-white rounded-xl border border-surface-border p-4 hover:border-gray-300 transition-all duration-200 ${
+      className={`bg-[#1C1B1A] rounded-xl border border-[#38332B] p-4 hover:border-[#38332B] transition-all duration-200 ${
         highlight ? `border-l-4 ${borderColor}` : ''
       }`}
     >
@@ -80,11 +80,11 @@ export default function ReviewCard({ review, highlight }) {
       <div className="flex items-start justify-between gap-3 mb-2">
         <div className="flex-1 min-w-0">
           {title && (
-            <h4 className="text-sm font-semibold text-text-primary truncate mb-1">
+            <h4 className="text-sm font-semibold text-[#F0EDE8] truncate mb-1">
               {title}
             </h4>
           )}
-          <div className="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-[#ADA599]">
             <span className={`font-medium ${sourceInfo.color}`}>
               {sourceInfo.label}
             </span>
@@ -115,13 +115,13 @@ export default function ReviewCard({ review, highlight }) {
       {source !== 'Reddit' && rating && <StarRating rating={rating} />}
 
       {/* Text */}
-      <p className="mt-2 text-sm text-text-secondary leading-relaxed">
+      <p className="mt-2 text-sm text-[#ADA599] leading-relaxed">
         {displayText}
       </p>
       {isLong && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-1 text-xs font-medium text-[#00a35e] hover:text-[#10b981] transition-colors"
+          className="mt-1 text-xs font-medium text-[#00C27C] hover:text-[#00E08E] transition-colors"
         >
           {expanded ? 'Show less' : 'Read more'}
         </button>
@@ -130,14 +130,14 @@ export default function ReviewCard({ review, highlight }) {
       {/* Tags */}
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
         {brand && (
-          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[rgba(0,163,94,0.08)] text-[#00a35e] text-xs font-medium border border-surface-border">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[rgba(0,194,124,0.08)] text-[#00C27C] text-xs font-medium border border-[#38332B]">
             {brand}
           </span>
         )}
         {categories.map((cat) => (
           <span
             key={cat}
-            className="inline-flex items-center px-2 py-0.5 rounded-md bg-surface-bg text-text-secondary text-xs border border-surface-border"
+            className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#141210] text-[#ADA599] text-xs border border-[#38332B]"
           >
             {cat}
           </span>

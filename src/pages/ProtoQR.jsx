@@ -5,12 +5,12 @@ function PhoneMockup({ children, title }) {
   return (
     <div className="relative mx-auto w-[340px]">
       {/* Glow backdrop */}
-      <div className="absolute -inset-6 rounded-[3.5rem] bg-[#00a35e]/[0.07] blur-2xl pointer-events-none" />
-      <div className="relative rounded-[2.5rem] border-[6px] border-gray-300 bg-gray-700 shadow-[0_0_50px_rgba(0,163,94,0.08),0_20px_40px_rgba(0,0,0,0.5)] overflow-hidden ring-1 ring-surface-border">
-        <div className="relative bg-gray-700 pt-2 pb-1 px-6">
-          <div className="mx-auto h-5 w-28 rounded-full bg-white" />
+      <div className="absolute -inset-6 rounded-[3.5rem] bg-[#00C27C]/[0.07] blur-2xl pointer-events-none" />
+      <div className="relative rounded-[2.5rem] border-[6px] border-[#38332B] bg-[#1C1B1A] shadow-[0_0_50px_rgba(0,194,124,0.08),0_20px_40px_rgba(0,0,0,0.5)] overflow-hidden ring-1 ring-surface-border">
+        <div className="relative bg-[#1C1B1A] pt-2 pb-1 px-6">
+          <div className="mx-auto h-5 w-28 rounded-full bg-[#1C1B1A]" />
         </div>
-        <div className="bg-white px-6 py-2 flex items-center justify-between text-[10px] text-gray-400">
+        <div className="bg-[#1C1B1A] px-6 py-2 flex items-center justify-between text-[10px] text-gray-400">
           <span>3:42 PM</span>
           <span className="font-medium text-gray-700">{title}</span>
           <div className="flex items-center gap-1">
@@ -22,11 +22,11 @@ function PhoneMockup({ children, title }) {
             </div>
           </div>
         </div>
-        <div className="bg-white min-h-[520px] max-h-[520px] overflow-hidden flex flex-col">
+        <div className="bg-[#1C1B1A] min-h-[520px] max-h-[520px] overflow-hidden flex flex-col">
           {children}
         </div>
-        <div className="bg-gray-700 py-2 flex justify-center">
-          <div className="h-1 w-24 rounded-full bg-white/30" />
+        <div className="bg-[#1C1B1A] py-2 flex justify-center">
+          <div className="h-1 w-24 rounded-full bg-[#1C1B1A]/30" />
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@ function QRSurveyFlow({ scenario }) {
       {/* Header */}
       <div className="bg-[#00C389] px-4 py-3">
         <div className="flex items-center justify-center gap-2">
-          <div className="w-6 h-6 rounded bg-white flex items-center justify-center">
+          <div className="w-6 h-6 rounded bg-[#1C1B1A] flex items-center justify-center">
             <span className="text-[#00C389] text-[10px] font-bold">D</span>
           </div>
           <span className="text-white text-sm font-semibold">Ascend Feedback</span>
@@ -94,10 +94,10 @@ function QRSurveyFlow({ scenario }) {
         {step === 'scan' && (
           <div className="p-5 space-y-4">
             {/* Fake receipt */}
-            <div className="mx-auto max-w-[260px] rounded-lg border border-dashed border-gray-300 bg-gray-50 p-4 font-mono text-[11px] text-gray-600">
+            <div className="mx-auto max-w-[260px] rounded-lg border border-dashed border-[#38332B] bg-[#1E1D1B] p-4 font-mono text-[11px] text-gray-600">
               <p className="text-center font-bold text-gray-800 mb-1">ASCEND {scenario.store.toUpperCase()}</p>
               <p className="text-center text-[10px] mb-3">{scenario.time} · {scenario.txnId}</p>
-              <div className="border-t border-dashed border-gray-300 pt-2 mb-2">
+              <div className="border-t border-dashed border-[#38332B] pt-2 mb-2">
                 {scenario.products.map((p) => (
                   <p key={p}>{p}</p>
                 ))}
@@ -105,10 +105,10 @@ function QRSurveyFlow({ scenario }) {
               <p className="text-right font-bold text-gray-800">Budtender: {scenario.budtender}</p>
               <div className="mt-3 flex justify-center">
                 {/* QR placeholder */}
-                <div className="w-24 h-24 bg-white border border-gray-200 rounded-lg flex items-center justify-center">
+                <div className="w-24 h-24 bg-[#1C1B1A] border border-gray-200 rounded-lg flex items-center justify-center">
                   <div className="grid grid-cols-5 gap-0.5">
                     {Array.from({ length: 25 }).map((_, i) => (
-                      <div key={i} className={`w-3 h-3 rounded-sm ${Math.random() > 0.4 ? 'bg-gray-800' : 'bg-white'}`} />
+                      <div key={i} className={`w-3 h-3 rounded-sm ${Math.random() > 0.4 ? 'bg-gray-800' : 'bg-[#1C1B1A]'}`} />
                     ))}
                   </div>
                 </div>
@@ -121,7 +121,7 @@ function QRSurveyFlow({ scenario }) {
               Simulate QR Scan
             </button>
 
-            <div className="rounded-lg bg-gray-50 px-3 py-2">
+            <div className="rounded-lg bg-[#1E1D1B] px-3 py-2">
               <p className="text-[10px] text-gray-400 text-center">
                 QR encodes: Store: {scenario.store} · TXN: {scenario.txnId} · Staff: {scenario.budtender}
               </p>
@@ -144,8 +144,8 @@ function QRSurveyFlow({ scenario }) {
             {/* Progress bar */}
             <div className="flex gap-1.5">
               <div className="flex-1 h-1.5 rounded-full bg-[#00C389]" />
-              <div className="flex-1 h-1.5 rounded-full bg-gray-200" />
-              <div className="flex-1 h-1.5 rounded-full bg-gray-200" />
+              <div className="flex-1 h-1.5 rounded-full bg-[#38332B]" />
+              <div className="flex-1 h-1.5 rounded-full bg-[#38332B]" />
             </div>
 
             {/* Star rating */}
@@ -181,10 +181,10 @@ function QRSurveyFlow({ scenario }) {
             <div className="flex gap-1.5">
               <div className="flex-1 h-1.5 rounded-full bg-[#00C389]" />
               <div className="flex-1 h-1.5 rounded-full bg-[#00C389]" />
-              <div className="flex-1 h-1.5 rounded-full bg-gray-200" />
+              <div className="flex-1 h-1.5 rounded-full bg-[#38332B]" />
             </div>
 
-            <div className="rounded-xl bg-gray-50 border border-gray-100 p-4 text-center">
+            <div className="rounded-xl bg-[#1E1D1B] border border-gray-100 p-4 text-center">
               <div className="w-12 h-12 mx-auto rounded-full bg-[#00C389]/20 flex items-center justify-center mb-2">
                 <User size={24} className="text-[#00C389]" />
               </div>
@@ -231,13 +231,13 @@ function QRSurveyFlow({ scenario }) {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder="Tell us what went well or what we could improve..."
-              className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C389] resize-none"
+              className="w-full rounded-xl border border-gray-200 bg-[#1E1D1B] px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C389] resize-none"
               rows={4}
             />
 
             <div className="flex gap-2">
               <button onClick={() => setStep('done')}
-                className="flex-1 rounded-xl bg-gray-100 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 transition-colors">
+                className="flex-1 rounded-xl bg-[#282724] py-3 text-sm font-medium text-gray-600 hover:bg-[#38332B] transition-colors">
                 Skip
               </button>
               <button onClick={() => setStep('done')}
@@ -258,7 +258,7 @@ function QRSurveyFlow({ scenario }) {
               <h2 className="text-lg font-bold text-gray-900">Thank you!</h2>
               <p className="text-sm text-gray-500 mt-1">Your feedback helps us improve</p>
 
-              <div className="mt-4 rounded-xl bg-gray-50 border border-gray-100 p-3 text-xs text-gray-500 max-w-[240px] mx-auto">
+              <div className="mt-4 rounded-xl bg-[#1E1D1B] border border-gray-100 p-3 text-xs text-gray-500 max-w-[240px] mx-auto">
                 <p className="font-medium text-gray-700 mb-1">Auto-captured:</p>
                 <p>Store: {scenario.store}</p>
                 <p>Budtender: {scenario.budtender}</p>
@@ -285,8 +285,8 @@ export default function ProtoQR() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-text-primary">QR Code "Moment of Truth" Captures</h1>
-        <p className="text-sm text-text-secondary mt-1">Dynamic QR codes on receipts deep-link to a 3-question mobile survey — auto-maps to store, budtender, and products</p>
+        <h1 className="text-2xl font-bold text-[#F0EDE8]">QR Code "Moment of Truth" Captures</h1>
+        <p className="text-sm text-[#ADA599] mt-1">Dynamic QR codes on receipts deep-link to a 3-question mobile survey — auto-maps to store, budtender, and products</p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
@@ -301,21 +301,21 @@ export default function ProtoQR() {
         <div className="space-y-6">
           {/* Scenario picker */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-text-secondary mb-3">Choose a Scenario</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-[#ADA599] mb-3">Choose a Scenario</p>
             <div className="space-y-2">
               {SCENARIOS.map((s, i) => (
                 <button key={i} onClick={() => setActiveScenario(i)}
                   className={`w-full text-left rounded-xl border p-4 transition-all ${
-                    activeScenario === i ? 'border-[#00C389] bg-[#00C389]/5 ring-1 ring-[#00C389]/20' : 'border-surface-border hover:border-[#00C389]/30'
+                    activeScenario === i ? 'border-[#00C389] bg-[#00C389]/5 ring-1 ring-[#00C389]/20' : 'border-[#38332B] hover:border-[#00C389]/30'
                   }`}>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-semibold text-text-primary">{s.store}</span>
-                    <span className="text-[11px] text-text-secondary">{s.txnId}</span>
+                    <span className="text-sm font-semibold text-[#F0EDE8]">{s.store}</span>
+                    <span className="text-[11px] text-[#ADA599]">{s.txnId}</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5 mt-1">
-                    <span className="rounded-full bg-surface-bg px-2 py-0.5 text-[10px] text-text-secondary">Staff: {s.budtender}</span>
+                    <span className="rounded-full bg-[#141210] px-2 py-0.5 text-[10px] text-[#ADA599]">Staff: {s.budtender}</span>
                     {s.products.map((p) => (
-                      <span key={p} className="rounded-full bg-surface-bg px-2 py-0.5 text-[10px] text-text-secondary">{p}</span>
+                      <span key={p} className="rounded-full bg-[#141210] px-2 py-0.5 text-[10px] text-[#ADA599]">{p}</span>
                     ))}
                   </div>
                 </button>
@@ -324,8 +324,8 @@ export default function ProtoQR() {
           </div>
 
           {/* How it works */}
-          <div className="rounded-2xl border border-surface-border bg-white p-6">
-            <h3 className="text-sm font-semibold text-text-primary mb-3">How It Works</h3>
+          <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] p-6">
+            <h3 className="text-sm font-semibold text-[#F0EDE8] mb-3">How It Works</h3>
             <div className="space-y-3">
               {[
                 { step: '1', title: 'QR Generated', desc: 'Dynamic QR printed on receipt encodes store, transaction ID, budtender, and products purchased' },
@@ -335,19 +335,19 @@ export default function ProtoQR() {
               ].map((s) => (
                 <div key={s.step} className="flex gap-3">
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#00C389] text-white text-xs font-bold">{s.step}</div>
-                  <div><p className="text-sm font-medium text-text-primary">{s.title}</p><p className="text-xs text-text-secondary">{s.desc}</p></div>
+                  <div><p className="text-sm font-medium text-[#F0EDE8]">{s.title}</p><p className="text-xs text-[#ADA599]">{s.desc}</p></div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Key insight */}
-          <div className="rounded-xl bg-surface-bg p-5">
+          <div className="rounded-xl bg-[#141210] p-5">
             <div className="flex items-start gap-3">
-              <Sparkles size={18} className="text-[#00a35e] flex-shrink-0 mt-0.5" />
+              <Sparkles size={18} className="text-[#00C27C] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-[#00a35e] mb-1">Why This Matters</p>
-                <p className="text-sm text-text-primary/80 leading-relaxed">QR surveys with auto-mapped budtender data revealed that Jamie R. at Fort Lee is tied to 68% of negative feedback — a coaching opportunity invisible in aggregate data. 7.8% scan rate with 67.8% completion means high-intent, high-quality signal.</p>
+                <p className="text-sm font-semibold text-[#00C27C] mb-1">Why This Matters</p>
+                <p className="text-sm text-[#F0EDE8]/80 leading-relaxed">QR surveys with auto-mapped budtender data revealed that Jamie R. at Fort Lee is tied to 68% of negative feedback — a coaching opportunity invisible in aggregate data. 7.8% scan rate with 67.8% completion means high-intent, high-quality signal.</p>
               </div>
             </div>
           </div>

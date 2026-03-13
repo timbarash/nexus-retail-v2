@@ -22,10 +22,10 @@ import {
 } from '../utils/helpers';
 
 const BRAND_COLORS = {
-  'Ozone Reserve': '#8b5cf6',
+  'Ozone Reserve': '#B598E8',
   'Common Goods': '#6ABA48',
-  'Tunnel Vision': '#00a35e',
-  'Simply Herb': '#3b82f6',
+  'Tunnel Vision': '#00C27C',
+  'Simply Herb': '#64A8E0',
   'Ozone': '#f59e0b',
 };
 
@@ -34,10 +34,10 @@ const BRANDS = ['Ozone', 'Ozone Reserve', 'Simply Herb', 'Common Goods', 'Tunnel
 function SectionHeader({ title, subtitle, icon: Icon }) {
   return (
     <div className="flex items-center gap-2 mb-4">
-      {Icon && <Icon className="w-5 h-5 text-[#00a35e]" />}
+      {Icon && <Icon className="w-5 h-5 text-[#00C27C]" />}
       <div>
-        <h2 className="text-lg font-semibold text-text-primary">{title}</h2>
-        {subtitle && <p className="text-sm text-text-secondary">{subtitle}</p>}
+        <h2 className="text-lg font-semibold text-[#F0EDE8]">{title}</h2>
+        {subtitle && <p className="text-sm text-[#ADA599]">{subtitle}</p>}
       </div>
     </div>
   );
@@ -61,30 +61,30 @@ function BrandOverviewCard({ brand, reviews: brandReviews }) {
     .slice(0, 3)
     .map(([name]) => name);
 
-  let scoreColor = 'text-[#00a35e]';
-  let barColor = 'bg-[#00a35e]';
+  let scoreColor = 'text-[#00C27C]';
+  let barColor = 'bg-[#00C27C]';
   if (normalizedAvg < 40) {
-    scoreColor = 'text-[#ef4444]';
-    barColor = 'bg-[#ef4444]';
+    scoreColor = 'text-[#E87068]';
+    barColor = 'bg-[#E87068]';
   } else if (normalizedAvg < 60) {
-    scoreColor = 'text-[#d97706]';
-    barColor = 'bg-[#d97706]';
+    scoreColor = 'text-[#D4A03A]';
+    barColor = 'bg-[#D4A03A]';
   }
 
   const brandColor = BRAND_COLORS[brand] || '#6b7280';
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5 hover:border-gray-300 transition-shadow duration-200">
+    <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5 hover:border-[#38332B] transition-shadow duration-200">
       <div className="flex items-start justify-between mb-3">
         <div>
-          <h3 className="text-base font-bold text-text-primary flex items-center gap-2">
+          <h3 className="text-base font-bold text-[#F0EDE8] flex items-center gap-2">
             <span
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: brandColor }}
             />
             {brand}
           </h3>
-          <p className="text-sm text-text-secondary mt-0.5">
+          <p className="text-sm text-[#ADA599] mt-0.5">
             {total} review{total !== 1 ? 's' : ''}
           </p>
         </div>
@@ -93,10 +93,10 @@ function BrandOverviewCard({ brand, reviews: brandReviews }) {
 
       <div className="mb-3">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs text-text-secondary">Sentiment Score</span>
+          <span className="text-xs text-[#ADA599]">Sentiment Score</span>
           <span className={`text-sm font-bold ${scoreColor}`}>{normalizedAvg}/100</span>
         </div>
-        <div className="w-full h-2.5 bg-white rounded-full overflow-hidden">
+        <div className="w-full h-2.5 bg-[#1C1B1A] rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full transition-all duration-700 ${barColor}`}
             style={{ width: `${normalizedAvg}%` }}
@@ -107,23 +107,23 @@ function BrandOverviewCard({ brand, reviews: brandReviews }) {
       {total > 0 && (
         <div className="flex items-center gap-1 mb-3">
           <div
-            className="h-1.5 rounded-full bg-[#00a35e]"
+            className="h-1.5 rounded-full bg-[#00C27C]"
             style={{ width: `${(dist.positive / total) * 100}%` }}
           />
           <div
-            className="h-1.5 rounded-full bg-[#d97706]"
+            className="h-1.5 rounded-full bg-[#D4A03A]"
             style={{ width: `${(dist.neutral / total) * 100}%` }}
           />
           <div
-            className="h-1.5 rounded-full bg-[#ef4444]"
+            className="h-1.5 rounded-full bg-[#E87068]"
             style={{ width: `${(dist.negative / total) * 100}%` }}
           />
         </div>
       )}
-      <div className="flex justify-between text-xs text-text-secondary mb-3">
-        <span className="text-[#00a35e]">{dist.positive} pos</span>
-        <span className="text-[#d97706]">{dist.neutral} neu</span>
-        <span className="text-[#ef4444]">{dist.negative} neg</span>
+      <div className="flex justify-between text-xs text-[#ADA599] mb-3">
+        <span className="text-[#00C27C]">{dist.positive} pos</span>
+        <span className="text-[#D4A03A]">{dist.neutral} neu</span>
+        <span className="text-[#E87068]">{dist.negative} neg</span>
       </div>
 
       {topCategories.length > 0 && (
@@ -131,7 +131,7 @@ function BrandOverviewCard({ brand, reviews: brandReviews }) {
           {topCategories.map((cat) => (
             <span
               key={cat}
-              className="inline-flex items-center px-2 py-0.5 rounded-md bg-surface-bg text-text-secondary text-xs border border-surface-border"
+              className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#141210] text-[#ADA599] text-xs border border-[#38332B]"
             >
               {cat}
             </span>
@@ -145,8 +145,8 @@ function BrandOverviewCard({ brand, reviews: brandReviews }) {
 function ComparisonTooltip({ active, payload, label }) {
   if (!active || !payload || !payload.length) return null;
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-surface-border p-3 text-sm">
-      <p className="font-semibold text-text-primary mb-1.5">{label}</p>
+    <div className="bg-[#1C1B1A] rounded-lg shadow-lg border border-[#38332B] p-3 text-sm">
+      <p className="font-semibold text-[#F0EDE8] mb-1.5">{label}</p>
       <div className="space-y-1">
         {payload.map((p) => (
           <div key={p.name} className="flex items-center justify-between gap-4">
@@ -155,7 +155,7 @@ function ComparisonTooltip({ active, payload, label }) {
                 className="w-2 h-2 rounded-full"
                 style={{ backgroundColor: p.color }}
               />
-              <span className="text-text-secondary">{p.name}</span>
+              <span className="text-[#ADA599]">{p.name}</span>
             </span>
             <span className="font-medium" style={{ color: p.color }}>
               {p.value}
@@ -170,8 +170,8 @@ function ComparisonTooltip({ active, payload, label }) {
 function TrendTooltip({ active, payload, label }) {
   if (!active || !payload || !payload.length) return null;
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-surface-border p-3 text-sm">
-      <p className="font-semibold text-text-primary mb-1.5">{label}</p>
+    <div className="bg-[#1C1B1A] rounded-lg shadow-lg border border-[#38332B] p-3 text-sm">
+      <p className="font-semibold text-[#F0EDE8] mb-1.5">{label}</p>
       <div className="space-y-1">
         {payload
           .filter((p) => p.value != null)
@@ -182,7 +182,7 @@ function TrendTooltip({ active, payload, label }) {
                   className="w-2 h-2 rounded-full"
                   style={{ backgroundColor: p.color }}
                 />
-                <span className="text-text-secondary">{p.name}</span>
+                <span className="text-[#ADA599]">{p.name}</span>
               </span>
               <span className="font-medium" style={{ color: p.color }}>
                 {typeof p.value === 'number' ? p.value.toFixed(1) : p.value}
@@ -269,8 +269,8 @@ export default function BrandAnalysis({ reviews }) {
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Section 1: Header */}
       <div>
-        <h1 className="text-2xl font-bold text-text-primary">Brand Analysis</h1>
-        <p className="text-sm text-text-secondary mt-1">
+        <h1 className="text-2xl font-bold text-[#F0EDE8]">Brand Analysis</h1>
+        <p className="text-sm text-[#ADA599] mt-1">
           Compare sentiment and performance across Ascend product brands
         </p>
       </div>
@@ -294,7 +294,7 @@ export default function BrandAnalysis({ reviews }) {
       </div>
 
       {/* Section 3: Brand Comparison Chart */}
-      <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
+      <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
         <SectionHeader
           title="Brand Comparison"
           subtitle="Sentiment distribution across all brands"
@@ -316,23 +316,23 @@ export default function BrandAnalysis({ reviews }) {
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 12, fill: '#6b7280' }}
+              tick={{ fontSize: 12, fill: '#6B6359' }}
             />
             <Tooltip content={<ComparisonTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
             <Legend
               formatter={(value) => (
-                <span className="text-sm text-text-secondary capitalize">{value}</span>
+                <span className="text-sm text-[#ADA599] capitalize">{value}</span>
               )}
             />
-            <Bar dataKey="positive" fill="#00a35e" radius={[4, 4, 0, 0]} barSize={24} name="Positive" />
+            <Bar dataKey="positive" fill="#00C27C" radius={[4, 4, 0, 0]} barSize={24} name="Positive" />
             <Bar dataKey="neutral" fill="#f59e0b" radius={[4, 4, 0, 0]} barSize={24} name="Neutral" />
-            <Bar dataKey="negative" fill="#ef4444" radius={[4, 4, 0, 0]} barSize={24} name="Negative" />
+            <Bar dataKey="negative" fill="#E87068" radius={[4, 4, 0, 0]} barSize={24} name="Negative" />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       {/* Section 4: Brand Trend Lines */}
-      <div className="bg-white rounded-xl shadow-sm border border-surface-border p-5">
+      <div className="bg-[#1C1B1A] rounded-xl shadow-sm border border-[#38332B] p-5">
         <SectionHeader
           title="Brand Sentiment Trends"
           subtitle="Monthly sentiment scores by brand"
@@ -349,18 +349,18 @@ export default function BrandAnalysis({ reviews }) {
                 dataKey="month"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tick={{ fontSize: 12, fill: '#6B6359' }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tick={{ fontSize: 12, fill: '#6B6359' }}
                 domain={[-1, 1]}
               />
               <Tooltip content={<TrendTooltip />} />
               <Legend
                 formatter={(value) => (
-                  <span className="text-sm text-text-secondary">{value}</span>
+                  <span className="text-sm text-[#ADA599]">{value}</span>
                 )}
               />
               {activeBrands.map((brand) => (
@@ -379,7 +379,7 @@ export default function BrandAnalysis({ reviews }) {
             </LineChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex items-center justify-center h-48 text-text-muted text-sm">
+          <div className="flex items-center justify-center h-48 text-[#6B6359] text-sm">
             No trend data available
           </div>
         )}
@@ -400,7 +400,7 @@ export default function BrandAnalysis({ reviews }) {
 
             return (
               <div key={brand}>
-                <h3 className="text-base font-semibold text-text-primary mb-3 flex items-center gap-2">
+                <h3 className="text-base font-semibold text-[#F0EDE8] mb-3 flex items-center gap-2">
                   <span
                     className="w-3 h-3 rounded-full"
                     style={{ backgroundColor: BRAND_COLORS[brand] }}
@@ -410,7 +410,7 @@ export default function BrandAnalysis({ reviews }) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {best && (
                     <div>
-                      <p className="text-xs font-semibold text-[#00a35e] uppercase tracking-wider mb-2">
+                      <p className="text-xs font-semibold text-[#00C27C] uppercase tracking-wider mb-2">
                         Best Review
                       </p>
                       <ReviewCard review={best} highlight="positive" />
@@ -418,7 +418,7 @@ export default function BrandAnalysis({ reviews }) {
                   )}
                   {worst && worst.id !== best?.id && (
                     <div>
-                      <p className="text-xs font-semibold text-[#ef4444] uppercase tracking-wider mb-2">
+                      <p className="text-xs font-semibold text-[#E87068] uppercase tracking-wider mb-2">
                         Worst Review
                       </p>
                       <ReviewCard review={worst} highlight="negative" />

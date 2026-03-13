@@ -2,22 +2,22 @@ import React from 'react';
 
 const sentimentConfig = {
   positive: {
-    bg: 'bg-[rgba(0,163,94,0.12)]',
-    text: 'text-[#00a35e]',
-    border: 'border-[rgba(0,163,94,0.2)]',
-    dot: 'bg-[#00a35e]',
+    bg: 'bg-[rgba(0,194,124,0.12)]',
+    text: 'text-[#00C27C]',
+    border: 'border-[rgba(0,194,124,0.2)]',
+    dot: 'bg-[#00C27C]',
   },
   neutral: {
-    bg: 'bg-[rgba(217,119,6,0.12)]',
-    text: 'text-[#d97706]',
-    border: 'border-[rgba(217,119,6,0.2)]',
-    dot: 'bg-[#d97706]',
+    bg: 'bg-[rgba(212,160,58,0.12)]',
+    text: 'text-[#D4A03A]',
+    border: 'border-[rgba(212,160,58,0.2)]',
+    dot: 'bg-[#D4A03A]',
   },
   negative: {
-    bg: 'bg-[rgba(239,68,68,0.12)]',
-    text: 'text-[#ef4444]',
-    border: 'border-[rgba(239,68,68,0.2)]',
-    dot: 'bg-[#ef4444]',
+    bg: 'bg-[rgba(232,112,104,0.12)]',
+    text: 'text-[#E87068]',
+    border: 'border-[rgba(232,112,104,0.2)]',
+    dot: 'bg-[#E87068]',
   },
 };
 

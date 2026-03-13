@@ -50,14 +50,14 @@ function PhoneMockup({ children, title }) {
   return (
     <div className="relative mx-auto w-[340px]">
       {/* Glow backdrop */}
-      <div className="absolute -inset-6 rounded-[3.5rem] bg-[#00a35e]/[0.07] blur-2xl pointer-events-none" />
-      <div className="relative rounded-[2.5rem] border-[6px] border-gray-300 bg-gray-700 shadow-[0_0_50px_rgba(0,163,94,0.08),0_20px_40px_rgba(0,0,0,0.5)] overflow-hidden ring-1 ring-surface-border">
+      <div className="absolute -inset-6 rounded-[3.5rem] bg-[#00C27C]/[0.07] blur-2xl pointer-events-none" />
+      <div className="relative rounded-[2.5rem] border-[6px] border-[#38332B] bg-[#1C1B1A] shadow-[0_0_50px_rgba(0,194,124,0.08),0_20px_40px_rgba(0,0,0,0.5)] overflow-hidden ring-1 ring-surface-border">
         {/* Notch */}
-        <div className="relative bg-gray-700 pt-2 pb-1 px-6">
-          <div className="mx-auto h-5 w-28 rounded-full bg-white" />
+        <div className="relative bg-[#1C1B1A] pt-2 pb-1 px-6">
+          <div className="mx-auto h-5 w-28 rounded-full bg-[#1C1B1A]" />
         </div>
         {/* Status bar */}
-        <div className="bg-white px-6 py-2 flex items-center justify-between text-[10px] text-gray-400">
+        <div className="bg-[#1C1B1A] px-6 py-2 flex items-center justify-between text-[10px] text-gray-400">
           <span>2:34 PM</span>
           <span className="font-medium text-gray-700">{title}</span>
           <div className="flex items-center gap-1">
@@ -74,8 +74,8 @@ function PhoneMockup({ children, title }) {
           {children}
         </div>
         {/* Home bar */}
-        <div className="bg-gray-700 py-2 flex justify-center">
-          <div className="h-1 w-24 rounded-full bg-white/30" />
+        <div className="bg-[#1C1B1A] py-2 flex justify-center">
+          <div className="h-1 w-24 rounded-full bg-[#1C1B1A]/30" />
         </div>
       </div>
     </div>
@@ -118,8 +118,8 @@ function SMSConversation({ conversation, onComplete }) {
   return (
     <>
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full bg-[#00a35e] flex items-center justify-center">
+      <div className="bg-[#1C1B1A] border-b border-gray-200 px-4 py-3 flex items-center gap-3">
+        <div className="w-9 h-9 rounded-full bg-[#00C27C] flex items-center justify-center">
           <span className="text-white text-xs font-bold">D</span>
         </div>
         <div>
@@ -136,7 +136,7 @@ function SMSConversation({ conversation, onComplete }) {
             <div className={`max-w-[80%] rounded-2xl px-3.5 py-2 text-[13px] leading-relaxed ${
               msg.from === 'system'
                 ? 'bg-[#e5e5ea] text-gray-900 rounded-bl-md'
-                : 'bg-[#00a35e] text-white rounded-br-md'
+                : 'bg-[#00C27C] text-white rounded-br-md'
             }`}>
               {msg.text}
               <div className={`flex items-center justify-end gap-1 mt-0.5 ${msg.from === 'system' ? 'text-gray-500' : 'text-white/70'}`}>
@@ -158,9 +158,9 @@ function SMSConversation({ conversation, onComplete }) {
       </div>
 
       {/* Input bar */}
-      <div className="bg-white border-t border-gray-200 px-3 py-2 flex items-center gap-2">
-        <input type="text" disabled placeholder="iMessage" className="flex-1 rounded-full bg-gray-100 px-4 py-2 text-sm text-gray-500" />
-        <div className="w-8 h-8 rounded-full bg-[#00a35e] flex items-center justify-center">
+      <div className="bg-[#1C1B1A] border-t border-gray-200 px-3 py-2 flex items-center gap-2">
+        <input type="text" disabled placeholder="iMessage" className="flex-1 rounded-full bg-[#282724] px-4 py-2 text-sm text-gray-500" />
+        <div className="w-8 h-8 rounded-full bg-[#00C27C] flex items-center justify-center">
           <Send size={14} className="text-white" />
         </div>
       </div>
@@ -175,8 +175,8 @@ export default function ProtoSMS() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-text-primary">Post-Purchase SMS Micro-Surveys</h1>
-        <p className="text-sm text-text-secondary mt-1">Conversational 2-3 question SMS thread triggered after pickup/delivery confirmation from POS data</p>
+        <h1 className="text-2xl font-bold text-[#F0EDE8]">Post-Purchase SMS Micro-Surveys</h1>
+        <p className="text-sm text-[#ADA599] mt-1">Conversational 2-3 question SMS thread triggered after pickup/delivery confirmation from POS data</p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
@@ -195,22 +195,22 @@ export default function ProtoSMS() {
         <div className="space-y-6">
           {/* Scenario picker */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-text-secondary mb-3">Choose a Scenario</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-[#ADA599] mb-3">Choose a Scenario</p>
             <div className="space-y-2">
               {CONVERSATIONS.map((c, i) => (
                 <button key={i} onClick={() => setActiveConvo(i)}
                   className={`w-full text-left rounded-xl border p-4 transition-all ${
-                    activeConvo === i ? 'border-[#00a35e] bg-[#00a35e]/5 ring-1 ring-[#00a35e]/20' : 'border-surface-border hover:border-[#00a35e]/30'
+                    activeConvo === i ? 'border-[#00C27C] bg-[#00C27C]/5 ring-1 ring-[#00C27C]/20' : 'border-[#38332B] hover:border-[#00C27C]/30'
                   }`}>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-semibold text-text-primary">{c.store} — {c.flow[1].text.includes('Great') || c.flow[1].text.includes('Smooth') ? '😊 Positive' : '😔 Negative'}</span>
-                    {completed.has(i) && <Check size={16} className="text-[#00a35e]" />}
+                    <span className="text-sm font-semibold text-[#F0EDE8]">{c.store} — {c.flow[1].text.includes('Great') || c.flow[1].text.includes('Smooth') ? '😊 Positive' : '😔 Negative'}</span>
+                    {completed.has(i) && <Check size={16} className="text-[#00C27C]" />}
                   </div>
-                  <p className="text-xs text-text-secondary line-clamp-1">{c.flow[1].text}</p>
+                  <p className="text-xs text-[#ADA599] line-clamp-1">{c.flow[1].text}</p>
                   <div className="mt-2 flex flex-wrap gap-1.5">
-                    <span className="rounded-full bg-surface-bg px-2 py-0.5 text-[10px] text-text-secondary">Staff: {c.budtender}</span>
-                    {c.product && <span className="rounded-full bg-surface-bg px-2 py-0.5 text-[10px] text-text-secondary">{c.product}</span>}
-                    <span className="rounded-full bg-surface-bg px-2 py-0.5 text-[10px] text-text-secondary">{c.txnId}</span>
+                    <span className="rounded-full bg-[#141210] px-2 py-0.5 text-[10px] text-[#ADA599]">Staff: {c.budtender}</span>
+                    {c.product && <span className="rounded-full bg-[#141210] px-2 py-0.5 text-[10px] text-[#ADA599]">{c.product}</span>}
+                    <span className="rounded-full bg-[#141210] px-2 py-0.5 text-[10px] text-[#ADA599]">{c.txnId}</span>
                   </div>
                 </button>
               ))}
@@ -218,8 +218,8 @@ export default function ProtoSMS() {
           </div>
 
           {/* How it works */}
-          <div className="rounded-2xl border border-surface-border bg-white p-6">
-            <h3 className="text-sm font-semibold text-text-primary mb-3">How It Works</h3>
+          <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] p-6">
+            <h3 className="text-sm font-semibold text-[#F0EDE8] mb-3">How It Works</h3>
             <div className="space-y-3">
               {[
                 { step: '1', title: 'POS Trigger', desc: 'Transaction completes → POS fires pickup/delivery confirmation event' },
@@ -228,20 +228,20 @@ export default function ProtoSMS() {
                 { step: '4', title: 'Auto-Mapping', desc: 'Response auto-maps to store, budtender, product, and transaction ID' },
               ].map((s) => (
                 <div key={s.step} className="flex gap-3">
-                  <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#00a35e] text-white text-xs font-bold">{s.step}</div>
-                  <div><p className="text-sm font-medium text-text-primary">{s.title}</p><p className="text-xs text-text-secondary">{s.desc}</p></div>
+                  <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#00C27C] text-white text-xs font-bold">{s.step}</div>
+                  <div><p className="text-sm font-medium text-[#F0EDE8]">{s.title}</p><p className="text-xs text-[#ADA599]">{s.desc}</p></div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Key insight */}
-          <div className="rounded-xl bg-surface-bg p-5">
+          <div className="rounded-xl bg-[#141210] p-5">
             <div className="flex items-start gap-3">
-              <Sparkles size={18} className="text-[#00a35e] flex-shrink-0 mt-0.5" />
+              <Sparkles size={18} className="text-[#00C27C] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-[#00a35e] mb-1">Why This Matters</p>
-                <p className="text-sm text-text-primary/80 leading-relaxed">50.3% response rate — 10x higher than email surveys. Creates a proprietary first-party signal tied to actual transactions that no competitor can replicate. Free-text responses feed the same NLP engine analyzing Reddit, Leafly, and Weedmaps data.</p>
+                <p className="text-sm font-semibold text-[#00C27C] mb-1">Why This Matters</p>
+                <p className="text-sm text-[#F0EDE8]/80 leading-relaxed">50.3% response rate — 10x higher than email surveys. Creates a proprietary first-party signal tied to actual transactions that no competitor can replicate. Free-text responses feed the same NLP engine analyzing Reddit, Leafly, and Weedmaps data.</p>
               </div>
             </div>
           </div>

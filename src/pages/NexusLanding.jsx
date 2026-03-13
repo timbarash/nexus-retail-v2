@@ -65,39 +65,39 @@ function MarketingPreview({ color }) {
   return (
     <div className="min-h-[12rem] flex flex-col gap-2 text-xs">
       <div className="flex items-center justify-between mb-1">
-        <span className="font-semibold text-text-primary text-[11px] uppercase tracking-wider">Campaign Draft</span>
-        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#00a35e]/20 text-[#00a35e]">Compliant</span>
+        <span className="font-semibold text-[#F0EDE8] text-[11px] uppercase tracking-wider">Campaign Draft</span>
+        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#00C27C]/20 text-[#00C27C]">Compliant</span>
       </div>
-      <div className="rounded-lg border border-surface-border bg-surface-bg p-3 flex-1 flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-text-primary font-medium text-[11px]">
+      <div className="rounded-lg border border-[#38332B] bg-[#141210] p-3 flex-1 flex flex-col gap-2">
+        <div className="flex items-center gap-2 text-[#F0EDE8] font-medium text-[11px]">
           <Megaphone className="w-3.5 h-3.5" style={{ color }} />
           Weekend Flower Drop — 20% off top shelf
         </div>
-        <div className="flex items-center gap-3 text-[10px] text-text-secondary">
+        <div className="flex items-center gap-3 text-[10px] text-[#ADA599]">
           <span className="flex items-center gap-1"><MessageSquare className="w-3 h-3" /> SMS</span>
           <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> Email</span>
-          <span className="ml-auto text-text-secondary">4,280 recipients</span>
+          <span className="ml-auto text-[#ADA599]">4,280 recipients</span>
         </div>
-        <div className="border-t border-surface-border pt-2 flex flex-col gap-1.5">
+        <div className="border-t border-[#38332B] pt-2 flex flex-col gap-1.5">
           <div className="flex items-center gap-1.5">
-            <Check className="w-3 h-3 text-[#00a35e]" />
-            <span className="text-[10px] text-text-secondary">State marketing rules — passed</span>
+            <Check className="w-3 h-3 text-[#00C27C]" />
+            <span className="text-[10px] text-[#ADA599]">State marketing rules — passed</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Check className="w-3 h-3 text-[#00a35e]" />
-            <span className="text-[10px] text-text-secondary">Purchase-limit language — passed</span>
+            <Check className="w-3 h-3 text-[#00C27C]" />
+            <span className="text-[10px] text-[#ADA599]">Purchase-limit language — passed</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Check className="w-3 h-3 text-[#00a35e]" />
-            <span className="text-[10px] text-text-secondary">Opt-out footer — included</span>
+            <Check className="w-3 h-3 text-[#00C27C]" />
+            <span className="text-[10px] text-[#ADA599]">Opt-out footer — included</span>
           </div>
         </div>
         <div className="mt-auto">
           <div className="flex items-center justify-between text-[10px] mb-1">
-            <span className="text-text-secondary">Projected Revenue</span>
+            <span className="text-[#ADA599]">Projected Revenue</span>
             <span className="font-semibold" style={{ color }}>$12,840</span>
           </div>
-          <div className="w-full h-1.5 rounded-full bg-gray-200 overflow-hidden">
+          <div className="w-full h-1.5 rounded-full bg-[#38332B] overflow-hidden">
             <div className="h-full rounded-full" style={{ width: '72%', background: color }} />
           </div>
         </div>
@@ -112,16 +112,16 @@ function ConnectPreview({ color }) {
     { name: 'Gummy Bears 10pk', stock: 34, status: 'warning', pct: 45 },
     { name: 'Live Rosin Cart 1g', stock: 112, status: 'good', pct: 85 },
   ];
-  const statusColors = { critical: '#ef4444', warning: '#d97706', good: '#00a35e' };
+  const statusColors = { critical: '#E87068', warning: '#D4A03A', good: '#00C27C' };
   const statusLabels = { critical: 'Low', warning: 'Monitor', good: 'Stocked' };
   return (
     <div className="min-h-[12rem] flex flex-col gap-2 text-xs">
       <div className="flex items-center justify-between mb-1">
-        <span className="font-semibold text-text-primary text-[11px] uppercase tracking-wider">Inventory Watch</span>
-        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#ef4444]/20 text-[#ef4444]">1 Alert</span>
+        <span className="font-semibold text-[#F0EDE8] text-[11px] uppercase tracking-wider">Inventory Watch</span>
+        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#E87068]/20 text-[#E87068]">1 Alert</span>
       </div>
-      <div className="rounded-lg border border-surface-border bg-surface-bg p-3 flex-1 flex flex-col">
-        <div className="flex items-center text-[10px] text-text-secondary uppercase tracking-wider pb-1.5 border-b border-surface-border mb-1">
+      <div className="rounded-lg border border-[#38332B] bg-[#141210] p-3 flex-1 flex flex-col">
+        <div className="flex items-center text-[10px] text-[#ADA599] uppercase tracking-wider pb-1.5 border-b border-[#38332B] mb-1">
           <span className="flex-1">Product</span>
           <span className="w-12 text-center">Qty</span>
           <span className="w-16 text-right">Status</span>
@@ -129,11 +129,11 @@ function ConnectPreview({ color }) {
         <div className="flex-1 flex flex-col justify-center gap-2">
           {rows.map((r, j) => (
             <div key={j} className="flex items-center text-[11px]">
-              <div className="flex-1 flex items-center gap-1.5 text-text-primary truncate">
+              <div className="flex-1 flex items-center gap-1.5 text-[#F0EDE8] truncate">
                 <Package className="w-3 h-3 flex-shrink-0" style={{ color }} />
                 {r.name}
               </div>
-              <span className="w-12 text-center text-text-secondary">{r.stock}</span>
+              <span className="w-12 text-center text-[#ADA599]">{r.stock}</span>
               <span className="w-16 text-right">
                 <span className="inline-block px-1.5 py-0.5 rounded text-[10px] font-bold" style={{ background: `${statusColors[r.status]}20`, color: statusColors[r.status] }}>
                   {statusLabels[r.status]}
@@ -163,20 +163,20 @@ function PricingPreview({ color }) {
     { x: 65, y: 22, status: 'over' },
     { x: 48, y: 52, status: 'at' },
   ];
-  const dotColors = { under: '#00a35e', at: '#d97706', over: '#ef4444' };
+  const dotColors = { under: '#00C27C', at: '#D4A03A', over: '#E87068' };
   return (
     <div className="min-h-[12rem] flex flex-col gap-2 text-xs">
       <div className="flex items-center justify-between mb-1">
-        <span className="font-semibold text-text-primary text-[11px] uppercase tracking-wider">Price vs Market</span>
+        <span className="font-semibold text-[#F0EDE8] text-[11px] uppercase tracking-wider">Price vs Market</span>
         <div className="flex items-center gap-2 text-[10px]">
-          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#00a35e]" />Under</span>
-          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />At</span>
-          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#ef4444]" />Over</span>
+          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#00C27C]" />Under</span>
+          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#D4A03A]" />At</span>
+          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#E87068]" />Over</span>
         </div>
       </div>
-      <div className="rounded-lg border border-surface-border bg-surface-bg p-3 flex-1 relative overflow-hidden">
-        <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] text-text-muted">Your Price</span>
-        <span className="absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] text-text-muted">Market</span>
+      <div className="rounded-lg border border-[#38332B] bg-[#141210] p-3 flex-1 relative overflow-hidden">
+        <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] text-[#6B6359]">Your Price</span>
+        <span className="absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] text-[#6B6359]">Market</span>
         <svg className="absolute inset-3" viewBox="0 0 100 100" preserveAspectRatio="none">
           <line x1="5" y1="90" x2="95" y2="5" stroke="#e5e7eb" strokeWidth="1.5" strokeDasharray="4 3" />
           {dots.map((d, j) => (
@@ -184,8 +184,8 @@ function PricingPreview({ color }) {
           ))}
         </svg>
         <div className="absolute bottom-2 right-3 left-10 flex items-center justify-end gap-3 text-[10px]">
-          <span className="text-[#00a35e] font-semibold">3 under-priced</span>
-          <span className="text-text-secondary">|</span>
+          <span className="text-[#00C27C] font-semibold">3 under-priced</span>
+          <span className="text-[#ADA599]">|</span>
           <span className="font-semibold" style={{ color }}>+$2.1K/mo opportunity</span>
         </div>
       </div>
@@ -197,32 +197,32 @@ function CustomerBridgePreview({ color }) {
   return (
     <div className="min-h-[12rem] flex flex-col gap-2 text-xs">
       <div className="flex items-center justify-between mb-1">
-        <span className="font-semibold text-text-primary text-[11px] uppercase tracking-wider">Support Chat</span>
-        <span className="flex items-center gap-1 text-[10px] text-text-secondary"><BookOpen className="w-3 h-3" /> KB Active</span>
+        <span className="font-semibold text-[#F0EDE8] text-[11px] uppercase tracking-wider">Support Chat</span>
+        <span className="flex items-center gap-1 text-[10px] text-[#ADA599]"><BookOpen className="w-3 h-3" /> KB Active</span>
       </div>
-      <div className="rounded-lg border border-surface-border bg-surface-bg flex-1 flex overflow-hidden">
+      <div className="rounded-lg border border-[#38332B] bg-[#141210] flex-1 flex overflow-hidden">
         <div className="flex-1 p-3 flex flex-col gap-2 justify-center">
           <div className="flex justify-end">
-            <div className="px-2.5 py-1.5 rounded-lg rounded-br-sm bg-gray-200 text-[11px] text-text-primary max-w-[85%]">
+            <div className="px-2.5 py-1.5 rounded-lg rounded-br-sm bg-[#38332B] text-[11px] text-[#F0EDE8] max-w-[85%]">
               How do I set up METRC integration for my new location?
             </div>
           </div>
           <div className="flex justify-start">
-            <div className="px-2.5 py-1.5 rounded-lg rounded-bl-sm text-[11px] text-text-primary max-w-[85%]" style={{ background: `${color}15`, borderLeft: `2px solid ${color}` }}>
+            <div className="px-2.5 py-1.5 rounded-lg rounded-bl-sm text-[11px] text-[#F0EDE8] max-w-[85%]" style={{ background: `${color}15`, borderLeft: `2px solid ${color}` }}>
               Go to <span className="font-semibold">Settings &gt; Integrations &gt; METRC</span>, enter your API key, then select the facility license. I can walk you through each step.
             </div>
           </div>
-          <div className="flex justify-start items-center gap-1 text-[10px] text-text-secondary pl-1">
+          <div className="flex justify-start items-center gap-1 text-[10px] text-[#ADA599] pl-1">
             <Bot className="w-3 h-3" style={{ color }} />
             <span>Sources: METRC Setup Guide, Admin Docs</span>
           </div>
         </div>
-        <div className="w-24 border-l border-surface-border bg-white p-2 flex flex-col gap-1.5">
-          <span className="text-[10px] text-text-muted uppercase tracking-wider font-semibold">Sources</span>
+        <div className="w-24 border-l border-[#38332B] bg-[#1C1B1A] p-2 flex flex-col gap-1.5">
+          <span className="text-[10px] text-[#6B6359] uppercase tracking-wider font-semibold">Sources</span>
           <div className="flex-1 flex flex-col gap-1">
-            <div className="rounded px-1 py-0.5 text-[10px] text-text-secondary bg-surface-bg truncate">METRC Guide</div>
-            <div className="rounded px-1 py-0.5 text-[10px] text-text-secondary bg-surface-bg truncate">Admin Docs</div>
-            <div className="rounded px-1 py-0.5 text-[10px] text-text-secondary bg-surface-bg truncate">API Reference</div>
+            <div className="rounded px-1 py-0.5 text-[10px] text-[#ADA599] bg-[#141210] truncate">METRC Guide</div>
+            <div className="rounded px-1 py-0.5 text-[10px] text-[#ADA599] bg-[#141210] truncate">Admin Docs</div>
+            <div className="rounded px-1 py-0.5 text-[10px] text-[#ADA599] bg-[#141210] truncate">API Reference</div>
           </div>
         </div>
       </div>
@@ -246,10 +246,10 @@ function AgentBlock({ agent, i }) {
           </div>
           <h3 className="text-2xl font-bold">{agent.name}</h3>
         </div>
-        <p className="text-text-secondary mb-6 leading-relaxed">{agent.description}</p>
+        <p className="text-[#ADA599] mb-6 leading-relaxed">{agent.description}</p>
         <ul className="space-y-2 mb-6">
           {agent.capabilities.map((cap, j) => (
-            <li key={j} className="flex items-center gap-2 text-sm text-text-primary">
+            <li key={j} className="flex items-center gap-2 text-sm text-[#F0EDE8]">
               <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: agent.color }} />
               {cap}
             </li>
@@ -264,7 +264,7 @@ function AgentBlock({ agent, i }) {
         </Link>
       </div>
       <div className="flex-1 min-w-0 w-full">
-        <div className="rounded-2xl border border-surface-border bg-white p-6 relative overflow-hidden" style={{ boxShadow: `0 0 60px ${agent.color}18` }}>
+        <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] p-6 relative overflow-hidden" style={{ boxShadow: `0 0 60px ${agent.color}18` }}>
           <div className="absolute inset-0 opacity-[0.07]" style={{ background: `radial-gradient(circle at 50% 50%, ${agent.color}, transparent 70%)` }} />
           <div className="relative">
             {React.createElement(AGENT_PREVIEWS[i], { color: agent.color })}
@@ -310,22 +310,22 @@ const DEFAULT_CONTENT = {
 };
 
 const AGENTS = [
-  { name: 'Marketing Campaigns', description: 'Generates full campaign plans with audience segmentation, multi-channel delivery, A/B testing, and compliance checks — all from a single prompt.', capabilities: ['AI-generated SMS & email copy', 'Smart audience segmentation', 'Revenue projections & ROI tracking', 'Cannabis compliance built-in'], route: '/agents/marketing', color: '#8b5cf6', icon: Megaphone },
-  { name: 'Connect (Purchasing)', description: 'Monitors inventory levels, detects stockouts, discovers trending products, and generates purchase orders optimized for margin and velocity.', capabilities: ['Real-time stockout detection', 'Trending product discovery', 'Vendor comparison & negotiation', 'Margin-optimized reorder quantities'], route: '/agents/connect', color: '#3b82f6', icon: ShoppingCart },
-  { name: 'Pricing Agent', description: 'Compares your prices to anonymous regional market data, models what-if scenarios, and suggests optimizations to maximize net revenue.', capabilities: ['Regional market price comparison', 'What-if scenario modeling', 'Discount performance analysis', 'Net revenue optimization'], route: '/agents/pricing', color: '#00a35e', icon: TrendingUp },
-  { name: 'Customer Bridge', description: 'An AI support agent trained on Dutchie\'s full product knowledge base — answers operator questions instantly with step-by-step guidance.', capabilities: ['Instant product support', 'Troubleshooting workflows', 'Admin navigation guidance', 'Knowledge base–grounded answers'], route: '/agents/bridge', color: '#d97706', icon: Users },
+  { name: 'Marketing Campaigns', description: 'Generates full campaign plans with audience segmentation, multi-channel delivery, A/B testing, and compliance checks — all from a single prompt.', capabilities: ['AI-generated SMS & email copy', 'Smart audience segmentation', 'Revenue projections & ROI tracking', 'Cannabis compliance built-in'], route: '/agents/marketing', color: '#B598E8', icon: Megaphone },
+  { name: 'Connect (Purchasing)', description: 'Monitors inventory levels, detects stockouts, discovers trending products, and generates purchase orders optimized for margin and velocity.', capabilities: ['Real-time stockout detection', 'Trending product discovery', 'Vendor comparison & negotiation', 'Margin-optimized reorder quantities'], route: '/agents/connect', color: '#64A8E0', icon: ShoppingCart },
+  { name: 'Pricing Agent', description: 'Compares your prices to anonymous regional market data, models what-if scenarios, and suggests optimizations to maximize net revenue.', capabilities: ['Regional market price comparison', 'What-if scenario modeling', 'Discount performance analysis', 'Net revenue optimization'], route: '/agents/pricing', color: '#00C27C', icon: TrendingUp },
+  { name: 'Customer Bridge', description: 'An AI support agent trained on Dutchie\'s full product knowledge base — answers operator questions instantly with step-by-step guidance.', capabilities: ['Instant product support', 'Troubleshooting workflows', 'Admin navigation guidance', 'Knowledge base–grounded answers'], route: '/agents/bridge', color: '#D4A03A', icon: Users },
 ];
 
 const ICON_MAP = { Brain, BarChart3, ShoppingCart, Megaphone, MapPin, Users, Shield, Bot, Signal, TrendingUp };
 
 /* ─── Integration logos (text-based placeholders) ──────────── */
 const INTEGRATION_LOGOS = [
-  { name: 'METRC', color: '#00a35e' },
-  { name: 'BioTrack', color: '#3b82f6' },
-  { name: 'Leafly', color: '#00a35e' },
-  { name: 'Weedmaps', color: '#d97706' },
-  { name: 'Dutchie POS', color: '#8b5cf6' },
-  { name: 'Google Reviews', color: '#3b82f6' },
+  { name: 'METRC', color: '#00C27C' },
+  { name: 'BioTrack', color: '#64A8E0' },
+  { name: 'Leafly', color: '#00C27C' },
+  { name: 'Weedmaps', color: '#D4A03A' },
+  { name: 'Dutchie POS', color: '#B598E8' },
+  { name: 'Google Reviews', color: '#64A8E0' },
 ];
 
 /* ─── AI prompt ─────────────────────────────────────────────── */
@@ -411,7 +411,7 @@ export default function NexusLanding() {
   const anim = (visible) => `transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`;
 
   return (
-    <div className="-m-4 md:-m-6 lg:-m-8 bg-[#0A0E14] text-text-primary overflow-hidden">
+    <div className="-m-4 md:-m-6 lg:-m-8 bg-[#0A0E14] text-[#F0EDE8] overflow-hidden">
       <style>{`
         .nexus-grid {
           background-image:
@@ -420,27 +420,27 @@ export default function NexusLanding() {
           background-size: 64px 64px;
         }
         .nexus-glow-green {
-          background: radial-gradient(600px circle at 50% 40%, rgba(0,163,94,0.12), transparent 70%);
+          background: radial-gradient(600px circle at 50% 40%, rgba(0,194,124,0.12), transparent 70%);
         }
         .nexus-glow-purple {
           background: radial-gradient(400px circle at 80% 20%, rgba(163,113,247,0.08), transparent 70%);
         }
         .nexus-glow-blue {
-          background: radial-gradient(400px circle at 20% 60%, rgba(59,130,246,0.06), transparent 70%);
+          background: radial-gradient(400px circle at 20% 60%, rgba(100,168,224,0.06), transparent 70%);
         }
       `}</style>
 
       {/* ═══ STICKY NAV ═══ */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0A0E14]/80 backdrop-blur-lg border-b border-surface-border/50 shadow-lg shadow-black/20' : 'bg-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0A0E14]/80 backdrop-blur-lg border-b border-[#38332B]/50 shadow-lg shadow-black/20' : 'bg-transparent'}`}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-[#00a35e]" />
+            <Sparkles className="w-5 h-5 text-[#00C27C]" />
             <span className="font-bold text-lg">Dutchie Nexus</span>
           </div>
           <div className={`flex items-center gap-4 transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-[#00a35e] hover:bg-[#00A868] text-[#0A0E14] font-semibold text-sm transition-all"
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-[#00C27C] hover:bg-[#00A868] text-[#0A0E14] font-semibold text-sm transition-all"
             >
               Book a Demo
               <ArrowRight className="w-3.5 h-3.5" />
@@ -454,27 +454,27 @@ export default function NexusLanding() {
         <div className="nexus-glow-green absolute inset-0 pointer-events-none" />
         <div className="nexus-glow-purple absolute inset-0 pointer-events-none" />
         <div className="relative max-w-4xl mx-auto px-6 pt-36 md:pt-44 pb-20 md:pb-28 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00a35e]/30 bg-[#00a35e]/10 text-[#00a35e] text-sm font-medium mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00C27C]/30 bg-[#00C27C]/10 text-[#00C27C] text-sm font-medium mb-8">
             <Sparkles className="w-4 h-4" />
             <span>{content.hero.badge}</span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
             {content.hero.headline}
           </h1>
-          <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-[#ADA599] max-w-2xl mx-auto mb-10 leading-relaxed">
             {content.hero.subheadline}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#00a35e] hover:bg-[#00A868] text-[#0A0E14] font-semibold text-lg transition-all hover:scale-[1.02] shadow-lg shadow-[#00a35e]/20"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#00C27C] hover:bg-[#00A868] text-[#0A0E14] font-semibold text-lg transition-all hover:scale-[1.02] shadow-lg shadow-[#00C27C]/20"
             >
               {content.hero.cta}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <a
               href="#agents"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-surface-border bg-[#F0F6FC]/5 hover:bg-[#F0F6FC]/10 hover:border-gray-300 text-text-primary font-semibold text-lg transition-all hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-[#38332B] bg-[#F0F6FC]/5 hover:bg-[#F0F6FC]/10 hover:border-[#38332B] text-[#F0EDE8] font-semibold text-lg transition-all hover:scale-[1.02]"
             >
               See It in Action
               <ArrowRight className="w-5 h-5" />
@@ -484,14 +484,14 @@ export default function NexusLanding() {
       </section>
 
       {/* ═══ LOGO BAR ═══ */}
-      <section className="relative py-10 border-y border-surface-border/40">
+      <section className="relative py-10 border-y border-[#38332B]/40">
         <div className="max-w-5xl mx-auto px-6">
-          <p className="text-xs text-text-muted uppercase tracking-widest text-center mb-6 font-medium">Integrated with the tools you already use</p>
+          <p className="text-xs text-[#6B6359] uppercase tracking-widest text-center mb-6 font-medium">Integrated with the tools you already use</p>
           <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
             {INTEGRATION_LOGOS.map((logo) => (
               <div key={logo.name} className="flex items-center gap-2 opacity-40 hover:opacity-70 transition-opacity">
                 <div className="w-2 h-2 rounded-full" style={{ background: logo.color }} />
-                <span className="text-sm font-semibold text-text-primary tracking-wide">{logo.name}</span>
+                <span className="text-sm font-semibold text-[#F0EDE8] tracking-wide">{logo.name}</span>
               </div>
             ))}
           </div>
@@ -501,18 +501,18 @@ export default function NexusLanding() {
       {/* ═══ PILLARS ═══ */}
       <section ref={pillarsRef} className="relative py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <p className={`text-sm font-semibold text-[#00a35e] uppercase tracking-widest mb-3 text-center transition-all duration-700 ${pillarsIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Understand. Automate. Grow.</p>
+          <p className={`text-sm font-semibold text-[#00C27C] uppercase tracking-widest mb-3 text-center transition-all duration-700 ${pillarsIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Understand. Automate. Grow.</p>
           <h2 className={`text-3xl md:text-4xl font-bold text-center mb-16 transition-all duration-700 ${pillarsIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Practical AI Built for Cannabis Retail</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {content.pillars.map((p, i) => {
               const IconComp = ICON_MAP[DEFAULT_CONTENT.pillars[i]?.icon] || Zap;
-              const colors = ['#8b5cf6', '#3b82f6', '#00a35e', '#d97706'];
+              const colors = ['#B598E8', '#64A8E0', '#00C27C', '#D4A03A'];
               const c = colors[i];
               const frameworkLabels = ['Understand', 'Automate', 'Automate', 'Grow'];
               return (
                 <div
                   key={i}
-                  className={`group p-6 rounded-2xl border border-surface-border bg-surface-bg hover:border-gray-300 transition-[opacity,transform] duration-700 hover:-translate-y-1 hover:transition-transform hover:duration-200 ${pillarsIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  className={`group p-6 rounded-2xl border border-[#38332B] bg-[#141210] hover:border-[#38332B] transition-[opacity,transform] duration-700 hover:-translate-y-1 hover:transition-transform hover:duration-200 ${pillarsIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                   style={{ transitionDelay: pillarsIn ? `${i * 100}ms` : '0ms' }}
                 >
                   <div className="flex items-center justify-between mb-5">
@@ -522,7 +522,7 @@ export default function NexusLanding() {
                     <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-md" style={{ color: c, background: `${c}10` }}>{frameworkLabels[i]}</span>
                   </div>
                   <h3 className="text-lg font-semibold mb-2">{p.title}</h3>
-                  <p className="text-text-secondary text-sm leading-relaxed">{p.description}</p>
+                  <p className="text-[#ADA599] text-sm leading-relaxed">{p.description}</p>
                 </div>
               );
             })}
@@ -531,15 +531,15 @@ export default function NexusLanding() {
       </section>
 
       {/* ═══ HOW IT WORKS ═══ */}
-      <section ref={howRef} className={`relative py-24 bg-surface-bg ${anim(howIn)}`}>
+      <section ref={howRef} className={`relative py-24 bg-[#141210] ${anim(howIn)}`}>
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <p className="text-sm font-semibold text-[#00a35e] uppercase tracking-widest mb-3">How It Works</p>
+          <p className="text-sm font-semibold text-[#00C27C] uppercase tracking-widest mb-3">How It Works</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-16">Three Steps. No Integration Project.</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { step: '1', title: 'Connect Your Data', desc: 'Nexus is native to Dutchie — your POS, ecommerce, and menu data flows in automatically. No CSV exports, no API keys, no IT project.', icon: Zap, color: '#8b5cf6' },
-              { step: '2', title: 'AI Analyzes & Recommends', desc: 'Four agents benchmark your store against $20B+ in anonymized market data, then draft campaigns, reorder lists, and pricing changes for your review.', icon: Brain, color: '#3b82f6' },
-              { step: '3', title: 'You Approve & Execute', desc: 'Review every recommendation before it goes live. Full audit trail, state-level compliance checks, and one-click execution. You stay in control.', icon: Check, color: '#00a35e' },
+              { step: '1', title: 'Connect Your Data', desc: 'Nexus is native to Dutchie — your POS, ecommerce, and menu data flows in automatically. No CSV exports, no API keys, no IT project.', icon: Zap, color: '#B598E8' },
+              { step: '2', title: 'AI Analyzes & Recommends', desc: 'Four agents benchmark your store against $20B+ in anonymized market data, then draft campaigns, reorder lists, and pricing changes for your review.', icon: Brain, color: '#64A8E0' },
+              { step: '3', title: 'You Approve & Execute', desc: 'Review every recommendation before it goes live. Full audit trail, state-level compliance checks, and one-click execution. You stay in control.', icon: Check, color: '#00C27C' },
             ].map((s, i) => (
               <div key={i} className="relative">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ background: `${s.color}15` }}>
@@ -547,7 +547,7 @@ export default function NexusLanding() {
                 </div>
                 <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#0A0E14] border-2 flex items-center justify-center text-xs font-bold" style={{ borderColor: s.color, color: s.color }}>{s.step}</div>
                 <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{s.desc}</p>
+                <p className="text-sm text-[#ADA599] leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -558,9 +558,9 @@ export default function NexusLanding() {
       <section id="agents" className="relative py-24">
         <div className="nexus-glow-blue absolute inset-0 pointer-events-none" />
         <div className="relative max-w-6xl mx-auto px-6">
-          <p className="text-sm font-semibold text-[#00a35e] uppercase tracking-widest mb-3 text-center">Powered by Dutchie Intelligence</p>
+          <p className="text-sm font-semibold text-[#00C27C] uppercase tracking-widest mb-3 text-center">Powered by Dutchie Intelligence</p>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Four Agents That Work. You Approve.</h2>
-          <p className="text-text-secondary text-center max-w-2xl mx-auto mb-16">Each agent analyzes your data, drafts a recommendation, and waits for your sign-off. No black boxes. Full audit trail.</p>
+          <p className="text-[#ADA599] text-center max-w-2xl mx-auto mb-16">Each agent analyzes your data, drafts a recommendation, and waits for your sign-off. No black boxes. Full audit trail.</p>
           <div className="space-y-20">
             {AGENTS.map((agent, i) => (
               <AgentBlock key={i} agent={agent} i={i} />
@@ -572,20 +572,20 @@ export default function NexusLanding() {
       {/* ═══ MID-PAGE CTA ═══ */}
       <section className="relative py-16">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <div className="p-8 rounded-2xl border border-[#00a35e]/20 bg-[#00a35e]/5">
+          <div className="p-8 rounded-2xl border border-[#00C27C]/20 bg-[#00C27C]/5">
             <h3 className="text-xl md:text-2xl font-bold mb-3">See Nexus in action with your data</h3>
-            <p className="text-text-secondary mb-6">Get a personalized walkthrough showing how Nexus works with your store, your state's regulations, and your product mix.</p>
+            <p className="text-[#ADA599] mb-6">Get a personalized walkthrough showing how Nexus works with your store, your state's regulations, and your product mix.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#00a35e] hover:bg-[#00A868] text-[#0A0E14] font-semibold transition-all hover:scale-[1.02] shadow-lg shadow-[#00a35e]/20"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#00C27C] hover:bg-[#00A868] text-[#0A0E14] font-semibold transition-all hover:scale-[1.02] shadow-lg shadow-[#00C27C]/20"
               >
                 Book a Demo
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-surface-border bg-[#F0F6FC]/5 hover:bg-[#F0F6FC]/10 text-text-primary font-semibold transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#38332B] bg-[#F0F6FC]/5 hover:bg-[#F0F6FC]/10 text-[#F0EDE8] font-semibold transition-all"
               >
                 <Play className="w-4 h-4" />
                 Explore the Demo
@@ -598,19 +598,19 @@ export default function NexusLanding() {
       {/* ═══ STATS ═══ */}
       <section ref={statsRef} className={`relative py-24 ${anim(statsIn)}`}>
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-sm font-semibold text-[#00a35e] uppercase tracking-widest mb-3 text-center">The Dutchie Data Advantage</p>
+          <p className="text-sm font-semibold text-[#00C27C] uppercase tracking-widest mb-3 text-center">The Dutchie Data Advantage</p>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Your Benchmarks Come From Real Transactions, Not Surveys</h2>
-          <p className="text-text-secondary text-center max-w-2xl mx-auto mb-16">Because Dutchie powers the transaction for thousands of dispensaries, Nexus benchmarks your performance against real market data — not estimates or panel samples.</p>
+          <p className="text-[#ADA599] text-center max-w-2xl mx-auto mb-16">Because Dutchie powers the transaction for thousands of dispensaries, Nexus benchmarks your performance against real market data — not estimates or panel samples.</p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {content.stats.map((s, i) => {
               const IconComp = ICON_MAP[DEFAULT_CONTENT.stats[i]?.icon] || Zap;
               return (
-                <div key={i} className="text-center p-6 rounded-2xl border border-surface-border bg-surface-bg">
-                  <IconComp className="w-6 h-6 text-[#00a35e] mx-auto mb-3 opacity-60" />
-                  <div className="text-3xl md:text-4xl font-extrabold text-[#00a35e] mb-1">
+                <div key={i} className="text-center p-6 rounded-2xl border border-[#38332B] bg-[#141210]">
+                  <IconComp className="w-6 h-6 text-[#00C27C] mx-auto mb-3 opacity-60" />
+                  <div className="text-3xl md:text-4xl font-extrabold text-[#00C27C] mb-1">
                     <AnimatedStat value={s.value} inView={statsIn} />
                   </div>
-                  <div className="text-xs text-text-secondary uppercase tracking-wider">{s.label}</div>
+                  <div className="text-xs text-[#ADA599] uppercase tracking-wider">{s.label}</div>
                 </div>
               );
             })}
@@ -619,22 +619,22 @@ export default function NexusLanding() {
       </section>
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <section ref={testimonialsRef} className={`relative py-24 bg-surface-bg ${anim(testimonialsIn)}`}>
+      <section ref={testimonialsRef} className={`relative py-24 bg-[#141210] ${anim(testimonialsIn)}`}>
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-sm font-semibold text-[#00a35e] uppercase tracking-widest mb-3 text-center">Operator Results</p>
+          <p className="text-sm font-semibold text-[#00C27C] uppercase tracking-widest mb-3 text-center">Operator Results</p>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Measured in Margin, Not Promises</h2>
-          <p className="text-text-secondary text-center mb-16">Results from Ascend Wellness Holdings — 39 locations across 7 states.</p>
+          <p className="text-[#ADA599] text-center mb-16">Results from Ascend Wellness Holdings — 39 locations across 7 states.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {content.testimonials.map((t, i) => (
-              <div key={i} className="p-6 rounded-2xl border border-surface-border bg-white flex flex-col">
-                <Quote className="w-8 h-8 text-[#d97706] opacity-60 mb-4 flex-shrink-0" />
-                <p className="text-text-primary leading-relaxed flex-1 mb-6 text-sm md:text-base">"{t.quote}"</p>
+              <div key={i} className="p-6 rounded-2xl border border-[#38332B] bg-[#1C1B1A] flex flex-col">
+                <Quote className="w-8 h-8 text-[#D4A03A] opacity-60 mb-4 flex-shrink-0" />
+                <p className="text-[#F0EDE8] leading-relaxed flex-1 mb-6 text-sm md:text-base">"{t.quote}"</p>
                 <div className="flex items-center justify-between mt-auto">
                   <div>
                     <p className="text-sm font-semibold">{t.author}</p>
-                    <p className="text-xs text-text-secondary">{t.company}</p>
+                    <p className="text-xs text-[#ADA599]">{t.company}</p>
                   </div>
-                  <span className="text-xs font-bold text-[#00a35e] bg-[#00a35e]/10 px-2 py-1 rounded">{t.metric}</span>
+                  <span className="text-xs font-bold text-[#00C27C] bg-[#00C27C]/10 px-2 py-1 rounded">{t.metric}</span>
                 </div>
               </div>
             ))}
@@ -645,34 +645,34 @@ export default function NexusLanding() {
       {/* ═══ COMPLIANCE (moved after testimonials — objection handler before CTA) ═══ */}
       <section ref={complianceRef} className={`relative py-24 ${anim(complianceIn)}`}>
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-sm font-semibold text-[#00a35e] uppercase tracking-widest mb-3">Compliance Built In</p>
+          <p className="text-sm font-semibold text-[#00C27C] uppercase tracking-widest mb-3">Compliance Built In</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">AI That Respects Your License</h2>
-          <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-16">
+          <p className="text-lg text-[#ADA599] max-w-2xl mx-auto mb-16">
             Every recommendation Dutchie Nexus makes is filtered through your state's regulatory requirements.
             It won't suggest campaigns that violate marketing rules, prices that break compliance thresholds,
             or inventory moves that conflict with seed-to-sale tracking.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl border border-surface-border bg-surface-bg hover:border-gray-300 hover:-translate-y-1 transition-all duration-200">
-              <div className="w-14 h-14 rounded-xl bg-[#3b82f6]/10 flex items-center justify-center mx-auto mb-5">
-                <Shield className="w-7 h-7 text-[#3b82f6]" />
+            <div className="p-6 rounded-2xl border border-[#38332B] bg-[#141210] hover:border-[#38332B] hover:-translate-y-1 transition-all duration-200">
+              <div className="w-14 h-14 rounded-xl bg-[#64A8E0]/10 flex items-center justify-center mx-auto mb-5">
+                <Shield className="w-7 h-7 text-[#64A8E0]" />
               </div>
               <h3 className="text-lg font-semibold mb-2">State-Specific Rules</h3>
-              <p className="text-sm text-text-secondary">Configured for IL, MA, MD, MI, NJ, OH, PA and more — each state's marketing restrictions, purchase limits, and reporting requirements.</p>
+              <p className="text-sm text-[#ADA599]">Configured for IL, MA, MD, MI, NJ, OH, PA and more — each state's marketing restrictions, purchase limits, and reporting requirements.</p>
             </div>
-            <div className="p-6 rounded-2xl border border-surface-border bg-surface-bg hover:border-gray-300 hover:-translate-y-1 transition-all duration-200">
-              <div className="w-14 h-14 rounded-xl bg-[#3b82f6]/10 flex items-center justify-center mx-auto mb-5">
-                <Users className="w-7 h-7 text-[#3b82f6]" />
+            <div className="p-6 rounded-2xl border border-[#38332B] bg-[#141210] hover:border-[#38332B] hover:-translate-y-1 transition-all duration-200">
+              <div className="w-14 h-14 rounded-xl bg-[#64A8E0]/10 flex items-center justify-center mx-auto mb-5">
+                <Users className="w-7 h-7 text-[#64A8E0]" />
               </div>
               <h3 className="text-lg font-semibold mb-2">You Review. You Approve.</h3>
-              <p className="text-sm text-text-secondary">AI generates recommendations. Your team makes the final call. Full audit trail on every action.</p>
+              <p className="text-sm text-[#ADA599]">AI generates recommendations. Your team makes the final call. Full audit trail on every action.</p>
             </div>
-            <div className="p-6 rounded-2xl border border-surface-border bg-surface-bg hover:border-gray-300 hover:-translate-y-1 transition-all duration-200">
-              <div className="w-14 h-14 rounded-xl bg-[#3b82f6]/10 flex items-center justify-center mx-auto mb-5">
-                <RotateCw className="w-7 h-7 text-[#3b82f6]" />
+            <div className="p-6 rounded-2xl border border-[#38332B] bg-[#141210] hover:border-[#38332B] hover:-translate-y-1 transition-all duration-200">
+              <div className="w-14 h-14 rounded-xl bg-[#64A8E0]/10 flex items-center justify-center mx-auto mb-5">
+                <RotateCw className="w-7 h-7 text-[#64A8E0]" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Seed-to-Sale Integrated</h3>
-              <p className="text-sm text-text-secondary">Works within your existing METRC and BioTrack workflows. No parallel systems, no compliance gaps.</p>
+              <p className="text-sm text-[#ADA599]">Works within your existing METRC and BioTrack workflows. No parallel systems, no compliance gaps.</p>
             </div>
           </div>
         </div>
@@ -684,36 +684,36 @@ export default function NexusLanding() {
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           {/* Pull-quote */}
           <div className="mb-10 max-w-xl mx-auto">
-            <Quote className="w-6 h-6 text-[#d97706] opacity-60 mx-auto mb-3" />
-            <p className="text-text-primary italic leading-relaxed text-sm md:text-base">
+            <Quote className="w-6 h-6 text-[#D4A03A] opacity-60 mx-auto mb-3" />
+            <p className="text-[#F0EDE8] italic leading-relaxed text-sm md:text-base">
               "{content.testimonials[1].quote}"
             </p>
-            <p className="text-xs text-text-secondary mt-2">{content.testimonials[1].author}, {content.testimonials[1].company}</p>
+            <p className="text-xs text-[#ADA599] mt-2">{content.testimonials[1].author}, {content.testimonials[1].company}</p>
           </div>
 
           <h2 className="text-3xl md:text-5xl font-extrabold mb-4">{content.cta.headline}</h2>
-          <p className="text-text-secondary text-lg mb-8">{content.cta.subheadline}</p>
+          <p className="text-[#ADA599] text-lg mb-8">{content.cta.subheadline}</p>
 
           {/* Trust signals row */}
-          <div className="flex items-center justify-center gap-3 flex-wrap text-sm text-text-secondary mb-8">
-            <span className="font-semibold text-text-primary">$20B+ processed</span>
-            <span className="text-gray-300 hidden sm:inline">&bull;</span>
-            <span className="font-semibold text-text-primary">6,500+ retailers</span>
-            <span className="text-gray-300 hidden sm:inline">&bull;</span>
-            <span className="font-semibold text-text-primary">40+ markets</span>
+          <div className="flex items-center justify-center gap-3 flex-wrap text-sm text-[#ADA599] mb-8">
+            <span className="font-semibold text-[#F0EDE8]">$20B+ processed</span>
+            <span className="text-[#6B6359] hidden sm:inline">&bull;</span>
+            <span className="font-semibold text-[#F0EDE8]">6,500+ retailers</span>
+            <span className="text-[#6B6359] hidden sm:inline">&bull;</span>
+            <span className="font-semibold text-[#F0EDE8]">40+ markets</span>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#00a35e] hover:bg-[#00A868] text-[#0A0E14] font-semibold text-lg transition-all hover:scale-[1.02] shadow-lg shadow-[#00a35e]/20"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#00C27C] hover:bg-[#00A868] text-[#0A0E14] font-semibold text-lg transition-all hover:scale-[1.02] shadow-lg shadow-[#00C27C]/20"
             >
               {content.cta.button}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               to="/"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-surface-border bg-[#F0F6FC]/5 hover:bg-[#F0F6FC]/10 text-text-primary font-semibold text-lg transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-[#38332B] bg-[#F0F6FC]/5 hover:bg-[#F0F6FC]/10 text-[#F0EDE8] font-semibold text-lg transition-all"
             >
               <Play className="w-4 h-4" />
               Explore the Demo
@@ -721,13 +721,13 @@ export default function NexusLanding() {
           </div>
 
           {/* Pricing signal */}
-          <p className="text-xs text-text-muted mt-6">Available for all Dutchie retailers — from single-location operators to enterprise MSOs.</p>
+          <p className="text-xs text-[#6B6359] mt-6">Available for all Dutchie retailers — from single-location operators to enterprise MSOs.</p>
         </div>
       </section>
 
       {/* Data privacy trust signal */}
       <div className="max-w-4xl mx-auto px-6 py-12 text-center">
-        <p className="text-sm text-text-secondary">
+        <p className="text-sm text-[#ADA599]">
           <Lock className="w-4 h-4 inline mr-1 opacity-60" />
           Your data stays yours. Dutchie Nexus processes insights within Dutchie's secure infrastructure.
           Your transaction data is never shared with competitors, third parties, or used to train models outside your account.
@@ -735,7 +735,7 @@ export default function NexusLanding() {
       </div>
 
       {/* Footer */}
-      <div className="border-t border-surface-border bg-surface-bg/40 py-8 text-center text-sm text-text-muted space-y-2">
+      <div className="border-t border-[#38332B] bg-[#141210]/40 py-8 text-center text-sm text-[#6B6359] space-y-2">
         <p>AI recommendations require operator review and approval. Dutchie Nexus is configured for your state's specific regulatory requirements.</p>
         <p>&copy; 2026 Dutchie. All data referenced reflects platform-wide metrics. Individual results may vary.</p>
       </div>

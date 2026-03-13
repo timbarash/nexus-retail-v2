@@ -101,31 +101,31 @@ export default function CommandPalette({ isOpen, onClose, navigate, onOpenSpace 
       <div className="fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
-      <div className="fixed z-[81] top-[20%] left-1/2 -translate-x-1/2 w-full max-w-xl rounded-2xl bg-white border border-surface-border shadow-2xl overflow-hidden"
+      <div className="fixed z-[81] top-[20%] left-1/2 -translate-x-1/2 w-full max-w-xl rounded-2xl bg-[#1C1B1A] border border-[#38332B] shadow-2xl overflow-hidden"
         onKeyDown={handleKeyDown}
       >
         {/* Search input */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-surface-border">
-          <Search className="w-4 h-4 text-text-secondary flex-shrink-0" />
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-[#38332B]">
+          <Search className="w-4 h-4 text-[#ADA599] flex-shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search pages, spaces, or actions..."
-            className="flex-1 bg-transparent text-sm text-text-primary placeholder-text-muted outline-none"
+            className="flex-1 bg-transparent text-sm text-[#F0EDE8] placeholder-[#6B6359] outline-none"
           />
-          <kbd className="text-[10px] text-text-muted bg-surface-bg border border-surface-border rounded px-1.5 py-0.5">ESC</kbd>
+          <kbd className="text-[10px] text-[#6B6359] bg-[#141210] border border-[#38332B] rounded px-1.5 py-0.5">ESC</kbd>
         </div>
 
         {/* Results */}
         <div ref={listRef} className="max-h-[320px] overflow-y-auto py-2">
           {flatItems.length === 0 && (
-            <p className="text-sm text-text-muted text-center py-6">No results found</p>
+            <p className="text-sm text-[#6B6359] text-center py-6">No results found</p>
           )}
           {Object.entries(groups).map(([groupName, items]) => (
             <div key={groupName}>
-              <p className="text-[10px] font-bold text-text-muted uppercase tracking-wider px-4 pt-3 pb-1">{groupName}</p>
+              <p className="text-[10px] font-bold text-[#6B6359] uppercase tracking-wider px-4 pt-3 pb-1">{groupName}</p>
               {items.map((item) => {
                 const idx = itemIdx++;
                 const Icon = item.icon;
@@ -137,13 +137,13 @@ export default function CommandPalette({ isOpen, onClose, navigate, onOpenSpace 
                     onMouseEnter={() => setSelectedIndex(idx)}
                     className={`w-full flex items-center gap-3 px-4 py-2 text-sm transition-colors ${
                       idx === selectedIndex
-                        ? 'bg-[#00a35e]/10 text-text-primary'
-                        : 'text-text-primary hover:bg-surface-hover'
+                        ? 'bg-[#00C27C]/10 text-[#F0EDE8]'
+                        : 'text-[#F0EDE8] hover:bg-[#282724]'
                     }`}
                   >
-                    <Icon className="w-4 h-4 text-text-secondary flex-shrink-0" />
+                    <Icon className="w-4 h-4 text-[#ADA599] flex-shrink-0" />
                     <span className="flex-1 text-left truncate">{item.label}</span>
-                    <ArrowRight className={`w-3 h-3 transition-opacity ${idx === selectedIndex ? 'opacity-100 text-[#00a35e]' : 'opacity-0'}`} />
+                    <ArrowRight className={`w-3 h-3 transition-opacity ${idx === selectedIndex ? 'opacity-100 text-[#00C27C]' : 'opacity-0'}`} />
                   </button>
                 );
               })}

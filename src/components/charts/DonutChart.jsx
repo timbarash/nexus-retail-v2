@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
 const COLORS = {
-  positive: '#00a35e',
-  neutral: '#d97706',
-  negative: '#ef4444',
+  positive: '#00C27C',
+  neutral: '#D4A03A',
+  negative: '#E87068',
 };
 
 const LABELS = {
@@ -17,15 +17,15 @@ function CustomTooltip({ active, payload }) {
   if (!active || !payload || !payload.length) return null;
   const { name, value, payload: data } = payload[0];
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-surface-border p-3 text-sm">
+    <div className="bg-[#1C1B1A] rounded-lg shadow-lg border border-[#38332B] p-3 text-sm">
       <div className="flex items-center gap-2">
         <span
           className="w-3 h-3 rounded-full"
           style={{ backgroundColor: data.color }}
         />
-        <span className="font-medium text-text-primary">{name}</span>
+        <span className="font-medium text-[#F0EDE8]">{name}</span>
       </div>
-      <p className="text-text-secondary mt-1">
+      <p className="text-[#ADA599] mt-1">
         {value} reviews ({data.percentage}%)
       </p>
     </div>
@@ -43,11 +43,11 @@ function CustomLegend({ payload, chartData }) {
               className="w-2.5 h-2.5 rounded-full"
               style={{ backgroundColor: entry.color }}
             />
-            <span className="text-text-secondary">{entry.value}</span>
-            <span className="font-medium text-text-primary">
+            <span className="text-[#ADA599]">{entry.value}</span>
+            <span className="font-medium text-[#F0EDE8]">
               {item?.value || 0}
             </span>
-            <span className="text-text-muted text-xs">
+            <span className="text-[#6B6359] text-xs">
               ({item?.percentage || 0}%)
             </span>
           </div>
@@ -93,7 +93,7 @@ export default function DonutChart({ data, height = 250, showLegend = true }) {
   if (chartData.length === 0) {
     return (
       <div
-        className="flex items-center justify-center text-text-muted text-sm"
+        className="flex items-center justify-center text-[#6B6359] text-sm"
         style={{ height }}
       >
         No sentiment data available
@@ -139,7 +139,7 @@ export default function DonutChart({ data, height = 250, showLegend = true }) {
             y="57%"
             textAnchor="middle"
             dominantBaseline="central"
-            style={{ fill: '#6b7280', fontSize: '0.7rem' }}
+            style={{ fill: '#6B6359', fontSize: '0.7rem' }}
           >
             {dominant?.name}
           </text>
