@@ -133,8 +133,8 @@ export default function App() {
       {/* Nexus AI Chat overlay */}
       <NexusChat isOpen={nexusChatOpen} onClose={() => setNexusChatOpen(false)} />
 
-      {/* Nexus AI floating action button */}
-      {!nexusChatOpen && (
+      {/* Nexus AI floating action button — hidden on home (chat is inline there) */}
+      {!nexusChatOpen && location.pathname !== '/' && (
         <button
           onClick={() => setNexusChatOpen(true)}
           className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[#00C27C] text-white shadow-lg animate-fab-spring animate-pulse-glow hover:scale-110 active:scale-95 transition-transform"

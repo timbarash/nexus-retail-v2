@@ -2307,7 +2307,7 @@ const SUGGESTIONS = [
    MAIN PAGE COMPONENT
    ═══════════════════════════════════════════════════════════════════ */
 
-export default function CustomerBridge({ compact = false, nexusOverlay = false }) {
+export default function CustomerBridge({ compact = false, nexusOverlay = false, homeEmbed = false }) {
   const navigate = useNavigate();
   const { addInteraction } = usePortal();
   const [products, setProducts] = useState(DEFAULT_PRODUCTS);
@@ -2769,10 +2769,32 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
     }
   };
 
+  const COMPACT_SUGGESTIONS = [
+    { key: 'ecomm_customize', label: 'Help me customize my ecomm look and feel', icon: Eye, gradient: 'from-cyan-600/20 to-blue-600/20', border: 'hover:border-cyan-500/40', tag: 'Support', tagColor: '#0EA5E9' },
+    { key: 'menu_boards', label: 'Add Menu Boards to my Account', icon: Monitor, gradient: 'from-pink-600/20 to-rose-600/20', border: 'hover:border-pink-500/40', tag: 'Upgrade', tagColor: '#EC4899' },
+    { key: 'winback', label: 'Set up a marketing win back campaign', icon: Megaphone, gradient: 'from-green-600/20 to-emerald-600/20', border: 'hover:border-green-500/40', tag: 'Marketing', tagColor: '#00C27C' },
+  ];
+  const NEXUS_SUGGESTIONS = [
+    { key: 'inventory', label: 'Show me a plan to reorder out-of-stock inventory', icon: ShoppingCart, gradient: 'from-blue-600/20 to-cyan-600/20', border: 'hover:border-blue-500/40', tag: 'Inventory', tagColor: '#64A8E0', confidence: 'high' },
+    { key: 'campaign', label: 'Run a marketing campaign for my top sellers', icon: Megaphone, gradient: 'from-green-600/20 to-emerald-600/20', border: 'hover:border-green-500/40', tag: 'Marketing', tagColor: '#00C27C', confidence: 'medium' },
+    { key: 'pricing_gap', label: 'Compare my prices vs the market', icon: DollarSign, gradient: 'from-amber-600/20 to-yellow-600/20', border: 'hover:border-amber-500/40', tag: 'Pricing', tagColor: '#D4A03A' },
+    { key: 'sentiment_check', label: "How's our customer sentiment this month?", icon: Star, gradient: 'from-purple-600/20 to-violet-600/20', border: 'hover:border-purple-500/40', tag: 'Sentiment', tagColor: '#B598E8' },
+    { key: 'report', label: 'Give me a weekly sales performance summary', icon: BarChart3, gradient: 'from-cyan-600/20 to-sky-600/20', border: 'hover:border-cyan-500/40', tag: 'Reporting', tagColor: '#0EA5E9' },
+    { key: 'explore', label: 'What trending products should I add to my menu?', icon: Rocket, gradient: 'from-pink-600/20 to-rose-600/20', border: 'hover:border-pink-500/40', tag: 'Products', tagColor: '#EC4899' },
+  ];
+  const HOME_EMBED_SUGGESTIONS = [
+    { key: 'he_inventory', label: 'Reorder Inventory', description: 'Get a plan to restock out-of-stock and low-stock items across your stores', query: 'Show me a plan to reorder out-of-stock inventory', icon: ShoppingCart, gradient: 'from-blue-600/20 to-cyan-600/20', border: 'hover:border-blue-500/40', tag: 'Inventory', tagColor: '#64A8E0', confidence: 'high' },
+    { key: 'he_campaign', label: 'Launch a Campaign', description: 'Create a marketing campaign targeting your best-selling products or lapsed customers', query: 'Run a marketing campaign for my top sellers', icon: Megaphone, gradient: 'from-green-600/20 to-emerald-600/20', border: 'hover:border-green-500/40', tag: 'Marketing', tagColor: '#00C27C' },
+    { key: 'he_pricing', label: 'Benchmark Pricing', description: 'Compare your prices to the market average and find optimization opportunities', query: 'Compare my prices vs the market', icon: DollarSign, gradient: 'from-amber-600/20 to-yellow-600/20', border: 'hover:border-amber-500/40', tag: 'Pricing', tagColor: '#D4A03A' },
+    { key: 'he_sentiment', label: 'Customer Sentiment', description: 'See what customers are saying across Google, Leafly, Weedmaps, and SMS surveys', query: "How's our customer sentiment this month?", icon: Star, gradient: 'from-purple-600/20 to-violet-600/20', border: 'hover:border-purple-500/40', tag: 'Sentiment', tagColor: '#B598E8' },
+    { key: 'he_report', label: 'Sales Performance', description: 'Get a weekly summary with revenue, margins, top stores, and vs-market benchmarks', query: 'Give me a weekly sales performance summary', icon: BarChart3, gradient: 'from-cyan-600/20 to-sky-600/20', border: 'hover:border-cyan-500/40', tag: 'Reporting', tagColor: '#0EA5E9' },
+    { key: 'he_explore', label: 'Trending Products', description: 'Discover which new brands and products are gaining traction that you should stock', query: 'What trending products should I add to my menu?', icon: Rocket, gradient: 'from-pink-600/20 to-rose-600/20', border: 'hover:border-pink-500/40', tag: 'Products', tagColor: '#EC4899' },
+  ];
+
   const handleSuggestionClick = (key) => {
-    const all = [...SUGGESTIONS, ...COMPACT_SUGGESTIONS];
+    const all = [...SUGGESTIONS, ...COMPACT_SUGGESTIONS, ...NEXUS_SUGGESTIONS, ...HOME_EMBED_SUGGESTIONS];
     const suggestion = all.find(s => s.key === key);
-    if (suggestion) processMessage(suggestion.label);
+    if (suggestion) processMessage(suggestion.query || suggestion.label);
   };
 
   const handleBugSubmit = async (userMessage, kbResults, extraDetails) => {
@@ -2881,26 +2903,12 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
   const activeCount = Object.values(products).filter(p => p.active).length;
   const totalCount = Object.keys(products).length;
 
-  const COMPACT_SUGGESTIONS = [
-    { key: 'ecomm_customize', label: 'Help me customize my ecomm look and feel', icon: Eye, gradient: 'from-cyan-600/20 to-blue-600/20', border: 'hover:border-cyan-500/40', tag: 'Support', tagColor: '#0EA5E9' },
-    { key: 'menu_boards', label: 'Add Menu Boards to my Account', icon: Monitor, gradient: 'from-pink-600/20 to-rose-600/20', border: 'hover:border-pink-500/40', tag: 'Upgrade', tagColor: '#EC4899' },
-    { key: 'winback', label: 'Set up a marketing win back campaign', icon: Megaphone, gradient: 'from-green-600/20 to-emerald-600/20', border: 'hover:border-green-500/40', tag: 'Marketing', tagColor: '#00C27C' },
-  ];
-  const NEXUS_SUGGESTIONS = [
-    { key: 'inventory', label: 'Show me a plan to reorder out-of-stock inventory', icon: ShoppingCart, gradient: 'from-blue-600/20 to-cyan-600/20', border: 'hover:border-blue-500/40', tag: 'Inventory', tagColor: '#64A8E0', confidence: 'high' },
-    { key: 'campaign', label: 'Run a marketing campaign for my top sellers', icon: Megaphone, gradient: 'from-green-600/20 to-emerald-600/20', border: 'hover:border-green-500/40', tag: 'Marketing', tagColor: '#00C27C', confidence: 'medium' },
-    { key: 'pricing_gap', label: 'Compare my prices vs the market', icon: DollarSign, gradient: 'from-amber-600/20 to-yellow-600/20', border: 'hover:border-amber-500/40', tag: 'Pricing', tagColor: '#D4A03A' },
-    { key: 'sentiment_check', label: "How's our customer sentiment this month?", icon: Star, gradient: 'from-purple-600/20 to-violet-600/20', border: 'hover:border-purple-500/40', tag: 'Sentiment', tagColor: '#B598E8' },
-    { key: 'report', label: 'Give me a weekly sales performance summary', icon: BarChart3, gradient: 'from-cyan-600/20 to-sky-600/20', border: 'hover:border-cyan-500/40', tag: 'Reporting', tagColor: '#0EA5E9' },
-    { key: 'explore', label: 'What trending products should I add to my menu?', icon: Rocket, gradient: 'from-pink-600/20 to-rose-600/20', border: 'hover:border-pink-500/40', tag: 'Products', tagColor: '#EC4899' },
-  ];
-
-  const compactSuggestions = nexusOverlay ? NEXUS_SUGGESTIONS : compact ? COMPACT_SUGGESTIONS : SUGGESTIONS;
+  const compactSuggestions = homeEmbed ? HOME_EMBED_SUGGESTIONS : nexusOverlay ? NEXUS_SUGGESTIONS : compact ? COMPACT_SUGGESTIONS : SUGGESTIONS;
 
   return (
-    <div className={`flex flex-col ${nexusOverlay ? 'h-full' : compact ? 'h-[420px]' : 'max-w-5xl mx-auto h-[calc(100vh-10rem)]'}`}>
-      {/* header — hidden in nexusOverlay mode (NexusChat provides its own) */}
-      {!nexusOverlay && <div className={`flex items-center gap-3 ${compact ? 'mb-3' : 'mb-6'}`}>
+    <div className={`flex flex-col ${homeEmbed ? 'min-h-[500px]' : nexusOverlay ? 'h-full' : compact ? 'h-[420px]' : 'max-w-5xl mx-auto h-[calc(100vh-10rem)]'}`}>
+      {/* header — hidden in nexusOverlay and homeEmbed modes */}
+      {!nexusOverlay && !homeEmbed && <div className={`flex items-center gap-3 ${compact ? 'mb-3' : 'mb-6'}`}>
         <div className={`${compact ? 'w-8 h-8' : 'w-10 h-10'} rounded-xl bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] flex items-center justify-center shadow-lg shadow-[#0EA5E9]/20`}>
           <MessageSquare className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-white`} />
         </div>
@@ -2938,20 +2946,26 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
       </div>}
 
       {/* chat area */}
-      <div ref={chatAreaRef} className="flex-1 overflow-y-auto space-y-4 mb-4 pr-1">
-        {/* welcome */}
-        {nexusOverlay && messages.length === 0 && !thinkingStatus && (
-          <div className="flex flex-col items-center justify-center py-8">
-            <div className="w-[72px] h-[72px] rounded-[22px] flex items-center justify-center mb-5" style={{ background: 'linear-gradient(135deg, #00C27C, #B598E8)', boxShadow: '0 0 40px rgba(0,194,124,0.2)' }}>
-              <Sparkles size={36} color="#fff" />
+      <div ref={chatAreaRef} className={`flex-1 ${homeEmbed ? '' : 'overflow-y-auto'} space-y-4 mb-4 pr-1`}>
+        {/* welcome — nexusOverlay or homeEmbed */}
+        {(nexusOverlay || homeEmbed) && messages.length === 0 && !thinkingStatus && (
+          <div className={`flex flex-col items-center justify-center ${homeEmbed ? 'py-10' : 'py-8'}`}>
+            <div className={`${homeEmbed ? 'w-20 h-20 rounded-[24px] mb-6' : 'w-[72px] h-[72px] rounded-[22px] mb-5'} flex items-center justify-center`} style={{ background: 'linear-gradient(135deg, #00C27C, #64A8E0)', boxShadow: '0 0 60px rgba(0,194,124,0.15)' }}>
+              <Sparkles size={homeEmbed ? 40 : 36} color="#fff" />
             </div>
-            <h2 className="text-[28px] font-bold text-[#F0EDE8] mb-2">How can I help?</h2>
-            <p className="text-sm text-[#ADA599] text-center max-w-[400px] mb-8">
+            <h2 className={`${homeEmbed ? 'text-3xl' : 'text-[28px]'} font-bold text-[#F0EDE8] mb-2`}>{homeEmbed ? 'What would you like to do?' : 'How can I help?'}</h2>
+            <p className={`${homeEmbed ? 'text-base' : 'text-sm'} text-[#ADA599] text-center max-w-[520px] ${homeEmbed ? 'mb-2' : 'mb-8'}`}>
               I can manage inventory, run campaigns, analyze pricing, pull reports, and more across all your stores.
             </p>
+            {homeEmbed && (
+              <div className="flex items-center gap-2 mt-1 mb-6">
+                <div className="w-2 h-2 rounded-full bg-[#00C27C] animate-pulse" />
+                <span className="text-xs text-[#00C27C] font-medium">11 agent lanes active</span>
+              </div>
+            )}
           </div>
         )}
-        {!compact && !nexusOverlay && (
+        {!compact && !nexusOverlay && !homeEmbed && (
         <div className="flex items-start gap-3">
           <div className="w-8 h-8 rounded-full bg-[#0EA5E9]/20 flex items-center justify-center flex-shrink-0">
             <Bot className="w-4.5 h-4.5 text-[#0EA5E9]" />
@@ -3145,31 +3159,56 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
 
         {/* suggestion bubbles — show when no messages or after result */}
         {messages.length === 0 && thinkingStatus === null && (
-          <div className={`pt-2 animate-fade-in ${nexusOverlay ? 'max-w-[580px] mx-auto' : ''}`}>
-            {!nexusOverlay && <p className={`text-xs text-[#ADA599] mb-3 ${compact ? '' : 'ml-11'}`}>{compact ? 'Try asking:' : 'Try one of these scenarios'}</p>}
-            <div className={`grid gap-3 stagger-grid ${nexusOverlay ? 'grid-cols-2 sm:grid-cols-3 gap-3' : compact ? 'grid-cols-1 gap-2' : 'grid-cols-1 sm:grid-cols-2 ml-11'}`}>
-              {compactSuggestions.map((s) => (
-                <button
-                  key={s.key}
-                  onClick={() => handleSuggestionClick(s.key)}
-                  className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl ${compact ? 'p-3' : 'p-4'} transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]`}
-                >
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <div className={`${compact ? 'w-6 h-6' : 'w-8 h-8'} rounded-lg bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>
-                      <s.icon className={`${compact ? 'w-3 h-3' : 'w-4 h-4'} text-[#F0EDE8]`} />
+          <div className={`pt-2 animate-fade-in ${homeEmbed ? 'max-w-[800px] mx-auto w-full' : nexusOverlay ? 'max-w-[580px] mx-auto' : ''}`}>
+            {!nexusOverlay && !homeEmbed && <p className={`text-xs text-[#ADA599] mb-3 ${compact ? '' : 'ml-11'}`}>{compact ? 'Try asking:' : 'Try one of these scenarios'}</p>}
+            {homeEmbed ? (
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 stagger-grid">
+                {compactSuggestions.map((s) => (
+                  <button
+                    key={s.key}
+                    onClick={() => handleSuggestionClick(s.key)}
+                    className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-2xl p-5 transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg`}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>
+                        <s.icon className="w-5 h-5 text-[#F0EDE8]" />
+                      </div>
+                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border border-white/10" style={{ color: s.tagColor }}>{s.tag}</span>
+                      {s.confidence === 'high' && <span className="text-[9px] font-semibold text-[#00C27C] bg-[#00C27C]/10 px-1.5 py-0.5 rounded border border-[#00C27C]/30">High</span>}
                     </div>
-                    <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full border border-white/10" style={{ color: s.tagColor }}>{s.tag}</span>
-                    {s.confidence === 'high' && <span className="text-[9px] font-semibold text-[#00C27C] bg-[#00C27C]/10 px-1.5 py-0.5 rounded border border-[#00C27C]/30">High</span>}
-                  </div>
-                  <p className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-[#F0EDE8]`}>"{s.label}"</p>
-                  {!compact && (
-                    <div className={`flex items-center gap-1 mt-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity ${nexusOverlay ? 'text-[#00C27C]' : 'text-[#0EA5E9]'}`}>
-                      <Zap className="w-3 h-3" /> Ask <ChevronRight className="w-3 h-3" />
+                    <p className="text-base font-semibold text-[#F0EDE8] mb-1">{s.label}</p>
+                    <p className="text-xs text-[#6B6359] leading-relaxed">{s.description}</p>
+                    <div className="flex items-center gap-1 mt-3 text-xs text-[#00C27C] opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Zap className="w-3 h-3" /> Run this action <ChevronRight className="w-3 h-3" />
                     </div>
-                  )}
-                </button>
-              ))}
-            </div>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className={`grid gap-3 stagger-grid ${nexusOverlay ? 'grid-cols-2 sm:grid-cols-3 gap-3' : compact ? 'grid-cols-1 gap-2' : 'grid-cols-1 sm:grid-cols-2 ml-11'}`}>
+                {compactSuggestions.map((s) => (
+                  <button
+                    key={s.key}
+                    onClick={() => handleSuggestionClick(s.key)}
+                    className={`group text-left bg-[#1C1B1A] border border-[#38332B] ${s.border} rounded-xl ${compact ? 'p-3' : 'p-4'} transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]`}
+                  >
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <div className={`${compact ? 'w-6 h-6' : 'w-8 h-8'} rounded-lg bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>
+                        <s.icon className={`${compact ? 'w-3 h-3' : 'w-4 h-4'} text-[#F0EDE8]`} />
+                      </div>
+                      <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full border border-white/10" style={{ color: s.tagColor }}>{s.tag}</span>
+                      {s.confidence === 'high' && <span className="text-[9px] font-semibold text-[#00C27C] bg-[#00C27C]/10 px-1.5 py-0.5 rounded border border-[#00C27C]/30">High</span>}
+                    </div>
+                    <p className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-[#F0EDE8]`}>"{s.label}"</p>
+                    {!compact && (
+                      <div className={`flex items-center gap-1 mt-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity ${nexusOverlay ? 'text-[#00C27C]' : 'text-[#0EA5E9]'}`}>
+                        <Zap className="w-3 h-3" /> Ask <ChevronRight className="w-3 h-3" />
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -3177,26 +3216,26 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
       </div>
 
       {/* input bar */}
-      <form onSubmit={handleSubmit} className="sticky bottom-0 pb-2">
-        <div className={`flex items-center gap-3 bg-[#1C1B1A] border border-[#38332B] rounded-2xl ${compact ? 'px-3 py-2' : 'px-4 py-3'} focus-within:border-[#0EA5E9]/50 transition-colors`}>
+      <form onSubmit={handleSubmit} className={`sticky bottom-0 pb-2 ${homeEmbed ? 'max-w-[800px] mx-auto w-full' : ''}`}>
+        <div className={`flex items-center gap-3 bg-[#1C1B1A] border border-[#38332B] rounded-2xl ${homeEmbed ? 'px-5 py-4' : compact ? 'px-3 py-2' : 'px-4 py-3'} focus-within:border-[#00C27C]/50 transition-colors`}>
           <Search className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-[#ADA599] flex-shrink-0`} />
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder={compact ? 'Ask anything...' : 'Ask about your products, report an issue, or explore upgrades...'}
+            placeholder={homeEmbed ? 'Ask Nexus anything about your stores...' : compact ? 'Ask anything...' : 'Ask about your products, report an issue, or explore upgrades...'}
             className={`flex-1 bg-transparent ${compact ? 'text-xs' : 'text-sm'} text-[#F0EDE8] placeholder-[#484F58] outline-none`}
             disabled={thinkingStatus !== null}
           />
           <button
             type="submit"
             disabled={!inputValue.trim() || thinkingStatus !== null}
-            className={`${compact ? 'w-7 h-7' : 'w-8 h-8'} rounded-lg bg-[#0EA5E9] flex items-center justify-center text-white disabled:opacity-30 hover:bg-[#38BDF8] transition-colors disabled:hover:bg-[#0EA5E9]`}
+            className={`${compact ? 'w-7 h-7' : 'w-8 h-8'} rounded-lg ${homeEmbed ? 'bg-[#00C27C] hover:bg-[#00B07A] disabled:hover:bg-[#00C27C]' : 'bg-[#0EA5E9] hover:bg-[#38BDF8] disabled:hover:bg-[#0EA5E9]'} flex items-center justify-center text-white disabled:opacity-30 transition-colors`}
           >
             <Send className={`${compact ? 'w-3.5 h-3.5' : 'w-4 h-4'}`} />
           </button>
         </div>
-        {!compact && (
+        {!compact && !homeEmbed && (
           <div className="flex items-center justify-between mt-2 px-1">
             <p className="text-[10px] text-[#6B6359]">
               Customer Bridge uses intelligent intent recognition and 55+ knowledge articles to answer your questions.
@@ -3216,8 +3255,8 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
         )}
       </form>
 
-      {/* Product Catalog Sidebar — full mode only, not in nexus overlay */}
-      {!compact && !nexusOverlay && (
+      {/* Product Catalog Sidebar — full mode only, not in nexus overlay or homeEmbed */}
+      {!compact && !nexusOverlay && !homeEmbed && (
         <>
           <ProductCatalogPanel
             products={products}

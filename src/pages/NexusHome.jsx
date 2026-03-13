@@ -2283,19 +2283,25 @@ export default function NexusHome({ onOpenNexus }) {
         </div>
       </div>
 
-      {/* Nexus AI Bar — inline "ask anything" */}
-      <button onClick={onOpenNexus} className="w-full text-left relative rounded-full p-[1px] hover:scale-[1.005] active:scale-[0.998] transition-transform" style={{ background: 'linear-gradient(135deg, rgba(0,194,124,0.56), rgba(100,168,224,0.27), rgba(0,194,124,0.37))' }}>
-        <div className="flex items-center gap-3 rounded-full bg-[#252119] px-5 py-3.5">
-          <Sparkles className="w-5 h-5 text-[#00C27C] flex-shrink-0" />
-          <span className="text-sm text-[#6B6359] flex-1">Ask Nexus anything about your stores...</span>
-          <div className="flex items-center gap-2">
-            {['Revenue trends', 'Inventory alerts', 'Campaign ideas'].map(s => (
-              <span key={s} className="hidden md:inline-flex text-[11px] px-2.5 py-1 rounded-full border border-[#38332B] text-[#ADA599]">{s}</span>
-            ))}
-            <span className="flex items-center gap-1 text-xs text-[#00C27C] font-medium"><ArrowRight className="w-3 h-3" /></span>
+      {/* Nexus AI — Primary Interactive Experience */}
+      <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] overflow-hidden" style={{ borderColor: 'rgba(0,194,124,0.15)' }}>
+        <div className="px-6 py-4 border-b border-[#38332B] flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #1C1B1A 0%, #0F1923 50%, #1C1B1A 100%)' }}>
+          <div className="h-9 w-9 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #00C27C, #64A8E0)' }}>
+            <Sparkles size={20} color="#fff" />
+          </div>
+          <div>
+            <h2 className="text-sm font-semibold text-[#F0EDE8]">Nexus AI</h2>
+            <p className="text-[10px] text-[#6B6359]">Retail operations agent &mdash; 11 action lanes</p>
+          </div>
+          <div className="ml-auto flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-[#00C27C] animate-pulse" />
+            <span className="text-xs text-[#00C27C] font-medium">Online</span>
           </div>
         </div>
-      </button>
+        <div className="px-6 py-4">
+          <CustomerBridge homeEmbed />
+        </div>
+      </div>
 
       {/* Section: Performance */}
       <p className="text-[11px] font-bold text-[#6B6359] uppercase tracking-[1.5px] mt-2">Performance</p>
