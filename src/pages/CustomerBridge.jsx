@@ -2771,10 +2771,12 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false, 
   };
 
   // Auto-send initial query when opened from launcher
-  React.useEffect(() => {
-    if (initialQuery && !initialQuerySent.current) {
+  useEffect(() => {
+    if (initialQuery && !initialQuerySent.current && typeof processMessage === 'function') {
       initialQuerySent.current = true;
-      const timer = setTimeout(() => processMessage(initialQuery), 300);
+      const timer = setTimeout(() => {
+        try { processMessage(initialQuery); } catch(e) { console.error('initialQuery error:', e); }
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [initialQuery]);
