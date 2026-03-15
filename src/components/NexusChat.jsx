@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { X, Sparkles, RotateCcw } from 'lucide-react';
+import { X, RotateCcw } from 'lucide-react';
 import CustomerBridge from '../pages/CustomerBridge';
+import NexusIcon from './NexusIcon';
 
 /**
  * NexusChat — Full-screen AI agent overlay
@@ -54,7 +55,7 @@ export default function NexusChat({ isOpen, onClose, initialQuery }) {
             className="h-10 w-10 rounded-xl flex items-center justify-center"
             style={{ background: 'linear-gradient(135deg, #00C27C, #64A8E0)' }}
           >
-            <Sparkles size={22} color="#fff" />
+            <NexusIcon size={22} />
           </div>
           <div>
             <h2 className="text-base font-semibold text-[#F0EDE8]">Nexus AI</h2>

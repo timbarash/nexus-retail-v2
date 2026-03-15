@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { Sparkles } from 'lucide-react';
 import NexusChat from './components/NexusChat';
+import NexusIcon from './components/NexusIcon';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
 import Footer from './components/layout/Footer';
@@ -141,7 +141,7 @@ export default function App() {
           className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[#00C27C] text-white shadow-lg animate-fab-spring animate-pulse-glow hover:scale-110 active:scale-95 transition-transform"
           aria-label="Open Nexus AI"
         >
-          <Sparkles className="h-6 w-6" />
+          <NexusIcon size={24} />
         </button>
       )}
     </div>

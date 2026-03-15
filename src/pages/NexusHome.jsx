@@ -19,6 +19,7 @@ import {
   Layers, Hash, Radio, Wifi, Activity, Percent, Receipt, Store,
   Megaphone, ShoppingCart, ChevronDown, Shield, Lock, Heart, Rocket,
 } from 'lucide-react';
+import NexusIcon from '../components/NexusIcon';
 
 // ---------------------------------------------------------------------------
 // Per-store metrics — deterministically generated for all 39 Ascend stores
@@ -2227,7 +2228,7 @@ function NexusLauncher({ onAction }) {
     <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] overflow-hidden" style={{ borderColor: 'rgba(0,194,124,0.15)' }}>
       <div className="px-5 py-3.5 border-b border-[#38332B] flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #1C1B1A 0%, #0F1923 50%, #1C1B1A 100%)' }}>
         <div className="h-8 w-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #00C27C, #64A8E0)' }}>
-          <Sparkles size={17} color="#fff" />
+          <NexusIcon size={17} />
         </div>
         <div className="flex-1">
           <h2 className="text-sm font-semibold text-[#F0EDE8]">Nexus AI</h2>
@@ -2257,7 +2258,7 @@ function NexusLauncher({ onAction }) {
         </div>
         <form onSubmit={(e) => { e.preventDefault(); if (inputValue.trim()) { onAction(inputValue.trim()); setInputValue(''); } }} className="mt-4">
           <div className="flex items-center gap-3 bg-[#141210] border border-[#38332B] rounded-xl px-4 py-2.5 focus-within:border-[#00C27C]/50 transition-colors">
-            <Sparkles className="w-4 h-4 text-[#6B6359] flex-shrink-0" />
+            <NexusIcon size={16} className="flex-shrink-0" />
             <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Ask Nexus anything about your stores..." className="flex-1 bg-transparent text-sm text-[#F0EDE8] placeholder-[#484F58] outline-none" />
             <button type="submit" disabled={!inputValue.trim()} className="w-7 h-7 rounded-lg bg-[#00C27C] flex items-center justify-center text-white disabled:opacity-30 hover:bg-[#00B07A] transition-colors">
               <Send className="w-3.5 h-3.5" />

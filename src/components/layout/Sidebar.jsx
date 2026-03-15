@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { BarChart3, Tag, MapPin, MessageSquare, Trophy, X, Zap, Bot, Megaphone, ShoppingCart, CircleDollarSign, Waypoints, Hash, Globe, Briefcase, Sparkles } from 'lucide-react';
+import { BarChart3, Tag, MapPin, MessageSquare, Trophy, X, Zap, Bot, Megaphone, ShoppingCart, CircleDollarSign, Waypoints, Hash, Globe, Briefcase } from 'lucide-react';
 import { CHANNELS } from '../../data/slackMockData';
 import { useStores } from '../../contexts/StoreContext';
+import NexusIcon from '../NexusIcon';
 
 const MY_STORES_ITEMS = [
   { to: '/', label: 'Command Center', icon: Zap },
@@ -35,7 +36,7 @@ function SidebarContent({ onClose, onSlackOpen, onDtchOpen }) {
       <div className="flex items-center justify-between px-5 py-5 border-b border-white/[0.08]">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#D4A03A] to-[#E8C06A] flex items-center justify-center shadow-lg" style={{ boxShadow: '0 0 16px rgba(212,160,58,0.25)' }}>
-            <Sparkles className="w-5 h-5 text-white" strokeWidth={2.2} />
+            <NexusIcon size={22} />
           </div>
           <div>
             <span className="text-lg font-bold tracking-tight text-[#F0EDE8]">Nexus</span>
