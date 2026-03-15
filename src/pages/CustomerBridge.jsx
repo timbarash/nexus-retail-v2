@@ -2940,47 +2940,31 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
 
       {/* chat area */}
       <div ref={chatAreaRef} className="flex-1 overflow-y-auto space-y-4 mb-4 pr-1">
-        {/* welcome */}
-        {nexusOverlay && messages.length === 0 && !thinkingStatus && (
-          <div className="flex flex-col items-center justify-center py-8">
-            <div className="w-[72px] h-[72px] rounded-[22px] flex items-center justify-center mb-5" style={{ background: 'linear-gradient(135deg, #00C27C, #B598E8)', boxShadow: '0 0 40px rgba(0,194,124,0.2)' }}>
-              <Sparkles size={36} color="#fff" />
+        {/* welcome — minimal centered spiral */}
+        {messages.length === 0 && !thinkingStatus && !compact && (
+          <div className="flex flex-col items-center justify-center py-10" style={{ minHeight: nexusOverlay ? 'calc(100% - 2rem)' : 320 }}>
+            <div className="w-[72px] h-[72px] rounded-[22px] flex items-center justify-center mb-6" style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', boxShadow: '0 0 48px rgba(212,160,58,0.25), 0 0 16px rgba(212,160,58,0.15)', border: '1px solid rgba(212,160,58,0.2)' }}>
+              <NexusIcon size={36} />
             </div>
-            <h2 className="text-[28px] font-bold text-[#F0EDE8] mb-2">How can I help?</h2>
-            <p className="text-sm text-[#ADA599] text-center max-w-[400px] mb-8">
-              I can manage inventory, run campaigns, analyze pricing, pull reports, and more across all your stores.
+            <h2 className="text-[26px] font-bold text-[#F0EDE8] mb-2 text-center">How can I help?</h2>
+            <p className="text-[13px] text-[#ADA599] text-center max-w-[420px] mb-5 leading-relaxed">
+              Powered by 55+ knowledge articles, 11 agent lanes, and real-time data across all your stores.
             </p>
-          </div>
-        )}
-        {!compact && !nexusOverlay && (
-        <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', border: '1px solid rgba(212,160,58,0.2)' }}>
-            <NexusIcon size={16} />
-          </div>
-          <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-5 py-4 max-w-2xl">
-            <p className="text-sm text-[#F0EDE8] leading-relaxed">
-              Welcome to Nexus Chat, your AI-powered retail operations agent. I can help you with:
-            </p>
-            <div className="grid grid-cols-2 gap-2 mt-3">
+            <div className="flex flex-wrap justify-center gap-2 max-w-[480px]">
               {[
-                { icon: BookOpen, label: 'Product Support & FAQ', color: '#0EA5E9' },
-                { icon: Bug, label: 'Report Issues & Bugs', color: '#E87068' },
-                { icon: Rocket, label: 'Discover Product Upgrades', color: '#EC4899' },
-                { icon: Factory, label: 'Request New Features', color: '#B598E8' },
-                { icon: Megaphone, label: 'Run Marketing Campaigns', color: '#00C27C' },
-                { icon: ShoppingCart, label: 'Purchasing & Inventory', color: '#64A8E0' },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#1E1D1B] border border-[#38332B]/50">
-                  <item.icon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: item.color }} />
-                  <span className="text-xs text-[#ADA599]">{item.label}</span>
-                </div>
+                { label: 'Inventory', color: '#64A8E0' },
+                { label: 'Campaigns', color: '#00C27C' },
+                { label: 'Pricing', color: '#D4A03A' },
+                { label: 'Reporting', color: '#0EA5E9' },
+                { label: 'Support', color: '#B598E8' },
+                { label: 'Compliance', color: '#E880A0' },
+              ].map(t => (
+                <span key={t.label} className="text-[11px] font-medium px-2.5 py-1 rounded-full" style={{ color: t.color, background: `${t.color}12`, border: `1px solid ${t.color}20` }}>
+                  {t.label}
+                </span>
               ))}
             </div>
-            <p className="text-sm text-[#ADA599] mt-3 leading-relaxed">
-              Ask me anything, or pick a scenario below to get started.
-            </p>
           </div>
-        </div>
         )}
 
         {/* messages */}
