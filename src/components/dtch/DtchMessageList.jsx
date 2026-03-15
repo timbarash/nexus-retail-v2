@@ -249,7 +249,7 @@ export default function DtchMessageList({
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8B949E] animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8B949E] animate-bounce" style={{ animationDelay: '300ms' }} />
               </div>
-              <span className="text-xs text-[#484F58] ml-1">{typingUser || 'Customer Bridge'} is typing...</span>
+              <span className="text-xs text-[#484F58] ml-1">{typingUser || 'Nexus Chat'} is typing...</span>
             </div>
           </div>
         )}

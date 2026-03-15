@@ -25,6 +25,7 @@ import { filterReviews } from './utils/helpers';
 import { useStores } from './contexts/StoreContext';
 import { useDateRange } from './contexts/DateRangeContext';
 import DesignReview from './pages/DesignReview';
+import NexusRedesignReview from './pages/NexusRedesignReview';
 import NexusMobileApp from './pages/NexusMobileApp';
 import SlackPanel from './components/slack/SlackPanel';
 import DtchPanel from './components/dtch/DtchPanel';
@@ -84,6 +85,7 @@ export default function App() {
 
   // Standalone pages rendered outside the app shell (no sidebar, header, footer, banner)
   if (location.pathname === '/design-review') return <DesignReview />;
+  if (location.pathname === '/nexus-redesign') return <NexusRedesignReview />;
   if (location.pathname === '/nexus-landing') return <NexusLanding />;
   if (location.pathname === '/nexus-mobile') return <NexusMobileApp />;
 
@@ -138,10 +140,11 @@ export default function App() {
       {!nexusChatOpen && (
         <button
           onClick={() => setNexusChatOpen(true)}
-          className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[#00C27C] text-white shadow-lg animate-fab-spring animate-pulse-glow hover:scale-110 active:scale-95 transition-transform"
+          className="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg animate-fab-spring hover:scale-110 active:scale-95 transition-transform"
+          style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', boxShadow: '0 0 24px rgba(212,160,58,0.35), 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,160,58,0.15)', border: '1.5px solid rgba(212,160,58,0.25)' }}
           aria-label="Open Nexus AI"
         >
-          <NexusIcon size={24} />
+          <NexusIcon size={26} />
         </button>
       )}
     </div>

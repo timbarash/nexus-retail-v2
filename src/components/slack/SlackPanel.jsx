@@ -123,7 +123,7 @@ export default function SlackPanel({ isOpen, onClose }) {
     const replyChannel = response.targetChannel || activeChannel;
 
     setTypingIndicator(true);
-    setTypingUser(null); // default: "Customer Bridge"
+    setTypingUser(null); // default: "Nexus Chat"
 
     // If the response goes to a different channel, post a routing notice in the current channel first
     if (replyChannel !== activeChannel) {

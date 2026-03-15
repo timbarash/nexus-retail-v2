@@ -238,7 +238,7 @@ export default function DtchPanel({ mode = 'closed', onModeChange, onClose }) {
     const response = processDtchMessage(text, currentSpaceId);
 
     setTypingIndicator(true);
-    setTypingUser(null); // Customer Bridge
+    setTypingUser(null); // Nexus Chat
 
     const botDelay = 1500 + Math.random() * 1000;
     const targetSpaceId = response.targetSpace || currentSpaceId;

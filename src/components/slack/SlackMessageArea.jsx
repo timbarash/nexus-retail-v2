@@ -52,7 +52,7 @@ export default function SlackMessageArea({ activeChannel, messages, typingIndica
               <span className="w-1.5 h-1.5 rounded-full bg-[#00C27C] animate-bounce" style={{ animationDelay: '150ms' }} />
               <span className="w-1.5 h-1.5 rounded-full bg-[#00C27C] animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
-            <span className="text-xs text-[#8B949E] italic">{typingUser || 'Customer Bridge'} is typing...</span>
+            <span className="text-xs text-[#8B949E] italic">{typingUser || 'Nexus Chat'} is typing...</span>
           </div>
         )}
       </div>

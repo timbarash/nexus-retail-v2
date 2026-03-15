@@ -2198,7 +2198,7 @@ function SalesReportingTile() {
 }
 
 // ---------------------------------------------------------------------------
-// Agent Bar — compact CustomerBridge embedded on home page
+// Agent Bar — compact Nexus Chat embedded on home page
 // ---------------------------------------------------------------------------
 
 function AgentBar() {
@@ -2227,7 +2227,7 @@ function NexusLauncher({ onAction }) {
   return (
     <div className="rounded-2xl border border-[#38332B] bg-[#1C1B1A] overflow-hidden" style={{ borderColor: 'rgba(0,194,124,0.15)' }}>
       <div className="px-5 py-3.5 border-b border-[#38332B] flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #1C1B1A 0%, #0F1923 50%, #1C1B1A 100%)' }}>
-        <div className="h-8 w-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #00C27C, #64A8E0)' }}>
+        <div className="h-8 w-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', boxShadow: '0 0 12px rgba(212,160,58,0.25), inset 0 1px 0 rgba(212,160,58,0.15)', border: '1px solid rgba(212,160,58,0.2)' }}>
           <NexusIcon size={17} />
         </div>
         <div className="flex-1">

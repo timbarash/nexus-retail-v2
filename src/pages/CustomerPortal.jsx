@@ -655,7 +655,7 @@ function InteractionsSection({ interactions }) {
                   <Lightbulb className="w-6 h-6 text-[#6B6359]" />
                 </div>
                 <p className="text-[#ADA599] text-sm">No feature requests yet</p>
-                <p className="text-[#6B6359] text-xs mt-1">Submit feature requests via Customer Bridge</p>
+                <p className="text-[#6B6359] text-xs mt-1">Submit feature requests via Nexus Chat</p>
               </div>
             ) : (
               filtered.map(interaction => (
@@ -676,7 +676,7 @@ function InteractionsSection({ interactions }) {
                 <Ticket className="w-6 h-6 text-[#6B6359]" />
               </div>
               <p className="text-[#ADA599] text-sm">No {activeTab === 'all' ? '' : activeTab} interactions yet</p>
-              <p className="text-[#6B6359] text-xs mt-1">Interactions created via Customer Bridge will appear here</p>
+              <p className="text-[#6B6359] text-xs mt-1">Interactions created via Nexus Chat will appear here</p>
             </div>
           ) : (
             filtered.map(interaction => (

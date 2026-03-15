@@ -20,9 +20,10 @@ import { ReorderView, ExploreView, RecommendationsView } from './ConnectAgent';
 import { MarketComparisonView, PriceCostView, DiscountReviewView, PriceScenariosView, ChangePricesView, CreateDiscountView } from './PricingAgent';
 import { reviews as allReviews, sources as allSources, brands as allBrands, categories as allCategories } from '../data/mockData';
 import { avgSentiment, sentimentDistribution, monthlyTrend, calculateNPS, categorySentiment, groupBy, filterReviews } from '../utils/helpers';
+import NexusIcon from '../components/NexusIcon';
 
 /* ═══════════════════════════════════════════════════════════════════
-   CUSTOMER PRODUCT CONTEXT (Feature Flags)
+   NEXUS CHAT — PRODUCT CONTEXT (Feature Flags)
    ═══════════════════════════════════════════════════════════════════ */
 
 const DEFAULT_PRODUCTS = {
@@ -2217,8 +2218,8 @@ function ThinkingIndicator({ status }) {
 
   return (
     <div className="flex items-start gap-3 animate-fade-in">
-      <div className="w-8 h-8 rounded-full bg-[#0EA5E9]/20 flex items-center justify-center flex-shrink-0">
-        <Bot className="w-4.5 h-4.5 text-[#0EA5E9]" />
+      <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', border: '1px solid rgba(212,160,58,0.2)' }}>
+        <NexusIcon size={16} />
       </div>
       <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-4 py-3 min-w-[220px]">
         {status ? (
@@ -2901,12 +2902,12 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
     <div className={`flex flex-col ${nexusOverlay ? 'h-full' : compact ? 'h-[420px]' : 'max-w-5xl mx-auto h-[calc(100vh-10rem)]'}`}>
       {/* header — hidden in nexusOverlay mode (NexusChat provides its own) */}
       {!nexusOverlay && <div className={`flex items-center gap-3 ${compact ? 'mb-3' : 'mb-6'}`}>
-        <div className={`${compact ? 'w-8 h-8' : 'w-10 h-10'} rounded-xl bg-gradient-to-br from-[#0EA5E9] to-[#0369A1] flex items-center justify-center shadow-lg shadow-[#0EA5E9]/20`}>
-          <MessageSquare className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-white`} />
+        <div className={`${compact ? 'w-8 h-8' : 'w-10 h-10'} rounded-xl flex items-center justify-center shadow-lg`} style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', boxShadow: '0 0 20px rgba(212,160,58,0.3), inset 0 1px 0 rgba(212,160,58,0.15)', border: '1px solid rgba(212,160,58,0.2)' }}>
+          <NexusIcon size={compact ? 16 : 22} />
         </div>
         <div>
-          <h1 className={`${compact ? 'text-base' : 'text-xl'} font-bold text-[#F0EDE8]`}>{compact ? 'Dutchie Agent' : 'Customer Bridge'}</h1>
-          <p className="text-xs text-[#ADA599]">{compact ? 'Ask anything, execute any action' : 'AI-Driven B2B Support & Product Command Center'}</p>
+          <h1 className={`${compact ? 'text-base' : 'text-xl'} font-bold text-[#F0EDE8]`}>{compact ? 'Nexus Chat' : 'Nexus Chat'}</h1>
+          <p className="text-xs text-[#ADA599]">{compact ? 'Ask anything, execute any action' : 'AI-Powered Retail Operations Agent'}</p>
         </div>
         <div className="ml-auto flex items-center gap-2">
           {compact ? (
@@ -2928,9 +2929,9 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
                 <span className="font-medium">{activeCount}/{totalCount} Products</span>
                 <PanelRight className="w-3.5 h-3.5" />
               </button>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0EA5E9]/10 border border-[#0EA5E9]/20">
-                <div className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-pulse" />
-                <span className="text-xs text-[#0EA5E9] font-medium">Online</span>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00C27C]/10 border border-[#00C27C]/20">
+                <div className="w-2 h-2 rounded-full bg-[#00C27C] animate-pulse" />
+                <span className="text-xs text-[#00C27C] font-medium">Online</span>
               </div>
             </>
           )}
@@ -2953,12 +2954,12 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
         )}
         {!compact && !nexusOverlay && (
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#0EA5E9]/20 flex items-center justify-center flex-shrink-0">
-            <Bot className="w-4.5 h-4.5 text-[#0EA5E9]" />
+          <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', border: '1px solid rgba(212,160,58,0.2)' }}>
+            <NexusIcon size={16} />
           </div>
           <div className="bg-[#1C1B1A] border border-[#38332B] rounded-2xl rounded-tl-sm px-5 py-4 max-w-2xl">
             <p className="text-sm text-[#F0EDE8] leading-relaxed">
-              Welcome to Customer Bridge, your AI-powered business command center. I can help you with:
+              Welcome to Nexus Chat, your AI-powered retail operations agent. I can help you with:
             </p>
             <div className="grid grid-cols-2 gap-2 mt-3">
               {[
@@ -2986,8 +2987,8 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
         {messages.map((msg, i) => (
           <div key={i} className={`flex items-start gap-3 animate-fade-in ${msg.role === 'user' ? 'justify-end' : ''}`}>
             {msg.role === 'agent' && (
-              <div className="w-8 h-8 rounded-full bg-[#0EA5E9]/20 flex items-center justify-center flex-shrink-0">
-                <Bot className="w-4.5 h-4.5 text-[#0EA5E9]" />
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', border: '1px solid rgba(212,160,58,0.2)' }}>
+                <NexusIcon size={16} />
               </div>
             )}
             <div className={`max-w-2xl ${msg.role === 'user' ? '' : ''}`}>
@@ -3199,7 +3200,7 @@ export default function CustomerBridge({ compact = false, nexusOverlay = false }
         {!compact && (
           <div className="flex items-center justify-between mt-2 px-1">
             <p className="text-[10px] text-[#6B6359]">
-              Customer Bridge uses intelligent intent recognition and 55+ knowledge articles to answer your questions.
+              Nexus Chat uses intelligent intent recognition and 55+ knowledge articles to answer your questions.
             </p>
             <div className="flex items-center gap-1 text-[10px] text-[#6B6359] flex-wrap">
               <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#0EA5E9]" /> Support</span>

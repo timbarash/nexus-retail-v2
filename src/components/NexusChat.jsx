@@ -53,7 +53,7 @@ export default function NexusChat({ isOpen, onClose, initialQuery }) {
         <div className="flex items-center gap-3">
           <div
             className="h-10 w-10 rounded-xl flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #00C27C, #64A8E0)' }}
+            style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', boxShadow: '0 0 20px rgba(212,160,58,0.3), inset 0 1px 0 rgba(212,160,58,0.15)', border: '1px solid rgba(212,160,58,0.2)' }}
           >
             <NexusIcon size={22} />
           </div>

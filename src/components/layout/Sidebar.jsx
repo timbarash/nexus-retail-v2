@@ -24,7 +24,7 @@ const OPERATIONS_ITEMS = [
 ];
 
 const HELP_ITEMS = [
-  { to: '/agents/bridge', label: 'Customer Bridge', icon: Waypoints },
+  { to: '/agents/bridge', label: 'Nexus Chat', icon: Waypoints },
   { to: '/portal', label: 'Customer Portal', icon: Briefcase },
 ];
 
@@ -35,7 +35,7 @@ function SidebarContent({ onClose, onSlackOpen, onDtchOpen }) {
       {/* Logo */}
       <div className="flex items-center justify-between px-5 py-5 border-b border-white/[0.08]">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#D4A03A] to-[#E8C06A] flex items-center justify-center shadow-lg" style={{ boxShadow: '0 0 16px rgba(212,160,58,0.25)' }}>
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #1A1710 0%, #2A2318 100%)', boxShadow: '0 0 20px rgba(212,160,58,0.3), inset 0 1px 0 rgba(212,160,58,0.15)', border: '1px solid rgba(212,160,58,0.2)' }}>
             <NexusIcon size={22} />
           </div>
           <div>
